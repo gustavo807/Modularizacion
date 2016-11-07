@@ -43,6 +43,14 @@
                     <input type="password" class="form-control" placeholder="{{ trans('adminlte_lang::message.retrypepassword') }}" name="password_confirmation"/>
                     <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
                 </div>
+                <div class="form-group has-feedback">
+                    <input type="radio" class="form-control"  name="tipo" value="1" />
+                    <span class="">Empresa</span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="radio" class="form-control"  name="tipo" value="2" />
+                    <span class="">Vinculado</span>
+                </div>
                 <div class="row">
                     <div class="col-xs-1">
                         <label>
