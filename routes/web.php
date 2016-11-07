@@ -19,6 +19,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-
+Route::get('logout',function(){
+	Auth::logout();
+	return Redirect::to('/');
+});
 
 Route::resource('logueo','AutenticacionController@logueo');
