@@ -15,6 +15,7 @@ class CreateProyectosVinculadosTable extends Migration
     {
         Schema::create('proyectos_vinculados', function (Blueprint $table) {
             $table->timestamps();
+            $table->softDeletes();
 
             $table->integer('proyecto_id')->unsigned();
             $table->foreign('proyecto_id')

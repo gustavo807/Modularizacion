@@ -18,6 +18,7 @@ class CreateConvocatoriasTable extends Migration
             $table->string('convocatoria');
             $table->string('descripcion');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->integer('institucion_id')->unsigned();
             $table->foreign('institucion_id')

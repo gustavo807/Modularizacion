@@ -22,6 +22,7 @@ class CreateInvestigadoresTable extends Migration
             $table->string('usuario_conacyt');
             $table->string('password_conacyt');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->integer('vinculado_id')->unsigned();
             $table->foreign('vinculado_id')

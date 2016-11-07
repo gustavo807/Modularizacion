@@ -18,6 +18,7 @@ class CreateProyectosTable extends Migration
             $table->string('nombre');
             $table->string('descripcion');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->integer('convocatoria_id')->unsigned();
             $table->foreign('convocatoria_id')

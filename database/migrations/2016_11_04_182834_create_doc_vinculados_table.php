@@ -17,6 +17,7 @@ class CreateDocVinculadosTable extends Migration
             $table->increments('id');
             $table->string('documento');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->integer('vinculado_id')->unsigned();
             $table->foreign('vinculado_id')

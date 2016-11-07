@@ -17,6 +17,7 @@ class CreateProgramasTable extends Migration
             $table->increments('id');
             $table->string('programa');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

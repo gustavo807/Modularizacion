@@ -17,6 +17,7 @@ class CreateDocEmpresasTable extends Migration
             $table->increments('id');
             $table->string('documento');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->integer('empresa_id')->unsigned();
             $table->foreign('empresa_id')

@@ -18,15 +18,11 @@ class CreateClavesTable extends Migration
             $table->string('nombre');
             $table->string('identificador');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->integer('modulo_id')->unsigned();
             $table->foreign('modulo_id')
                   ->references('id')->on('modulos')
-                  ->onDelete('cascade')->onUpdate('cascade');
-
-            $table->integer('clasificacion_id')->unsigned();
-            $table->foreign('clasificacion_id')
-                  ->references('id')->on('clasificaciones')
                   ->onDelete('cascade')->onUpdate('cascade');
         });
     }

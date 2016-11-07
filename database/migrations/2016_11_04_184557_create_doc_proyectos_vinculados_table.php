@@ -17,6 +17,7 @@ class CreateDocProyectosVinculadosTable extends Migration
             $table->string('documento');
             $table->string('otro');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->integer('proyecto_id')->unsigned();
             $table->foreign('proyecto_id')

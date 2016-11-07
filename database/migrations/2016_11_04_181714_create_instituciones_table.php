@@ -17,6 +17,7 @@ class CreateInstitucionesTable extends Migration
             $table->increments('id');
             $table->string('institucion');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->integer('programa_id')->unsigned();
             $table->foreign('programa_id')

@@ -16,6 +16,7 @@ class CreateProyectosImagenesTable extends Migration
         Schema::create('proyectos_imagenes', function (Blueprint $table) {
             $table->string('valor');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->integer('proyecto_id')->unsigned();
             $table->foreign('proyecto_id')

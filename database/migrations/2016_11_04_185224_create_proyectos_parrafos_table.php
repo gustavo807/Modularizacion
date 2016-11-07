@@ -17,6 +17,7 @@ class CreateProyectosParrafosTable extends Migration
             $table->string('valor');
             $table->string('observacion');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->integer('proyecto_id')->unsigned();
             $table->foreign('proyecto_id')

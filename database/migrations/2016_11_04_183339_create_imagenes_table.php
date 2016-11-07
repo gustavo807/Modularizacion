@@ -19,6 +19,7 @@ class CreateImagenesTable extends Migration
             $table->string('descripcion');
             $table->string('referencia');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->integer('modulo_id')->unsigned();
             $table->foreign('modulo_id')

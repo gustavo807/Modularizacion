@@ -17,6 +17,7 @@ class CreateParrafosTable extends Migration
             $table->increments('id');
             $table->string('parrafo');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->integer('modulo_id')->unsigned();
             $table->foreign('modulo_id')
