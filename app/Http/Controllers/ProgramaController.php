@@ -25,7 +25,7 @@ class ProgramaController extends Controller
      */
     public function create()
     {
-        //
+        return view('asesor/programa.create');
     }
 
     /**
@@ -36,7 +36,15 @@ class ProgramaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'programa' => 'required',
+        ]);
+
+        Programa::create([
+            'programa' => $request['programa'],
+        ]);
+        
+        return redirect('/asesorprograma')->with('success','Programa registrado correctamente');
     }
 
     /**
@@ -58,7 +66,8 @@ class ProgramaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $programa = Programa::find($id);
+        return view('asesor/programa.edit',['programa'=>$programa]);
     }
 
     /**
@@ -70,7 +79,13 @@ class ProgramaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'programa' => 'required',
+        ]);
+
+        Programa::find($id)->update($request->all()); 
+        return redirect('/asesorprograma')
+                           ->with('success','Programa actualizado correctamente');
     }
 
     /**
@@ -81,6 +96,8 @@ class ProgramaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Programa::find($id)->delete();
+        return redirect('/asesorprograma')
+                        ->with('success','Programa borrado correctamente');
     }
 }

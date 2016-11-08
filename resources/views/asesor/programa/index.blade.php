@@ -6,16 +6,23 @@
 
 
 @section('main-content')
+	
+
+
 	<div class="container spark-screen">
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
 				<div class="panel panel-default">
 					<div class="panel-heading">Programas</div>
 
-					<!--<div class="panel-body">
-						<h1>Programa</h1>
+					@include('alerts.success')
+
+					<a class="btn btn-success" href="/asesorprograma/create" role="button">Agregar</a>
+					
+					<div class="botonadd" >
+					<button class="kc_fab_main_btn">+</button>
 					</div>
-					-->
+					
 
 					<table class="table table-bordered">
 				        <thead>
@@ -27,10 +34,21 @@
 							<tbody>
 								<td>{{$programa->programa}}</td>
 								<td>
-									{!! link_to_route('asesor.edit', $title = '', $parameters = $programa->id, $attributes = ['class'=>'ion-edit icon-big']) !!}
-								
-									<i class="ion-trash-b icon-big"></i>
-										
+									<div class="col-md-2">
+										{!! link_to_route('asesorprograma.edit', $title = '', $parameters = $programa->id, $attributes = ['class'=>'ion-edit icon-big']) !!}
+									</div>
+									
+
+									<div class="col-md-2">
+										{!! Form::open(['method' => 'DELETE', 
+										    'route' => ['asesorprograma.destroy', $programa->id], 
+										    'id' => 'form-delete-programas-' . $programa->id]) !!}
+										    <a href="" class="data-delete" 
+										      data-form="programas-{{ $programa->id }}">
+										      <i class="ion-trash-b icon-big"></i></a>
+										  {!! Form::close() !!}
+									</div>
+									
 								</td>
 							</tbody>
 						@endforeach
@@ -41,4 +59,17 @@
 			</div>
 		</div>
 	</div>
+
+	@push('scripts')
+		<script type="text/javascript">
+			$(function () {
+			  $('.data-delete').on('click', function (e) {
+			    if (!confirm('Estas seguro de eliminar?')) return;
+			    e.preventDefault();
+			    $('#form-delete-' + $(this).data('form')).submit();
+			  });
+			});
+		</script>
+	@endpush
+	
 @endsection

@@ -47,7 +47,7 @@ class AsesorController extends Controller
      */
     public function show($id)
     {
-        //
+        // 
     }
 
     /**

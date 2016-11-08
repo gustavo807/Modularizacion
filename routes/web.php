@@ -73,7 +73,7 @@ Route::group(['middleware' => 'auth'], function () {
     
 		Route::resource('asesor','AsesorController');
 		Route::resource('asesor.convocatoria/','ConvocatoriaController');
-		Route::resource('asesor.programa/','ProgramaController');
+		Route::resource('asesorprograma','ProgramaController');
 	    
 	});
 
