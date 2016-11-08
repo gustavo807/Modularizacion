@@ -14,7 +14,7 @@
 
 
 /*******************************************/
-/********WEBSITE ALIVE TECH*****************/
+/***********WEBSITE ALIVE TECH**************/
 /*******************************************/
 
 
@@ -26,6 +26,18 @@ Route::get('/Transferencia', 'PagesController@transferencia');
 Route::get('/About', 'PagesController@about');
 Route::get('/Privacy', 'PagesController@privacy');
 
+/***********************************************/
+/******************MAIL*************************/
+/***********************************************/
+
+Route::get('sup', function(){
+    
+    Mail::to('sistemas@alivetech.mx')->send(new WelcomeMail);
+    
+});
+
+
+
 
 /**************************************************/
 /*****************MODULARIZACION******************/
@@ -36,6 +48,7 @@ Route::get('/Privacy', 'PagesController@privacy');
     return view('welcome');
 });
 */
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');

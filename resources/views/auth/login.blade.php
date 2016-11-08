@@ -43,15 +43,15 @@
                 </div>
             </div><!-- /.col -->
             <div class="col-xs-4">
-                <button type="submit" class="btn btn-primary btn-block btn-flat">{{ trans('adminlte_lang::message.buttonsign') }}</button>
+                <button type="submit" class="btn btn-primary btn-block btn-flat">Entrar</button>
             </div><!-- /.col -->
         </div>
     </form>
 
-    @include('auth.partials.social_login')
+   
 
     <a href="{{ url('/password/reset') }}">{{ trans('adminlte_lang::message.forgotpassword') }}</a><br>
-    <a href="{{ url('/register') }}" class="text-center">{{ trans('adminlte_lang::message.registermember') }}</a>
+    <a href="{{ url('/register') }}" class="text-center">No estoy registrado</a>
 
 </div><!-- /.login-box-body -->
 

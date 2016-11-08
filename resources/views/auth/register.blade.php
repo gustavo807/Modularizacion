@@ -24,7 +24,7 @@
         @endif
 
         <div class="register-box-body">
-            <p class="login-box-msg">{{ trans('adminlte_lang::message.registermember') }}</p>
+            <p class="login-box-msg">Registrar nuevo usuario</p>
             <form action="{{ url('/register') }}" method="post">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group has-feedback">
@@ -49,7 +49,7 @@
                 </div>
                 <div class="form-group has-feedback">
                     <input type="radio" class="form-control"  name="tipo" value="2" />
-                    <span class="">Vinculado</span>
+                    <span class="">Centros de Investigación y Universidades</span>
                 </div>
                 <div class="row">
                     <div class="col-xs-1">
@@ -63,7 +63,7 @@
                     </div><!-- /.col -->
                     <div class="col-xs-6">
                         <div class="form-group">
-                            <button type="button" class="btn btn-block btn-flat" data-toggle="modal" data-target="#termsModal">{{ trans('adminlte_lang::message.terms') }}</button>
+                            <button type="button" class="btn btn-block btn-flat" data-toggle="modal" data-target="#termsModal">Política de privacidad</button>
                         </div>
                     </div><!-- /.col -->
                     <div class="col-xs-4 col-xs-push-1">
@@ -71,8 +71,6 @@
                     </div><!-- /.col -->
                 </div>
             </form>
-
-            @include('auth.partials.social_login')
 
             <a href="{{ url('/login') }}" class="text-center">{{ trans('adminlte_lang::message.membreship') }}</a>
         </div><!-- /.form-box -->
