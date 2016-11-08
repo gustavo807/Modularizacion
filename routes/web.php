@@ -11,10 +11,31 @@
 |
 */
 
-Route::get('/', function () {
+
+
+/*******************************************/
+/********WEBSITE ALIVE TECH*****************/
+/*******************************************/
+
+
+Route::get('/', 'PagesController@alivetech');
+Route::get('/Industria', 'PagesController@industria');
+Route::get('/Academia', 'PagesController@academia');
+Route::get('/Gobierno', 'PagesController@gobierno');
+Route::get('/Transferencia', 'PagesController@transferencia');
+Route::get('/About', 'PagesController@about');
+Route::get('/Privacy', 'PagesController@privacy');
+
+
+/**************************************************/
+/*****************MODULARIZACION******************/
+/*************************************************/
+
+
+/*Route::get('/', function () {
     return view('welcome');
 });
-
+*/
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');

@@ -1,0 +1,326 @@
+/*.left-margin{
+    padding-left: 230px;
+}*/
+
+
+
+
+
+/* Big tablet to 1200px (widths smaller that the 1140px row) */
+@media only screen and (max-width: 1200px) {
+    .row { padding: 0 2%; }
+}
+
+/* Medium tablet to 1050px*/
+@media only screen and (max-width: 1150px) {
+    
+    .logo-nav { height: 60px;
+            width: auto;
+            float: left; }
+    
+    .main-nav li a:link,
+    .main-nav li a:visited {
+    padding: 10px 0px;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 90%;
+    transition: border-bottom 0.3s;
+    }
+    
+    .main-nav li a:hover,
+    .main-nav li a:active {
+    color:#0770b0;    
+    }  
+}
+
+
+/* Small tablet to big tablet: from 768px to 1023px */
+@media only screen and (max-width: 1023px) {
+    body { font-size: 18px; }
+    section { padding: 60px 0; }
+    
+    .long-copy {
+        width: 80%;
+        margin-left: 10%;
+    }
+    
+    .centered-ul-long {
+        width: 80%;
+        margin-left: 10%;
+    }
+    
+    h1{font-size: 200%}
+    h2{font-size: 140%}
+    
+    
+}
+
+
+@media only screen and (max-width: 960px){
+    #carousel_container{margin-left: 15%;}
+    #carousel_inner{width: 70%;}
+}
+
+/*Super Small tablet or big ass phone Here, the movil navi, begins*/
+
+@media only screen and (max-width: 910px){
+    
+    #map {
+        margin-left: 10%;
+        width: 80%;
+        height: 350px;
+      }
+    
+    body { font-size: 16px; }
+    section { padding: 30px 0; }
+    
+    .row,
+    .hero-text-box { padding: 3%, 4%; }
+    .col { 
+        width: 100%;
+        margin: 0 0 4% 0;
+    }
+    
+    h1{font-size: 150%}
+    h2{font-size: 120%}
+    
+    .photo-grid img{
+        height: 100%;
+        width: 100%;
+        margin: 8px;
+    }
+    
+    .photo-grid figcaption{
+        margin: 5%;
+        height: 80%
+    }
+    
+    .photo-grid figcaption ul{
+        font-size: 150%;
+        padding: 8%;
+    }
+    
+    .box, big-box{
+        padding: 5%;
+        height: 24em;
+    }
+    
+    .big-box{
+    height: 27em;
+    }
+    
+    .box p, .big-box p, .box li, .big-box li {
+    font-size: 100%;
+    line-height: 130%;
+}
+}
+
+@media only screen and (max-width: 850px){
+      
+    .mobile-nav-icon{
+        visibility: visible;
+    }
+    
+    .main-nav{
+        display: none;
+    }
+    
+
+    .box p, .big-box p, .box li, .big-box li {
+    font-size: 100%;
+    line-height: 130%;
+}
+    
+    .centered-ul-medium{
+    margin-left: 5%;
+}
+    
+    .photo-grid figcaption{
+        margin: 5%;
+        height: 80%
+    }
+    
+    .photo-grid figcaption ul {
+        font-size: 110%;
+    }
+    
+      .box{
+    height: 28em;
+    }
+    
+    #carousel_container{margin-left: 10%;}
+    #carousel_inner{width: 70%;}
+}
+
+@media only screen and (max-width: 750px){
+    
+    body { font-size: 16px; }
+    .centered-ul{
+     margin-left: 25%;
+     font-size: 80%;        
+}
+    
+    .centered-ul-medium{
+    font-size: 80%;
+}
+    
+}
+
+    @media only screen and (max-width: 640px){
+    
+       .photo-grid figcaption ul {
+        font-size: 100%;
+    } 
+
+        
+}
+
+    @media only screen and (max-width: 640px){
+       body { font-size: 15px; } 
+}
+
+@media only screen and (max-width: 540px){
+       body { font-size: 12px; } 
+}
+
+@media only screen and (max-width: 435px){
+       body { font-size: 12px; } 
+       figcaption{font-size: 90%}    
+ }
+
+@media only screen and (max-width: 435px){
+       figcaption{font-size: 80%}    
+ }
+
+@media only screen and (max-width: 345px){
+       figcaption{font-size: 70%}    
+}
+
+@media only screen and (max-width: 300px){
+       figcaption{font-size: 60%}    
+ }
+
+    
+    /*.main-nav { display: none; }*/
+   /* .mobile-nav{visibility: visible;}
+    .mobile-nav-icon { display: inline-block; 
+                        z-index: 1;}
+    .mobile-nav{
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0 ;
+        right: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 5%;
+        }
+    
+    .mobile-nav li{
+        margin-top: 20%;
+        margin-left: 10%;
+        font-size: 100%;
+        display: block;
+        color: #111;
+        display: block;
+        transition: 0.3s
+    }
+    
+    .mobile-nav li:hover, .offcanvas li:focus{
+        color: #f1f1f1;
+    }
+    
+    #wrap{
+        transition: margin-right .5s;
+    }
+
+    
+    .mobile-nav-icon{
+        position: fixed;
+    }  */ 
+
+/*}
+
+
+
+
+/* Small phones to small tablets: from 481px to 767px */
+/*
+@media only screen and (max-width: 767px) {
+    body { font-size: 16px; }
+    section { padding: 30px 0; }
+    
+    .row,
+    .hero-text-box { padding: 0 4%; }
+    .col { 
+        width: 100%;
+        margin: 0 0 4% 0;
+    }
+    
+    
+    .main-nav { display: none; }
+    .mobile-nav-icon {display: inline-block;}
+    
+    .main-nav {
+        float: left;
+        margin-top: 30px;
+        margin-left: 25px;
+    }
+    
+    .main-nav li {
+        display: block;
+    }
+    
+    .main-nav li a:link,
+    .main-nav li a:visited {
+        display: block;
+        border: 0;
+        padding: 10px 0;
+        font-size: 100%;
+    }
+    
+    .sticky .main-nav { margin-top: 10px; }
+
+    .sticky .main-nav li a:link,
+    .sticky .main-nav li a:visited { padding: 10px 0; }
+    .sticky .mobile-nav-icon { margin-top: 10px; }
+    .sticky .mobile-nav-icon i { color: #555; }
+    
+    
+    
+    h1 { font-size: 180%; }
+    h2 { font-size: 150%; }
+    
+    .long-copy {
+        width: 100%;
+        margin-left: 0%;
+    }
+    
+    .app-screen { width: 40%; }
+    .steps-box:first-child { text-align: center; }
+    
+    .works-step div {
+        height: 40px;
+        width: 40px;
+        margin-right: 15px;
+        padding: 4px;
+        font-size: 120%;
+    }
+    
+    .works-step { margin-bottom: 20px; }
+    .works-step:last-of-type { margin-bottom: 20px; }
+    
+}
+
+
+
+/* Small phones: from 0 to 480px */
+/*
+@media only screen and (max-width: 480px) {
+    section { padding: 25px 0; }
+    .contact-form {width: 100%; }
+}
+
