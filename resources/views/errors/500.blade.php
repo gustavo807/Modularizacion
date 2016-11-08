@@ -31,4 +31,3 @@
             </form>
         </div>
     </div><!-- /.error-page -->
-@endsection

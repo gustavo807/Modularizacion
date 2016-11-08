@@ -27,3 +27,5 @@ Route::get('logout',function(){
 Route::resource('logueo','AutenticacionController@logueo');
 
 Route::resource('asesor','AsesorController');
+Route::resource('empresa','EmpresaController');
+Route::resource('vinculado','VinculadoController');

@@ -31,15 +31,15 @@
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
-            <li class="header">{{ trans('adminlte_lang::message.header') }}</li>
+            <li class="header">Asesor</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="{{ url('asesor') }}"><i class='fa fa-link'></i> <span>Home</span></a></li>
-            <li><a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.anotherlink') }}</span></a></li>
+            <li class="active"><a href="{{ url('asesor') }}"><i class='fa fa-link'></i> <span>Asesor</span></a></li>
+            <li><a href="#"><i class='fa fa-link'></i> <span>Convocatorias</span></a></li>
             <li class="treeview">
-                <a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.multilevel') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <a href="#"><i class='fa fa-link'></i> <span>Multinivel</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li>
-                    <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li>
+                    <li><a href="#">nivel 1</a></li>
+                    <li><a href="#">nivel 2</a></li>
                 </ul>
             </li>
         </ul><!-- /.sidebar-menu -->

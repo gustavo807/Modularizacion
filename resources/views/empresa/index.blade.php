@@ -1,4 +1,4 @@
-@extends('asesor.cuerpo')
+@extends('empresa.cuerpo')
 
 @section('htmlheader_title')
 	Home

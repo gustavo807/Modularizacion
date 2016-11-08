@@ -13,9 +13,12 @@ class AutenticacionController extends Controller
         if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
             // Authentication passed...
             if (Auth::user()->rol_id == 1) {
-            return redirect('/home');
-            }else{
                 return redirect('/empresa');
+            }else if (Auth::user()->rol_id == 2){
+                return redirect('/vinculado');
+            }
+            else{
+                return redirect('/asesor');
             }
             //return redirect('/home');
         }

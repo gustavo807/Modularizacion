@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Middleware\Asesor;
+use App\Http\Middleware\Empresa;
 
-class AsesorController extends Controller
+class EmpresaController extends Controller
 {
     public function __construct(){
         $this->middleware('auth');
-        $this->middleware('asesor');
+        $this->middleware('empresa');
     }
     /**
      * Display a listing of the resource.
@@ -18,7 +18,7 @@ class AsesorController extends Controller
      */
     public function index()
     {
-        return view('asesor.index');
+        return view('empresa.index');
     }
 
     /**

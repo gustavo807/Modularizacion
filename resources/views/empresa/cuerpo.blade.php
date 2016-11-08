@@ -34,7 +34,7 @@ desired effect
 
     @include('layouts.partials.mainheader')
 
-    @include('asesor.sidebar')
+    @include('empresa.sidebar')
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -48,7 +48,7 @@ desired effect
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
 
-    @include('asesor.controlsidebar')
+    @include('empresa.controlsidebar')
 
     @include('layouts.partials.footer')
 
