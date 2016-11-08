@@ -26,6 +26,44 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
 }
+
+
+/* ----- ICONS CUNSTOM----- */
+
+.icon-big {
+    font-size: 200%;
+    display: inline;
+    /*color: #343434;*/
+    color: #343434;
+    margin-bottom: 10px;
+}
+
+.icon-small {
+    display: inline-block;
+    width: 30px;
+    text-align: center;
+    color: #0770b0;
+    font-size: 120%;
+    margin-right: 10px;
+    /*secrets to align text and icons*/
+    line-height: 120%;
+    vertical-align: middle;
+    margin-top: -5px;
+}
+
+.icon-big,
+.icon-small{
+  transition: color 0.2s;
+  -webkit-transition: color 0.2s;
+}
+
+.icon-big: hover,
+.icon-big: active{
+  color: #0770b0;
+}
+
+/* --------------------- */
+
 /* Layout */
 .wrapper {
   min-height: 100%;

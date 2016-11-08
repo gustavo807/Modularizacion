@@ -11,7 +11,7 @@
 
                 <link rel="stylesheet" type="text/css" href="alivetech/vendor/css/normalize.css">
                 <link rel="stylesheet" type="text/css" href="alivetech/vendor/css/grid.css">
-                <!--<link rel="stylesheet" type="text/css" href="vendor/css/ionicons.min.css">-->
+                <!--<link rel="stylesheet" type="text/css" href="alivetech/vendor/css/ionicons.min.css">-->
                 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.css">
                 <link rel="stylesheet" type="text/css" href="alivetech/vendor/css/animate.css">
                 <link rel="stylesheet" type="text/css" href="alivetech/res/css/style.css">
