@@ -55,9 +55,12 @@ return [
     |
     */
 
-    'from' => [
+    /*'from' => [
         'address' => 'hello@example.com',
-        'name' => 'Example',
+        'name' => 'Example',*/
+    'from' => [
+        'address' => 'sistemas@alivetech.mx',
+        'name' => 'Alive Tech',
     ],
 
     /*

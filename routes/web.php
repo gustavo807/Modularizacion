@@ -1,5 +1,8 @@
 <?php
 
+
+use App\Mail\WelcomeMail;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,9 +33,11 @@ Route::get('/Privacy', 'PagesController@privacy');
 /******************MAIL*************************/
 /***********************************************/
 
-Route::get('sup', function(){
-    
+Route::get('/sup', function(){
+    // Enviar email de bienvenida.
     Mail::to('sistemas@alivetech.mx')->send(new WelcomeMail);
+    
+    return Redirect::to('/login');
     
 });
 
@@ -59,8 +64,6 @@ Route::get('logout',function(){
 });
 
 Route::resource('logueo','AutenticacionController@logueo');
-
-
 
 
 

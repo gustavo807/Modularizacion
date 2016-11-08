@@ -1,4 +1,4 @@
-<?php
+  <?php
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -20,7 +20,6 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-
             $table->integer('rol_id')->unsigned();
             $table->foreign('rol_id')
                   ->references('id')->on('roles')
@@ -38,3 +37,4 @@ class CreateUsersTable extends Migration
         Schema::dropIfExists('users');
     }
 }
+s

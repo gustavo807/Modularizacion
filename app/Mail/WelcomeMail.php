@@ -7,6 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
+
 class WelcomeMail extends Mailable
 {
     use Queueable, SerializesModels;
@@ -28,6 +29,9 @@ class WelcomeMail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.welcome');
+        $address = 'No-Reply@alivetech.com';
+        $name = 'Alive Tech';
+        $subject = 'Binevenido al sistema de documentación de Alive Tech.';
+        return $this->view('mails.welcome');
     }
 }
