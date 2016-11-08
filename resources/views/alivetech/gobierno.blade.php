@@ -2,8 +2,8 @@
 @section('title', 'Gobierno')
 @section('header')
     <header id="gobierno-header" class="header">
-        @include('shared.atnavbar')
-        @include('shared.atsidenav')
+        @include('atshared.atnavbar')
+        @include('atshared.atsidenav')
         <div class="hero-text-box">
             <h1>Gobierno</h1>
         </div>  
@@ -18,7 +18,7 @@
                <div class="long-copy">
                    <blockquote>
                    AliveTech: Desarrollo y vitalización de los sistemas sociotécnicos que conforman las empresas, organizaciones y clústers.
-                   <cite><img src="res/img/AliveTech-Logo-Big.png" alt="Logo">-Equipo AliveTech.</cite>
+                   <cite><img src="alivetech/res/img/AliveTech-Logo-Big.png" alt="Logo">-Equipo AliveTech.</cite>
                    </blockquote>
                </div>
     </section>
@@ -36,7 +36,7 @@
            </div>
            <div class="row">
                 <div class="marca-gto-div js--wp-1">
-                    <img class="marca-gto-img" src="res/img/Marca-Gto.png" alt="Marca Guanajuato">
+                    <img class="marca-gto-img" src="alivetech/res/img/Marca-Gto.png" alt="Marca Guanajuato">
                 </div>
             </div>
     </section>

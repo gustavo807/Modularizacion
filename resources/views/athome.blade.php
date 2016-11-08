@@ -3,8 +3,8 @@
 @section('header')
     <header id="main-header" class="header">
     
-         @include('shared.atnavbar')
-         @include('shared.atsidenav')
+         @include('atshared.atnavbar')
+         @include('atshared.atsidenav')
     
     <div class="hero-text-box">
        
@@ -26,12 +26,12 @@
            <div class="row span-1-of-2">
            <blockquote>
            La tecnología no es una opción, sino un paso natural de la evolución.
-           <cite><img src="res/img/AliveTech-Logo-Big.png" alt="Logo">-Equipo AliveTech.</cite>
+           <cite><img src="alivetech/res/img/AliveTech-Logo-Big.png" alt="Logo">-Equipo AliveTech.</cite>
            </blockquote>
            </div>
            <div class="row">
                 <div class="marca-gto-div js--wp-1">
-                    <img class="marca-gto-img" src="res/img/Marca-Gto.png" alt="Marca Guanajuato">
+                    <img class="marca-gto-img" src="alivetech/res/img/Marca-Gto.png" alt="Marca Guanajuato">
                 </div>
             </div>
         </div>

@@ -2,8 +2,8 @@
 @section('title', 'Gobierno')
 @section('header')
     <header id="transferencia-header" class="header">
-        @include('shared.atnavbar')
-        @include('shared.atsidenav')
+        @include('atshared.atnavbar')
+        @include('atshared.atsidenav')
     <div class="hero-text-box">
         <h1>Transferencia de Tecnología</h1>
     </div>  
@@ -15,7 +15,7 @@
          
           <blockquote class="long-copy">
            Tecnología Viva: Hardware más Software más Humanware.
-           <cite><img src="res/img/AliveTech-Logo-Big.png" alt="Logo">-Equipo AliveTech.</cite>
+           <cite><img src="alivetech/res/img/AliveTech-Logo-Big.png" alt="Logo">-Equipo AliveTech.</cite>
            </blockquote> 
         </div>      
     </section>
@@ -33,7 +33,7 @@
         </div>
         <div class="row">
                 <div class="marca-gto-div js--wp-1">
-                    <img class="marca-gto-img" src="res/img/Marca-Gto.png" alt="Marca Guanajuato">
+                    <img class="marca-gto-img" src="alivetech/res/img/Marca-Gto.png" alt="Marca Guanajuato">
                 </div>
             </div>
     </section>
@@ -41,7 +41,7 @@
     <section class="section-OTT" id="ott">
        <h2>Formamos parte de la Red de Oficinas de Transferencia de Tecnología en México</h2> 
         <div class="row">
-        <img class="red-OTT js--wp-3" src="res/img/Constancia%20Red%20OTT.jpg" alt=" Constancia Red OTT">
+        <img class="red-OTT js--wp-3" src="alivetech/res/img/Constancia%20Red%20OTT.jpg" alt=" Constancia Red OTT">
        </div>
         
     </section>            

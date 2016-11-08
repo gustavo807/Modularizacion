@@ -4,8 +4,8 @@
 
    <header id="industry-header" class="header">
       
-       @include('shared.atnavbar')
-       @include('shared.atsidenav')
+       @include('atshared.atnavbar')
+       @include('atshared.atsidenav')
       
         <div class="hero-text-box">
             <h1>Industria</h1>
@@ -19,7 +19,7 @@
         <div class="row span-1-of-2">
            <blockquote>
            La innovación es el fruto natural de la interacción armónica y sinérgica entre el hombre, la tecnología y el conocimiento.
-           <cite><img src="res/img/AliveTech-Logo-Big.png" alt="Logo">-Equipo AliveTech.</cite>
+           <cite><img src="alivetech/res/img/AliveTech-Logo-Big.png" alt="Logo">-Equipo AliveTech.</cite>
            </blockquote>
         </div>   
     </section>
@@ -36,7 +36,7 @@
             </div>
             <div class="row">
                 <div class="marca-gto-div js--wp-1">
-                    <img class="marca-gto-img" src="res/img/Marca-Gto.png" alt="Marca Guanajuato">
+                    <img class="marca-gto-img" src="alivetech/res/img/Marca-Gto.png" alt="Marca Guanajuato">
                 </div>
             </div>
     </section>
@@ -45,7 +45,7 @@
        <h2>Formulación de Proyectos Tecnológicos</h2>
         <div class="row  photo-grid">
           <div class="col span-1-of-3">      
-               <figure><img class="img-sector" src="res/img/sectors/Automotriz.jpg" alt="Sector Automotriz">
+               <figure><img class="img-sector" src="alivetech/res/img/sectors/Automotriz.jpg" alt="Sector Automotriz">
                 <figcaption>
                    <ul>
                        <li>Diseño y desarrollo de nuevos productos e innovación en procesos automotrices.</li><br>
@@ -59,7 +59,7 @@
                <p class="center">Automotriz</p>
             </div>
             <div class="col span-1-of-3">
-               <figure><img class="img-sector" src="res/img/sectors/Metalmecanica.jpg" alt="Industria Metalmecanica">
+               <figure><img class="img-sector" src="alivetech/res/img/sectors/Metalmecanica.jpg" alt="Industria Metalmecanica">
                    <figcaption>
                    <ul>
                        <li>Prototipado rápido de nuevo producto para el sector electrodomésticos.</li><br>
@@ -73,7 +73,7 @@
                 <p class="center">Metalmecánica</p>
             </div>
             <div class="col span-1-of-3">
-                <figure><img class="img-sector" src="res/img/sectors/Aeronautica.jpg" alt="Industria Aeronautica">
+                <figure><img class="img-sector" src="alivetech/res/img/sectors/Aeronautica.jpg" alt="Industria Aeronautica">
                    <figcaption>
                    <ul>
                        <li>Celda de Manufactura de alta precisión para la industria aeroespacial.</li><br>
@@ -89,7 +89,7 @@
         </div>
         <div class="row photo-grid">
             <div class="col span-1-of-3">
-                <figure><img class="img-sector" src="res/img/sectors/Agroindustria.jpg" alt="Agroindustria">
+                <figure><img class="img-sector" src="alivetech/res/img/sectors/Agroindustria.jpg" alt="Agroindustria">
                    <figcaption>
                    <ul class="proyectos-tecnologicos">
                        <li>Desarrollo de nueva línea de alimento y su inserción a nivel nacional.</li><br>
@@ -104,7 +104,7 @@
             </div>
             
             <div class="col span-1-of-3">
-                <figure><img class="img-sector" src="res/img/sectors/Electronica.jpg" alt="Industria Eléctrica-Electronica">
+                <figure><img class="img-sector" src="alivetech/res/img/sectors/Electronica.jpg" alt="Industria Eléctrica-Electronica">
                 <figcaption>
                    <ul>
                        <li>Soluciones flexibles para la industria de electrodomésticos.</li><br>
@@ -118,7 +118,7 @@
                 <p class="center">Electrónica</p>
             </div>
             <div class="col span-1-of-3">
-                <figure><img class="img-sector" src="res/img/sectors/Otros.jpg" alt="Otras Industrias">
+                <figure><img class="img-sector" src="alivetech/res/img/sectors/Otros.jpg" alt="Otras Industrias">
                       <figcaption>
                    <ul>
                        <li>Innovación en ciclo de vida del producto plástico.</li><br>
@@ -162,22 +162,22 @@
                <div id="carousel_inner">
                    
                 <ul id="carousel_ul">
-                    <li><figure class="client-logo"><img src="res/img/client-logos/mikels_logo.jpg" alt="Mikel's"></figure></li>
-                    <li><figure class="client-logo"><img src="res/img/client-logos/mifisa_logo.png" alt="Mifisa"></figure></li>
-                    <li><figure class="client-logo"><img src="res/img/client-logos/cuadritos_logo.PNG" alt="Grupo Cuadritos"></figure></li>
-                    <li><figure class="client-logo"><img src="res/img/client-logos/GKN_logo.png" alt="GKN"></figure></li>
-                    <li><figure class="client-logo"><img src="res/img/client-logos/Quebec_logo.PNG" alt="Quebec"></figure></li>
-                    <li><figure class="client-logo"><img src="res/img/client-logos/Albre_logo.PNG" alt="Albre"></figure></li>
-                    <li><figure class="client-logo"><img src="res/img/client-logos/dhs_logo.jpg" alt="DHC"></figure></li>
-                    <li><figure class="client-logo"><img src="res/img/client-logos/cie_automotive_logo.jpg" alt="CIE Automotive"></figure></li>
-                    <li><figure class="client-logo"><img src="res/img/client-logos/Euroquip_logo.jpg" alt="Euroquip"></figure></li>
-                    <li><figure class="client-logo"><img src="res/img/client-logos/calvek_logo.png" alt="Calvek"></figure></li>
-                    <li><figure class="client-logo"><img src="res/img/client-logos/ia_mexico_logo.png" alt="IA México"></figure></li>
-                    <li><figure class="client-logo"><img src="res/img/client-logos/BF_Mexico_logo.png" alt="BF México"></figure></li>
-                    <li><figure class="client-logo"><img src="res/img/client-logos/koqttish_logo.png" alt="Koqttish"></figure></li>
-                    <li><figure class="client-logo"><img src="res/img/client-logos/Denver_Boots_logo.jpeg" alt="Denver Boots"></figure></li>
-                    <li><figure class="client-logo"><img src="res/img/client-logos/inaumex_logo.jpg" alt="Inaumex"></figure></li>
-                    <li><figure class="client-logo"><img src="res/img/client-logos/naturaldelcampo_logo.png" alt="Natural Del Campo"></figure></li>
+                    <li><figure class="client-logo"><img src="alivetech/res/img/client-logos/mikels_logo.jpg" alt="Mikel's"></figure></li>
+                    <li><figure class="client-logo"><img src="alivetech/res/img/client-logos/mifisa_logo.png" alt="Mifisa"></figure></li>
+                    <li><figure class="client-logo"><img src="alivetech/res/img/client-logos/cuadritos_logo.PNG" alt="Grupo Cuadritos"></figure></li>
+                    <li><figure class="client-logo"><img src="alivetech/res/img/client-logos/GKN_logo.png" alt="GKN"></figure></li>
+                    <li><figure class="client-logo"><img src="alivetech/res/img/client-logos/Quebec_logo.PNG" alt="Quebec"></figure></li>
+                    <li><figure class="client-logo"><img src="alivetech/res/img/client-logos/Albre_logo.PNG" alt="Albre"></figure></li>
+                    <li><figure class="client-logo"><img src="alivetech/res/img/client-logos/dhs_logo.jpg" alt="DHC"></figure></li>
+                    <li><figure class="client-logo"><img src="alivetech/res/img/client-logos/cie_automotive_logo.jpg" alt="CIE Automotive"></figure></li>
+                    <li><figure class="client-logo"><img src="alivetech/res/img/client-logos/Euroquip_logo.jpg" alt="Euroquip"></figure></li>
+                    <li><figure class="client-logo"><img src="alivetech/res/img/client-logos/calvek_logo.png" alt="Calvek"></figure></li>
+                    <li><figure class="client-logo"><img src="alivetech/res/img/client-logos/ia_mexico_logo.png" alt="IA México"></figure></li>
+                    <li><figure class="client-logo"><img src="alivetech/res/img/client-logos/BF_Mexico_logo.png" alt="BF México"></figure></li>
+                    <li><figure class="client-logo"><img src="alivetech/res/img/client-logos/koqttish_logo.png" alt="Koqttish"></figure></li>
+                    <li><figure class="client-logo"><img src="alivetech/res/img/client-logos/Denver_Boots_logo.jpeg" alt="Denver Boots"></figure></li>
+                    <li><figure class="client-logo"><img src="alivetech/res/img/client-logos/inaumex_logo.jpg" alt="Inaumex"></figure></li>
+                    <li><figure class="client-logo"><img src="alivetech/res/img/client-logos/naturaldelcampo_logo.png" alt="Natural Del Campo"></figure></li>
                </ul>    
                </div>
                 <div id="right_scroll"><a href='javascript:slide("right");'><i class="ion-chevron-right icon-small"></i></a></div>

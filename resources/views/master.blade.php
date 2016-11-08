@@ -24,17 +24,17 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
 
         <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-        <script src="/res/js/preventEnter.js"></script>
+        <script src="alivetech//res/js/preventEnter.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>        
         
-        <link href="styles/style.css" rel="stylesheet">
+        <link href="alivetech/styles/style.css" rel="stylesheet">
     
 </head>
 <body>
     <div class="row">
         
 
-@include('shared.navbar')
+@include('atshared.navbar')
      
 @yield('content') 
         

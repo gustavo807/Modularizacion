@@ -2,8 +2,8 @@
 @section('title', 'Academia')
 @section('header')
     <header id="academia-header" class="header">
-        @include('shared.atnavbar')
-        @include('shared.atsidenav')
+        @include('atshared.atnavbar')
+        @include('atshared.atsidenav')
     <div class="hero-text-box">
         <h1>Academia y Centros De Investigación</h1>
     </div>  
@@ -15,7 +15,7 @@
 <section class="section-quote-3">
     <blockquote class="long-copy">
            Lo central de la tecnología no son las máquinas, ni los instrumentos, ni las técnicas, ni las patentes, ni los procedimientos, sino el ser humano que las genera, desarrolla, asimila y usa.
-           <cite><img src="AliveTech/res/img/AliveTech-Logo-Big.png" alt="">-Equipo AliveTech.</cite>
+           <cite><img src="aliveTech/res/img/AliveTech-Logo-Big.png" alt="">-Equipo AliveTech.</cite>
     </blockquote>
     </section>
       
@@ -30,7 +30,7 @@
        </div>
        <div class="row">
                 <div class="marca-gto-div js--wp-1">
-                    <img class="marca-gto-img" src="res/img/Marca-Gto.png" alt="Marca Guanajuato">
+                    <img class="marca-gto-img" src="alivetech/res/img/Marca-Gto.png" alt="Marca Guanajuato">
                 </div>
             </div>
     </section>

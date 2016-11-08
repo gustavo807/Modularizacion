@@ -2,8 +2,8 @@
 @section('title', 'Acerca de')
 @section('header')
    <header id="privacy-header" class="spec-header">
-    @include('shared.atnavbar')
-    @include('shared.atsidenav')
+    @include('atshared.atnavbar')
+    @include('atshared.atsidenav')
     <div class="spec-hero-text-box">
         <h1>Acerca de Nosotros</h1>
     </div>  
