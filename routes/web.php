@@ -32,10 +32,10 @@ Route::get('/Privacy', 'PagesController@privacy');
 /*************************************************/
 
 
-/*Route::get('/', function () {
+Route::get('/', function () {
     return view('welcome');
 });
-*/
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
@@ -47,6 +47,33 @@ Route::get('logout',function(){
 
 Route::resource('logueo','AutenticacionController@logueo');
 
-Route::resource('asesor','AsesorController');
-Route::resource('empresa','EmpresaController');
-Route::resource('vinculado','VinculadoController');
+
+
+
+
+
+
+Route::group(['middleware' => 'auth'], function () {
+    
+	// MIDDLEWARE PARA ASESOR
+    Route::group(['middleware' => 'asesor'], function () {
+    
+		Route::resource('asesor','AsesorController');
+	    
+	});
+
+    // MIDDLEWARE PARA EMPRESA
+	Route::group(['middleware' => 'empresa'], function () {
+    
+		Route::resource('empresa','EmpresaController');
+	    
+	});
+
+	// MIDDLEWARE PARA VINCULADO
+	Route::group(['middleware' => 'vinculado'], function () {
+    
+		Route::resource('vinculado','VinculadoController');
+	    
+	});
+
+});

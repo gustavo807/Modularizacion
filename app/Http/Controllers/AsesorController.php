@@ -3,14 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Middleware\Asesor;
+
 
 class AsesorController extends Controller
 {
-    public function __construct(){
-        $this->middleware('auth');
-        $this->middleware('asesor');
-    }
+    
     /**
      * Display a listing of the resource.
      *

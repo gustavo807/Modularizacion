@@ -3,14 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Middleware\Vinculado;
+
 
 class VinculadoController extends Controller
 {
-    public function __construct(){
-        $this->middleware('auth');
-        $this->middleware('vinculado');
-    }
+    
     /**
      * Display a listing of the resource.
      *
