@@ -17,13 +17,10 @@
 
 					@include('alerts.success')
 
-					<a class="btn btn-success" href="/asesorprograma/create" role="button">Agregar</a>
+					<a href="/asesorprograma/create" class="float">
+					<i class="fa fa-plus my-float"></i>
+					</a>
 					
-					<div class="botonadd" >
-					<button class="kc_fab_main_btn">+</button>
-					</div>
-					
-
 					<table class="table table-bordered">
 				        <thead>
 				            <th>Nombre</th>
@@ -35,7 +32,7 @@
 								<td>{{$programa->programa}}</td>
 								<td>
 									<div class="col-md-2">
-										{!! link_to_route('asesorprograma.edit', $title = '', $parameters = $programa->id, $attributes = ['class'=>'ion-edit icon-big']) !!}
+										{!! link_to_route('asesorprograma.edit', $title = '', $parameter = $programa->id, $attributes = ['class'=>'ion-edit icon-big']) !!}
 									</div>
 									
 

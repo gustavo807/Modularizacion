@@ -84,6 +84,7 @@ class ProgramaController extends Controller
         ]);
 
         Programa::find($id)->update($request->all()); 
+        //$programa->update($request->all());
         return redirect('/asesorprograma')
                            ->with('success','Programa actualizado correctamente');
     }

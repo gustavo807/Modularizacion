@@ -14,7 +14,7 @@
 
 					@include('alerts.errors')
 
-					{!! Form::model($programa, ['route' => ['asesorprograma.update',$programa->id], 'method' => 'PUT']) !!}
+					{!! Form::model($programa, ['route' => ['asesorprograma.update',$programa], 'method' => 'PUT']) !!}
 		
 						{!! Form::label('name','Nombre:') !!}
 						{!! Form::text('programa',null,['class' => 'form-control']) !!}
