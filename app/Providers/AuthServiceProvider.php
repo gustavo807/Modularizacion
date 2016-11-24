@@ -25,6 +25,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('read-doc', function ($user, $documento) {
+            return $user->id == $documento->user_id;
+        });
     }
 }

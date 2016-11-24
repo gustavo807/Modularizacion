@@ -3,11 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use App\Vinculado;
 
 class VinculadoController extends Controller
 {
     
+
+    public function __construct(){
+        
+    }
+
+    public static function valida(){
+        $id = Auth::user()->id;
+
+        if(Vinculado::registrado($id) == null)
+            return redirect('/datosvinculado');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,6 +28,11 @@ class VinculadoController extends Controller
      */
     public function index()
     {
+        //$id = Auth::user()->id;
+
+        //if(Vinculado::registrado($id) == null)
+        //    return redirect('/datosvinculado');
+        $this->valida();
         return view('vinculado.index');
     }
 

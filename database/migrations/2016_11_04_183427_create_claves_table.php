@@ -15,12 +15,14 @@ class CreateClavesTable extends Migration
     {
         Schema::create('claves', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('modulo_id')->unsigned();
+            
             $table->string('nombre');
             $table->string('identificador');
             $table->timestamps();
             $table->softDeletes();
 
-            $table->integer('modulo_id')->unsigned();
+
             $table->foreign('modulo_id')
                   ->references('id')->on('modulos')
                   ->onDelete('cascade')->onUpdate('cascade');

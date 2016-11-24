@@ -14,11 +14,6 @@ class CreateProyectosParrafosTable extends Migration
     public function up()
     {
         Schema::create('proyectos_parrafos', function (Blueprint $table) {
-            $table->string('valor');
-            $table->string('observacion');
-            $table->timestamps();
-            $table->softDeletes();
-
             $table->integer('proyecto_id')->unsigned();
             $table->foreign('proyecto_id')
                   ->references('id')->on('proyectos')
@@ -28,6 +23,14 @@ class CreateProyectosParrafosTable extends Migration
             $table->foreign('parrafo_id')
                   ->references('id')->on('parrafos')
                   ->onDelete('cascade')->onUpdate('cascade');
+
+            $table->string('observacion');
+            $table->string('propietario');
+
+            $table->timestamps();
+            $table->softDeletes();
+
+
         });
     }
 

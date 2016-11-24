@@ -1,0 +1,11 @@
+1.- Indice
+2.- Benchmark
+3.- Generar red de contactos con camaras y asociaciones    (Canacyntra, coparmex,) un excel
+4.- Software de modularizacion
+5.- Cuestionario de prospeccion
+6.- tienda en linea
+
+
+false
+
+false, false

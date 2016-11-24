@@ -34,17 +34,33 @@
             <li class="header">Asesor</li>
             <!-- Optionally, you can add icons to the links -->
             <li class="active"><a href="{{ url('asesor') }}"><i class='fa fa-link'></i> <span>Asesor</span></a></li>
-            <li><a href="#"><i class='fa fa-link'></i> <span>Empresas</span></a></li>
+
             <li class="treeview">
                 <a href="#"><i class='fa fa-link'></i> <span>Convocatorias</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href="/asesorprograma">Programa</a></li>
-                    <li><a href="#">Institucion</a></li>
-                    <li><a href="#">Convocatoria</a></li>
+                    <li><a href="/asesorinstitucion">Institucion</a></li>
+                    <li><a href="/asesorconvocatoria">Convocatoria</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#"><i class='fa fa-link'></i> <span>Modulos</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href="/asesorclasificacion">Clasificaciones</a></li>
+                    <li><a href="/asesormodulo">Modulos</a></li>
+                    <li><a href="/asesorclave">Claves</a></li>
+                    <li><a href="/asesorparrafo">Parrafos</a></li>
+                    <li><a href="/asesorimagen">Imagenes</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#"><i class='fa fa-link'></i> <span>Documentos</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href="/asesorcategoria">Categorias</a></li>
+                    <li><a href="/asesordocumentos">Documentos</a></li>
                 </ul>
             </li>
 
-            
 
         </ul><!-- /.sidebar-menu -->
     </section>

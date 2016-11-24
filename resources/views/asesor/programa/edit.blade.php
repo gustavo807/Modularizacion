@@ -16,7 +16,7 @@
 
 					{!! Form::model($programa, ['route' => ['asesorprograma.update',$programa], 'method' => 'PUT']) !!}
 		
-						{!! Form::label('name','Nombre:') !!}
+						{!! Form::label('programa','Nombre:') !!}
 						{!! Form::text('programa',null,['class' => 'form-control']) !!}
 
 						{!! Form::submit('Enviar',['class' => 'btn btn-primary']) !!}

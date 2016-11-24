@@ -14,10 +14,6 @@ class CreateProyectosInvestigadoresTable extends Migration
     public function up()
     {
         Schema::create('proyectos_investigadores', function (Blueprint $table) {
-            $table->string('puesto');
-            $table->timestamps();
-            $table->softDeletes();
-
             $table->integer('proyecto_id')->unsigned();
             $table->foreign('proyecto_id')
                   ->references('id')->on('proyectos')
@@ -27,6 +23,11 @@ class CreateProyectosInvestigadoresTable extends Migration
             $table->foreign('investigador_id')
                   ->references('id')->on('investigadores')
                   ->onDelete('cascade')->onUpdate('cascade');
+
+            $table->string('puesto');
+            
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

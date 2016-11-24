@@ -15,7 +15,14 @@ class CreateModulosTable extends Migration
     {
         Schema::create('modulos', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->integer('clasificacion_id')->unsigned();
+            $table->foreign('clasificacion_id')
+                  ->references('id')->on('clasificaciones')
+                  ->onDelete('cascade')->onUpdate('cascade');
+
             $table->string('modulo');
+
             $table->timestamps();
             $table->softDeletes();
         });

@@ -41,7 +41,7 @@ class RegisterController extends Controller
 
     /**
      * Get a validator for an incoming registration request.
-     * 
+     *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
@@ -51,7 +51,7 @@ class RegisterController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
-            'tipo' => 'required',
+            //'tipo' => 'required',
         ]);
     }
 
@@ -67,7 +67,8 @@ class RegisterController extends Controller
             'nombre' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'rol_id' => $data['tipo'],
+            'rol_id' => '1', //$data['tipo'],
+            'activo' => '1', //$data['activo'],
         ]);
     }
 }

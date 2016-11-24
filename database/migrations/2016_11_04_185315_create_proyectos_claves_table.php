@@ -14,10 +14,6 @@ class CreateProyectosClavesTable extends Migration
     public function up()
     {
         Schema::create('proyectos_claves', function (Blueprint $table) {
-            $table->string('valor');
-            $table->timestamps();
-            $table->softDeletes();
-
             $table->integer('proyecto_id')->unsigned();
             $table->foreign('proyecto_id')
                   ->references('id')->on('proyectos')
@@ -27,6 +23,14 @@ class CreateProyectosClavesTable extends Migration
             $table->foreign('clave_id')
                   ->references('id')->on('claves')
                   ->onDelete('cascade')->onUpdate('cascade');
+                
+            $table->string('valor');
+            $table->string('propietario');
+
+            $table->timestamps();
+            $table->softDeletes();
+
+
         });
     }
 

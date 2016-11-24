@@ -14,10 +14,16 @@ class CreateVinculadosTable extends Migration
     public function up()
     {
         Schema::create('vinculados', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('nombre');
-            $table->string('email')->unique();
-            $table->string('password');
+          $table->integer('user_id')->unsigned();
+          $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade')->onUpdate('cascade');
+
+          $table->integer('ciudad_id')->unsigned();
+          $table->foreign('ciudad_id')
+                ->references('id')->on('ciudades')
+                ->onDelete('cascade')->onUpdate('cascade');
+
             $table->string('descripcion');
             $table->string('website');
             $table->string('video');
@@ -25,18 +31,11 @@ class CreateVinculadosTable extends Migration
             $table->string('contacto_email');
             $table->string('contacto_telefono');
             $table->string('direccion');
+
             $table->timestamps();
             $table->softDeletes();
 
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')
-                  ->references('id')->on('users')
-                  ->onDelete('cascade')->onUpdate('cascade');
 
-            $table->integer('ciudad_id')->unsigned();
-            $table->foreign('ciudad_id')
-                  ->references('id')->on('ciudades')
-                  ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

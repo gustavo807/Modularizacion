@@ -36,9 +36,9 @@ Route::get('/Privacy', 'PagesController@privacy');
 Route::get('/sup', function(){
     // Enviar email de bienvenida.
     Mail::to('sistemas@alivetech.mx')->send(new WelcomeMail);
-    
+
     return Redirect::to('/login');
-    
+
 });
 
 
@@ -70,28 +70,42 @@ Route::resource('logueo','AutenticacionController@logueo');
 
 
 Route::group(['middleware' => 'auth'], function () {
-    
+
 	// MIDDLEWARE PARA ASESOR
     Route::group(['middleware' => 'asesor'], function () {
-    
+
 		Route::resource('asesor','AsesorController');
-		Route::resource('asesor.convocatoria/','ConvocatoriaController');
 		Route::resource('asesorprograma','ProgramaController');
-	    
+		Route::resource('asesorinstitucion','InstitucionController');
+		Route::resource('asesorconvocatoria','ConvocatoriaController');
+    Route::resource('asesordocumentos','DocumentoController');
+    Route::resource('asesorclasificacion','AClasificacionController');
+    Route::resource('asesormodulo','AModuloController');
+    Route::resource('asesorclave','AClaveController');
+    Route::resource('asesorparrafo','AParrafoController');
+    Route::resource('asesorimagen','AImagenController');
+    Route::resource('asesorcategoria','ACategoriaController');
 	});
 
     // MIDDLEWARE PARA EMPRESA
 	Route::group(['middleware' => 'empresa'], function () {
-    
+
 		Route::resource('empresa','EmpresaController');
-	    
+    Route::resource('empresadocumentos','EmpresaDocumentoController');
+    Route::resource('empresamodulognrl','EModuloGnrlController');
+
 	});
 
 	// MIDDLEWARE PARA VINCULADO
 	Route::group(['middleware' => 'vinculado'], function () {
-    
+
 		Route::resource('vinculado','VinculadoController');
-	    
+		Route::resource('datosvinculado','DatoController');
+		Route::resource('borrame','DatoController@borrame');
+
 	});
+
+	// RUTA PARA OBTENER LAS CIUDADES
+	Route::get('ciudades/{id}','CiudadController@getTowns');
 
 });

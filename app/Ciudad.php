@@ -13,4 +13,15 @@ class Ciudad extends Model
     public $fillable = ['ciudad','estado_id'];
 
     protected $dates = ['deleted_at'];
+
+    public static function towns($id){
+    	return Ciudad::where('estado_id','=',$id)
+    	->get();
+    }
+
+    public function vinculados()
+    {
+        return $this->hasMany('App\Vinculado');
+    }
+
 }

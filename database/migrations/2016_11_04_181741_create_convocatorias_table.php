@@ -15,15 +15,19 @@ class CreateConvocatoriasTable extends Migration
     {
         Schema::create('convocatorias', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('convocatoria');
-            $table->string('descripcion');
-            $table->timestamps();
-            $table->softDeletes();
-
+            
             $table->integer('institucion_id')->unsigned();
             $table->foreign('institucion_id')
                   ->references('id')->on('instituciones')
                   ->onDelete('cascade')->onUpdate('cascade');
+
+            $table->string('convocatoria');
+            $table->string('descripcion');
+
+            $table->timestamps();
+            $table->softDeletes();
+
+
         });
     }
 

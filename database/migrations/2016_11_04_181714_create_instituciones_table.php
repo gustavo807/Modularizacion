@@ -15,14 +15,17 @@ class CreateInstitucionesTable extends Migration
     {
         Schema::create('instituciones', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('institucion');
-            $table->timestamps();
-            $table->softDeletes();
-
+            
             $table->integer('programa_id')->unsigned();
             $table->foreign('programa_id')
                   ->references('id')->on('programas')
                   ->onDelete('cascade')->onUpdate('cascade');
+
+            $table->string('institucion');
+            $table->timestamps();
+            $table->softDeletes();
+
+
         });
     }
 

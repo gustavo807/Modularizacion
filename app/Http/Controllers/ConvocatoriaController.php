@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Convocatoria;
+use App\Institucion;
 
 class ConvocatoriaController extends Controller
 {
@@ -14,7 +16,12 @@ class ConvocatoriaController extends Controller
      */
     public function index()
     {
-        return view('asesor/convocatoria.index');
+        $convocatorias = DB::table('convocatorias')
+                        ->join('instituciones', 'convocatorias.institucion_id', '=', 'instituciones.id')
+                        ->select('convocatorias.*', 'instituciones.institucion')
+                        ->whereNull('convocatorias.deleted_at')
+                        ->get();
+        return view('asesor/convocatoria.index',['convocatorias'=>$convocatorias]);
     }
 
     /**
@@ -24,7 +31,8 @@ class ConvocatoriaController extends Controller
      */
     public function create()
     {
-        //
+        $instituciones = Institucion::pluck('institucion','id');
+        return view('asesor/convocatoria.create',compact('instituciones'));
     }
 
     /**
@@ -35,7 +43,13 @@ class ConvocatoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'convocatoria' => 'required',
+            'descripcion' => 'required',
+            'institucion_id' => 'required',
+        ]);
+        Convocatoria::create($request->all());
+        return redirect('/asesorconvocatoria')->with('success','Convocatoria registrada correctamente');
     }
 
     /**
@@ -57,7 +71,9 @@ class ConvocatoriaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $convocatoria = Convocatoria::find($id);
+        $instituciones = Institucion::pluck('institucion','id');
+        return view('asesor/convocatoria.edit',['convocatoria'=>$convocatoria,'instituciones'=>$instituciones]);
     }
 
     /**
@@ -69,7 +85,16 @@ class ConvocatoriaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'convocatoria' => 'required',
+            'descripcion' => 'required',
+            'institucion_id' => 'required',
+        ]);
+
+        Convocatoria::find($id)->update($request->all()); 
+        //$programa->update($request->all());
+        return redirect('/asesorconvocatoria')
+                           ->with('success','Convocatoria actualizada correctamente');
     }
 
     /**
@@ -80,6 +105,8 @@ class ConvocatoriaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Convocatoria::find($id)->delete();
+        return redirect('/asesorconvocatoria')
+                        ->with('success','Convocatoria borrada correctamente');
     }
 }

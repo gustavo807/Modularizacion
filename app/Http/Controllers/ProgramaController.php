@@ -64,7 +64,8 @@ class ProgramaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    //public function edit (Programa $programa) 
+    public function edit ($id)
     {
         $programa = Programa::find($id);
         return view('asesor/programa.edit',['programa'=>$programa]);

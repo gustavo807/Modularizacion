@@ -15,14 +15,17 @@ class CreateCiudadesTable extends Migration
     {
         Schema::create('ciudades', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('ciudad');
-            $table->timestamps();
-            $table->softDeletes();
 
             $table->integer('estado_id')->unsigned();
             $table->foreign('estado_id')
                   ->references('id')->on('estados')
                   ->onDelete('cascade')->onUpdate('cascade');
+
+            $table->string('ciudad');
+            $table->timestamps();
+            $table->softDeletes();
+
+
         });
     }
 

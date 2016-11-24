@@ -15,20 +15,24 @@ class CreateProyectosTable extends Migration
     {
         Schema::create('proyectos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre');
-            $table->string('descripcion');
-            $table->timestamps();
-            $table->softDeletes();
-
             $table->integer('convocatoria_id')->unsigned();
             $table->foreign('convocatoria_id')
                   ->references('id')->on('convocatorias')
                   ->onDelete('cascade')->onUpdate('cascade');
-
-            $table->integer('empresa_id')->unsigned();
-            $table->foreign('empresa_id')
-                  ->references('id')->on('empresas')
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')
+                  ->references('id')->on('users')
                   ->onDelete('cascade')->onUpdate('cascade');
+
+            $table->string('nombre');
+            $table->string('descripcion');
+
+            $table->timestamps();
+            $table->softDeletes();
+
+
+
+
         });
     }
 

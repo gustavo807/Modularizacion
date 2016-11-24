@@ -15,19 +15,21 @@ class CreateInvestigadoresTable extends Migration
     {
         Schema::create('investigadores', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')
+                  ->references('id')->on('users')
+                  ->onDelete('cascade')->onUpdate('cascade');
+
             $table->string('nombre');
             $table->string('trayectoria');
             $table->string('foto');
             $table->string('email');
             $table->string('usuario_conacyt');
             $table->string('password_conacyt');
+
             $table->timestamps();
             $table->softDeletes();
-
-            $table->integer('vinculado_id')->unsigned();
-            $table->foreign('vinculado_id')
-                  ->references('id')->on('vinculados')
-                  ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

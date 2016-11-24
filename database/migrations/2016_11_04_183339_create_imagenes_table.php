@@ -15,13 +15,16 @@ class CreateImagenesTable extends Migration
     {
         Schema::create('imagenes', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('modulo_id')->unsigned();
+
             $table->string('imagen');
             $table->string('descripcion');
             $table->string('referencia');
+
             $table->timestamps();
             $table->softDeletes();
 
-            $table->integer('modulo_id')->unsigned();
+
             $table->foreign('modulo_id')
                   ->references('id')->on('modulos')
                   ->onDelete('cascade')->onUpdate('cascade');

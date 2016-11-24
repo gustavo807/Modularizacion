@@ -14,20 +14,21 @@ class CreateDocProyectosVinculadosTable extends Migration
     public function up()
     {
         Schema::create('doc_proyectos_vinculados', function (Blueprint $table) {
-            $table->string('documento');
-            $table->string('otro');
-            $table->timestamps();
-            $table->softDeletes();
-
             $table->integer('proyecto_id')->unsigned();
             $table->foreign('proyecto_id')
                   ->references('id')->on('proyectos')
                   ->onDelete('cascade')->onUpdate('cascade');
 
-            $table->integer('vinculado_id')->unsigned();
-            $table->foreign('vinculado_id')
-                  ->references('id')->on('vinculados')
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')
+                  ->references('id')->on('users')
                   ->onDelete('cascade')->onUpdate('cascade');
+
+            $table->string('documento');
+            $table->string('otro');
+            
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

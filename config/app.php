@@ -162,7 +162,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        
+
         Collective\Html\HtmlServiceProvider::class,
 
         /*
@@ -186,6 +186,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         //App\Providers\AnnotationsServiceProvider::class,
 
+        // Other Service Providers
+        App\Providers\EmpresaServiceProvider::class,
     ],
 
     /*

@@ -15,14 +15,19 @@ class CreateParrafosTable extends Migration
     {
         Schema::create('parrafos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('parrafo');
-            $table->timestamps();
-            $table->softDeletes();
 
             $table->integer('modulo_id')->unsigned();
             $table->foreign('modulo_id')
                   ->references('id')->on('modulos')
                   ->onDelete('cascade')->onUpdate('cascade');
+
+            $table->string('parrafo');
+
+
+            $table->timestamps();
+            $table->softDeletes();
+
+
         });
     }
 
