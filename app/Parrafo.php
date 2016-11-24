@@ -22,4 +22,11 @@ class Parrafo extends Model
 											->get();
 		}
 
+    public static function parrafosmodulos($idmodulo){
+			return DB::table('parrafos')
+											//->join('modulos', 'modulos.id', '=', 'parrafos.modulo_id')
+											->where('parrafos.modulo_id','=', $idmodulo)
+											->get();
+		}
+
 }

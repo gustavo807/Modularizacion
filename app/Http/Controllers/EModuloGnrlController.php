@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
 use App\Modulo;
 use App\Clave;
 use App\User_Clave;
 class EModuloGnrlController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -37,10 +39,11 @@ class EModuloGnrlController extends Controller
      */
     public function store(Request $request)
     {
-      /*$this->validate($request, [
-          'nombre' => 'required',
+      $this->validate($request, [
+          'valor' => 'required',
+          'clave_id' => 'required',
       ]);
-      */
+
       $propietario = 'empresa';
       $iduser = $request->user()->id;
       if (is_array($request['valor']) && is_array($request['clave_id'])) {
@@ -54,10 +57,13 @@ class EModuloGnrlController extends Controller
                 'propietario' => $propietario,
               ]);
             }
+            else{
+              User_Clave::actualiza($iduser, $request['clave_id'][$i], $propietario, $request['valor'][$i]);
+            }
 
-        }
+        }//cliclo for
       }
-      return redirect('/empresamodulognrl')->with('success','Claves registradas correctamente');
+      return redirect('/empresaparrafognrl')->with('success','Claves registradas correctamente  Ahora selecciona un parrafo ');
       //return view('borrame',['request'=>$request]);
     }
 
@@ -80,6 +86,7 @@ class EModuloGnrlController extends Controller
      */
     public function edit(Request $request, $id)
     {
+        Session::put('idmodulognrl', $id);
         $iduser = $request->user()->id;
         $propietario = 'empresa';
         $claves = Clave::clavesmodulo($id,$iduser,$propietario);

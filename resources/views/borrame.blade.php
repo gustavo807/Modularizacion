@@ -11,15 +11,15 @@
 }
 */
 echo '<br><br><br>';
-print_r($request->all());
+//print_r($request->all());
 echo '<br><br><br>';
 //echo $request['datos']['nombre'][0].' - '.$request['datos']['clave_id'][0];
 echo '<br>';
 //var_dump($request);
-echo count($request['nombre']);
+//echo count($request['nombre']);
 echo '<br><br><br>';
 //if($doc)
-echo $request;
+//echo $request;
 
 
 

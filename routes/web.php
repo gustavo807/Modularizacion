@@ -93,6 +93,8 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::resource('empresa','EmpresaController');
     Route::resource('empresadocumentos','EmpresaDocumentoController');
     Route::resource('empresamodulognrl','EModuloGnrlController');
+    Route::resource('empresaparrafognrl','EParrafoGnrlController');
+    Route::resource('empresaimagengnrl','EImagenGnrlController');
 
 	});
 
