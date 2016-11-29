@@ -12,15 +12,17 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Programas</div>
 
+<div class="panel-body">
 					@include('alerts.errors')
 
 					{!! Form::model($programa, ['route' => ['asesorprograma.update',$programa], 'method' => 'PUT']) !!}
-		
+
 						{!! Form::label('programa','Nombre:') !!}
 						{!! Form::text('programa',null,['class' => 'form-control']) !!}
 
 						{!! Form::submit('Enviar',['class' => 'btn btn-primary']) !!}
 					{!! Form::close() !!}
+</div>
 
 				</div>
 			</div>

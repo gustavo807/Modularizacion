@@ -1,8 +1,9 @@
 @extends('asesor.cuerpo')
 
-@section('htmlheader_title')
-	Home
-@endsection
+@section('htmlheader_title') Home @endsection
+@section('contentheader_description') Asesor @endsection
+@section('contentheader_title') Vista @endsection
+
 
 
 @section('main-content')

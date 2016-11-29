@@ -15,6 +15,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Claves</div>
 
+<div class="panel-body">
 					@include('alerts.success')
 
 					<a href="/asesorclave/create" class="float">
@@ -53,8 +54,10 @@
 								</td>
 							</tbody>
 						@endforeach
-
 				    </table>
+
+						{{ $claves->links() }}
+</div>
 
 				</div>
 			</div>

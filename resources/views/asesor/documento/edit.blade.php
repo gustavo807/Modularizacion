@@ -12,6 +12,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Documentos</div>
 
+<div class="panel-body">
 					@include('alerts.errors')
 
 
@@ -21,7 +22,7 @@
 						</div>
 					{!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
 					{!!Form::close()!!}
-
+</div>
 
 				</div>
 			</div>

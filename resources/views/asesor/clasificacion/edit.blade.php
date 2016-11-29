@@ -12,6 +12,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Clasificaciones</div>
 
+<div class="panel-body">
 					@include('alerts.errors')
 
           {!! Form::model($clasificacion, ['route' => ['asesorclasificacion.update',$clasificacion], 'method' => 'PUT']) !!}
@@ -20,7 +21,7 @@
 
 					{!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
 					{!!Form::close()!!}
-
+</div>
 
 				</div>
 			</div>

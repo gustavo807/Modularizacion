@@ -12,16 +12,14 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Modulos</div>
 
+<div class="panel-body">
 					@include('alerts.errors')
 
-
 					{!! Form::model($modulo, ['route' => ['asesormodulo.update',$modulo], 'method' => 'PUT']) !!}
-
             @include('asesor.modulo.form')
-
 					{!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
 					{!!Form::close()!!}
-
+</div>
 
 				</div>
 			</div>

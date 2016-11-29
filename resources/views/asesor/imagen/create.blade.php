@@ -12,16 +12,14 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Imagenes</div>
 
+<div class="panel-body">
 					@include('alerts.errors')
 
-
 					{!!Form::open(['route'=>'asesorimagen.store', 'method'=>'POST','files' => true])!!}
-
             @include('asesor.imagen.form')
-
 					{!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
 					{!!Form::close()!!}
-
+</div>
 
 				</div>
 			</div>

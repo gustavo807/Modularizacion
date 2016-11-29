@@ -15,6 +15,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Categorias</div>
 
+<div class="panel-body">
 					@include('alerts.success')
 
 					<a href="/asesorcategoria/create" class="float">
@@ -38,7 +39,7 @@
 
       									<div class="col-md-2">
       										{!! Form::open(['method' => 'DELETE',
-      										    'route' => ['asesorcategoria.destroy', $categoria->id], 
+      										    'route' => ['asesorcategoria.destroy', $categoria->id],
       										    'id' => 'form-delete-categorias-' . $categoria->id]) !!}
       										    <a href="" class="data-delete"
       										      data-form="categorias-{{ $categoria->id }}">
@@ -51,6 +52,7 @@
       						@endforeach
 
 				    </table>
+</div>
 
 				</div>
 			</div>

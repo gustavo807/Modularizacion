@@ -15,6 +15,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Clasificaciones</div>
 
+<div class="panel-body">
 					@include('alerts.success')
 
 					<a href="/asesorclasificacion/create" class="float">
@@ -51,6 +52,8 @@
 						@endforeach
 
 				    </table>
+</div>
+
 
 				</div>
 			</div>

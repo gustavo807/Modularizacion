@@ -31,4 +31,10 @@ class Imagen extends Model
 											->get();
 		}
 
+    public static function imagenesmodulo($idmodulo){
+			return DB::table('imagenes')
+											->where('imagenes.modulo_id','=', $idmodulo)
+											->get();
+		}
+
 }

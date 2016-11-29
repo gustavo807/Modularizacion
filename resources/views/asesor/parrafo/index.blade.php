@@ -15,6 +15,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Parrafos</div>
 
+<div class="panel-body">
 					@include('alerts.success')
 
 					<a href="/asesorparrafo/create" class="float">
@@ -53,6 +54,7 @@
       						@endforeach
 
 				    </table>
+</div>
 
 				</div>
 			</div>

@@ -12,16 +12,14 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Claves</div>
 
+<div class="panel-body">
 					@include('alerts.errors')
 
-
 					{!!Form::open(['route'=>'asesorclave.store', 'method'=>'POST'])!!}
-
             @include('asesor.clave.form')
-
 					{!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
 					{!!Form::close()!!}
-
+</div>
 
 				</div>
 			</div>

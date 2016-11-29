@@ -13,7 +13,10 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Parrafos Generales</div>
 
+
+<div class="panel-body">
 					@include('alerts.success')
+					@include('alerts.validar')
 
           @php
             $arr1;
@@ -30,11 +33,11 @@
 				            <th width="150px">Selecciona</th>
 				        </thead>
                 <div class="form-group">
-                {!!Form::open(['route'=>'empresaparrafognrl.store', 'method'=>'POST', 'class'=>'formulario'])!!}
+                {!!Form::open(['route'=>'empresaparrafognrl.store', 'method'=>'POST', 'class'=>'formparrafo'])!!}
 
                     @foreach($parrafos as $parrafo)
                       <tbody>
-                       <td>
+                       <td class="no-copy">
                          @php
                             echo str_replace($arr1,$arr2,$parrafo->parrafo);
 
@@ -51,11 +54,13 @@
 				    </table>
                     <br>
                     {!!Form::label('nombre','Comentario: ')!!}
-                    {!!Form::textarea('observacion',(isset($userparrafo->observacion)) ? $userparrafo->observacion : null ,['class'=>'form-control','rows'=>'5','placeholder'=>'Comentario acerca de los parrafos'])!!}
+                    {!!Form::textarea('observacion',(isset($userparrafo->observacion)) ? $userparrafo->observacion : null ,['class'=>'form-control txtobservacion','rows'=>'5','placeholder'=>'Comentario acerca de los parrafos'])!!}
                     {!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
 
                 {!!Form::close()!!}
                 </div>
+</div>
+
 				</div>
 			</div>
 		</div>

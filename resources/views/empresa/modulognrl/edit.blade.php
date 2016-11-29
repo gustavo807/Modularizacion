@@ -12,10 +12,9 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Modulos Generales</div>
 
+<div class="panel-body">
 					@include('alerts.errors')
 					@include('alerts.validar')
-
-
                 {!!Form::open(['route'=>'empresamodulognrl.store', 'method'=>'POST', 'class'=>'formulario'])!!}
 
                     <div class="form-group">
@@ -28,8 +27,9 @@
                     </div>
 
 								{!!Form::submit('Registrar',['class'=>'btn btn-primary btnenviar'])!!}
+								<button type="button" name="button" class="btn btn-danger" onclick="window.location.href='/empresamodulognrl'">Regresar</button>
       					{!!Form::close()!!}
-
+</div>
 
 				</div>
 			</div>

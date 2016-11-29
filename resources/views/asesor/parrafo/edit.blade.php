@@ -12,16 +12,14 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Parrafos</div>
 
+<div class="panel-body">
 					@include('alerts.errors')
 
-
 					{!! Form::model($parrafo, ['route' => ['asesorparrafo.update',$parrafo->id], 'method' => 'PUT']) !!}
-
             @include('asesor.parrafo.form')
-
 					{!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
 					{!!Form::close()!!}
-
+</div>
 
 				</div>
 			</div>

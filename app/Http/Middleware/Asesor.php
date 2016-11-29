@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Asesor
 {
-    
+
     /**
      * Handle an incoming request.
      *
@@ -17,10 +17,10 @@ class Asesor
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::user()->rol_id != 3) {
-            return redirect('/erros/404');
+        if (Auth::user()->rol_id == 3 || Auth::user()->rol_id == 4) {
+            return $next($request);
         }
 
-        return $next($request);
+        return redirect('/erros/404');
     }
 }

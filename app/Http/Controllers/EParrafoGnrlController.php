@@ -8,6 +8,8 @@ use App\User_Parrafo;
 use App\Parrafo;
 use App\Clave;
 use App\User_Clave;
+use App\Imagen;
+use App\User_Modulo;
 
 class EParrafoGnrlController extends Controller
 {
@@ -53,6 +55,8 @@ class EParrafoGnrlController extends Controller
       $idmodulo = '0';
       $idmodulo = Session::get('idmodulognrl');
 
+
+      // CREA O ACTUALIZA EL PARRAFO SELECCIONADO
       $userparrafo = User_Parrafo::userparrafo($iduser,$propietario,$idmodulo);
       if(isset($userparrafo)){
         User_Parrafo::actualizaparrafo($iduser,$propietario,$idmodulo,$request['observacion'],$request['parrafo']);
@@ -65,9 +69,30 @@ class EParrafoGnrlController extends Controller
           'propietario' => $propietario,
         ]);
       }
-      return redirect('/empresaimagengnrl')->with('success','Parrafo registrado correctamente,  Ahora selecciona un imagen ');
-      
-        //return view('borrame');
+
+      // VALIDAMOS SI EXISTEN IMAGENES EN ESE MODULO
+      // DE LO CONTRARIO SE MARCA COMO COMPLETO ESE MODULO
+      $imagenes = Imagen::all()->where('modulo_id','=',$idmodulo)->count();
+      // NO EXISTEN IMAGENEES
+      if($imagenes == 0)
+      {
+        $usermodulo = User_Modulo::usermodulo($iduser,$propietario,$idmodulo);
+        if(!isset($usermodulo)){
+          User_Modulo::create([
+            'user_id' => $iduser,
+            'modulo_id' => $idmodulo,
+            'propietario' => $propietario,
+          ]);
+        }
+        return redirect('/empresamodulognrl')->with('success','Modulo completado correctamente ');
+        //return "No existe, ".$idmodulo.', '.$imagenes;
+      }
+      // SI EXISTEN IMAGENES
+      else
+      {
+        return redirect('/empresaimagengnrl')->with('success','Parrafo registrado correctamente,  Ahora selecciona un imagen ');
+      }
+
     }
 
     /**

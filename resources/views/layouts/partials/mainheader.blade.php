@@ -15,10 +15,10 @@
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">{{ trans('adminlte_lang::message.togglenav') }}</span>
         </a>
-        
-        
-        
-        
+
+
+
+
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
@@ -36,19 +36,19 @@
                             <!-- The user image in the navbar-->
                             <img src="/alivetech/res/img/Logotipo-Alive-Tech-BN-83x70px.png" class="user-image" alt="User Image"/>
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">{{ Auth::user()->name }}</span>
+                            <span class="hidden-xs">{{ Auth::user()->nombre }}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
                             <li class="user-header">
                                 <img src="/alivetech/res/img/AliveTech-Logo.png" class="img-circle" alt="User Image" />
                                 <p>
-                                    {{ Auth::user()->name }}
-                                    <small>{{ trans('adminlte_lang::message.login') }} Nov. 2012</small>
+                                    {{ Auth::user()->nombre }}
+                                    <small>{{ trans('adminlte_lang::message.login') }} Dic. 2016</small>
                                 </p>
                             </li>
                             <!-- Menu Body -->
-      
+
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">

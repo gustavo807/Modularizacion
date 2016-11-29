@@ -7,6 +7,8 @@ use Session;
 use App\Modulo;
 use App\Clave;
 use App\User_Clave;
+use App\User_Modulo;
+
 class EModuloGnrlController extends Controller
 {
 
@@ -15,9 +17,12 @@ class EModuloGnrlController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $modulos = Modulo::modulosgnrl();
+        $iduser = $request->user()->id;
+        $propietario = 'empresa';
+
+        $modulos = Modulo::modulosgnrl($iduser,$propietario);
         return view('empresa/modulognrl.index',['modulos'=>$modulos]);
     }
 

@@ -30,7 +30,7 @@ class User_Clave extends Model
 
   public static function clavesusuario($user_id, $propietario){
     return DB::table('claves')
-              ->select('claves.identificador',
+              ->select('claves.nombre','claves.identificador',
               DB::raw('(SELECT user_claves.valor
                         FROM user_claves
                          WHERE user_claves.clave_id=claves.id
@@ -40,6 +40,8 @@ class User_Clave extends Model
 
               ->get();
   }
+
+
 
 }
 /*

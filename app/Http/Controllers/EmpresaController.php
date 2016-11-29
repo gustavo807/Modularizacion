@@ -3,19 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Proyecto;
 
 class EmpresaController extends Controller
 {
-    
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('empresa.index');
+        $idempresa = $request->user()->id;
+        $proyectos = Proyecto::proyectoconvocatoria($idempresa);
+        return view('empresa.index',['proyectos'=>$proyectos]);
     }
 
     /**

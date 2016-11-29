@@ -12,8 +12,8 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Programas</div>
 
+<div class="panel-body">
 					@include('alerts.errors')
-
 
 					{!!Form::open(['route'=>'asesorprograma.store', 'method'=>'POST'])!!}
 						<div class="form-group">
@@ -22,7 +22,7 @@
 						</div>
 					{!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
 					{!!Form::close()!!}
-					
+</div>					
 
 				</div>
 			</div>

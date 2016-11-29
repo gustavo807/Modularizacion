@@ -20,4 +20,15 @@ $(function () {
         $('#form-add-' + $(this).data('form')).submit();
     });
 
+    
+    $('img').each(function(){
+      $(this).click(function(){
+        $( "#descripcion" ).text( $(this).attr('descripcion') );
+        $( "#referencia" ).text( $(this).attr('referencia') );
+        $( "#imgmodal" ).attr('src', $(this).attr('src') );
+        $("#myModal").modal();
+      })
+    });
+
+
 });

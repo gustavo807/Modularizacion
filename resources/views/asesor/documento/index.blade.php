@@ -15,6 +15,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Documentos</div>
 
+<div class="panel-body">
 					@include('alerts.success')
 
 					<a href="/asesordocumentos/create" class="float">
@@ -56,8 +57,8 @@
 							</tbody>
 						@endforeach
 
-
 				    </table>
+</div>
 
 				</div>
 			</div>

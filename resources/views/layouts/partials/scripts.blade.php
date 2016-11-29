@@ -10,6 +10,9 @@
 <script src="{{ asset('/js/script.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/js/validaciones.js') }}" type="text/javascript"></script>
 
+
+
+
 @stack('scripts')
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
       Both of these plugins are recommended to enhance the

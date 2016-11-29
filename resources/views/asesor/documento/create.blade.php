@@ -12,8 +12,8 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Documentos</div>
 
+<div class="panel-body">
 					@include('alerts.errors')
-
 
 					{!!Form::open(['route'=>'asesordocumentos.store', 'method'=>'POST'])!!}
 						<div class="form-group">
@@ -21,7 +21,7 @@
 						</div>
 					{!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
 					{!!Form::close()!!}
-
+</div>
 
 				</div>
 			</div>

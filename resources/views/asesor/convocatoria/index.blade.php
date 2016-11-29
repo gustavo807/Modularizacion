@@ -12,12 +12,13 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Convocatorias</div>
 
+<div class="panel-body">
 					@include('alerts.success')
 
 					<a href="/asesorconvocatoria/create" class="float">
 					<i class="fa fa-plus my-float"></i>
 					</a>
-					
+
 					<table class="table table-bordered">
 				        <thead>
 				            <th>Convocatoria</th>
@@ -38,22 +39,23 @@
 									<div class="col-md-2">
 										{!! link_to_route('asesorconvocatoria.edit', $title = '', $parameters = $convocatoria->id, $attributes = ['class'=>'ion-edit icon-big']) !!}
 									</div>
-									
+
 
 									<div class="col-md-2">
-										{!! Form::open(['method' => 'DELETE', 
-										    'route' => ['asesorconvocatoria.destroy', $convocatoria->id], 
+										{!! Form::open(['method' => 'DELETE',
+										    'route' => ['asesorconvocatoria.destroy', $convocatoria->id],
 										    'id' => 'form-delete-convocatorias-' . $convocatoria->id]) !!}
-										    <a href="" class="data-delete" 
+										    <a href="" class="data-delete"
 										      data-form="convocatorias-{{ $convocatoria->id }}">
 										      <i class="ion-trash-b icon-big"></i></a>
 										  {!! Form::close() !!}
 									</div>
-									
+
 								</td>
 							</tbody>
 						@endforeach
 					</table>
+</div>
 
 				</div>
 			</div>

@@ -18,7 +18,7 @@ class Clave extends Model
 			return DB::table('claves')
 											->join('modulos', 'modulos.id', '=', 'claves.modulo_id')
 											->select('claves.*', 'modulos.modulo')
-											->get();
+											->paginate(10);
 		}
 
 		public static function clavesmodulo($id,$iduser,$propietario){
@@ -29,6 +29,19 @@ class Clave extends Model
                                  WHERE user_claves.clave_id=claves.id
                                  and user_claves.user_id='.$iduser.'
                                  and user_claves.propietario="'.$propietario.'") as valor')
+                              )
+											->where('claves.modulo_id', '=', $id)
+											->get();
+		}
+
+    public static function clavesmoduloproyecto($id,$idproyecto,$propietario){
+			return DB::table('claves')
+                      ->select('claves.*',
+                      DB::raw('(SELECT proyectos_claves.valor
+                                FROM proyectos_claves
+                                 WHERE proyectos_claves.clave_id=claves.id
+                                 and proyectos_claves.proyecto_id='.$idproyecto.'
+                                 and proyectos_claves.propietario="'.$propietario.'") as valor')
                               )
 											->where('claves.modulo_id', '=', $id)
 											->get();
