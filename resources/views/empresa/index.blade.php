@@ -1,8 +1,8 @@
 @extends('empresa.cuerpo')
 
 @section('htmlheader_title') Home @endsection
-@section('contentheader_title') Empresa @endsection
-@section('contentheader_description') Proyectos asignados @endsection
+@section('contentheader_title') Proyectos Asignados @endsection
+@section('contentheader_description')  @endsection
 
 @section('main-content')
 	<div class="container spark-screen">
@@ -13,17 +13,19 @@
 
 					<div class="panel-body">
 
-						<table class="table table-bordered">
+						<table class="table table-hover">
 					        <thead>
 					            <th>Proyecto</th>
 											<th>Convocatoria</th>
 					            <th>Descripcion</th>
+											<th>Fecha Asignado</th>
 					        </thead>
 	                @foreach($proyectos as $proyecto)
 	                  <tbody>
 	                   <td>{!! link_to_route('empresaproyecto.show', $title = $proyecto->nombre, $parameters = $proyecto->id ) !!}</td>
-										 <td>{{$proyecto->convocatoria}}</td>
+										 <td>{!! link_to_route('empresa.show', $title = $proyecto->convocatoria, $parameters = $proyecto->id ) !!}</td>
 	                    <td>{{$proyecto->descripcion}}</td>
+											<td>{{$proyecto->created_at}}</td>
 	                 </tbody>
 							    @endforeach
 					    </table>

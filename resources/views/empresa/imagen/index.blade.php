@@ -2,7 +2,7 @@
 
 @section('htmlheader_title') Home @endsection
 @section('contentheader_title') Imagenes @endsection
-@section('contentheader_description')  @endsection
+@section('contentheader_description') {{	Session::get('nomproyecto')	}} @endsection
 
 @section('main-content')
 	<div class="container spark-screen">
@@ -15,7 +15,8 @@
 
 						@include('alerts.success')
 						@include('alerts.validar')
-
+						@include('alerts.errors')
+						
 							@include('alerts.imagen')
 							<table class="table table-bordered">
 						        <thead>

@@ -39,7 +39,7 @@ class AEmpresaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -79,8 +79,25 @@ class AEmpresaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $activo = '1';
+
+        if($user['activo'] == '1') $activo = '2';
+
+        User::findOrFail($id)->update([ 'activo'=>$activo, ]);
+
+        return redirect('/asesorempresa')->with('success','La accion se llevo correctamente ');
     }
+
+    //COPIA LA INFORMACION DE ESTA EMPRESA
+    public function copy($id)
+    {
+        $proyecto = User::findOrFail($id);
+        User::copyempresa_borra($id);
+        User::copyempresa_crea($id);
+        return redirect('/asesorempresa')->with('success', 'Información copiada correctamente');
+    }
+
 
     /**
      * Remove the specified resource from storage.

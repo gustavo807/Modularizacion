@@ -1,8 +1,8 @@
 @extends('asesor.cuerpo')
 
-@section('htmlheader_title')
-	Home
-@endsection
+@section('htmlheader_title') Home @endsection
+@section('contentheader_title') Programa @endsection
+@section('contentheader_description') Add @endsection
 
 
 @section('main-content')
@@ -22,7 +22,7 @@
 						</div>
 					{!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
 					{!!Form::close()!!}
-</div>					
+</div>
 
 				</div>
 			</div>

@@ -22,8 +22,9 @@ class DocumentoController extends Controller
                       ->join('categorias','documentos.categoria_id','=','categorias.id')
                       ->select('documentos.*', 'roles.rol','categorias.categoria')
                       ->whereNull('documentos.deleted_at')
+                      ->orderBy('categorias.categoria', 'asc')
                       ->orderBy('documentos.nombre', 'asc')
-                      ->get();
+                      ->paginate(10);
         return view('asesor/documento.index',['documentos' => $documentos]);
     }
 
@@ -74,7 +75,7 @@ class DocumentoController extends Controller
      */
     public function edit($id)
     {
-      $documento = Documento::find($id);
+      $documento = Documento::findOrFail($id);
       $roles = Rol::pluck('rol','id');
       $categorias = Categoria::pluck('categoria','id');
       return view('asesor/documento.edit',['documento' => $documento, 'roles' => $roles, 'categorias'=>$categorias]);

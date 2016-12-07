@@ -1,11 +1,10 @@
 @extends('empresa.cuerpo')
 
-@section('htmlheader_title')
-	Home
-@endsection
+@section('htmlheader_title') Home @endsection
+@section('contentheader_title') Claves @endsection
+@section('contentheader_description') {{	Session::get('nomproyecto')	}} @endsection
 
 @section('main-content')
-
 	<div class="container spark-screen">
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">

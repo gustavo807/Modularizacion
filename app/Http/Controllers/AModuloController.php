@@ -65,7 +65,7 @@ class AModuloController extends Controller
      */
     public function edit($id)
     {
-      $modulo = Modulo::find($id);
+      $modulo = Modulo::findOrFail($id);
       $clasificaciones = Clasificacion::pluck('clasificacion','id');
       return view('asesor/modulo.edit',['modulo'=>$modulo, 'clasificaciones'=>$clasificaciones]);
     }

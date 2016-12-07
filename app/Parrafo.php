@@ -19,7 +19,9 @@ class Parrafo extends Model
 			return DB::table('parrafos')
 											->join('modulos', 'modulos.id', '=', 'parrafos.modulo_id')
 											->select('parrafos.*', 'modulos.modulo')
-											->get();
+                      ->orderBy('modulos.modulo', 'asc')
+                      ->orderBy('parrafos.parrafo', 'asc')
+											->paginate(10);
 		}
 
     public static function parrafosmodulos($idmodulo){

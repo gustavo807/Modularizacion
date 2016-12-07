@@ -1,14 +1,11 @@
 @extends('asesor.cuerpo')
 
-@section('htmlheader_title')
-	Home
-@endsection
+@section('htmlheader_title') Home @endsection
+@section('contentheader_title') Párrafos @endsection
+@section('contentheader_description')  @endsection
 
 
 @section('main-content')
-
-
-
 	<div class="container spark-screen">
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
@@ -22,17 +19,17 @@
 					<i class="fa fa-plus my-float"></i>
 					</a>
 
-					<table class="table table-bordered">
+					<table class="table table-hover" >
 				        <thead>
-				            <th>Parrafo</th>
-                    <th width="150px">Modulo</th>
+				            <th width="200px">Modulo</th>
+                    <th>Parrafo</th>
 				            <th width="150px">Action</th>
 				        </thead>
 
                 @foreach($parrafos as $parrafo)
       							<tbody>
-      								<td>{{$parrafo->parrafo}}</td>
-                      <td>{{$parrafo->modulo}}</td>
+      								<td>{{$parrafo->modulo}}</td>
+                      <td>{{$parrafo->parrafo}}</td>
       								<td>
       									<div class="col-md-2">
       										{!! link_to_route('asesorparrafo.edit', $title = '', $parameters = $parrafo->id, $attributes = ['class'=>'ion-edit icon-big']) !!}
@@ -52,8 +49,9 @@
       								</td>
       							</tbody>
       						@endforeach
-
 				    </table>
+
+						{{ $parrafos->links() }}
 </div>
 
 				</div>

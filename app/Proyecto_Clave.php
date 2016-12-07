@@ -43,7 +43,37 @@ class Proyecto_Clave extends Model
                            and proyectos_claves.propietario="'.$propietario.'") as valor')
                         )
 
+                ->paginate(10);
+    }
+
+    public static function clavepro($idproyecto, $propietario){
+      return DB::table('claves')
+                ->select('claves.nombre','claves.identificador',
+                DB::raw('(SELECT proyectos_claves.valor
+                          FROM proyectos_claves
+                           WHERE proyectos_claves.clave_id=claves.id
+                           and proyectos_claves.proyecto_id='.$idproyecto.'
+                           and proyectos_claves.propietario="'.$propietario.'") as valor')
+                        )
+                ->where('clave_id','=', $clave_id)
                 ->get();
+    }
+
+    public static function claves($idproyecto, $propietario){
+      return DB::table('claves')
+                ->select('claves.nombre','claves.identificador',
+                DB::raw('(SELECT proyectos_claves.valor
+                          FROM proyectos_claves
+                           WHERE proyectos_claves.clave_id=claves.id
+                           and proyectos_claves.proyecto_id='.$idproyecto.'
+                           and proyectos_claves.propietario="'.$propietario.'") as valor')
+                        )
+                ->whereIn('claves.modulo_id', function($query){
+                      $query->select('modulos.id')
+                      ->from('modulos')
+                      ->where('modulos.clasificacion_id','=','2');
+                  })
+                ->paginate(10);
     }
 
 

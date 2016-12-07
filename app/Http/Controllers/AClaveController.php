@@ -66,7 +66,7 @@ class AClaveController extends Controller
      */
     public function edit($id)
     {
-      $clave = Clave::find($id);
+      $clave = Clave::findOrFail($id);
       $modulos = Modulo::pluck('modulo','id');
       return view('asesor/clave.edit',['clave'=>$clave,'modulos'=>$modulos]);
     }

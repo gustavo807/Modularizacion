@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Imagen;
 use App\User_Imagen;
 use App\User_Modulo;
@@ -16,6 +17,9 @@ class EImagenGnrlController extends Controller
      */
     public function index(Request $request)
     {
+      if( Auth::user()->activo == 2)
+        return redirect('/empresa');
+
         $iduser = $request->user()->id;
         $propietario = 'empresa';
 
@@ -48,6 +52,11 @@ class EImagenGnrlController extends Controller
       $propietario = 'empresa';
       $idmodulo = '0';
       $idmodulo = Session::get('idmodulognrl');
+
+      $this->validate($request, [
+        'imagen' => 'required',
+      ]);
+
 
       $userimagen = User_Imagen::userimagen($iduser,$propietario,$idmodulo);
       if(isset($userimagen)){

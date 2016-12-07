@@ -65,7 +65,7 @@ class AParrafoController extends Controller
      */
     public function edit($id)
     {
-      $parrafo = Parrafo::find($id);
+      $parrafo = Parrafo::findOrFail($id);
       $modulos = Modulo::pluck('modulo','id');
       return view('asesor/parrafo.edit',['parrafo'=>$parrafo,'modulos'=>$modulos]);
     }

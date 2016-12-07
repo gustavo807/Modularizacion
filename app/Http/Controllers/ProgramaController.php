@@ -14,7 +14,7 @@ class ProgramaController extends Controller
      */
     public function index()
     {
-         $programas = \App\Programa::all();   
+         $programas = \App\Programa::all();
         return view('asesor/programa.index',compact('programas'));
     }
 
@@ -43,7 +43,7 @@ class ProgramaController extends Controller
         Programa::create([
             'programa' => $request['programa'],
         ]);
-        
+
         return redirect('/asesorprograma')->with('success','Programa registrado correctamente');
     }
 
@@ -64,10 +64,10 @@ class ProgramaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    //public function edit (Programa $programa) 
+    //public function edit (Programa $programa)
     public function edit ($id)
     {
-        $programa = Programa::find($id);
+        $programa = Programa::findOrFail($id);
         return view('asesor/programa.edit',['programa'=>$programa]);
     }
 
@@ -84,7 +84,7 @@ class ProgramaController extends Controller
             'programa' => 'required',
         ]);
 
-        Programa::find($id)->update($request->all()); 
+        Programa::find($id)->update($request->all());
         //$programa->update($request->all());
         return redirect('/asesorprograma')
                            ->with('success','Programa actualizado correctamente');

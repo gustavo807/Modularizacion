@@ -71,7 +71,7 @@ class ConvocatoriaController extends Controller
      */
     public function edit($id)
     {
-        $convocatoria = Convocatoria::find($id);
+        $convocatoria = Convocatoria::findOrFail($id);
         $instituciones = Institucion::pluck('institucion','id');
         return view('asesor/convocatoria.edit',['convocatoria'=>$convocatoria,'instituciones'=>$instituciones]);
     }
@@ -91,7 +91,7 @@ class ConvocatoriaController extends Controller
             'institucion_id' => 'required',
         ]);
 
-        Convocatoria::find($id)->update($request->all()); 
+        Convocatoria::find($id)->update($request->all());
         //$programa->update($request->all());
         return redirect('/asesorconvocatoria')
                            ->with('success','Convocatoria actualizada correctamente');

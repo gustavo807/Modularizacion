@@ -1,14 +1,11 @@
 @extends('asesor.cuerpo')
 
-@section('htmlheader_title')
-	Home
-@endsection
+@section('htmlheader_title') Home @endsection
+@section('contentheader_title') Asesores @endsection
+@section('contentheader_description') Vista @endsection
 
 
 @section('main-content')
-
-
-
 	<div class="container spark-screen">
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
@@ -20,7 +17,7 @@
 
 					<a href="/asesoradd/create" class="float">	<i class="fa fa-plus my-float"></i> </a>
 
-          <table class="table table-bordered">
+          <table class="table table-hover">
 				        <thead>
 				            <th>Nombre</th>
                     <th>Email</th>

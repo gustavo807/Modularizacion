@@ -62,7 +62,7 @@ class AClasificacionController extends Controller
      */
     public function edit($id)
     {
-      $clasificacion = Clasificacion::find($id);
+      $clasificacion = Clasificacion::findOrFail($id);
       return view('asesor/clasificacion.edit',['clasificacion'=>$clasificacion]);
     }
 

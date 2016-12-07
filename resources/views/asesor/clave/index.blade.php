@@ -1,14 +1,11 @@
 @extends('asesor.cuerpo')
 
-@section('htmlheader_title')
-	Home
-@endsection
+@section('htmlheader_title') Home @endsection
+@section('contentheader_title') Claves @endsection
+@section('contentheader_description')  @endsection
 
 
 @section('main-content')
-
-
-
 	<div class="container spark-screen">
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
@@ -22,19 +19,19 @@
 					<i class="fa fa-plus my-float"></i>
 					</a>
 
-					<table class="table table-bordered">
+					<table class="table table-hover"  >
 				        <thead>
+										<th width="200px">Modulo</th>
 				            <th>Clave</th>
                     <th>Identificador</th>
-                    <th>Modulo</th>
 				            <th width="150px">Action</th>
 				        </thead>
 
                 @foreach($claves as $clave)
 							<tbody>
+								<td>{{$clave->modulo}}</td>
 								<td>{{$clave->nombre}}</td>
                 <td>{{$clave->identificador}}</td>
-                <td>{{$clave->modulo}}</td>
 								<td>
 									<div class="col-md-2">
 										{!! link_to_route('asesorclave.edit', $title = '', $parameters = $clave->id, $attributes = ['class'=>'ion-edit icon-big']) !!}

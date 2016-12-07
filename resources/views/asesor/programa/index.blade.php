@@ -1,14 +1,10 @@
 @extends('asesor.cuerpo')
 
-@section('htmlheader_title')
-	Home
-@endsection
-
+@section('htmlheader_title') Home @endsection
+@section('contentheader_title') Programas @endsection
+@section('contentheader_description')  @endsection
 
 @section('main-content')
-
-
-
 	<div class="container spark-screen">
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
@@ -22,7 +18,7 @@
 					<i class="fa fa-plus my-float"></i>
 					</a>
 
-					<table class="table table-bordered">
+					<table class="table table-hover">
 				        <thead>
 				            <th>Nombre</th>
 				            <th width="150px">Action</th>

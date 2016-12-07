@@ -68,7 +68,7 @@ class AImagenController extends Controller
      */
     public function edit($id)
     {
-      $imagen = Imagen::find($id);
+      $imagen = Imagen::findOrFail($id);
       $modulos = Modulo::pluck('modulo','id');
       return view('asesor/imagen.edit',['imagen'=>$imagen,'modulos'=>$modulos]);
     }

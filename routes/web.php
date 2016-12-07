@@ -88,9 +88,18 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('asesorcategoria','ACategoriaController');
     Route::resource('asesoradd','AddAsesorController');
 
+    Route::resource('aordenagnrl','AOrdenaGnrlController');
+    Route::resource('aordenaconv','AOrdenaConvController');
+
     //      VISTAS DEL ASESOR
     Route::resource('asesorempresa','AEmpresaController');
+    Route::get('copyempresa/{id}', 'AEmpresaController@copy' );
+
     Route::resource('asesorproyecto','AProyectoController');
+    Route::resource('aproyectosgnrl','AProyectoGnrlController');
+
+    Route::resource('aproyectoempresa','AProyectoEmpresaController');
+
 	});
 
     // MIDDLEWARE PARA EMPRESA
@@ -102,6 +111,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('empresaparrafognrl','EParrafoGnrlController');
     Route::resource('empresaimagengnrl','EImagenGnrlController');
 
+    Route::resource('einfognrl','EInfoGnrlController');
+    Route::resource('eproyecto','EProPreController');
     // MODLUOS POR CONVOCATORIA
     Route::resource('empresaproyecto','EProyectoController');
     Route::resource('empresaparrafo','EParrafoController');

@@ -19,7 +19,9 @@ class Modulo extends Model
 			return DB::table('modulos')
 											->join('clasificaciones', 'modulos.clasificacion_id', '=', 'clasificaciones.id')
 											->select('modulos.*', 'clasificaciones.clasificacion')
-											->get();
+                      ->orderBy('clasificaciones.clasificacion', 'asc')
+                      ->orderBy('modulos.modulo', 'asc')
+											->paginate(10);
 		}
 
 		public static function modulosgnrl($iduser,$propietario){
@@ -29,10 +31,14 @@ class Modulo extends Model
                                 FROM user_modulo
                                  WHERE user_modulo.modulo_id=modulos.id
                                  and user_modulo.user_id='.$iduser.'
-                                 and user_modulo.propietario="'.$propietario.'") as completo')
-                              )
+                                 and user_modulo.propietario="'.$propietario.'") as completo'),
+                       DB::raw('(SELECT ordena_modulos.orden
+                                 FROM ordena_modulos
+                                  WHERE ordena_modulos.modulo_id=modulos.id) as orden')
+                                )
 											->where('modulos.clasificacion_id','=','1')
-											->get();
+                      ->orderBy('orden', 'asc')
+											->paginate(10);
 		}
 
     public static function modulosconvocatoria($iduser,$propietario){
@@ -55,10 +61,14 @@ class Modulo extends Model
                                 FROM proyecto_modulo
                                  WHERE proyecto_modulo.modulo_id=modulos.id
                                  and proyecto_modulo.proyecto_id='.$idproyecto.'
-                                 and proyecto_modulo.propietario="'.$propietario.'") as completo')
+                                 and proyecto_modulo.propietario="'.$propietario.'") as completo'),
+                       DB::raw('(SELECT ordena_modulos.orden
+                                 FROM ordena_modulos
+                                  WHERE ordena_modulos.modulo_id=modulos.id) as orden')
                               )
 											->where('modulos.clasificacion_id','=','2')
-											->get();
+                      ->orderBy('orden', 'asc')
+											->paginate(10);
 		}
 
 

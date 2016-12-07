@@ -18,7 +18,7 @@
 <div class="panel-body">
 					@include('alerts.success')
 
-          <table class="table table-bordered">
+          <table class="table table-hover">
 				        <thead>
 				            <th>Nombre</th>
                     <th>Identificador</th>

@@ -70,7 +70,7 @@ class AddAsesorController extends Controller
      */
     public function edit($id)
     {
-      $asesor = User::find($id);
+      $asesor = User::findOrFail($id);
       return view('asesor.agrega.edit',['asesor'=>$asesor]);
     }
 

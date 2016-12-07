@@ -14,7 +14,7 @@ class InstitucionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {        
+    {
         $instituciones = DB::table('instituciones')
                         ->join('programas', 'instituciones.programa_id', '=', 'programas.id')
                         ->select('instituciones.*', 'programas.programa')
@@ -70,7 +70,7 @@ class InstitucionController extends Controller
      */
     public function edit($id)
     {
-        $institucion = Institucion::find($id);
+        $institucion = Institucion::findOrFail($id);
         $programa = Programa::pluck('programa','id');
         return view('asesor/institucion.edit',['institucion'=>$institucion,'programa'=>$programa]);
     }
@@ -89,7 +89,7 @@ class InstitucionController extends Controller
             'programa_id' => 'required',
         ]);
 
-        Institucion::find($id)->update($request->all()); 
+        Institucion::find($id)->update($request->all());
         //$programa->update($request->all());
         return redirect('/asesorinstitucion')
                            ->with('success','Institucion actualizado correctamente');
