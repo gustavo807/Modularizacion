@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Proyecto_Parrafo;
 use App\Proyecto_Clave;
 use App\Proyecto_Modulo;
 use App\Parrafo;
+use App\Proyecto;
 use App\Imagen;
 use Session;
 
@@ -17,18 +19,27 @@ class EParrafoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-      $propietario = 'empresa';
+      $iduser = $request->user()->id;
+      $idproyecto = Session::get('idproyecto');
+      $proyecto = Proyecto::findOrFail($idproyecto);
+      //$proyecto = Proyecto::all()->where('user_id','=',$iduser)->first();
 
+      if($proyecto->user_id != $iduser || Auth::user()->activo == 2)
+        return redirect('/empresa');
+
+
+      $propietario = 'empresa';
       $idmodulo = '0';
       $idmodulo = Session::get('idmoduloconv');
-      $idproyecto = Session::get('idproyecto');
+
       $parrafos = Parrafo::parrafosmodulos($idmodulo);
       $proyectoparrafo = Proyecto_Parrafo::proyectoparrafo($idproyecto,$propietario,$idmodulo);
-      $claves = Proyecto_Clave::clavesproyecto($idproyecto,$propietario);
-
+      $claves = Proyecto_Clave::claves($idproyecto,$propietario);
+      //return $claves;
       return view('empresa.parrafo.index',['parrafos'=>$parrafos,'claves'=>$claves,'proyectoparrafo'=>$proyectoparrafo]);
+
     }
 
     /**
@@ -54,6 +65,12 @@ class EParrafoController extends Controller
       $idmodulo = '0';
       $idmodulo = Session::get('idmoduloconv');
       $idproyecto = Session::get('idproyecto');
+
+
+      $this->validate($request, [
+        'parrafo' => 'required',
+      ]);
+
 
       // CREA O ACTUALIZA EL PARRAFO SELECCIONADO
       $proyectoparrafo = Proyecto_Parrafo::proyectoparrafo($idproyecto,$propietario,$idmodulo);
@@ -83,7 +100,7 @@ class EParrafoController extends Controller
             'propietario' => $propietario,
           ]);
         }
-        return redirect('/empresa')->with('success','Modulo completado correctamente ');
+        return redirect('/empresaproyecto/'.$idproyecto)->with('success','Modulo completado correctamente ');
         //return "No existe, ".$idmodulo.', '.$imagenes;
       }
       // SI EXISTEN IMAGENES

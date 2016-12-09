@@ -27,4 +27,57 @@ class Proyecto extends Model
     }
 
 
+    public static function empresasproyectos(){
+      return DB::table('proyectos')
+                ->select('proyectos.*',
+                DB::raw('(SELECT users.nombre FROM users WHERE proyectos.user_id=users.id) as empresa'),
+                DB::raw('(SELECT convocatorias.convocatoria FROM convocatorias WHERE proyectos.convocatoria_id=convocatorias.id ) as convocatoria'),
+                DB::raw('(SELECT count(*) FROM proyecto_modulo WHERE proyecto_modulo.proyecto_id=proyectos.id
+                                                               AND proyecto_modulo.propietario="empresa") as modulo')
+                        )
+                ->orderBy('empresa', 'asc')
+                ->orderBy('proyectos.nombre', 'asc')
+                ->paginate(10);
+    }
+
+    public static function proyectodescripcion($idproyecto){
+      return DB::table('proyectos')
+                ->join('convocatorias','proyectos.convocatoria_id','=','convocatorias.id')
+                ->join('instituciones','convocatorias.institucion_id','=','instituciones.id')
+                ->join('programas','instituciones.programa_id','=','programas.id')
+                ->select('proyectos.user_id','proyectos.nombre', 'proyectos.descripcion','convocatorias.convocatoria','instituciones.institucion','programas.programa')
+                ->where('proyectos.id', '=',$idproyecto)
+                ->first();
+    }
+
+
 }
+
+
+/*
+SELECT (SELECT users.nombre FROM users WHERE proyectos.user_id=users.id) as empresa,
+				proyectos.nombre,
+                (SELECT convocatorias.convocatoria FROM convocatorias WHERE proyectos.convocatoria_id=convocatorias.id) as convocatoria,
+                ( SELECT COUNT(*)
+                     FROM proyecto_modulo
+                     WHERE proyecto_modulo.proyecto_id=proyectos.id
+                     AND proyecto_modulo.propietario='empresa') as modulo
+FROM proyectos
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Session;
 use App\User_Parrafo;
 use App\Parrafo;
@@ -20,6 +21,9 @@ class EParrafoGnrlController extends Controller
      */
     public function index(Request $request)
     {
+      if( Auth::user()->activo == 2)
+        return redirect('/empresa');
+
         $iduser = $request->user()->id;
         $propietario = 'empresa';
 
@@ -55,6 +59,9 @@ class EParrafoGnrlController extends Controller
       $idmodulo = '0';
       $idmodulo = Session::get('idmodulognrl');
 
+      $this->validate($request, [
+        'parrafo' => 'required',
+      ]);
 
       // CREA O ACTUALIZA EL PARRAFO SELECCIONADO
       $userparrafo = User_Parrafo::userparrafo($iduser,$propietario,$idmodulo);

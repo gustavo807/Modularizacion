@@ -1,14 +1,11 @@
 @extends('asesor.cuerpo')
 
-@section('htmlheader_title')
-	Home
-@endsection
+@section('htmlheader_title') Home @endsection
+@section('contentheader_title') Módulos @endsection
+@section('contentheader_description')  @endsection
 
 
 @section('main-content')
-
-
-
 	<div class="container spark-screen">
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
@@ -22,17 +19,17 @@
 					<i class="fa fa-plus my-float"></i>
 					</a>
 
-					<table class="table table-bordered">
+					<table class="table table-hover">
 				        <thead>
-				            <th>Modulo</th>
-                    <th>Clasificacion</th>
+				            <th width="150px">Clasificacion</th>
+                    <th>Modulo</th>
 				            <th width="150px">Action</th>
 				        </thead>
 
                 @foreach($modulos as $modulo)
                   <tbody>
-                   <td>{{$modulo->modulo}}</td>
                     <td>{{$modulo->clasificacion}}</td>
+                    <td>{{$modulo->modulo}}</td>
                     <td>
                       <div class="col-md-2">
                         {!! link_to_route('asesormodulo.edit', $title = '', $parameters = $modulo->id, $attributes = ['class'=>'ion-edit icon-big']) !!}
@@ -52,8 +49,8 @@
                     </td>
                  </tbody>
 						    @endforeach
-
 				    </table>
+						{{ $modulos->links() }}
 </div>
 
 				</div>

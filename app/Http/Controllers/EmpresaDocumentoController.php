@@ -41,6 +41,11 @@ class EmpresaDocumentoController extends Controller
      */
     public function store(Request $request)
     {
+        //return $request->all();
+        $this->validate($request, [
+            'documento' => 'max:1000',
+        ]);
+
         $id = $request->user()->id;
         $doc = Doc_Usuario::existedocumento($id, $request->documento_id);
         $variable;

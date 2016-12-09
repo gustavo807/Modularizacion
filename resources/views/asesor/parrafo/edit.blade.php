@@ -1,8 +1,8 @@
 @extends('asesor.cuerpo')
 
-@section('htmlheader_title')
-	Home
-@endsection
+@section('htmlheader_title') Home @endsection
+@section('contentheader_title') Párrafo @endsection
+@section('contentheader_description') Edit @endsection
 
 
 @section('main-content')

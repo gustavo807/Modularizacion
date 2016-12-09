@@ -34,7 +34,8 @@ class Doc_Usuario extends Model
                       //->whereNull('documentos.deleted_at')
                       ->where('documentos.rol_id','=','1')
                       ->orderBy('categorias.categoria', 'asc')
-                      ->get();
+                      ->orderBy('documentos.nombre', 'asc')
+                      ->paginate(10);
     }
 
     public static function existedocumento($user_id, $documento_id){

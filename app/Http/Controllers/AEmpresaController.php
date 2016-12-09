@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\User_Clave;
+use App\User_Parrafo;
+use App\Doc_Usuario;
 use Session;
 use App\Proyecto;
+use App\Proyecto_Clave;
+use App\Proyecto_Parrafo;
 
 class AEmpresaController extends Controller
 {
@@ -39,7 +43,7 @@ class AEmpresaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -79,8 +83,82 @@ class AEmpresaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $activo = '1';
+
+        if($user['activo'] == '1') $activo = '2';
+
+        User::findOrFail($id)->update([ 'activo'=>$activo, ]);
+
+        return redirect('/asesorempresa')->with('success','La accion se llevo correctamente ');
     }
+
+    //COPIA LA INFORMACION DE ESTA EMPRESA
+    public function copy($id)
+    {
+        $proyecto = User::findOrFail($id);
+        User::copyempresa_borra($id);
+        User::copyempresa_crea($id);
+        return redirect('/asesorempresa')->with('success', 'Información copiada correctamente');
+    }
+
+    //DOCUMENTOS EMPRESA
+    public function documentos($id)
+    {
+        $empresa = User::findOrFail($id);
+        $documentos = Doc_Usuario::consulta($id);
+        return view('asesor.empresa.documentos',['documentos'=>$documentos, 'empresa'=>$empresa]);
+    }
+
+
+
+    public function informaciongnrl($id,$user)
+    {
+        $empresa = User::findOrFail($id);
+        if($user != 'empresa' && $user != 'asesor') return redirect('/erros/404');
+
+        $claves = User_Clave::claves($id, $user);
+        return view('asesor.informacion.claves',['claves'=>$claves, 'empresa'=>$empresa, 'user'=>$user,'ruta'=>'gnrlparrafo','id'=>$id]);
+        //return 'hola'.$id.$user;
+    }
+
+    public function gnrlparrafo($id,$user)
+    {
+        $empresa = User::findOrFail($id);
+        if($user != 'empresa' && $user != 'asesor') return redirect('/erros/404');
+
+        $parrafos = User_Parrafo::parrafosusuario($id, $user,'1');
+        $claves = User_Clave::claves($id, $user);
+        return view('asesor.informacion.parrafos',['parrafos'=>$parrafos,'claves'=>$claves, 'empresa'=>$empresa, 'user'=>$user,'ruta'=>'informaciognrl','id'=>$id]);
+        //return 'hola'.$id.$user;
+    }
+
+
+    public function proyectoclaves($id,$user)
+    {
+        $proyecto = Proyecto::findOrFail($id);
+        $empresa = User::findOrFail($proyecto->user_id);
+        if($user != 'empresa' && $user != 'asesor') return redirect('/erros/404');
+
+        $claves = Proyecto_Clave::claves($id, $user);
+
+        return view('asesor.informacion.claves',['claves'=>$claves, 'empresa'=>$empresa, 'user'=>$user,'ruta'=>'proyectoparrafos','id'=>$id]);
+        //return 'hola'.$id.$user;
+    }
+
+    public function proyectoparrafos($id,$user)
+    {
+        $proyecto = Proyecto::findOrFail($id);
+        $empresa = User::findOrFail($proyecto->user_id);
+        if($user != 'empresa' && $user != 'asesor') return redirect('/erros/404');
+
+        $parrafos = Proyecto_Parrafo::parrafosproyecto($id, $user, '2');
+        $claves = Proyecto_Clave::claves($id, $user);
+
+        return view('asesor.informacion.parrafos',['parrafos'=>$parrafos,'claves'=>$claves, 'empresa'=>$empresa, 'user'=>$user,'ruta'=>'proyectoclaves','id'=>$id]);
+        //return 'hola'.$id.$user;
+    }
+
 
     /**
      * Remove the specified resource from storage.

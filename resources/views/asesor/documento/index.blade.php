@@ -1,14 +1,11 @@
 @extends('asesor.cuerpo')
 
-@section('htmlheader_title')
-	Home
-@endsection
+@section('htmlheader_title') Home @endsection
+@section('contentheader_title') Documentos @endsection
+@section('contentheader_description')  @endsection
 
 
 @section('main-content')
-
-
-
 	<div class="container spark-screen">
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
@@ -22,10 +19,10 @@
 					<i class="fa fa-plus my-float"></i>
 					</a>
 
-					<table class="table table-bordered">
+					<table class="table table-hover">
 				        <thead>
+										<th>Categoria</th>
                     <th>Nombre</th>
-                    <th>Categoria</th>
 				            <th>Asignado</th>
 				            <th width="150px">Action</th>
 				        </thead>
@@ -34,8 +31,8 @@
                 @foreach($documentos as $documento)
 							<tbody>
 
-								<td>{{$documento->nombre}}</td>
-                <td>{{$documento->categoria}}</td>
+								<td>{{$documento->categoria}}</td>
+                <td>{{$documento->nombre}}</td>
 								<td>{{$documento->rol}}</td>
 								<td>
 									<div class="col-md-2">
@@ -56,8 +53,9 @@
 								</td>
 							</tbody>
 						@endforeach
-
 				    </table>
+
+						 {{ $documentos->links() }}
 </div>
 
 				</div>

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Imagen;
 use App\Proyecto_Imagen;
 use App\Proyecto_Modulo;
+use App\Proyecto;
 use Session;
 
 class EImagenController extends Controller
@@ -15,16 +17,25 @@ class EImagenController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+      $iduser = $request->user()->id;
+      $idproyecto = Session::get('idproyecto');
+      $proyecto = Proyecto::findOrFail($idproyecto);
       $propietario = 'empresa';
+
+      if($proyecto->user_id != $iduser || Auth::user()->activo == 2)
+        return redirect('/empresa');
 
       $idmodulo = '0';
       $idmodulo = Session::get('idmoduloconv');
-      $idproyecto = Session::get('idproyecto');
       $imagenes = Imagen::imagenesmodulo($idmodulo);
       $proyectoimagen = Proyecto_Imagen::proyectoimagen($idproyecto,$propietario,$idmodulo);
-        return view('empresa.imagen.index',['imagenes'=>$imagenes,'proyectoimagen'=>$proyectoimagen]);
+
+
+      return view('empresa.imagen.index',['imagenes'=>$imagenes,'proyectoimagen'=>$proyectoimagen]);
+
+
     }
 
     /**
@@ -50,6 +61,10 @@ class EImagenController extends Controller
       $idmodulo = '0';
       $idmodulo = Session::get('idmoduloconv');
 
+      $this->validate($request, [
+        'imagen' => 'required',
+      ]);
+
       $proyectoimagen = Proyecto_Imagen::proyectoimagen($idproyecto,$propietario,$idmodulo);
       if(isset($proyectoimagen)){
         Proyecto_Imagen::actualizaimagen($idproyecto,$propietario,$idmodulo,$request['imagen']);
@@ -71,7 +86,7 @@ class EImagenController extends Controller
         ]);
       }
 
-      return redirect('/empresa')->with('success','Modulo completado correctamente ');
+      return redirect('/empresaproyecto/'.$idproyecto)->with('success','Modulo completado correctamente ');
     }
 
     /**

@@ -1,8 +1,7 @@
 @extends('empresa.cuerpo')
 
-@section('htmlheader_title')
-	Home
-@endsection
+@section('htmlheader_title') Home @endsection
+@section('contentheader_title') Imagenes @endsection
 
 
 @section('main-content')
@@ -15,7 +14,8 @@
 <div class="panel-body">
 					@include('alerts.success')
 					@include('alerts.validar')
-
+					@include('alerts.errors')
+					
 						@include('alerts.imagen')
 						<table class="table table-bordered">
 					        <thead>

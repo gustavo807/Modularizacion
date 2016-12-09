@@ -7,12 +7,14 @@ $(".formulario").submit(function () {
     });
 
     if (bandera) {
-      $(".msjerror").fadeIn();
+      $(".msjerror").fadeToggle();
+
       return false;
     }
 
     return true;
 });
+
 
 
 $(".formparrafo").submit(function () {

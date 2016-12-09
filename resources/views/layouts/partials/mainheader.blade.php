@@ -44,7 +44,7 @@
                                 <img src="/alivetech/res/img/AliveTech-Logo.png" class="img-circle" alt="User Image" />
                                 <p>
                                     {{ Auth::user()->nombre }}
-                                    <small>{{ trans('adminlte_lang::message.login') }} Dic. 2016</small>
+                                    <small>{{ Auth::user()->email }}</small>
                                 </p>
                             </li>
                             <!-- Menu Body -->

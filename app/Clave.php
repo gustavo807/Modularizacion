@@ -18,6 +18,8 @@ class Clave extends Model
 			return DB::table('claves')
 											->join('modulos', 'modulos.id', '=', 'claves.modulo_id')
 											->select('claves.*', 'modulos.modulo')
+                      ->orderBy('modulos.modulo', 'asc')
+                      ->orderBy('claves.nombre', 'asc')
 											->paginate(10);
 		}
 

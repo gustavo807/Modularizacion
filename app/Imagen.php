@@ -28,7 +28,8 @@ class Imagen extends Model
 			return DB::table('imagenes')
 											->join('modulos', 'modulos.id', '=', 'imagenes.modulo_id')
 											->select('imagenes.*', 'modulos.modulo')
-											->get();
+                      ->orderBy('modulos.modulo', 'asc')
+											->paginate(10);
 		}
 
     public static function imagenesmodulo($idmodulo){

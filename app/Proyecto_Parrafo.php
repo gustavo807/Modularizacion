@@ -35,4 +35,31 @@ class Proyecto_Parrafo extends Model
 											->update(['proyectos_parrafos.observacion'=>$observacion,'proyectos_parrafos.parrafo_id'=>$parrafo_id]);
 		}
 
+
+    public static function parrafosproyecto($idproyecto, $propietario,$clasificacion_id){
+      return DB::table('modulos')
+                ->select('modulos.modulo',
+                DB::raw(' (SELECT parrafos.parrafo
+                                    FROM parrafos
+                                    WHERE parrafos.modulo_id=modulos.id
+                                    AND parrafos.id IN (SELECT proyectos_parrafos.parrafo_id
+                                                                                  FROM proyectos_parrafos
+                                                                                  WHERE proyectos_parrafos.proyecto_id='.$idproyecto.'
+                                                                                      AND proyectos_parrafos.propietario="'.$propietario.'")  ) as parrafo  '),
+                DB::raw(' (SELECT imagenes.imagen
+                                    FROM imagenes
+                                    WHERE imagenes.modulo_id=modulos.id
+                                    AND imagenes.id IN (SELECT proyectos_imagenes.imagen_id
+                                                                                  FROM proyectos_imagenes
+                                                                                  WHERE proyectos_imagenes.proyecto_id='.$idproyecto.'
+                                                                                      AND proyectos_imagenes.propietario="'.$propietario.'")  ) as imagen  '),
+                DB::raw(' (SELECT ordena_modulos.orden
+                                            FROM ordena_modulos WHERE ordena_modulos.modulo_id=modulos.id) as orden  ')
+                        )
+                ->where('modulos.clasificacion_id','=', $clasificacion_id)
+                ->orderBy('orden', 'asc')
+                ->paginate(10);
+    }
+
+
 }

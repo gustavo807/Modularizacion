@@ -1,8 +1,8 @@
 @extends('empresa.cuerpo')
 
 @section('htmlheader_title') Home @endsection
-@section('contentheader_title') Modulos por proyecto @endsection
-@section('contentheader_description')  @endsection
+@section('contentheader_title') Modulos @endsection
+@section('contentheader_description') {{	Session::get('nomproyecto')	}} @endsection
 
 @section('main-content')
 	<div class="container spark-screen">
@@ -12,8 +12,9 @@
 					<div class="panel-heading">{{$proyecto->nombre}}</div>
 
 					<div class="panel-body">
-
-						<table class="table table-bordered">
+						@include('alerts.warning')
+						@include('alerts.success')
+						<table class="table table-hover">
 					        <thead>
 
 					            <th>Modulo</th>
@@ -33,9 +34,8 @@
 	                    </td>
 	                 </tbody>
 							    @endforeach
-
-
 					    </table>
+							{{ $modulos->links() }}
 
 					</div>
 				</div>

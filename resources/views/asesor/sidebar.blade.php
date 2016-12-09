@@ -36,7 +36,7 @@
             <li class="active"><a href="{{ url('asesor') }}"><i class='fa fa-link'></i> <span>Asesor</span></a></li>
 
             <li class=""><a href="/asesorempresa"><i class='fa fa-link'></i> <span>Empresas</span></a></li>
-
+            <li class=""><a href="/aproyectosgnrl"><i class='fa fa-link'></i> <span>Proyectos</span></a></li>
             @if (Auth::user()->rol_id == 3)
               <li class=""><a href="/asesoradd"><i class='fa fa-link'></i> <span>Agregar Asesores</span></a></li>
 
@@ -56,6 +56,13 @@
                       <li><a href="/asesorclave">Claves</a></li>
                       <li><a href="/asesorparrafo">Parrafos</a></li>
                       <li><a href="/asesorimagen">Imagenes</a></li>
+                  </ul>
+              </li>
+              <li class="treeview">
+                  <a href="#"><i class='fa fa-link'></i> <span>Ordenar Modulos</span> <i class="fa fa-angle-left pull-right"></i></a>
+                  <ul class="treeview-menu">
+                      <li><a href="/aordenagnrl">Modulos Generales</a></li>
+                      <li><a href="/aordenagnrl/create">Modulos por Convocatoria</a></li>
                   </ul>
               </li>
               <li class="treeview">

@@ -1,8 +1,8 @@
 @extends('asesor.cuerpo')
 
-@section('htmlheader_title')
-	Home
-@endsection
+@section('htmlheader_title') Home @endsection
+@section('contentheader_title') Módulo @endsection
+@section('contentheader_description') Add @endsection
 
 
 @section('main-content')

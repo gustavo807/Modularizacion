@@ -1,8 +1,8 @@
 @extends('asesor.cuerpo')
 
-@section('htmlheader_title')
-	Home
-@endsection
+@section('htmlheader_title') Home @endsection
+@section('contentheader_title') Convocatorias @endsection
+@section('contentheader_description')  @endsection
 
 
 @section('main-content')
@@ -19,7 +19,7 @@
 					<i class="fa fa-plus my-float"></i>
 					</a>
 
-					<table class="table table-bordered">
+					<table class="table table-hover">
 				        <thead>
 				            <th>Convocatoria</th>
 				            <th>Descripcion</th>
