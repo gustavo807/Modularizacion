@@ -134,4 +134,10 @@ PROYECTO_MODULO
 PROYECTO_CLAVES
 PROYECTO_PARRAFOS
 PROYECTO_IMAGENES
+
+
+INSERT INTO hola(user_id,clave_id,valor,copia)
+    SELECT user_id,clave_id,valor, 'admin' as copia
+    FROM hola
+    WHERE user_id=2 AND copia='asesor'
 */

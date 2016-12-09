@@ -1,8 +1,33 @@
 $(function () {
   $('.data-delete').on('click', function (e) {
-    if (!confirm('Estas seguro de eliminar?')) return;
+    vform = $(this).data('form');
     e.preventDefault();
-    $('#form-delete-' + $(this).data('form')).submit();
+    bootbox.confirm({
+        title: "Alert!",
+        message: "ESTAS SEGURO DE ELIMINAR? <br> TODA LA INFORMACION SE PERDERA. <br><br> ",
+        buttons: {
+            cancel: {
+                label: '<i class="fa fa-times"></i> Cancelar'
+            },
+            confirm: {
+                label: '<i class="fa fa-check"></i> Confirmar'
+            }
+        },
+        callback: function (result) {
+            if(result)
+            {
+              $('#form-delete-' + vform ).submit();
+
+              bootbox.dialog({
+                  message: '<p class="text-center"><i class="fa fa-spin ion-load-a "></i> Please wait while we do something...</p>',
+                  closeButton: false
+              });
+            }
+        }
+    });
+
+    //if (!confirm('Estas seguro de eliminar?')) return;
+    //$('#form-delete-' + $(this).data('form')).submit();
   });
 
   $("#state").change(event => {
@@ -15,9 +40,34 @@ $(function () {
   });
 
   $('.myfile').change(function(evt) {
-        if (!confirm('Estas seguro de enviar?')) return;
-        evt.preventDefault();
-        $('#form-add-' + $(this).data('form')).submit();
+    varform = $(this).data('form');
+    evt.preventDefault();
+      bootbox.confirm({
+          title: "Alert!",
+          message: "ESTAS SEGURO DE ENVIAR? <br>  <br><br> ",
+          buttons: {
+              cancel: {
+                  label: '<i class="fa fa-times"></i> Cancelar'
+              },
+              confirm: {
+                  label: '<i class="fa fa-check"></i> Confirmar'
+              }
+          },
+          callback: function (result) {
+              if(result)
+              {
+                $('#form-add-' + varform ).submit();
+
+                bootbox.dialog({
+                    message: '<p class="text-center"><i class="fa fa-spin ion-load-a "></i> Please wait while we do something...</p>',
+                    closeButton: false
+                });
+              }
+          }
+      });
+        //if (!confirm('Estas seguro de enviar?')) return;
+
+        //$('#form-add-' + $(this).data('form')).submit();
     });
 
 
@@ -36,9 +86,35 @@ $(function () {
 
 
     $('.data-confirm').on('click', function (e) {
-      if (!confirm('Estas seguro de esta accion?')) return false;
+      form = $(this).data('form');
       e.stopImmediatePropagation();
-      $('#form-confirm-' + $(this).data('form')).submit();
+      bootbox.confirm({
+          title: "Alert!",
+          message: "ESTAS SEGURO DE ESTA ACCION? <br>  <br><br> ",
+          buttons: {
+              cancel: {
+                  label: '<i class="fa fa-times"></i> Cancelar'
+              },
+              confirm: {
+                  label: '<i class="fa fa-check"></i> Confirmar'
+              }
+          },
+          callback: function (result) {
+              if(result)
+              {
+                $('#form-confirm-' + form ).submit();
+
+                bootbox.dialog({
+                    message: '<p class="text-center"><i class="fa fa-spin ion-load-a "></i> Please wait while we do something...</p>',
+                    closeButton: false
+                });
+              }
+          }
+      });
+
+      //if (!confirm('Estas seguro de esta accion?')) return false;
+
+      //$('#form-confirm-' + $(this).data('form')).submit();
     });
 
 
@@ -89,5 +165,30 @@ $('#myModal').modal()
   .one('click', '#aceptar', function (e) {
     alert('nin');
     $('#form-confirm-' + $(this).data('form')).submit();
+  });
+*/
+
+
+/*
+$('.myfile').change(function(evt) {
+  varform = ('#form-add-' + $(this).data('form'));
+      if (!confirm('Estas seguro de enviar?')) return;
+      evt.preventDefault();
+      $('#form-add-' + $(this).data('form')).submit();
+  });
+
+
+  // HABILITAR O DESACTIVAR EMPRESA
+  $('.data-confirm').on('click', function (e) {
+    if (!confirm('Estas seguro de esta accion?')) return false;
+    e.stopImmediatePropagation();
+    $('#form-confirm-' + $(this).data('form')).submit();
+  });
+
+  // ELIMINAR ELEMENTOS
+  $('.data-delete').on('click', function (e) {
+    if (!confirm('Estas seguro de eliminar?')) return;
+    e.preventDefault();
+    $('#form-delete-' + $(this).data('form')).submit();
   });
 */

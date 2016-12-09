@@ -13,8 +13,8 @@
 					<div class="panel-heading">
 						<ul class="nav nav-tabs nav-justified">
               <li class="active"><a href="#">Proyectos</a></li>
-              <li><a href="#">Modulos Generales</a></li>
-							<li><a href="#">Convocatoria</a></li>
+              <li><a href="/amodulognrl/{{$empresa->id}}">Modulos Generales</a></li>
+							<li><a href="/documentosempresa/{{$empresa->id}}">Documentos</a></li>
             </ul>
 					</div>
 
@@ -22,25 +22,19 @@
 								@include('alerts.confirm')
 								@include('alerts.success')
 
-						    {!! link_to_route('asesorempresa.edit', $title = 'Informacion General', $parameters = $empresa->id, $attributes = ['class'=>'']) !!}
 
-								  <div class="row">
-										<div class="col-md-4 ">
-											<a href="/asesorproyecto/create" class="float" title="Agrega un proyecto">	<i class="fa fa-plus my-float"></i> </a>
-										</div>
+								<div class="col-md-4 ">
+									<a href="/asesorproyecto/create" class="float" title="Agrega un proyecto">	<i class="fa fa-plus my-float"></i> </a>
+								</div>
 
-										<div class="col-md-4 col-md-offset-4">
-
-										</div>
-
-									</div>
-
-
+								
 								<table class="table table-hover">
 							        <thead>
 							            <th>Nombre</th>
 													<th>Convocatoria</th>
 						              <th>Descripcion</th>
+													<th>Empresa</th>
+													<th>Asesor</th>
 							            <th width="150px">Action</th>
 											</thead>
 
@@ -49,6 +43,14 @@
 														<td>{{$proyecto->nombre}}</td>
 														<td>{{$proyecto->convocatoria}}</td>
 														<td>{{$proyecto->descripcion}}</td>
+														<td>
+															{!! link_to('proyectoclaves/'.$proyecto->id.'/user/empresa', $title = '',
+																	$attributes = 'class="ion-ios-paper icon-big" title="Claves del proyecto"') !!}
+														</td>
+														<td>
+															{!! link_to('proyectoclaves/'.$proyecto->id.'/user/asesor', $title = '',
+																	$attributes = 'class="ion-ios-paper icon-big" title="Parrafos e Imágenes"') !!}
+														</td>
 						                <td>
 															<div class="col-md-2">
 																{!! link_to_route('asesorproyecto.edit', $title = '', $parameters = $proyecto->id, $attributes = ['class'=>'ion-edit icon-big']) !!}
@@ -68,7 +70,7 @@
 											@endforeach
 							    </table>
 
-							</div>
+						</div>
 
 					</div>
 				</div>

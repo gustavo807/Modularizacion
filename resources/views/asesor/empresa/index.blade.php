@@ -13,11 +13,15 @@
 
 						<div class="panel-body">
 									@include('alerts.success')
+
+								<div class="table-responsive">
 							    <table class="table table-hover">
 							        <thead>
 							            <th>Nombre</th>
 							            <th>Email</th>
 													<th>Registro</th>
+													<th>Empresa</th>
+													<th>Asesor</th>
 													<th>Estatus</th>
 													<th>Copiar</th>
 							        </thead>
@@ -27,6 +31,14 @@
 														<td>{!! link_to_route('asesorempresa.show', $title = $empresa->nombre, $parameters = $empresa->id, $attributes = '') !!}</td>
 														<td>{{$empresa->email}}</td>
 														<td>{{$empresa->created_at}}</td>
+														<td>
+															{!! link_to('informaciognrl/'.$empresa->id.'/user/empresa', $title = '',
+																	$attributes = 'class="ion-ios-paper icon-big" title="Información General"') !!}
+														</td>
+														<td>
+															{!! link_to('informaciognrl/'.$empresa->id.'/user/asesor', $title = '',
+																	$attributes = 'class="ion-ios-paper icon-big" title="Información General"') !!}
+														</td>
 														<td>
 															{!! Form::open(['method' => 'PUT',
 																	'route' => ['asesorempresa.update', $empresa->id],
@@ -41,11 +53,12 @@
 															{!! Form::close() !!}
 														</td>
 														<td>{!! link_to('copyempresa/'.$empresa->id, $title = '',
-																	$attributes = 'class="ion-ios-copy icon-big copyempresa" title="Copiar módulos de esta empresa"') !!}
+																	$attributes = 'class="ion-ios-browsers icon-big copyempresa" title="Copiar módulos de esta empresa"') !!}
 														</td>
 													</tbody>
 												@endforeach
 							    </table>
+								</div>
 						</div>
 
 				</div>

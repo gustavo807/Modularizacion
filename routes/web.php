@@ -94,6 +94,14 @@ Route::group(['middleware' => 'auth'], function () {
     //      VISTAS DEL ASESOR
     Route::resource('asesorempresa','AEmpresaController');
     Route::get('copyempresa/{id}', 'AEmpresaController@copy' );
+    Route::get('documentosempresa/{id}', 'AEmpresaController@documentos' );
+    Route::resource('amodulognrl','AModuloGnrlController');
+
+      //VISTA DE DE CLAVES DE EMPRESA PROYECTO
+    Route::get('informaciognrl/{id}/user/{user}', 'AEmpresaController@informaciongnrl' );
+    Route::get('gnrlparrafo/{id}/user/{user}', 'AEmpresaController@gnrlparrafo' );
+    Route::get('proyectoclaves/{id}/user/{user}', 'AEmpresaController@proyectoclaves' );
+    Route::get('proyectoparrafos/{id}/user/{user}', 'AEmpresaController@proyectoparrafos' );
 
     Route::resource('asesorproyecto','AProyectoController');
     Route::resource('aproyectosgnrl','AProyectoGnrlController');
