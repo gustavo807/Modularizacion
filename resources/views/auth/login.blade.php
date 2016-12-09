@@ -1,26 +1,29 @@
 @extends('layouts.auth')
 
 @section('htmlheader_title')
-    Log in
+    Iniciar Sesión
 @endsection
 
 @section('content')
 <body class="hold-transition login-page">
     <div class="login-box">
+      @if (count($errors)>0)
+        <div class="alert alert-danger">
+          <ul>
+            @foreach ($errors ->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
+      @endif
+
+      @if(session()->has('message'))
+        <div class="alert alert-info">{{ session('message') }}</div>
+      @endif
         <div class="login-logo">
             <a href="{{ url('/home') }}"><b>Alive</b>Tech</a>
         </div><!-- /.login-logo -->
 
-    @if (count($errors) > 0)
-        <div class="alert alert-danger">
-            <strong>Whoops!</strong> {{ trans('adminlte_lang::message.someproblems') }}<br><br>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
 
     <div class="login-box-body">
     <p class="login-box-msg"> {{ trans('adminlte_lang::message.siginsession') }} </p>
@@ -48,7 +51,7 @@
         </div>
     </form>
 
-   
+
 
     <a href="{{ url('/password/reset') }}">{{ trans('adminlte_lang::message.forgotpassword') }}</a><br>
     <a href="{{ url('/register') }}" class="text-center">No estoy registrado</a>

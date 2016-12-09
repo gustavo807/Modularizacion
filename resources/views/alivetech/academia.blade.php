@@ -6,8 +6,8 @@
         @include('atshared.atsidenav')
     <div class="hero-text-box">
         <h1>Academia y Centros De Investigación</h1>
-    </div>  
-   </header> 
+    </div>
+   </header>
 @endsection
 
 
@@ -18,14 +18,14 @@
            <cite><img src="aliveTech/res/img/AliveTech-Logo-Big.png" alt="">-Equipo AliveTech.</cite>
     </blockquote>
     </section>
-      
+
     <section class="section-indicadores-2">
        <div class="row">
         <h2>Indicadores 2013-2016</h2>
         <ul class="js--wp-5 centered-ul-long">
             <li>Alianzas con 38 Centros y Universidades del País.</li><br>
             <li>Formulación conjunta de 110 proyectos de desarrollo tecnológico e innovación.</li><br>
-            <li>Ingresos para las Universidades y Centros de Investigación por $39,044,452.40.40 pesos mediante la vinculación de 34 proyectos en fondos de innovación.</li><br>
+            <!--<li>Ingresos para las Universidades y Centros de Investigación por $39,044,452.40.40 pesos mediante la vinculación de 34 proyectos en fondos de innovación.</li><br>-->
         </ul>
        </div>
        <div class="row">
@@ -34,7 +34,7 @@
                 </div>
             </div>
     </section>
-           
+
    <section class="section-work-2 js--work-lines-2">
        <h2 class="img-background-title">Lineas de trabajo</h2>
            <div class="row">
@@ -64,7 +64,7 @@
                     Encontrar la persona adecuada que cubra los requisitos de la vacante es una necesidad de la empresa.
                     <br>
                     A través del conocimiento de las necesidades tanto del egresado como de la industria en AliveTalent le ofrecemos la posibilidad de encontrar <b>la persona adecuada para el puesto adecuado.</b>
-                    </p>   
+                    </p>
                 </div>
             </div>
             <div class="row">
@@ -73,7 +73,7 @@
                     <h3 class="img-background-title">Vinculación Con Fondos</h3>
                     <p class="img-background-text">A través de nuestra Oficina de Transferencia de Tecnología en comunicación con su institución nos compartimos los proyectos que tengan el potencial de ser inscritos a fondos y vinculados.
                     <br>
-                    Contamos con un equipo de asesores para la formulación, integración y gestión de fondos. 
+                    Contamos con un equipo de asesores para la formulación, integración y gestión de fondos.
                     </p>
                 </div>
                 <div class="col span-1-of-2 box js--wp-1">
@@ -93,12 +93,12 @@
                     </ul>
                 </div>
             </div>
-        </section>   
-           
+        </section>
+
         <section class="vinc-policy">
            <h2>Política de Vinculación</h2>
             <p class="long-copy">
                 “La Directiva y todo el personal de AliveTech conocemos las capacidades de la IES y CIs de las regiones que atendemos y seleccionamos a los contactos más aptos y comprometidos, que pueden dar mejor resultado, para la atención de nuestras Empresas Cliente”
             </p>
-        </section> 
+        </section>
 @endsection

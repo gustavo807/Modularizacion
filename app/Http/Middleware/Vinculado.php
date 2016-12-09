@@ -20,11 +20,11 @@ class Vinculado
         if (Auth::user()->rol_id != 2) {
             return redirect('/erros/404');
         }
-        
-        
+
+
 
          return $next($request);
-            
-        
+
+
     }
 }

@@ -52,7 +52,6 @@ class AProyectoController extends Controller
           'nombre' => $request['nombre'],
           'descripcion' => $request['descripcion'],
         ]);
-
         return redirect('/asesorempresa/'.$idempresa)->with('success','Proyecto registrado correctamente');
       }
 

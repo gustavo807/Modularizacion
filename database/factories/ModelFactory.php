@@ -16,9 +16,11 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
+        'rol_id' => $faker->numberBetween(1,3),
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
+        'activo' => true,
         'remember_token' => str_random(10),
     ];
 });

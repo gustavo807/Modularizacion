@@ -8,23 +8,42 @@ use Illuminate\Support\Facades\Auth;
 
 class AutenticacionController extends Controller
 {
+
+  //protected $redirectTo = '/admin';
+
     public function logueo(Request $request)
     {
+      if(Auth::attempt(['email' => $request['email'], 'password' => $request['password'], 'activo' => 0])){
+          return redirect('/login')->with('message', 'Por favor confirme su correo electrónico.');
+      }
+      else{
         if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
-            // Authentication passed...
-            if (Auth::user()->rol_id == 1) {
+            // Authentication passed
+
+              if (Auth::user()->rol_id == 1)
                 return redirect('/empresa');
-            }else if (Auth::user()->rol_id == 2){
+              else if (Auth::user()->rol_id == 2)
                 return redirect('/vinculado');
-            }
-            else{
+              else
                 return redirect('/asesor');
-            }
-            //return redirect('/home');
+
         }
         else{
-            return redirect('/login');
+          return redirect('/login')->with('message', 'Asegurese de que su correo y contraseña sean correctos');
         }
+      }
+    }
 
+    public function login()
+    {
+        return view('auth.login');
+    }
+
+    public function logout()
+    {
+      Auth::logout();
+
+      flash('Has cerrado tu sesión correctamente.');
+      return redirect('/');
     }
 }

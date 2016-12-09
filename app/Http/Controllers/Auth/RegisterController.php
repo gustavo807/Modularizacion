@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Mail\WelcomeMail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -27,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -67,8 +68,15 @@ class RegisterController extends Controller
             'nombre' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'rol_id' => '1', //$data['tipo'],
-            'activo' => '1', //$data['activo'],
+            'rol_id' => '2', //$data['tipo'],
+            'activo' => '0', //$data['activo'],
         ]);
+
+      $mailer->sendEmailConfirmation($user);
+      Auth::logout();
+      flash('Por favor, confirma tu correo electrónico.');
+
+      return redirect()->back();
+
     }
 }

@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Email de bienvenida</title>
+    <title>Confirmación de Email</title>
 </head>
 <body>
-    <h1>Hello! Welcome To Alive Tech´s Documentation System</h1>
-    <p>In this motherfucker your lazy ass won't have to work as hard (Not that you ever did).</p>
+    <h1>¡Gracias por su registro en el sistema de Alive Tech!</h1>
+    <p>Por favor, <a href='{{ url("register/confirm/{$user->token}") }}'>confirme su email dando clic aquí</a></p>
 </body>
 </html>

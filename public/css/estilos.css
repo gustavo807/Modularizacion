@@ -1,4 +1,5 @@
 .float{
+  z-index: 1;
   position:fixed;
   width:60px;
   height:60px;
@@ -24,4 +25,33 @@
 
 .img{
   cursor: pointer;
+}
+
+.form-box {
+  width: 600px;
+  margin: 5% auto;
+}
+@media (max-width: 768px) {
+
+  .form-box {
+    width: 90%;
+    margin-top: 20px;
+  }
+}
+
+.form-box-body {
+  background: #fff;
+  padding: 20px;
+  border-top: 0;
+  color: #666;
+}
+
+.form-box-body .form-control-feedback {
+  color: #777;
+}
+
+.form-box-msg {
+  margin: 0;
+  text-align: center;
+  padding: 0 20px 20px 20px;
 }

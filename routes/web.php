@@ -1,8 +1,5 @@
 <?php
-
-
 use App\Mail\WelcomeMail;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,7 +14,7 @@ use App\Mail\WelcomeMail;
 
 
 /*******************************************/
-/***********WEBSITE ALIVE TECH**************/
+/***********Website Alive Tech**************/
 /*******************************************/
 
 
@@ -29,19 +26,25 @@ Route::get('/Transferencia', 'PagesController@transferencia');
 Route::get('/About', 'PagesController@about');
 Route::get('/Privacy', 'PagesController@privacy');
 
-/***********************************************/
-/******************MAIL*************************/
-/***********************************************/
 
-Route::get('/sup', function(){
-    // Enviar email de bienvenida.
-    Mail::to('sistemas@alivetech.mx')->send(new WelcomeMail);
+/******************************************************/
+/*************Cuestionario de prospección**************/
+/******************************************************/
 
-    return Redirect::to('/login');
-
-});
+Route::get('prospeccion', 'ProspectController@prospeccion');
+Route::post('prospeccion', 'ProspectController@store');
 
 
+/***********************************************************/
+/******************Registro y Login*************************/
+/***********************************************************/
+
+Route::get('register', 'RegistroController@register');
+Route::post('register', 'RegistroController@postRegister');
+Route::get('register/confirm/{token}', 'RegistroController@confirmEmail');
+Route::get('login', 'AutenticacionController@login');
+Route::get('logout', 'AutenticacionController@logout');
+Route::resource('logueo','AutenticacionController@logueo');
 
 
 /**************************************************/
@@ -54,18 +57,9 @@ Route::get('/sup', function(){
 });
 */
 
-Auth::routes();
+//Auth::routes();
 
-Route::get('/home', 'HomeController@index');
-
-Route::get('logout',function(){
-	Auth::logout();
-	return Redirect::to('/');
-});
-
-Route::resource('logueo','AutenticacionController@logueo');
-
-
+//Route::get('/home', 'HomeController@index');
 
 
 
@@ -75,22 +69,24 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'asesor'], function () {
 
     //      VISTAS PARA EL ADMINISTRADOR
-		Route::resource('asesor','AsesorController');
-		Route::resource('asesorprograma','ProgramaController');
-		Route::resource('asesorinstitucion','InstitucionController');
-		Route::resource('asesorconvocatoria','ConvocatoriaController');
-    Route::resource('asesordocumentos','DocumentoController');
-    Route::resource('asesorclasificacion','AClasificacionController');
-    Route::resource('asesormodulo','AModuloController');
-    Route::resource('asesorclave','AClaveController');
-    Route::resource('asesorparrafo','AParrafoController');
-    Route::resource('asesorimagen','AImagenController');
-    Route::resource('asesorcategoria','ACategoriaController');
-    Route::resource('asesoradd','AddAsesorController');
+        Route::resource('asesor','AsesorController');
+		    Route::resource('asesorprograma','ProgramaController');
+		    Route::resource('asesorinstitucion','InstitucionController');
+		    Route::resource('asesorconvocatoria','ConvocatoriaController');
+        Route::resource('asesordocumentos','DocumentoController');
+        Route::resource('asesorclasificacion','AClasificacionController');
+        Route::resource('asesormodulo','AModuloController');
+        Route::resource('asesorclave','AClaveController');
+        Route::resource('asesorparrafo','AParrafoController');
+        Route::resource('asesorimagen','AImagenController');
+        Route::resource('asesorcategoria','ACategoriaController');
+        Route::resource('asesoradd','AddAsesorController');
 
     //      VISTAS DEL ASESOR
     Route::resource('asesorempresa','AEmpresaController');
     Route::resource('asesorproyecto','AProyectoController');
+    Route::get('cuestionarios', 'ProspectController@descargarExcel');
+    Route::get('cuestionarios/{type}', 'ProspectController@exportar'); //Aregar campo ID para seleccionar uno solo
 	});
 
     // MIDDLEWARE PARA EMPRESA

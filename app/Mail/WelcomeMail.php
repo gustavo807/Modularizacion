@@ -4,12 +4,20 @@ namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
+use App\Mail\WelcomeMail;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\User;
+use Illuminate\Contracts\Mail\Mailer;
 
+class WelcomeMail {
 
-class WelcomeMail extends Mailable
-{
+    protected $mailer;
+    protected $from = 'no-reply@alivetech.mx';
+    protected $to;
+    protected $view;
+    protected $data = [];
+
     use Queueable, SerializesModels;
 
     /**
@@ -17,9 +25,9 @@ class WelcomeMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Mailer $mailer)
     {
-        //
+      $this->mailer = $mailer;
     }
 
     /**
@@ -29,9 +37,27 @@ class WelcomeMail extends Mailable
      */
     public function build()
     {
-        $address = 'No-Reply@alivetech.com';
-        $name = 'Alive Tech';
-        $subject = 'Binevenido al sistema de documentación de Alive Tech.';
+        $this->name = 'Alive Tech';
+        $this->subject = 'Bienvenido al sistema de documentación de proyectos.';
         return $this->view('mails.welcome');
+
     }
+
+    public function sendEmailConfirmation(User $user)
+    {
+      $this->to = $user->email;
+      $this->view = 'mails.welcome';
+      $this->data = compact('user');
+
+      $this->deliver();
+    }
+
+    public function deliver()
+    {
+      $this->mailer->send($this->view, $this->data, function($message){
+        $message->from($this->from, 'Alive Tech')
+                ->to($this->to);
+      });
+    }
+
 }

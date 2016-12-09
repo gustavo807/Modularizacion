@@ -1,27 +1,34 @@
 @extends('layouts.auth')
 
 @section('htmlheader_title')
-    Register
+    Registro
 @endsection
 
 @section('content')
 
     <body class="hold-transition register-page">
+
+
+
     <div class="register-box">
+      @if (count($errors)>0)
+        <div class="alert alert-danger">
+          <ul>
+            @foreach ($errors ->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
+      @endif
+
+      @if(session()->has('message'))
+        <div class="alert alert-info">{{ session('message') }}</div>
+      @endif
+
         <div class="register-logo">
             <a href="{{ url('/home') }}"><b>Alive</b>Tech</a>
         </div>
 
-        @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <strong>Whoops!</strong> {{ trans('adminlte_lang::message.someproblems') }}<br><br>
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
 
         <div class="register-box-body">
             <p class="login-box-msg">Registrar nuevo usuario</p>
@@ -54,7 +61,7 @@
                     <span class="">Centros de Investigación y Universidades</span>
                 </div>
                 !!Form::text('activo','true',['id'=>'activo','style'=>'display:none;'])!!
-                
+
                 -->
 
 
@@ -63,7 +70,7 @@
                         <label>
                             <div class="checkbox_register icheck">
                                 <label>
-                                    <input type="checkbox" name="terms">
+                                    <input type="checkbox" name="terminos">
                                 </label>
                             </div>
                         </label>
@@ -74,7 +81,7 @@
                         </div>
                     </div><!-- /.col -->
                     <div class="col-xs-4 col-xs-push-1">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">{{ trans('adminlte_lang::message.register') }}</button>
+                        <button type="submit" class="c">{{ trans('adminlte_lang::message.register') }}</button>
                     </div><!-- /.col -->
                 </div>
             </form>

@@ -26,4 +26,5 @@ class Proyecto extends Model
                 ->get();
     }
 
+
 }
