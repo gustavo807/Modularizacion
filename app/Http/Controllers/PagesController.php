@@ -38,5 +38,9 @@ class PagesController extends Controller
         return view('alivetech.privacy');
     }
 
+    public function mail(){
+        return view('mails.prospeccion');
+    }
+
 
 }

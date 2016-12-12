@@ -39,8 +39,10 @@
                   						@endforeach
 
             				    </table>
+												{{ $cuestionarios->links() }}
                         <div>
-                          <a href="{{ url('cuestionarios/xlsx') }}"><button class="btn btn-info"><span class="glyphicon glyphicon-export"></span> Exportar a xlsx</button></a>
+
+                          <a href="{{ url('cuestionarios/xlsx') }}"><button class="btn btn-info"><span class="glyphicon glyphicon-export"></span> Exportar a Excel</button></a>
                         </div>
             </div>
 

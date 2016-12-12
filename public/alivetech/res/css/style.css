@@ -595,20 +595,31 @@ footer p {
   padding: 10%;
   font-size: 80%;
   font-style: italic;
-  line-heading: 145%;
-}
-
-.opiniones:before{
-  content: "\201C"
-  font-size: 200%;
+  line-height: 145%;
 }
 
 cite {
   font-size: 80%;
   margin-top: 25px;
   display: block;
-
 }
+
+cite img{
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+cite p a:link,
+cite p a:visited{
+  color: #0770b0;
+}
+
+cite p a:hover,
+cite p a:active{
+  color: #fff;
+}
+
 
 /*-----------------------------------------------*/
 /*           FIND US                             */
