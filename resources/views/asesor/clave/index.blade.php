@@ -34,7 +34,7 @@
 																	</div>
 																	<div class="col-md-2">
 																		{!! Form::open(['method' => 'DELETE',	'route' => ['asesorclave.destroy', $clave->id],	'id' => 'form-delete-clave-' . $clave->id]) !!}
-																		    <a href="" class="data-delete"	data-form="clave-{{ $clave->id }}">	<i class="ion-trash-b icon-big"></i>	</a>
+																		    <a href="" class="data-delete ion-trash-b icon-big"	data-form="clave-{{ $clave->id }}">	</a>
 																		{!! Form::close() !!}
 																	</div>
 																</td>

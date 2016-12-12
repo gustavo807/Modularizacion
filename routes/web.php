@@ -25,7 +25,6 @@ Route::get('/Gobierno', 'PagesController@gobierno');
 Route::get('/Transferencia', 'PagesController@transferencia');
 Route::get('/About', 'PagesController@about');
 Route::get('/Privacy', 'PagesController@privacy');
-Route::get('/MailTest', 'PagesController@mail');
 
 
 /******************************************************/

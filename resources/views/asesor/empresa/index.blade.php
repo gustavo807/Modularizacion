@@ -38,12 +38,12 @@
 														</td>
 														<td>
 															{!! Form::open(['method' => 'PUT',	'route' => ['asesorempresa.update', $empresa->id],	'id' => 'form-confirm-empresa-' . $empresa->id]) !!}
-																	<div class="data-confirm" data-form="empresa-{{ $empresa->id }}" >
+																	<div class="data-confirm" data-form="empresa-{{ $empresa->id }}" title="Habilitar - Deshabilitar" >
 																		<input type="checkbox"
 																		@if ($empresa->activo == 1)
 																			checked
 																		@endif
-																		data-toggle="toggle" data-on="On" data-off="Off"  data-size="small" >
+																		data-toggle="toggle" data-on="On" data-off="Off"  data-size="small"  >
 																	</div>
 															{!! Form::close() !!}
 														</td>

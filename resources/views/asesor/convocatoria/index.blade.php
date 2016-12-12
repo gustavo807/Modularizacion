@@ -33,7 +33,7 @@
 													</div>
 													<div class="col-md-2">
 														{!! Form::open(['method' => 'DELETE',	'route' => ['asesorconvocatoria.destroy', $convocatoria->id],	'id' => 'form-delete-convocatorias-' . $convocatoria->id]) !!}
-														    <a href="" class="data-delete"	data-form="convocatorias-{{ $convocatoria->id }}">	<i class="ion-trash-b icon-big"></i>	</a>
+														    <a href="" class="data-delete ion-trash-b icon-big"	data-form="convocatorias-{{ $convocatoria->id }}">	</a>
 														{!! Form::close() !!}
 													</div>
 												</td>

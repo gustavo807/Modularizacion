@@ -158,6 +158,13 @@ $(function () {
         //$('#form-delete-' + $(this).data('form')).submit();
       });
 
+
+      // TOOLTIP
+      $('[title]').tooltip({placement: "left"});
+      $('.ion-edit').tooltip({title: "Editar", placement: "left"});
+      $('.ion-trash-b').tooltip({title: "Eliminar", placement: "left"});
+      $('.float').tooltip({title: "Agregar", placement: "left"});
+
 });
 
 /*
