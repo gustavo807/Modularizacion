@@ -15,6 +15,11 @@ class Proyecto extends Model
 
     //protected $dates = ['deleted_at'];
 
+    public function user()
+    {
+    	return $this->belongsTo(User::class);
+    }
+
     public static function proyectoconvocatoria($user_id){
       return DB::table('proyectos')
                 ->select('proyectos.*',

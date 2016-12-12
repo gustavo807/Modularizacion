@@ -11,7 +11,7 @@ class Modulo extends Model
 	//use SoftDeletes;
 
     protected $table = 'modulos';
-    public $fillable = ['modulo','clasificacion_id'];
+    public $fillable = ['modulo','descripcion','clasificacion_id'];
 
     //protected $dates = ['deleted_at'];
 

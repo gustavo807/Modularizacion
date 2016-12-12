@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Ordena_Modulo;
 use App\Modulo;
 
@@ -15,6 +16,8 @@ class AOrdenaGnrlController extends Controller
      */
     public function index()
     {
+        if (Auth::user()->rol_id != 3) return redirect('/asesor');
+
         $clasificacion_id = '1';
         $modulos = Ordena_Modulo::ordenmodulos($clasificacion_id);
         return view('asesor.ordenagnrl.index',['modulos'=>$modulos]);
@@ -27,6 +30,8 @@ class AOrdenaGnrlController extends Controller
      */
     public function create()
     {
+      if (Auth::user()->rol_id != 3) return redirect('/asesor');
+
       $clasificacion_id = '2';
       $modulos = Ordena_Modulo::ordenmodulos($clasificacion_id);
       return view('asesor.ordenagnrl.index',['modulos'=>$modulos]);
@@ -41,7 +46,7 @@ class AOrdenaGnrlController extends Controller
     public function store(Request $request)
     {
       $this->validate($request, [
-          'orden' => 'required|unique:ordena_modulos',
+          'orden' => 'required|unique:ordena_modulos|max:255',
       ]);
       Ordena_Modulo::create([
         'modulo_id' => $request['modulo_id'],
@@ -75,6 +80,8 @@ class AOrdenaGnrlController extends Controller
      */
     public function edit($id)
     {
+        if (Auth::user()->rol_id != 3) return redirect('/asesor');
+        
         $modulo = Modulo::findOrFail($id);
         $orden = Ordena_Modulo::all()->where('modulo_id','=',$id)->first();
         if(count($orden) == 0)
@@ -93,7 +100,7 @@ class AOrdenaGnrlController extends Controller
     public function update(Request $request, $id)
     {
       $this->validate($request, [
-          'orden' => 'required|unique:ordena_modulos',
+          'orden' => 'required|unique:ordena_modulos|max:255',
       ]);
       Ordena_Modulo::actualiza($id,$request['orden']);
 

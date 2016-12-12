@@ -55,7 +55,7 @@ class EModuloGnrlController extends Controller
       if (isset($request['valor'])) {
             $rules = [];
             foreach ($request->get('valor') as $key => $val)
-              $rules['valor.'.$key] = 'required|max:255';
+              $rules['valor.'.$key] = 'required|max:2000';
 
             $validator = Validator::make($request->all(), $rules);
 
@@ -66,8 +66,8 @@ class EModuloGnrlController extends Controller
       }
       else {
             $this->validate($request, [
-              'valor' => 'required',
-              'clave_id' => 'required',
+              'valor' => 'required|max:2000',
+              'clave_id' => 'required|max:255',
           ]);
       }
 
@@ -146,8 +146,9 @@ class EModuloGnrlController extends Controller
 
               // ya entro
               Session::put('idmodulognrl', $id);
+              $modulo = Modulo::findOrFail($id);
               $claves = Clave::clavesmodulo($id,$iduser,$propietario);
-              return view('empresa/modulognrl.edit',['claves'=>$claves]);
+              return view('empresa/modulognrl.edit',['claves'=>$claves,'modulo'=>$modulo]);
 
 
     }

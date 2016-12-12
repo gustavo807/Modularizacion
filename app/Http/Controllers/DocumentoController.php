@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Documento;
 use App\Rol;
@@ -17,6 +18,8 @@ class DocumentoController extends Controller
      */
     public function index()
     {
+      if (Auth::user()->rol_id != 3) return redirect('/asesor');
+
       $documentos = DB::table('documentos')
                       ->join('roles', 'documentos.rol_id', '=', 'roles.id')
                       ->join('categorias','documentos.categoria_id','=','categorias.id')
@@ -35,6 +38,8 @@ class DocumentoController extends Controller
      */
     public function create()
     {
+      if (Auth::user()->rol_id != 3) return redirect('/asesor');
+
       $roles = Rol::pluck('rol','id');
       $categorias = Categoria::pluck('categoria','id');
       return view('asesor/documento.create',['roles' => $roles,'categorias'=>$categorias]);
@@ -49,8 +54,8 @@ class DocumentoController extends Controller
     public function store(Request $request)
     {
       $this->validate($request, [
-          'nombre' => 'required',
-          'rol_id' => 'required',
+          'nombre' => 'required|max:255',
+          'rol_id' => 'required|max:255',
       ]);
       Documento::create($request->all());
       return redirect('/asesordocumentos')->with('success','Documento registrado correctamente');
@@ -75,6 +80,8 @@ class DocumentoController extends Controller
      */
     public function edit($id)
     {
+      if (Auth::user()->rol_id != 3) return redirect('/asesor');
+      
       $documento = Documento::findOrFail($id);
       $roles = Rol::pluck('rol','id');
       $categorias = Categoria::pluck('categoria','id');
@@ -91,8 +98,8 @@ class DocumentoController extends Controller
     public function update(Request $request, $id)
     {
       $this->validate($request, [
-          'nombre' => 'required',
-          'rol_id' => 'required',
+          'nombre' => 'required|max:255',
+          'rol_id' => 'required|max:255',
       ]);
       Documento::find($id)->update($request->all());
       return redirect('/asesordocumentos')->with('success','Documento actualizado correctamente');

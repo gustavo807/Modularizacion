@@ -1,5 +1,4 @@
 @extends('asesor.cuerpo')
-
 @section('htmlheader_title') Home @endsection
 @section('contentheader_title') {{$empresa->nombre}} @endsection
 @section('contentheader_description') Claves {{$user}} @endsection
@@ -12,7 +11,7 @@
 					<div class="panel-heading">
             <ul class="nav nav-tabs nav-justified">
               <li class="active"><a href="#">Claves</a></li>
-              <li><a href="/{{$ruta}}/{{$id}}/user/{{$user}}">Parrafos e imagenes</a></li>
+              <li><a href="/{{$ruta}}/{{$id}}/user/{{$user}}">Parrafos e imágenes</a></li>
             </ul>
 					</div>
 
@@ -32,7 +31,7 @@
                         @endforeach
                   </table>
                   {{ $claves->links() }}
-                </div>
+              </div>
 
 						</div>
 				</div>

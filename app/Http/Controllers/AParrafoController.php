@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Parrafo;
 use App\Modulo;
 class AParrafoController extends Controller
@@ -14,6 +15,8 @@ class AParrafoController extends Controller
      */
     public function index()
     {
+        if (Auth::user()->rol_id != 3) return redirect('/asesor');
+
         $parrafos = Parrafo::modulos();
         return view('asesor/parrafo.index',['parrafos'=>$parrafos]);
     }
@@ -25,6 +28,8 @@ class AParrafoController extends Controller
      */
     public function create()
     {
+      if (Auth::user()->rol_id != 3) return redirect('/asesor');
+
       $modulos = Modulo::pluck('modulo','id');
       return view('asesor/parrafo.create',['modulos'=>$modulos]);
     }
@@ -38,8 +43,8 @@ class AParrafoController extends Controller
     public function store(Request $request)
     {
       $this->validate($request, [
-          'parrafo' => 'required',
-          'modulo_id' => 'required',
+          'parrafo' => 'required|max:2000',
+          'modulo_id' => 'required|max:255',
       ]);
       Parrafo::create($request->all());
 
@@ -65,6 +70,8 @@ class AParrafoController extends Controller
      */
     public function edit($id)
     {
+      if (Auth::user()->rol_id != 3) return redirect('/asesor');
+      
       $parrafo = Parrafo::findOrFail($id);
       $modulos = Modulo::pluck('modulo','id');
       return view('asesor/parrafo.edit',['parrafo'=>$parrafo,'modulos'=>$modulos]);
@@ -80,8 +87,8 @@ class AParrafoController extends Controller
     public function update(Request $request, $id)
     {
       $this->validate($request, [
-          'parrafo' => 'required',
-          'modulo_id' => 'required',
+          'parrafo' => 'required|max:2000',
+          'modulo_id' => 'required|max:255',
       ]);
       Parrafo::find($id)->update($request->all());
       return redirect('/asesorparrafo')->with('success','Parrafo actualizado correctamente');

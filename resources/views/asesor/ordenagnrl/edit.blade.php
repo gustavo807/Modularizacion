@@ -1,5 +1,4 @@
 @extends('asesor.cuerpo')
-
 @section('htmlheader_title') Home @endsection
 @section('contentheader_title') Módulo @endsection
 @section('contentheader_description') Edit @endsection
@@ -13,7 +12,6 @@
 
             <div class="panel-body">
               @include('alerts.errors')
-
     					{!! Form::model($orden, ['route' => ['aordenagnrl.update',$orden->modulo_id], 'method' => 'PUT']) !!}
                 @include('asesor.ordenagnrl.form')
     						{!! Form::submit('Enviar',['class' => 'btn btn-primary']) !!}

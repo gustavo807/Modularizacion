@@ -1,5 +1,4 @@
 @extends('empresa.cuerpo')
-
 @section('htmlheader_title') Home @endsection
 @section('contentheader_title') Documentos @endsection
 
@@ -11,9 +10,10 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Documentos</div>
 
-					<div class="panel-body">
+						<div class="panel-body">
 								@include('alerts.errors')
 								@include('alerts.success')
+								<div class="table-responsive">
 								<table class="table table-hover">
 						        <thead>
 												<th>Categoria</th>
@@ -24,7 +24,6 @@
 							            <th width="150px">Action</th>
 												@endif
 						        </thead>
-
 				            @foreach($documentos as $documento)
 											<tbody>
 												<td>{{$documento->categoria}}</td>
@@ -39,25 +38,20 @@
 						                      {!!Form::file('documento', ['class' => 'myfile','data-form'=>'documentos-'.$documento->id ])!!}
 						                    {!! Form::close() !!}
 						                </td>
-
 														<td>
-																@if($documento->documento != null)
-																	{!! Form::open(['method' => 'DELETE',
-																			'route' => ['empresadocumentos.destroy', $documento->id],
-																			'id' => 'form-delete-documentos-' . $documento->id]) !!}
-																			<a href="" class="data-delete"
-																				data-form="documentos-{{ $documento->id }}">
-																				<i class="ion-trash-b icon-big"></i></a>
-																		{!! Form::close() !!}
-																@endif
+															@if($documento->documento != null)
+																{!! Form::open(['method' => 'DELETE','route' => ['empresadocumentos.destroy', $documento->id],'id' => 'form-delete-documentos-' . $documento->id]) !!}
+																		<a href="" class="data-delete"	data-form="documentos-{{ $documento->id }}">	<i class="ion-trash-b icon-big"></i>	</a>
+																{!! Form::close() !!}
+															@endif
 														</td>
 													@endif
 											</tbody>
 										@endforeach
-
-								    </table>
-									{{ $documentos->links() }}
-						</div>
+								  </table>
+								</div>
+								{{ $documentos->links() }}
+							</div>
 
 				</div>
 			</div>

@@ -1,5 +1,4 @@
 @extends('asesor.cuerpo')
-
 @section('htmlheader_title') Home @endsection
 @section('contentheader_title') {{ $empresa->nombre }} @endsection
 @section('contentheader_description')  @endsection
@@ -21,13 +20,9 @@
 						<div class="panel-body">
 								@include('alerts.confirm')
 								@include('alerts.success')
+								<a href="/asesorproyecto/create" class="float" title="Agrega un proyecto">	<i class="fa fa-plus my-float"></i> </a>
 
-
-								<div class="col-md-4 ">
-									<a href="/asesorproyecto/create" class="float" title="Agrega un proyecto">	<i class="fa fa-plus my-float"></i> </a>
-								</div>
-
-								
+								<div class="table-responsive">
 								<table class="table table-hover">
 							        <thead>
 							            <th>Nombre</th>
@@ -37,19 +32,16 @@
 													<th>Asesor</th>
 							            <th width="150px">Action</th>
 											</thead>
-
 						          @foreach($proyectos as $proyecto)
 													<tbody>
-														<td>{{$proyecto->nombre}}</td>
+														<td>{!! link_to('modulosproyecto/'.$proyecto->id, $title = $proyecto->nombre, $attributes = ['class'=>'']) !!}</td>
 														<td>{{$proyecto->convocatoria}}</td>
 														<td>{{$proyecto->descripcion}}</td>
 														<td>
-															{!! link_to('proyectoclaves/'.$proyecto->id.'/user/empresa', $title = '',
-																	$attributes = 'class="ion-ios-paper icon-big" title="Claves del proyecto"') !!}
+															{!! link_to('proyectoclaves/'.$proyecto->id.'/user/empresa', $title = '',$attributes = 'class="ion-ios-paper icon-big" title="Claves del proyecto"') !!}
 														</td>
 														<td>
-															{!! link_to('proyectoclaves/'.$proyecto->id.'/user/asesor', $title = '',
-																	$attributes = 'class="ion-ios-paper icon-big" title="Parrafos e Imágenes"') !!}
+															{!! link_to('proyectoclaves/'.$proyecto->id.'/user/asesor', $title = '',$attributes = 'class="ion-ios-paper icon-big" title="Parrafos e Imágenes"') !!}
 														</td>
 						                <td>
 															<div class="col-md-2">
@@ -57,19 +49,15 @@
 															</div>
 
 															<div class="col-md-2">
-																{!! Form::open(['method' => 'DELETE',
-																    'route' => ['asesorproyecto.destroy', $proyecto->id],
-																    'id' => 'form-delete-proyectos-' . $proyecto->id]) !!}
-																    <a href="" class="data-delete"
-																      data-form="proyectos-{{ $proyecto->id }}">
-																      <i class="ion-trash-b icon-big"></i></a>
-																  {!! Form::close() !!}
+																{!! Form::open(['method' => 'DELETE',	'route' => ['asesorproyecto.destroy', $proyecto->id],	'id' => 'form-delete-proyectos-' . $proyecto->id]) !!}
+																    <a href="" class="data-delete"	data-form="proyectos-{{ $proyecto->id }}">	<i class="ion-trash-b icon-big"></i>	</a>
+																{!! Form::close() !!}
 															</div>
 						                </td>
 												</tbody>
 											@endforeach
-							    </table>
-
+							  </table>
+							</div>
 						</div>
 
 					</div>
@@ -77,7 +65,4 @@
 			</div>
 		</div>
 	</div>
-
-
-
 @endsection

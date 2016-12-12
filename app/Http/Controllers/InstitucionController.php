@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Institucion;
 use App\Programa;
 class InstitucionController extends Controller
@@ -15,6 +16,8 @@ class InstitucionController extends Controller
      */
     public function index()
     {
+        if (Auth::user()->rol_id != 3) return redirect('/asesor');
+
         $instituciones = DB::table('instituciones')
                         ->join('programas', 'instituciones.programa_id', '=', 'programas.id')
                         ->select('instituciones.*', 'programas.programa')
@@ -31,6 +34,8 @@ class InstitucionController extends Controller
      */
     public function create()
     {
+        if (Auth::user()->rol_id != 3) return redirect('/asesor');
+
         $programas = Programa::pluck('programa','id');
         return view('asesor/institucion.create',compact('programas'));
     }
@@ -44,8 +49,8 @@ class InstitucionController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'institucion' => 'required',
-            'programa_id' => 'required',
+            'institucion' => 'required|max:255',
+            'programa_id' => 'required|max:255',
         ]);
         Institucion::create($request->all());
         return redirect('/asesorinstitucion')->with('success','Institucion registrado correctamente');
@@ -70,6 +75,8 @@ class InstitucionController extends Controller
      */
     public function edit($id)
     {
+        if (Auth::user()->rol_id != 3) return redirect('/asesor');
+        
         $institucion = Institucion::findOrFail($id);
         $programa = Programa::pluck('programa','id');
         return view('asesor/institucion.edit',['institucion'=>$institucion,'programa'=>$programa]);
@@ -85,8 +92,8 @@ class InstitucionController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'institucion' => 'required',
-            'programa_id' => 'required',
+            'institucion' => 'required|max:255',
+            'programa_id' => 'required|max:255',
         ]);
 
         Institucion::find($id)->update($request->all());

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\User;
+
 class AddAsesorController extends Controller
 {
     /**
@@ -13,6 +15,10 @@ class AddAsesorController extends Controller
      */
     public function index()
     {
+        if (Auth::user()->rol_id != 3) {
+          return redirect('/asesor');
+        }
+
         $asesores = User::all()->where('rol_id','=', '4');
         return view('asesor.agrega.index',['asesores'=>$asesores]);
     }
@@ -24,6 +30,7 @@ class AddAsesorController extends Controller
      */
     public function create()
     {
+        if (Auth::user()->rol_id != 3) return redirect('/asesor');
         return view('asesor.agrega.create');
     }
 
@@ -36,10 +43,10 @@ class AddAsesorController extends Controller
     public function store(Request $request)
     {
       $this->validate($request, [
-          'nombre' => 'required',
+          'nombre' => 'required|max:255',
           'email' => 'required|email|max:255|unique:users',
-          'password' => 'required',
-          'password_confirm' => 'required',
+          'password' => 'required|max:255',
+          'password_confirm' => 'required|max:255',
       ]);
       User::create([
           'nombre' => $request['nombre'],
@@ -70,6 +77,7 @@ class AddAsesorController extends Controller
      */
     public function edit($id)
     {
+      if (Auth::user()->rol_id != 3) return redirect('/asesor'); 
       $asesor = User::findOrFail($id);
       return view('asesor.agrega.edit',['asesor'=>$asesor]);
     }
@@ -84,10 +92,10 @@ class AddAsesorController extends Controller
     public function update(Request $request, $id)
     {
       $this->validate($request, [
-          'nombre' => 'required',
+          'nombre' => 'required|max:255',
           'email' => 'required|email|max:255',
-          'password' => 'required',
-          'password_confirm' => 'required',
+          'password' => 'required|max:255',
+          'password_confirm' => 'required|max:255',
       ]);
       User::find($id)->update([
           'nombre' => $request['nombre'],

@@ -1,5 +1,4 @@
 @extends('asesor.cuerpo')
-
 @section('htmlheader_title') Home @endsection
 @section('contentheader_title') {{ $empresa->nombre }} @endsection
 @section('contentheader_description') Documentos @endsection
@@ -28,7 +27,6 @@
 							            <th>Nombre</th>
 							            <th>Documento</th>
 							        </thead>
-
 	                    @foreach ($documentos as $documento)
 	                      <tbody>
 	                        <td>{{$documento->categoria}}</td>
@@ -41,7 +39,7 @@
 									</table>
 								</div>
                 {{$documentos->links()}}
-						</div>
+					</div>
 
 				</div>
 			</div>
