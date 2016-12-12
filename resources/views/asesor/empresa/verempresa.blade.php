@@ -38,10 +38,10 @@
 														<td>{{$proyecto->convocatoria}}</td>
 														<td>{{$proyecto->descripcion}}</td>
 														<td>
-															{!! link_to('proyectoclaves/'.$proyecto->id.'/user/empresa', $title = '',$attributes = 'class="ion-ios-paper icon-big" title="Claves del proyecto"') !!}
+															{!! link_to('proyectoclaves/'.$proyecto->id.'/user/empresa', $title = '',$attributes = 'class="ion-ios-paper icon-big" title="Resumen del proyecto"') !!}
 														</td>
 														<td>
-															{!! link_to('proyectoclaves/'.$proyecto->id.'/user/asesor', $title = '',$attributes = 'class="ion-ios-paper icon-big" title="Parrafos e Imágenes"') !!}
+															{!! link_to('proyectoclaves/'.$proyecto->id.'/user/asesor', $title = '',$attributes = 'class="ion-ios-paper icon-big" title="Resumen del proyecto"') !!}
 														</td>
 						                <td>
 															<div class="col-md-2">
@@ -50,7 +50,7 @@
 
 															<div class="col-md-2">
 																{!! Form::open(['method' => 'DELETE',	'route' => ['asesorproyecto.destroy', $proyecto->id],	'id' => 'form-delete-proyectos-' . $proyecto->id]) !!}
-																    <a href="" class="data-delete"	data-form="proyectos-{{ $proyecto->id }}">	<i class="ion-trash-b icon-big"></i>	</a>
+																    <a href="" class="data-delete ion-trash-b icon-big"	data-form="proyectos-{{ $proyecto->id }}">	</a>
 																{!! Form::close() !!}
 															</div>
 						                </td>

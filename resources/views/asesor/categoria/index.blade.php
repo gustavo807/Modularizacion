@@ -30,8 +30,7 @@
 						      									</div>
 						      									<div class="col-md-2">
 						      										{!! Form::open(['method' => 'DELETE','route' => ['asesorcategoria.destroy', $categoria->id],'id' => 'form-delete-categorias-' . $categoria->id]) !!}
-						      										    <a href="" class="data-delete"	data-form="categorias-{{ $categoria->id }}">
-						      										      <i class="ion-trash-b icon-big"></i></a>
+						      										    <a href="" class="data-delete ion-trash-b icon-big"	data-form="categorias-{{ $categoria->id }}"></a>
 						      										{!! Form::close() !!}
 						      									</div>
 						      								</td>
