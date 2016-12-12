@@ -28,6 +28,10 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function proyectos()
+    {
+        return $this->hasMany(Proyecto::class);
+    }
 
     public static function boot()
     {

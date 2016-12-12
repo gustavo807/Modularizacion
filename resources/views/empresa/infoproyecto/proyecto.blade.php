@@ -1,5 +1,4 @@
 @extends('empresa.cuerpo')
-
 @section('htmlheader_title') Home @endsection
 @section('contentheader_title') {{$proyecto->nombre}} @endsection
 @section('contentheader_description')  @endsection
@@ -12,7 +11,6 @@
 					<div class="panel-heading"> Descripción: </div>
 
 						<div class="panel-body">
-
               <table class="table table-bordered">
                 <tbody>
                   <tr>
@@ -38,6 +36,4 @@
 			</div>
 		</div>
 	</div>
-
-
 @endsection

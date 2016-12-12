@@ -1,8 +1,7 @@
 @extends('empresa.cuerpo')
-
 @section('htmlheader_title') Home @endsection
 @section('contentheader_title') Empresa @endsection
-@section('contentheader_description') Informacion General @endsection
+@section('contentheader_description') Información General @endsection
 
 @section('main-content')
 	<div class="container spark-screen">
@@ -17,7 +16,6 @@
 					</div>
 
 						<div class="panel-body">
-
               <div class="claves">
                 <table class="table table-hover">
                       <thead>
@@ -33,8 +31,8 @@
                   </table>
                   {{ $claves->links() }}
                 </div>
-
 						</div>
+
 				</div>
 			</div>
 		</div>

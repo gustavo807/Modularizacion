@@ -1,7 +1,6 @@
 @extends('empresa.cuerpo')
-
 @section('htmlheader_title') Home @endsection
-@section('contentheader_title') Modulos @endsection
+@section('contentheader_title') Módulos @endsection
 @section('contentheader_description') {{	Session::get('nomproyecto')	}} @endsection
 
 @section('main-content')
@@ -11,17 +10,14 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">{{$proyecto->nombre}}</div>
 
-					<div class="panel-body">
-						@include('alerts.warning')
-						@include('alerts.success')
-						<table class="table table-hover">
+						<div class="panel-body">
+							@include('alerts.warning')
+							@include('alerts.success')
+							<table class="table table-hover">
 					        <thead>
-
 					            <th>Modulo</th>
 					            <th width="150px">Estatus</th>
 					        </thead>
-
-
 	                @foreach($modulos as $modulo)
 	                  <tbody>
 	                   <td>
@@ -34,10 +30,10 @@
 	                    </td>
 	                 </tbody>
 							    @endforeach
-					    </table>
-							{{ $modulos->links() }}
+						    </table>
+								{{ $modulos->links() }}
+						</div>
 
-					</div>
 				</div>
 			</div>
 		</div>

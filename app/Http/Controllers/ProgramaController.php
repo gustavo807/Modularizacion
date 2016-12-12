@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Programa;
 
 class ProgramaController extends Controller
@@ -14,6 +15,8 @@ class ProgramaController extends Controller
      */
     public function index()
     {
+        if (Auth::user()->rol_id != 3) return redirect('/asesor');
+
          $programas = \App\Programa::all();
         return view('asesor/programa.index',compact('programas'));
     }
@@ -25,6 +28,7 @@ class ProgramaController extends Controller
      */
     public function create()
     {
+        if (Auth::user()->rol_id != 3) return redirect('/asesor');
         return view('asesor/programa.create');
     }
 
@@ -37,7 +41,7 @@ class ProgramaController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'programa' => 'required',
+            'programa' => 'required|max:255',
         ]);
 
         Programa::create([
@@ -67,6 +71,7 @@ class ProgramaController extends Controller
     //public function edit (Programa $programa)
     public function edit ($id)
     {
+        if (Auth::user()->rol_id != 3) return redirect('/asesor'); 
         $programa = Programa::findOrFail($id);
         return view('asesor/programa.edit',['programa'=>$programa]);
     }
@@ -81,7 +86,7 @@ class ProgramaController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'programa' => 'required',
+            'programa' => 'required|max:255',
         ]);
 
         Programa::find($id)->update($request->all());

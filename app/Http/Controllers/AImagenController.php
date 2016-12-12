@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Imagen;
 use App\Modulo;
 
@@ -15,6 +16,8 @@ class AImagenController extends Controller
      */
     public function index()
     {
+        if (Auth::user()->rol_id != 3) return redirect('/asesor');
+
         $imagenes = Imagen::modulos();
         return view('asesor/imagen.index',['imagenes'=>$imagenes]);
     }
@@ -26,6 +29,8 @@ class AImagenController extends Controller
      */
     public function create()
     {
+      if (Auth::user()->rol_id != 3) return redirect('/asesor');
+
       $modulos = Modulo::pluck('modulo','id');
       return view('asesor/imagen.create',['modulos'=>$modulos]);
     }
@@ -39,9 +44,9 @@ class AImagenController extends Controller
     public function store(Request $request)
     {
       $this->validate($request, [
-          'descripcion' => 'required',
-          'referencia' => 'required',
-          'modulo_id' => 'required',
+          'descripcion' => 'required|max:2000',
+          'referencia' => 'required|max:2000',
+          'modulo_id' => 'required|max:255',
           'imagen' => 'required',
       ]);
       Imagen::create($request->all());
@@ -68,6 +73,8 @@ class AImagenController extends Controller
      */
     public function edit($id)
     {
+      if (Auth::user()->rol_id != 3) return redirect('/asesor');
+      
       $imagen = Imagen::findOrFail($id);
       $modulos = Modulo::pluck('modulo','id');
       return view('asesor/imagen.edit',['imagen'=>$imagen,'modulos'=>$modulos]);
@@ -83,9 +90,9 @@ class AImagenController extends Controller
     public function update(Request $request, $id)
     {
       $this->validate($request, [
-          'descripcion' => 'required',
-          'referencia' => 'required',
-          'modulo_id' => 'required',
+          'descripcion' => 'required|max:2000',
+          'referencia' => 'required|max:2000',
+          'modulo_id' => 'required|max:255',
           'imagen' => 'required',
       ]);
       Imagen::find($id)->update($request->all());

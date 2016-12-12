@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Clave;
 use App\Modulo;
 class AClaveController extends Controller
@@ -14,6 +15,8 @@ class AClaveController extends Controller
      */
     public function index()
     {
+        if (Auth::user()->rol_id != 3) return redirect('/asesor');
+
         $claves = Clave::modulos();
         return view('asesor/clave.index',['claves'=>$claves]);
     }
@@ -25,6 +28,8 @@ class AClaveController extends Controller
      */
     public function create()
     {
+      if (Auth::user()->rol_id != 3) return redirect('/asesor');
+
       $modulos = Modulo::pluck('modulo','id');
       return view('asesor/clave.create',['modulos'=>$modulos]);
     }
@@ -38,9 +43,9 @@ class AClaveController extends Controller
     public function store(Request $request)
     {
       $this->validate($request, [
-          'nombre' => 'required',
-          'identificador' => 'required',
-          'modulo_id' => 'required',
+          'nombre' => 'required|max:255',
+          'identificador' => 'required|max:255',
+          'modulo_id' => 'required|max:255',
       ]);
       Clave::create($request->all());
 
@@ -66,6 +71,8 @@ class AClaveController extends Controller
      */
     public function edit($id)
     {
+      if (Auth::user()->rol_id != 3) return redirect('/asesor');
+      
       $clave = Clave::findOrFail($id);
       $modulos = Modulo::pluck('modulo','id');
       return view('asesor/clave.edit',['clave'=>$clave,'modulos'=>$modulos]);
@@ -81,9 +88,9 @@ class AClaveController extends Controller
     public function update(Request $request, $id)
     {
       $this->validate($request, [
-          'nombre' => 'required',
-          'identificador' => 'required',
-          'modulo_id' => 'required',
+          'nombre' => 'required|max:255',
+          'identificador' => 'required|max:255',
+          'modulo_id' => 'required|max:255',
       ]);
       Clave::find($id)->update($request->all());
       return redirect('/asesorclave')->with('success','Clave actualizada correctamente');

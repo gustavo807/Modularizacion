@@ -90,6 +90,20 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('copyempresa/{id}', 'AEmpresaController@copy' );
     Route::get('documentosempresa/{id}', 'AEmpresaController@documentos' );
     Route::resource('amodulognrl','AModuloGnrlController');
+    Route::get('amodulognrl/{id}/empresa/{iduser}','AModuloGnrlController@modulognrl');
+    Route::get('parrafognl/{id}/empresa/{iduser}','AModuloGnrlController@parrafognl');
+    Route::post('storeparrafo','AModuloGnrlController@storeparrafo');
+    Route::get('imagengnl/{id}/empresa/{iduser}','AModuloGnrlController@imagengnl');
+    Route::post('storeimagen','AModuloGnrlController@storeimagen');
+
+    //  MODIFICAR MODULOS DEL ASESOR
+    Route::resource('proyectomodulos','AProyectoEmpresaController');
+    Route::get('modulosproyecto/{id}','AProyectoEmpresaController@modulos');
+    Route::get('clavesmodulo/{id}/proyecto/{idproyecto}','AProyectoEmpresaController@clavesmodulo');
+    Route::get('parrafoproyecto/{id}/proyecto/{idproyecto}','AProyectoEmpresaController@parrafoproyecto');
+    Route::post('storeparrafoproyecto','AProyectoEmpresaController@storeparrafoproyecto');
+    Route::get('imagenproyecto/{id}/proyecto/{idproyecto}','AProyectoEmpresaController@imagenproyecto');
+    Route::post('storeimagenproyecto','AProyectoEmpresaController@storeimagenproyecto');
 
       //VISTA DE DE CLAVES DE EMPRESA PROYECTO
     Route::get('informaciognrl/{id}/user/{user}', 'AEmpresaController@informaciongnrl' );

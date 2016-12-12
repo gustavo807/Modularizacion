@@ -1,9 +1,7 @@
 @extends('asesor.cuerpo')
-
 @section('htmlheader_title') Home @endsection
 @section('contentheader_title') Convocatoria @endsection
 @section('contentheader_description') Edit @endsection
-
 
 @section('main-content')
 	<div class="container spark-screen">
@@ -12,21 +10,20 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Convocatorias</div>
 
-<div class="panel-body">
-					@include('alerts.errors')
-
-					{!! Form::model($convocatoria, ['route' => ['asesorconvocatoria.update',$convocatoria], 'method' => 'PUT']) !!}
-						<div class="form-group">
-							{!!Form::label('nombre','Nombre:')!!}
-							{!!Form::text('convocatoria',null,['class'=>'form-control','placeholder'=>'Ingresa el Nombre'])!!}
-							{!!Form::label('descripcion','Descripcion:')!!}
-							{!!Form::text('descripcion',null,['class'=>'form-control','placeholder'=>'Ingresa la descripcion'])!!}
-							{!!Form::label('descripcion','Institucion:')!!}
-							{!!Form::select('institucion_id',$instituciones,null,['class'=>'form-control'])!!}
+						<div class="panel-body">
+								@include('alerts.errors')
+								{!! Form::model($convocatoria, ['route' => ['asesorconvocatoria.update',$convocatoria], 'method' => 'PUT']) !!}
+									<div class="form-group">
+										{!!Form::label('nombre','Nombre:')!!}
+										{!!Form::text('convocatoria',null,['class'=>'form-control','placeholder'=>'Ingresa el Nombre'])!!}
+										{!!Form::label('descripcion','Descripcion:')!!}
+										{!!Form::text('descripcion',null,['class'=>'form-control','placeholder'=>'Ingresa la descripcion'])!!}
+										{!!Form::label('descripcion','Institucion:')!!}
+										{!!Form::select('institucion_id',$instituciones,null,['class'=>'form-control'])!!}
+									</div>
+									{!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
+								{!!Form::close()!!}
 						</div>
-					{!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
-					{!!Form::close()!!}
-</div>
 
 				</div>
 			</div>

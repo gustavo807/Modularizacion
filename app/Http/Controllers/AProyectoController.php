@@ -39,9 +39,9 @@ class AProyectoController extends Controller
     public function store(Request $request)
     {
       $this->validate($request, [
-          'nombre' => 'required',
-          'descripcion' => 'required',
-          'convocatoria_id' => 'required',
+          'nombre' => 'required|max:255',
+          'descripcion' => 'required|max:255',
+          'convocatoria_id' => 'required|max:255',
       ]);
       $idempresa = Session::get('idempresa');
 
@@ -92,9 +92,9 @@ class AProyectoController extends Controller
     public function update(Request $request, $id)
     {
       $this->validate($request, [
-          'nombre' => 'required',
-          'descripcion' => 'required',
-          'convocatoria_id' => 'required',
+          'nombre' => 'required|max:255',
+          'descripcion' => 'required|max:255',
+          'convocatoria_id' => 'required|max:255',
       ]);
       $idempresa = Session::get('idempresa');
 

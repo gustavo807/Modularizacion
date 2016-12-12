@@ -58,7 +58,7 @@ class EProyectoController extends Controller
         if (isset($request['valor'])) {
               $rules = [];
               foreach ($request->get('valor') as $key => $val)
-                $rules['valor.'.$key] = 'required|max:255';
+                $rules['valor.'.$key] = 'required|max:2000';
 
               $validator = Validator::make($request->all(), $rules);
 
@@ -69,8 +69,8 @@ class EProyectoController extends Controller
         }
         else {
               $this->validate($request, [
-                'valor' => 'required',
-                'clave_id' => 'required',
+                'valor' => 'required|max:2000',
+                'clave_id' => 'required|max:255',
             ]);
         }
 
@@ -165,8 +165,8 @@ class EProyectoController extends Controller
         Session::put('idmoduloconv', $id);
         $propietario = 'empresa';
         $claves = Clave::clavesmoduloproyecto($id,$idproyecto,$propietario);
-
-        return view('empresa/proyecto.edit',['claves'=>$claves]);
+        $modulo = Modulo::findOrFail($id);
+        return view('empresa/proyecto.edit',['claves'=>$claves,'modulo'=>$modulo]);
 
     }
 

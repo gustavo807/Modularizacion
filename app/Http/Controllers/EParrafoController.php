@@ -69,6 +69,7 @@ class EParrafoController extends Controller
 
       $this->validate($request, [
         'parrafo' => 'required',
+        'observacion' => 'max:2000',
       ]);
 
 

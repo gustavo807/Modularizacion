@@ -1,8 +1,7 @@
 @extends('empresa.cuerpo')
-
 @section('htmlheader_title') Home @endsection
 @section('contentheader_title') Empresa @endsection
-@section('contentheader_description') Informacion General @endsection
+@section('contentheader_description') Información General @endsection
 
 @section('main-content')
 	<div class="container spark-screen">
@@ -44,21 +43,17 @@
                             </td>
                             <td>
                               @if ($parrafo->imagen)
-                                <img class="img" src="/documentos/{{ $parrafo->imagen}}" alt="" class="img-responsive" style="width:200px;"
-                                      title="Click para ampliar"/>
+                                <img class="img" src="/documentos/{{ $parrafo->imagen}}" alt="" class="img-responsive" style="width:200px;"	title="Click para ampliar"/>
                               @endif
                             </td>
                           </tbody>
                         @endforeach
                   </table>
                   {{ $parrafos->links() }}
-
-
 						</div>
+
 				</div>
 			</div>
 		</div>
 	</div>
-
-
 @endsection

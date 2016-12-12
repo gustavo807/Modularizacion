@@ -1,5 +1,4 @@
 @extends('asesor.cuerpo')
-
 @section('htmlheader_title') Home @endsection
 @section('contentheader_title') Módulos @endsection
 @section('contentheader_description') Ordena @endsection
@@ -13,7 +12,8 @@
 
             <div class="panel-body">
 							@include('alerts.success')
-                <table class="table table-hover " >
+							<div class="table-responsive">
+                <table class="table table-hover ">
                       <thead>
                           <th width="150px">Orden</th>
                           <th>Modulo</th>
@@ -29,7 +29,8 @@
           							</tbody>
           						@endforeach
                   </table>
-									{{ $modulos->links() }}
+								</div>
+								{{ $modulos->links() }}
             </div>
 
 				</div>
