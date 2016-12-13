@@ -9,6 +9,7 @@
         "laravel/framework": "5.3.*",
         "acacha/admin-lte-template-laravel": "2.*",
         "laravelcollective/html": "^5.3",
+        "greggilbert/recaptcha": "dev-master",
 
         "maatwebsite/excel": "~2.1.0",
 

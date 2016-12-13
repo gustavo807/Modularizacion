@@ -1,6 +1,6 @@
 @extends('empresa.cuerpo')
 @section('htmlheader_title') Home @endsection
-@section('contentheader_title') Empresa @endsection
+@section('contentheader_title') Modulos Generales @endsection
 @section('contentheader_description') Modulos Generales @endsection
 
 @section('main-content')

@@ -36,8 +36,6 @@
             <li class="active"><a href="/empresa"><i class='fa fa-briefcase'></i> <span>Proyectos</span></a></li>
             <li><a href="/empresamodulognrl"><i class='fa fa-id-card-o'></i> <span>Modulos Generales</span></a></li>
             <li><a href="/empresadocumentos"><i class='fa fa-folder-open-o'></i> <span>Documentos</span></a></li>
-
-
         </ul><!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->

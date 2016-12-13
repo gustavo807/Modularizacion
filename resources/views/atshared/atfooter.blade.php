@@ -2,7 +2,7 @@
    <div class="row">
        <div class="col span-1-of-2">
            <ul class="footer-nav">
-               <li><a href="/About">Acerca de Nosotros</a></li>
+               <!--<li><a href="/About">Acerca de Nosotros</a></li>-->
                <li><a href="/Privacy">Politica de Privacidad</a></li>
                <li><a class="js--scroll-to-contact" href="index.php#section-contact">Contacto</a></li>
            </ul>
@@ -20,4 +20,3 @@
        <p>© Todos los Derechos Reservados. ALIVE TECHNOLOGY S.A. DE C.V. 2016 </p>
    </div>
 </footer>
- 

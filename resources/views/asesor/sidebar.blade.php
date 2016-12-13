@@ -19,29 +19,30 @@
         @endif
 
         <!-- search form (Optional) -->
-        <form action="#" method="get" class="sidebar-form">
+        <!--<form action="#" method="get" class="sidebar-form">
             <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="{{ trans('adminlte_lang::message.search') }}..."/>
+                <input type="text" name="q" class="form-control" placeholder="{{-- trans('adminlte_lang::message.search') --}}..."/>
               <span class="input-group-btn">
                 <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
               </span>
             </div>
-        </form>
+        </form>-->
         <!-- /.search form -->
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
-            <li class="header">Asesor</li>
+            <!--<li class="header">Asesor</li>-->
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="{{ url('asesor') }}"><i class='fa fa-link'></i> <span>Asesor</span></a></li>
+            <li class="active"><a href="{{ url('asesor') }}"><i class='fa fa-user-circle'></i> <span>Asesor</span></a></li>
 
-            <li class=""><a href="/asesorempresa"><i class='fa fa-link'></i> <span>Empresas</span></a></li>
-            <li class=""><a href="/aproyectosgnrl"><i class='fa fa-link'></i> <span>Proyectos</span></a></li>
+            <li class=""><a href="/asesorempresa"><i class='fa fa-address-book-o'></i> <span>Empresas</span></a></li>
+            <li class=""><a href="/aproyectosgnrl"><i class='fa fa-folder-open-o'></i> <span>Proyectos</span></a></li>
+            <li class=""><a href="/cuestionarios"><i class='fa fa-file-text'></i> <span>Cuestionarios</span></a></li>
             @if (Auth::user()->rol_id == 3)
-              <li class=""><a href="/asesoradd"><i class='fa fa-link'></i> <span>Agregar Asesores</span></a></li>
+              <li class=""><a href="/asesoradd"><i class='fa fa-user-plus'></i> <span>Agregar Asesores</span></a></li>
 
               <li class="treeview">
-                  <a href="#"><i class='fa fa-link'></i> <span>Convocatorias</span> <i class="fa fa-angle-left pull-right"></i></a>
+                  <a href="#"><i class='fa fa-money'></i> <span>Convocatorias</span> <i class="fa fa-angle-left pull-right"></i></a>
                   <ul class="treeview-menu">
                       <li><a href="/asesorprograma">Programa</a></li>
                       <li><a href="/asesorinstitucion">Institucion</a></li>
@@ -49,7 +50,7 @@
                   </ul>
               </li>
               <li class="treeview">
-                  <a href="#"><i class='fa fa-link'></i> <span>Modulos</span> <i class="fa fa-angle-left pull-right"></i></a>
+                  <a href="#"><i class='fa fa-suitcase'></i> <span>Modulos</span> <i class="fa fa-angle-left pull-right"></i></a>
                   <ul class="treeview-menu">
                       <li><a href="/asesorclasificacion">Clasificaciones</a></li>
                       <li><a href="/asesormodulo">Modulos</a></li>
@@ -59,14 +60,14 @@
                   </ul>
               </li>
               <li class="treeview">
-                  <a href="#"><i class='fa fa-link'></i> <span>Ordenar Modulos</span> <i class="fa fa-angle-left pull-right"></i></a>
+                  <a href="#"><i class='fa fa-sort-alpha-asc'></i> <span>Ordenar Modulos</span> <i class="fa fa-angle-left pull-right"></i></a>
                   <ul class="treeview-menu">
                       <li><a href="/aordenagnrl">Modulos Generales</a></li>
                       <li><a href="/aordenagnrl/create">Modulos por Convocatoria</a></li>
                   </ul>
               </li>
               <li class="treeview">
-                  <a href="#"><i class='fa fa-link'></i> <span>Documentos</span> <i class="fa fa-angle-left pull-right"></i></a>
+                  <a href="#"><i class='fa fa-folder-open-o'></i> <span>Documentos</span> <i class="fa fa-angle-left pull-right"></i></a>
                   <ul class="treeview-menu">
                       <li><a href="/asesorcategoria">Categorias</a></li>
                       <li><a href="/asesordocumentos">Documentos</a></li>

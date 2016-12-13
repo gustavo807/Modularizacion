@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactMail;
 use Illuminate\Http\Request;
+use App\Http\Requests\ContactoRequest;
+use Illuminate\Support\Facades\Mail;
 
 class PagesController extends Controller
 {
@@ -38,8 +41,10 @@ class PagesController extends Controller
         return view('alivetech.privacy');
     }
 
-    public function mail(){
-        return view('mails.prospeccion');
+    public function mailContacto(ContactoRequest $request, ContactMail $mailer){
+      $mailer->enviarEmailContacto();
+      flash('Gracias por su mensaje. El personal de AliveTech se pondrá en contacto con usted');
+      return redirect('/#section-contact');
     }
 
 

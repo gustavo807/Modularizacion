@@ -1,5 +1,5 @@
 @extends('asesor.cuerpo')
-
+@section('contentheader_title') Cuestionarios de Prospección @endsection
 @section('htmlheader_title')
 	Cuestionarios de Prospección.
 @endsection

@@ -19,6 +19,7 @@ use App\Mail\WelcomeMail;
 
 
 Route::get('/', 'PagesController@alivetech');
+Route::post('/', 'PagesController@mailContacto'); 
 Route::get('/Industria', 'PagesController@industria');
 Route::get('/Academia', 'PagesController@academia');
 Route::get('/Gobierno', 'PagesController@gobierno');

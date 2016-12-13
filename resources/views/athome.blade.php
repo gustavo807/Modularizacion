@@ -183,15 +183,19 @@
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                 <div class="row">
 
-                    @foreach ($errors->all() as $error)
-                        <div class="form-messages fail">{{ $error }}</div>
-                    @endforeach
+                  @if (count($errors)>0)
+                    <div class="form-messages fail">
+                      <ul>
+                        @foreach ($errors ->all() as $error)
+                          <li>{{ $error }}</li>
+                        @endforeach
+                      </ul>
+                    </div>
+                  @endif
 
-                    @if (session('status'))
-                        <div class="form-messages success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                  @if(session()->has('message'))
+                    <div class="form-messages success">{{ session('message') }}</div>
+                  @endif
 
 
                 </div>
@@ -201,7 +205,7 @@
                         <label for="name">Nombre</label>
                     </div>
                     <div class="col span-2-of-3">
-                        <input type="text" name="name" id="name" placeholder="Su Nombre" required>
+                        <input type="text" name="name" id="name" placeholder="Su Nombre"  value="{{ old('name') }}"> <!--required-->
                     </div>
                 </div>
 
@@ -210,7 +214,7 @@
                         <label for="email">Email</label>
                     </div>
                     <div class="col span-2-of-3">
-                        <input type="email" name="email" id="email" placeholder="Su Email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,}" required>
+                        <input type="text" name="email" id="email" placeholder="Su Email"  value="{{ old('email') }}"> <!--pattern="[^@]+@[^@]+\.[a-zA-Z]{2,}" required-->
                     </div>
                 </div>
                     <div class="row">
@@ -218,12 +222,16 @@
                         <label for="message">Mensaje</label>
                         </div>
                         <div class="col span-2-of-3">
-                            <textarea name="message" id="message" placeholder="Su Mensaje"></textarea>
+                            <textarea name="message" id="message" placeholder="Su Mensaje"  value="{{ old('message') }}"></textarea>
                         </div>
                     </div>
 
+                    {!! Recaptcha::render() !!}
 
-                <div class="row">
+                    <div class="col span-2-of-3">
+                        <input id ="submitBtn" type="submit" value="Enviar">
+                    </div>
+                <!--<div class="row">
 
                     <div class="g-recaptcha" data-callback="recaptchaCallback" data-sitekey="{{ env('RE_CAP_SITE') }}"></div>
 
@@ -233,16 +241,15 @@
                     <div class="col span-2-of-3">
                         <input id ="submitBtn" type="submit" value="Enviar" disabled>
                     </div>
-                </div>
+                </div>-->
 
                 </form>
 
-                <script>
-                  function recaptchaCallback() {
-    			$('#submitBtn').removeAttr('disabled');
-			};
-
-                </script>
+                <!--<script>
+                function recaptchaCallback() {
+              			$('#submitBtn').removeAttr('disabled');
+          			};
+              </script>-->
             </div>
 
         </section>
