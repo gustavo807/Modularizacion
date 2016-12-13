@@ -165,6 +165,39 @@ $(function () {
       $('.ion-trash-b').tooltip({title: "Eliminar", placement: "left"});
       $('.float').tooltip({title: "Agregar", placement: "left"});
 
+
+
+      function stripTrailingSlash(str) {
+          if(str.substr(-1) == '/') {
+            return str.substr(0, str.length - 1);
+          }
+          else{
+            var n = str.indexOf("/",1);
+            if (n != -1) {
+              var cad = str.substr(0,n);
+              return cad;
+            }
+            else
+            return str;
+          }
+        }
+
+        var url = window.location.pathname;
+        var activePage = stripTrailingSlash(url);
+alert(activePage)
+        $('.sidebar-menu a').each(function(){
+          var currentPage = stripTrailingSlash($(this).attr('href'));
+
+          if (activePage == currentPage) {
+            $('#urlempresa').removeClass('active');
+            $('#principal').removeClass('active');
+            $(this).parent().addClass('active');
+            $(this).closest('.treeview').addClass('active');
+          }
+        });
+
+
+
 });
 
 /*

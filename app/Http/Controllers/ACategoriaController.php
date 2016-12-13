@@ -49,17 +49,6 @@ class ACategoriaController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -68,7 +57,7 @@ class ACategoriaController extends Controller
     public function edit($id)
     {
         if (Auth::user()->rol_id != 3) return redirect('/asesor');
-        
+
         $categoria = Categoria::findOrFail($id);
         return view('asesor/categoria.edit',['categoria'=>$categoria]);
     }

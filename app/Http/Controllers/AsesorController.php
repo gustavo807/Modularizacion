@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class AsesorController extends Controller
 {
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -47,7 +47,7 @@ class AsesorController extends Controller
      */
     public function show($id)
     {
-        // 
+        //
     }
 
     /**

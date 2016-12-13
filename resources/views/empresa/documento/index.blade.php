@@ -41,7 +41,7 @@
 														<td>
 															@if($documento->documento != null)
 																{!! Form::open(['method' => 'DELETE','route' => ['empresadocumentos.destroy', $documento->id],'id' => 'form-delete-documentos-' . $documento->id]) !!}
-																		<a href="" class="data-delete"	data-form="documentos-{{ $documento->id }}">	<i class="ion-trash-b icon-big"></i>	</a>
+																		<a href="" class="data-delete ion-trash-b icon-big"	data-form="documentos-{{ $documento->id }}"></a>
 																{!! Form::close() !!}
 															@endif
 														</td>

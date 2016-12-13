@@ -33,7 +33,7 @@
         <ul class="sidebar-menu">
             <li class="header">Asesor</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="{{ url('asesor') }}"><i class='fa fa-link'></i> <span>Asesor</span></a></li>
+            <li class="active" id="principal"><a href="{{ url('asesor') }}"><i class='fa fa-link'></i> <span>Asesor</span></a></li>
 
             <li class=""><a href="/asesorempresa"><i class='fa fa-link'></i> <span>Empresas</span></a></li>
             <li class=""><a href="/aproyectosgnrl"><i class='fa fa-link'></i> <span>Proyectos</span></a></li>

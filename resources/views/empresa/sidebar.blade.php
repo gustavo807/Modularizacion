@@ -33,11 +33,11 @@
         <ul class="sidebar-menu">
             <li class="header">{{ trans('adminlte_lang::message.header') }}</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="/empresa"><i class='fa fa-link'></i> <span>Home</span></a></li>
+            <li class="active" id="urlempresa"><a href="/empresa"><i class='fa fa-link'></i> <span>Home</span></a></li>
             <li><a href="/empresamodulognrl"><i class='fa fa-link'></i> <span>Modulos Generales</span></a></li>
             <li><a href="/empresadocumentos"><i class='fa fa-link'></i> <span>Documentos</span></a></li>
 
-            
+
         </ul><!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->
