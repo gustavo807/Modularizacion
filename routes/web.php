@@ -112,8 +112,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('proyectoparrafos/{id}/user/{user}', 'AEmpresaController@proyectoparrafos' );
 
     Route::resource('asesorproyecto','AProyectoController');
-    Route::get('cuestionarios', 'ProspectController@descargarExcel');
-    Route::get('cuestionarios/{type}', 'ProspectController@exportar'); //Aregar campo ID para seleccionar uno solo
+    Route::get('cuestionarios', 'ProspectController@listarCuestionarios');
+    Route::get('cuestionarios/{type}', 'ExcelController@exportarCuestionarios'); //Aregar campo ID para seleccionar uno solo
     Route::resource('aproyectosgnrl','AProyectoGnrlController');
     Route::resource('aproyectoempresa','AProyectoEmpresaController');
 

@@ -121,26 +121,26 @@
             </div>
             <div class="row">
                 <div class="col span-1-of-3">
-                  <div class="opiniones">
+                  <div class="opiniones big-box">
                     <p>El equipo en general muy bien, que nos apoyaron a pesar de nuestras distracciones, desconocimiento y retrasos,
                     pudimos conocerlos a todos y esperamos poder el próximo año, tanto darle continuidad a nuestro actual proyecto
                     cómo gestionar otros que ya tenemos en cartera.</p>
-                    <cite><p> - Ing. Fernando Román Contreras<br><b>Competitividad e Informática SA de CV (I-PLACE)</b><br><a href="www.iplace.net">www.iplace.net</a></p></cite>                  
+                    <cite><p> - Ing. Fernando Román Contreras<br><b>Competitividad e Informática SA de CV (I-PLACE)</b><br><a href="http://www.iplace.net" target="_blank">www.iplace.net</a></p></cite>
                   </div>
                 </div>
                 <div class="col span-1-of-3">
-                  <div class="opiniones">
+                  <div class="opiniones big-box">
                     <p>Alivetech se encargó de gestionar y obtener satisfactoriamente nuestro registro ante Conacyt, paso previo e indispensable para solicitar recursos a fondo perdido ante la misma institución.
                        El trabajo del equipo ha sido realmente profesional. TODOS han cumplido a tiempo con lo que les corresponde y la información fue solicitada siempre con suficiente anticipación, con mucho respeto y con el entendimiento de que el cliente proporciona la información y Alivetech se encargan de presentar y gestionar.
                        Asistir a las sesiones de trabajo parecía, al principio, que se invertía demasiado tiempo.  Al paso de las semanas nos dimos cuenta de que era el espacio mínimo necesario que las empresas debían dedicar al avance del proyecto.  Encontrar a gente educada, amable, y dispuesta era estimulante para asistir, además
                        de que fue esencial para depositar nuestra confianza en Alivetech.</p>
-                    <cite><p> – Ing. Miguel Ángel Lara Vargas <br><b>Placas y Rectificados SA </b><br><a href="www.placasyrectificados.net ">www.placasyrectificados.net</a></p></cite>
+                    <cite><p> – Ing. Miguel Ángel Lara Vargas <br><b>Placas y Rectificados SA </b><br><a href="http://www.placasyrectificados.net" target="_blank">www.placasyrectificados.net</a></p></cite>
                   </div>
                 </div>
                 <div class="col span-1-of-3">
-                  <div class="opiniones">
+                  <div class="opiniones big-box">
                     <p>Felicidades, tienen un excelente equipo de trabajo.</p>
-                    <cite><p> - Ing. Erika Silverio Mejía <br><b>-	British Federal México SA DE CV (BFMX) </b><br><a href="www.bfmx.com">www.bfmx.com</a></p></cite>
+                    <cite><p> - Ing. Erika Silverio Mejía <br><b>British Federal México SA DE CV (BFMX) </b><br><a href="http://www.bfmx.com" target="_blank">www.bfmx.com</a></p></cite>
                   </div>
                 </div>
             </div>

@@ -184,7 +184,7 @@ $(function () {
 
         var url = window.location.pathname;
         var activePage = stripTrailingSlash(url);
-alert(activePage)
+
         $('.sidebar-menu a').each(function(){
           var currentPage = stripTrailingSlash($(this).attr('href'));
 

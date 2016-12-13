@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Excel;
 use App\ProspectForm;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProspectRequest;
@@ -106,33 +105,14 @@ class ProspectController extends Controller
        $mailer->sendEmailProspect();
        flash('Gracias por contestar nuestro cuestionario. El personal de AliveTech se pondrá en contacto con usted');
        return redirect('/prospeccion');
-
-
    }
 
-   public function descargarExcel()
+   public function listarCuestionarios()
    {
-     $cuestionarios = ProspectForm::all();
+     $cuestionarios = ProspectForm::paginate(10);
      return view('cuestionarios.cuestionarios', ['cuestionarios'=>$cuestionarios]);
    }
 
-   public function exportar($type)
-   {
-     $datosDeExportacion = array();
-     $data = ProspectForm::all(); //Seleccionar con ID
 
-     foreach ($data as $datos) {
-             $datosDeExportacion[] = $datos->razon_social; //Aqui: agregar todos los datos deseados;
-     }
-
-     return Excel::create('Cuestionarios de Prospección', function($excel) use ($datosDeExportacion) {
-
-     $excel->sheet('Cuestionarios', function($sheet) use ($datosDeExportacion)
-         {
-       $sheet->fromArray($datosDeExportacion);
-         });
-         })->download($type);
-
-   }
 
 }
