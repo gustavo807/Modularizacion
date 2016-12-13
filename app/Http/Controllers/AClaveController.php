@@ -8,11 +8,7 @@ use App\Clave;
 use App\Modulo;
 class AClaveController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         if (Auth::user()->rol_id != 3) return redirect('/asesor');
@@ -21,11 +17,6 @@ class AClaveController extends Controller
         return view('asesor/clave.index',['claves'=>$claves]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
       if (Auth::user()->rol_id != 3) return redirect('/asesor');
@@ -34,12 +25,6 @@ class AClaveController extends Controller
       return view('asesor/clave.create',['modulos'=>$modulos]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
       $this->validate($request, [
@@ -52,12 +37,7 @@ class AClaveController extends Controller
       return redirect('/asesorclave')->with('success','Clave registrada correctamente');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+  
     public function show($id)
     {
         //
@@ -72,7 +52,7 @@ class AClaveController extends Controller
     public function edit($id)
     {
       if (Auth::user()->rol_id != 3) return redirect('/asesor');
-      
+
       $clave = Clave::findOrFail($id);
       $modulos = Modulo::pluck('modulo','id');
       return view('asesor/clave.edit',['clave'=>$clave,'modulos'=>$modulos]);

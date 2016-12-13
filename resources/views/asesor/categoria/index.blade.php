@@ -28,11 +28,11 @@
 						      									<div class="col-md-2">
 						      										{!! link_to_route('asesorcategoria.edit', $title = '', $parameters = $categoria->id, $attributes = ['class'=>'ion-edit icon-big']) !!}
 						      									</div>
-						      									<div class="col-md-2">
+						      						<!--			<div class="col-md-2">
 						      										{!! Form::open(['method' => 'DELETE','route' => ['asesorcategoria.destroy', $categoria->id],'id' => 'form-delete-categorias-' . $categoria->id]) !!}
 						      										    <a href="" class="data-delete ion-trash-b icon-big"	data-form="categorias-{{ $categoria->id }}"></a>
 						      										{!! Form::close() !!}
-						      									</div>
+						      									</div>		-->
 						      								</td>
 						      							</tbody>
 						      						@endforeach

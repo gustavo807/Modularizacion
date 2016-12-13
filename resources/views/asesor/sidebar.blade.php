@@ -33,8 +33,8 @@
         <ul class="sidebar-menu">
             <!--<li class="header">Asesor</li>-->
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="{{ url('asesor') }}"><i class='fa fa-user-circle'></i> <span>Asesor</span></a></li>
 
+            <li class="active" id="principal"><a href="{{ url('asesor') }}"><i class='fa fa-user-circle'></i> <span>Asesor</span></a></li>
             <li class=""><a href="/asesorempresa"><i class='fa fa-address-book-o'></i> <span>Empresas</span></a></li>
             <li class=""><a href="/aproyectosgnrl"><i class='fa fa-folder-open-o'></i> <span>Proyectos</span></a></li>
             <li class=""><a href="/cuestionarios"><i class='fa fa-file-text'></i> <span>Cuestionarios</span></a></li>

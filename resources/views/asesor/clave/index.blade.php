@@ -32,11 +32,11 @@
 																	<div class="col-md-2">
 																		{!! link_to_route('asesorclave.edit', $title = '', $parameters = $clave->id, $attributes = ['class'=>'ion-edit icon-big']) !!}
 																	</div>
-																	<div class="col-md-2">
+												<!--					<div class="col-md-2">
 																		{!! Form::open(['method' => 'DELETE',	'route' => ['asesorclave.destroy', $clave->id],	'id' => 'form-delete-clave-' . $clave->id]) !!}
 																		    <a href="" class="data-delete ion-trash-b icon-big"	data-form="clave-{{ $clave->id }}">	</a>
 																		{!! Form::close() !!}
-																	</div>
+																	</div>		-->
 																</td>
 															</tbody>
 														@endforeach

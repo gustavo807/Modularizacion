@@ -48,11 +48,11 @@
 																{!! link_to_route('asesorproyecto.edit', $title = '', $parameters = $proyecto->id, $attributes = ['class'=>'ion-edit icon-big']) !!}
 															</div>
 
-															<div class="col-md-2">
+												<!--			<div class="col-md-2">
 																{!! Form::open(['method' => 'DELETE',	'route' => ['asesorproyecto.destroy', $proyecto->id],	'id' => 'form-delete-proyectos-' . $proyecto->id]) !!}
 																    <a href="" class="data-delete ion-trash-b icon-big"	data-form="proyectos-{{ $proyecto->id }}">	</a>
 																{!! Form::close() !!}
-															</div>
+															</div> -->
 						                </td>
 												</tbody>
 											@endforeach
