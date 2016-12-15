@@ -18,9 +18,9 @@
 									<table class="table table-hover">
 							        <thead>
 							            <th>Convocatoria</th>
-							            <th>Descripcion</th>
-							            <th>Institucion</th>
-							            <th width="150px">Action</th>
+							            <th>Descripción</th>
+							            <th>Institución</th>
+							            <th width="150px">Acción</th>
 							        </thead>
 								      @foreach($convocatorias as $convocatoria)
 											<tbody>

@@ -33,7 +33,7 @@
 							<div class="table-responsive">
               <table class="table table-bordered">
                   <thead>
-                      <th>Parrafo</th>
+                      <th>Párrafo</th>
                       <th width="150px">Selecciona</th>
                   </thead>
                   <div class="form-group">

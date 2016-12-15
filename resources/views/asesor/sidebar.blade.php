@@ -50,20 +50,20 @@
                   </ul>
               </li>
               <li class="treeview">
-                  <a href="#"><i class='fa fa-suitcase'></i> <span>Modulos</span> <i class="fa fa-angle-left pull-right"></i></a>
+                  <a href="#"><i class='fa fa-suitcase'></i> <span>Módulos</span> <i class="fa fa-angle-left pull-right"></i></a>
                   <ul class="treeview-menu">
                       <li><a href="/asesorclasificacion"><i class="fa fa-circle-o"></i>Clasificaciones</a></li>
-                      <li><a href="/asesormodulo"><i class="fa fa-circle-o"></i>Modulos</a></li>
+                      <li><a href="/asesormodulo"><i class="fa fa-circle-o"></i>Módulos</a></li>
                       <li><a href="/asesorclave"><i class="fa fa-circle-o"></i>Claves</a></li>
                       <li><a href="/asesorparrafo"><i class="fa fa-circle-o"></i>Parrafos</a></li>
-                      <li><a href="/asesorimagen"><i class="fa fa-circle-o"></i>Imagenes</a></li>
+                      <li><a href="/asesorimagen"><i class="fa fa-circle-o"></i>Imágenes</a></li>
                   </ul>
               </li>
               <li class="treeview">
-                  <a href="#"><i class='fa fa-sort-alpha-asc'></i> <span>Ordenar Modulos</span> <i class="fa fa-angle-left pull-right"></i></a>
+                  <a href="#"><i class='fa fa-sort-alpha-asc'></i> <span>Ordenar Módulos</span> <i class="fa fa-angle-left pull-right"></i></a>
                   <ul class="treeview-menu">
-                      <li><a href="/aordenagnrl"><i class="fa fa-circle-o"></i>Modulos Generales</a></li>
-                      <li><a href="/aordenagnrl/create"><i class="fa fa-circle-o"></i>Modulos por Convocatoria</a></li>
+                      <li><a href="/aordenagnrl"><i class="fa fa-circle-o"></i>Módulos Generales</a></li>
+                      <li><a href="/aordenagnrl/create"><i class="fa fa-circle-o"></i>Módulos por Convocatoria</a></li>
                   </ul>
               </li>
               <li class="treeview">

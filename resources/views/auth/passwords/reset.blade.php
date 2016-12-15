@@ -9,11 +9,11 @@
     <body class="login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="{{ url('/home') }}"><b>Admin</b>LTE</a>
+            <p><b>Alive</b>Tech</p>
         </div><!-- /.login-logo -->
 
         @if (session('status'))
-            <div class="alert alert-success">
+            <div class="alert alert-info">
                 {{ session('status') }}
             </div>
         @endif
@@ -30,8 +30,8 @@
         @endif
 
         <div class="login-box-body">
-            <p class="login-box-msg">{{ trans('adminlte_lang::message.passwordreset') }}</p>
-            <form action="{{ url('/password/reset') }}" method="post">
+            <p class="login-box-msg">Restable tu password</p>
+            <form action="{{ url('/password/reset') }} " method="post">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="token" value="{{ $token }}">
                 <div class="form-group has-feedback">
@@ -60,8 +60,8 @@
                 </div>
             </form>
 
-            <a href="{{ url('/login') }}">Log in</a><br>
-            <a href="{{ url('/register') }}" class="text-center">{{ trans('adminlte_lang::message.membreship') }}</a>
+            <a href="{{ url('/login') }}">Login</a><br>
+            <a href="{{ url('/register') }}" class="text-center">Registrarse</a>
 
         </div><!-- /.login-box-body -->
 

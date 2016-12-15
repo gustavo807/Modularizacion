@@ -11,7 +11,7 @@
 					<div class="panel-heading">
             <ul class="nav nav-tabs nav-justified">
               <li class="active"><a href="#">Claves</a></li>
-              <li><a href="/einfognrl/create">Parrafos e imagenes</a></li>
+              <li><a href="/einfognrl/create">Párrafos e imágenes</a></li>
             </ul>
 					</div>
 

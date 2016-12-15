@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ContactMail;
+use App\Mail\ContactMailable;
 use Illuminate\Http\Request;
 use App\Http\Requests\ContactoRequest;
 use Illuminate\Support\Facades\Mail;
@@ -41,11 +42,19 @@ class PagesController extends Controller
         return view('alivetech.privacy');
     }
 
-    public function mailContacto(ContactoRequest $request, ContactMail $mailer){
-      $mailer->enviarEmailContacto();
+    public function emailContactForm(ContactoRequest $request){
+      $nameFrom = $request->get('name');
+      $mailFrom = $request->get('email');
+      $mailMsg = $request->get('message');
+      Mail::send('mails.contact', ['nombre' => $nameFrom, 'email' => $mailFrom, 'mensaje' => $mailMsg], function ($message)
+      {
+          $message->to('contacto@alivetech.mx');
+      });
       flash('Gracias por su mensaje. El personal de AliveTech se pondrá en contacto con usted');
       return redirect('/#section-contact');
     }
+
+
 
 
 }

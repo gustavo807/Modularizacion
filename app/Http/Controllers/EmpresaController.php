@@ -14,11 +14,13 @@ class EmpresaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index(Request $request)
     {
-        $idempresa = $request->user()->id;
-        $proyectos = Proyecto::proyectoconvocatoria($idempresa);
-        return view('empresa.index',['proyectos'=>$proyectos]);
+      $idempresa = $request->user()->id;
+      $proyectos = Proyecto::proyectoconvocatoria($idempresa);
+      return view('empresa.index',['proyectos'=>$proyectos]);
     }
 
     /**

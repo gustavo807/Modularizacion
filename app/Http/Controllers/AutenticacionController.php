@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\ResetsPasswords;
+
 
 class AutenticacionController extends Controller
 {
@@ -46,4 +49,5 @@ class AutenticacionController extends Controller
       flash('Has cerrado tu sesión correctamente.');
       return redirect('/');
     }
+
 }

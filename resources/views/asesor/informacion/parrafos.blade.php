@@ -11,7 +11,7 @@
 					<div class="panel-heading">
             <ul class="nav nav-tabs nav-justified">
               <li ><a href="/{{$ruta}}/{{$id}}/user/{{$user}}">Claves</a></li>
-              <li class="active"><a href="#">Parrafos e imagenes</a></li>
+              <li class="active"><a href="#">Párrafos e imágenes</a></li>
             </ul>
 					</div>
 
@@ -28,8 +28,8 @@
 							<div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
-                        <th width="100">Modulo</th>
-                        <th>Parrafo</th>
+                        <th width="100">Módulo</th>
+                        <th>Párrafo</th>
                         <th width="150">Imagen</th>
                     </thead>
                     @foreach($parrafos as $parrafo)

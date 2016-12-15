@@ -8,7 +8,7 @@
       </div>
       <div class="modal-body">
         <img id="imgmodal" src="" alt="" class="img-responsive" style=""  />
-        <h4>Descripcion:</h4> <p id="descripcion"> </p>
+        <h4>Descripción:</h4> <p id="descripcion"> </p>
         <h4>Referencia:</h4> <p id="referencia"> </p>
 
       </div>

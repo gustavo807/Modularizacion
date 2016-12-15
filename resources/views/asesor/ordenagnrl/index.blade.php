@@ -8,7 +8,7 @@
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
 				<div class="panel panel-default">
-					<div class="panel-heading">Ordena Modulos </div>
+					<div class="panel-heading">Ordena Módulos </div>
 
             <div class="panel-body">
 							@include('alerts.success')
@@ -16,8 +16,8 @@
                 <table class="table table-hover ">
                       <thead>
                           <th width="150px">Orden</th>
-                          <th>Modulo</th>
-													<th width="100px">Action</th>
+                          <th>Módulo</th>
+													<th width="100px">Acción</th>
                       </thead>
 											@foreach($modulos as $modulo)
           							<tbody>

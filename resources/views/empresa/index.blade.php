@@ -17,7 +17,7 @@
 					        <thead>
 					            <th>Proyecto</th>
 											<th>Convocatoria</th>
-					            <th>Descripcion</th>
+					            <th>Descripción</th>
 											<th>Fecha Asignado</th>
 					        </thead>
 	                @foreach($proyectos as $proyecto)

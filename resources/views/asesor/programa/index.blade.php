@@ -18,7 +18,7 @@
 								<table class="table table-hover">
 						        <thead>
 						            <th>Nombre</th>
-						            <th width="150px">Action</th>
+						            <th width="150px">Acción</th>
 						        </thead>
 
 							      @foreach($programas as $programa)

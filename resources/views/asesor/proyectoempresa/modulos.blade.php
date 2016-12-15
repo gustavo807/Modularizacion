@@ -20,6 +20,7 @@
 						<div class="panel-body">
               @include('alerts.warning')
 							@include('alerts.success')
+
 							<div class="table-responsive">
 								<table class="table table-hover">
 						        <thead>
@@ -40,6 +41,7 @@
 								    @endforeach
 							    </table>
 								</div>
+
 								{{ $modulos->links() }}
 						</div>
 

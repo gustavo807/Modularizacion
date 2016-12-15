@@ -11,7 +11,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 @section('htmlheader_title')
-    Pagina No Enontrada
+    Página No Encontrada
 @endsection
 <!--
 BODY TAG OPTIONS:
@@ -47,17 +47,17 @@ desired effect
             <div class="error-page">
                 <h2 class="headline text-yellow"> 404</h2>
                 <div class="error-content">
-                    <h3><i class="fa fa-warning text-yellow"></i> Oops! Pagina no encontrada.</h3>
+                    <h3><i class="fa fa-warning text-yellow"></i> Oops! Página no encontrada.</h3>
                     <p>
-                        Lo sentimos no pudimos encontrar la pagina que estas buscando. 
+                        Lo sentimos no pudimos encontrar la pagina que estas buscando.
                     </p>
-                    
+
                 </div><!-- /.error-content -->
             </div><!-- /.error-page -->
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
 
-    
+
 
 </div><!-- ./wrapper -->
 
@@ -67,15 +67,3 @@ desired effect
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-

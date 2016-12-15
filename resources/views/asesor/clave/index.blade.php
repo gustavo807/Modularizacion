@@ -18,10 +18,10 @@
 									<div class="table-responsive">
 											<table class="table table-hover">
 									        <thead>
-															<th width="200px">Modulo</th>
+															<th width="200px">Módulo</th>
 									            <th>Clave</th>
 						                  <th>Identificador</th>
-									            <th width="150px">Action</th>
+									            <th width="150px">Acción</th>
 									        </thead>
 						              @foreach($claves as $clave)
 															<tbody>
