@@ -21,7 +21,7 @@
 									            <th width="150px">Clasificacion</th>
 					                    <th>Módulo</th>
 															<th>Descripción</th>
-									            <th width="150px">Action</th>
+									            <th width="150px">Acción</th>
 									        </thead>
 					                @foreach($modulos as $modulo)
 					                  <tbody>

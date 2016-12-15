@@ -17,11 +17,11 @@
 									<div class="table-responsive">
 											<table class="table table-hover">
 										        <thead>
-																<th>Modulo</th>
+																<th>Módulo</th>
 										            <th>Imagen</th>
 						                    <th>Descripcion</th>
 						                    <th>Referencia</th>
-										            <th width="150px">Action</th>
+										            <th width="150px">Acción</th>
 										        </thead>
 
 						                @foreach($imagenes as $imagen)

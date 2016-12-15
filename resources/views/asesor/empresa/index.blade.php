@@ -21,7 +21,7 @@
 													<th>Registro</th>
 													<th>Empresa</th>
 													<th>Asesor</th>
-													<th>Estatus</th>
+													<th>Estado</th>
 													<th>Copiar</th>
 							        </thead>
 

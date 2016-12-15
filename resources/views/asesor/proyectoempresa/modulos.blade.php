@@ -22,7 +22,7 @@
 							@include('alerts.success')
 							<table class="table table-hover">
 					        <thead>
-					            <th>Modulo</th>
+					            <th>Módulo</th>
 					            <th width="150px">Estatus</th>
 					        </thead>
 	                @foreach($modulos as $modulo)

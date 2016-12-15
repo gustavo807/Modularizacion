@@ -19,7 +19,7 @@
 						        <thead>
 						            <th>Nombre</th>
 		                    <th>Email</th>
-						            <th width="150px">Action</th>
+						            <th width="150px">Acción</th>
 						        </thead>
 
 		                @foreach($asesores as $asesor)

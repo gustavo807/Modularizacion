@@ -17,9 +17,9 @@
 									<div class="table-responsive">
 										<table class="table table-hover" >
 							        <thead>
-							            <th width="200px">Modulo</th>
-					                <th>Parrafo</th>
-							            <th width="150px">Action</th>
+							            <th width="200px">Módulo</th>
+					                <th>Párrafo</th>
+							            <th width="150px">Acción</th>
 							        </thead>
 					            @foreach($parrafos as $parrafo)
 				  							<tbody>

@@ -5,6 +5,9 @@
     <title>Mail Contacto</title>
   </head>
   <body>
-    Here get the message, the sender, and his mail
+    <h2>Nuevo mensaje enviado desde la página web de AliveTech</h2>
+    <p>De: {{ $nombre }}</p>
+    <p>Email: {{ $email }}</p>
+    <p>Mensaje: {{ $mensaje }}</p>
   </body>
 </html>

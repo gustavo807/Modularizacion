@@ -21,7 +21,7 @@
 						            <th>Documento</th>
 												@if (Auth::user()->activo == 1)
 			                    <th>Selecciona</th>
-							            <th width="150px">Action</th>
+							            <th width="150px">Acción</th>
 												@endif
 						        </thead>
 				            @foreach($documentos as $documento)

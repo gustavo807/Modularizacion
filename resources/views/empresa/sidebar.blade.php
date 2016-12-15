@@ -34,7 +34,7 @@
             <!--<li class="header">{{-- trans('adminlte_lang::message.header') --}}</li>-->
             <!-- Optionally, you can add icons to the links -->
 
-            <li class="active" id="urlempresa"><a href="/empresa"><i class='fa fa-briefcase'></i> <span>Home</span></a></li>
+            <li class="active" id="urlempresa"><a href="/empresa"><i class='fa fa-briefcase'></i> <span>Proyectos</span></a></li>
             <li><a href="/empresamodulognrl"><i class='fa fa-id-card-o'></i> <span>Modulos Generales</span></a></li>
             <li><a href="/empresadocumentos"><i class='fa fa-folder-open-o'></i> <span>Documentos</span></a></li>
 

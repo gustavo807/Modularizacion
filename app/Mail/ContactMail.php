@@ -8,13 +8,17 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Contracts\Mail\Mailer;
+use Illuminate\Http\Request;
+use App\Http\Requests\ContactRequest;
 
 class ContactMail extends Mailable
 {
   protected $mailer;
-  protected $from = 'no-reply@alivetech.mx';
+  protected $from;
   protected $to;
+  protected $name;
   protected $view;
+  protected $msg;
   protected $data = [];
   protected $emails = array("dianaguzmane@alivetech.mx");
 
@@ -39,14 +43,18 @@ class ContactMail extends Mailable
   {
       $this->name = 'Alive Tech';
       $this->subject = 'Nuevo Mensaje en la página web.';
-      return $this->view('mails.contacto');
+      return $this->view('mails.contacto')
+                ->with($name, $from, $msgFrom);
 
   }
 
 
-  public function enviarEmailContacto()
+  public function enviarEmailContacto($nameFrom, $mailFrom, $msgFrom)
   {
     $this->to = $this->emails;
+    $this->name = $nameFrom;
+    $this->from = $mailFrom;
+    $this->msg = $msgFrom;
     $this->view = 'mails.contact';
 
     $this->deliver();

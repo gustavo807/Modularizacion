@@ -1,14 +1,14 @@
 @extends('empresa.cuerpo')
 @section('htmlheader_title') Home @endsection
-@section('contentheader_title') Modulos Generales @endsection
-@section('contentheader_description') Modulos Generales @endsection
+@section('contentheader_title') Módulos Generales @endsection
+@section('contentheader_description') Módulos Generales @endsection
 
 @section('main-content')
 	<div class="container spark-screen">
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
 				<div class="panel panel-default">
-					<div class="panel-heading">Modulos Generales</div>
+					<div class="panel-heading">Módulos Generales</div>
 
 						<div class="panel-body">
 								@include('alerts.warning')

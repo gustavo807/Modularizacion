@@ -25,7 +25,7 @@
         								<td>{{$proyecto->empresa}}</td>
                         <td>{{$proyecto->nombre}}</td>
         								<td>{{$proyecto->convocatoria}}</td>
-                        <td>{{$proyecto->modulo}} / {{ $modulos }} módulos </td>
+                        <td>{{$proyecto->modulo}} / {{ $modulos }} Módulos </td>
 												<td>{{$proyecto->created_at}}</td>
         							</tbody>
           					@endforeach

@@ -20,7 +20,7 @@
 															<th>Categoria</th>
 					                    <th>Nombre</th>
 									            <th>Asignado</th>
-									            <th width="150px">Action</th>
+									            <th width="150px">Acción</th>
 									        </thead>
 
 					                @foreach($documentos as $documento)

@@ -12,7 +12,7 @@
 					<div class="panel-heading">
 						<ul class="nav nav-tabs nav-justified">
               <li class="active"><a href="#">Proyectos</a></li>
-              <li><a href="/amodulognrl/{{$empresa->id}}">Modulos Generales</a></li>
+              <li><a href="/amodulognrl/{{$empresa->id}}">Módulos Generales</a></li>
 							<li><a href="/documentosempresa/{{$empresa->id}}">Documentos</a></li>
             </ul>
 					</div>
@@ -27,10 +27,10 @@
 							        <thead>
 							            <th>Nombre</th>
 													<th>Convocatoria</th>
-						              <th>Descripcion</th>
+						              <th>Descripción</th>
 													<th>Empresa</th>
 													<th>Asesor</th>
-							            <th width="150px">Action</th>
+							            <th width="150px">Acción</th>
 											</thead>
 						          @foreach($proyectos as $proyecto)
 													<tbody>

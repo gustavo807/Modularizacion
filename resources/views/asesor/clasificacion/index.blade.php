@@ -17,8 +17,8 @@
 								<div class="table-responsive">
 										<table class="table table-hover">
 									        <thead>
-									            <th>Clasificacion</th>
-									            <th width="150px">Action</th>
+									            <th>Clasificación</th>
+									            <th width="150px">Acción</th>
 									        </thead>
 
 					                @foreach($clasificaciones as $clasificacion)

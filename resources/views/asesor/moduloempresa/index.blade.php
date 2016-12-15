@@ -22,7 +22,7 @@
               <table class="table table-hover">
                     <thead>
                         <th>Módulo</th>
-                        <th width="150px">Estatus</th>
+                        <th width="150px">Estado</th>
                     </thead>
                     @foreach($modulos as $modulo)
                       <tbody>
