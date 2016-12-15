@@ -102,7 +102,7 @@ class EProyectoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request, $id)
-    {
+    {   
         $idproyecto = Session::get('idproyecto');
         $proyecto = Proyecto::findOrFail($idproyecto);
         $iduser = $request->user()->id;
@@ -114,7 +114,7 @@ class EProyectoController extends Controller
         // PRIMER MODULO
         $primer = Ordena_Modulo::primermodulo('2');
 
-        if(isset($primer))
+        if(count($primer) > 0)
         {
           if(isset($primer[0]->modulo_id)){
             if ($primer[0]->modulo_id != $id) {

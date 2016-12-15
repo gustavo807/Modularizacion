@@ -31,6 +31,7 @@ class EModuloGnrlController extends Controller
 
         $modulos = Modulo::modulosgnrl($iduser,$propietario);
         $primer = Ordena_Modulo::primermodulo();
+//return $modulos.$primer;
         return view('empresa/modulognrl.index',['modulos'=>$modulos]);
     }
 
@@ -125,7 +126,7 @@ class EModuloGnrlController extends Controller
 
         $primer = Ordena_Modulo::primermodulo();
 
-        if(isset($primer))
+        if(count($primer) > 0)
         {
           if(isset($primer[0]->modulo_id)){
             if ($primer[0]->modulo_id != $id) {
