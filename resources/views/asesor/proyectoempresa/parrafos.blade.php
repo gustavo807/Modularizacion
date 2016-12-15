@@ -30,26 +30,28 @@
 									$arr2[] = $clave->valor;
 								}
 							@endphp
-							<table class="table table-bordered">
-										<thead>
-												<th>Párrafo</th>
-												<th width="150px">Selecciona</th>
-										</thead>
-										<div class="form-group">
-										{!!Form::open(['action'=>'AProyectoEmpresaController@storeparrafoproyecto', 'method'=>'POST', 'class'=>'formparrafo'])!!}
-												@foreach($parrafos as $parrafo)
-													<tbody>
-													 <td class="no-copy">
-														 @php
-																echo str_replace($arr1,$arr2,$parrafo->parrafo);
-														 @endphp
-													 </td>
-														<td>
-															{!! Form::radio('parrafo', $parrafo->id,(isset($proyectoparrafo->parrafo_id) ) ?	(($proyectoparrafo->parrafo_id == $parrafo->id) ? 'true' : ''): '' ) !!}
-														</td>
-														</tbody>
-												@endforeach
-								</table>
+							<div class="table-responsive">
+								<table class="table table-bordered">
+											<thead>
+													<th>Párrafo</th>
+													<th width="150px">Selecciona</th>
+											</thead>
+											<div class="form-group">
+											{!!Form::open(['action'=>'AProyectoEmpresaController@storeparrafoproyecto', 'method'=>'POST', 'class'=>'formparrafo'])!!}
+													@foreach($parrafos as $parrafo)
+														<tbody>
+														 <td class="no-copy">
+															 @php
+																	echo str_replace($arr1,$arr2,$parrafo->parrafo);
+															 @endphp
+														 </td>
+															<td>
+																{!! Form::radio('parrafo', $parrafo->id,(isset($proyectoparrafo->parrafo_id) ) ?	(($proyectoparrafo->parrafo_id == $parrafo->id) ? 'true' : ''): '' ) !!}
+															</td>
+															</tbody>
+													@endforeach
+									</table>
+								</div>
 												<br>
 												{!!Form::label('nombre','Comentario: ')!!}
 												{!!Form::textarea('observacion',(isset($proyectoparrafo->observacion)) ? $proyectoparrafo->observacion : null ,['class'=>'form-control txtobservacion','rows'=>'5','placeholder'=>'Comentario acerca de los parrafos'])!!}

@@ -123,32 +123,35 @@ class EModuloGnrlController extends Controller
 
         Modulo::findOrFail($id); //Si el modulo no esta Error 404
 
-              $primer = Ordena_Modulo::primermodulo();
-              if(isset($primer[0]->modulo_id)){
-                if ($primer[0]->modulo_id != $id) {
-                  $result = User_Modulo::usermodulo($iduser,$propietario,$id);
-                  if(!isset($result)){
-                      $modulo = Ordena_Modulo::all()->where('modulo_id','=',$id)->first();
-                      $validam = Ordena_Modulo::validamodulo($modulo['orden']);
-                      if(isset($validam[0]->modulo_id)){
-                        $result2 = User_Modulo::usermodulo($iduser,$propietario,$validam[0]->modulo_id);
-                        if (!isset($result2->modulo_id)) {
-                            //return 'Debes completar los modulos consecutivamente';
-                            return redirect('/empresamodulognrl')->with('warning','Para avanzar debes contestar los modulos consecutivamente ');
-                        }
-                      }
-                  }// SI EXIETE EL MODULO SELECCIONADO
-                  //else
-                    //return $result->modulo_id.' MODULO SELECCIONADO';
-                }//SI EL MODULO ES DIFERENTE DEL PRIMERO
-              }// SI EXISTE EL PRIMER MODULO GNRL
+        $primer = Ordena_Modulo::primermodulo();
 
-
-              // ya entro
-              Session::put('idmodulognrl', $id);
-              $modulo = Modulo::findOrFail($id);
-              $claves = Clave::clavesmodulo($id,$iduser,$propietario);
-              return view('empresa/modulognrl.edit',['claves'=>$claves,'modulo'=>$modulo]);
+        if(isset($primer))
+        {
+          if(isset($primer[0]->modulo_id)){
+            if ($primer[0]->modulo_id != $id) {
+              $result = User_Modulo::usermodulo($iduser,$propietario,$id);
+              if(!isset($result)){
+                  $modulo = Ordena_Modulo::all()->where('modulo_id','=',$id)->first();
+                  $validam = Ordena_Modulo::validamodulo($modulo['orden']);
+                  if(isset($validam[0]->modulo_id)){
+                    $result2 = User_Modulo::usermodulo($iduser,$propietario,$validam[0]->modulo_id);
+                    if (!isset($result2->modulo_id)) {
+                        //return 'Debes completar los modulos consecutivamente';
+                        return redirect('/empresamodulognrl')->with('warning','Para avanzar debes contestar los modulos consecutivamente ');
+                    }
+                  }
+              }// SI EXIETE EL MODULO SELECCIONADO
+              //else
+                //return $result->modulo_id.' MODULO SELECCIONADO';
+            }//SI EL MODULO ES DIFERENTE DEL PRIMERO
+          }// SI EXISTE EL PRIMER MODULO GNRL
+        }
+              
+      // ya entro
+      Session::put('idmodulognrl', $id);
+      $modulo = Modulo::findOrFail($id);
+      $claves = Clave::clavesmodulo($id,$iduser,$propietario);
+      return view('empresa/modulognrl.edit',['claves'=>$claves,'modulo'=>$modulo]);
 
 
     }

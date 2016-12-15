@@ -17,18 +17,20 @@
 
 						<div class="panel-body">
               <div class="claves">
-                <table class="table table-hover">
-                    <thead>
-                        <th>Nombre</th>
-                        <th>Valor</th>
-                    </thead>
-                    @foreach($claves as $clave)
-                      <tbody>
-                        <td>{{$clave->nombre}}</td>
-                        <td>{{$clave->valor}}</td>
-                      </tbody>
-                    @endforeach
-                </table>
+								<div class="table-responsive">
+	                <table class="table table-hover">
+	                    <thead>
+	                        <th>Nombre</th>
+	                        <th>Valor</th>
+	                    </thead>
+	                    @foreach($claves as $clave)
+	                      <tbody>
+	                        <td>{{$clave->nombre}}</td>
+	                        <td>{{$clave->valor}}</td>
+	                      </tbody>
+	                    @endforeach
+	                </table>
+							  </div>
                 {{ $claves->links() }}
               </div>
 						</div>

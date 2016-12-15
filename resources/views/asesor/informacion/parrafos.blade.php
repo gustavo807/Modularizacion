@@ -25,6 +25,7 @@
                   $arr2[] = $clave->valor;
                 }
               @endphp
+							<div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
                         <th width="100">Modulo</th>
@@ -49,6 +50,7 @@
                       </tbody>
                     @endforeach
                 </table>
+							</div>
                 {{ $parrafos->links() }}
 						</div>
 

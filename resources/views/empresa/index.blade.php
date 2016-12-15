@@ -12,7 +12,7 @@
 					<div class="panel-heading">Vista Empresa</div>
 
 					<div class="panel-body">
-
+						<div class="table-responsive">
 						<table class="table table-hover">
 					        <thead>
 					            <th>Proyecto</th>
@@ -29,7 +29,7 @@
 	                 </tbody>
 							    @endforeach
 					    </table>
-
+						</div>
 					</div>
 				</div>
 			</div>

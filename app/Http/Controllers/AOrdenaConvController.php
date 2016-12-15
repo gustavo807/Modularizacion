@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
+
 class AOrdenaConvController extends Controller
 {
     /**
@@ -13,7 +15,7 @@ class AOrdenaConvController extends Controller
      */
     public function index()
     {
-        //
+      
     }
 
     /**

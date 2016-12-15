@@ -113,26 +113,30 @@ class EProyectoController extends Controller
 
         // PRIMER MODULO
         $primer = Ordena_Modulo::primermodulo('2');
-        if(isset($primer[0]->modulo_id)){
-          if ($primer[0]->modulo_id != $id) {
-            // EL MODULO ESTA COMPLETO
-            $result = Proyecto_Modulo::proyectomodulo($idproyecto,'empresa',$id);
-            if(!isset($result)){
-                $modulo = Ordena_Modulo::all()->where('modulo_id','=',$id)->first();
-                $validam = Ordena_Modulo::validamodulo($modulo['orden'], '2');
-                // VALIDA SI ES EL MODULO SIGUIENTE DE UN MODULO COMPLETO
-                if(isset($validam[0]->modulo_id)){
-                  $result2 = Proyecto_Modulo::proyectomodulo($idproyecto,'empresa',$validam[0]->modulo_id);
-                  if (!isset($result2->modulo_id)) {
-                      //return 'Debes completar los modulos consecutivamente';
-                      return redirect('/empresaproyecto/'.$idproyecto)->with('warning','Para avanzar debes contestar los modulos consecutivamente ');
+
+        if(isset($primer))
+        {
+          if(isset($primer[0]->modulo_id)){
+            if ($primer[0]->modulo_id != $id) {
+              // EL MODULO ESTA COMPLETO
+              $result = Proyecto_Modulo::proyectomodulo($idproyecto,'empresa',$id);
+              if(!isset($result)){
+                  $modulo = Ordena_Modulo::all()->where('modulo_id','=',$id)->first();
+                  $validam = Ordena_Modulo::validamodulo($modulo['orden'], '2');
+                  // VALIDA SI ES EL MODULO SIGUIENTE DE UN MODULO COMPLETO
+                  if(isset($validam[0]->modulo_id)){
+                    $result2 = Proyecto_Modulo::proyectomodulo($idproyecto,'empresa',$validam[0]->modulo_id);
+                    if (!isset($result2->modulo_id)) {
+                        //return 'Debes completar los modulos consecutivamente';
+                        return redirect('/empresaproyecto/'.$idproyecto)->with('warning','Para avanzar debes contestar los modulos consecutivamente ');
+                    }
                   }
-                }
-            }// SI EXIETE EL MODULO SELECCIONADO
-            //else
-              //return $result->modulo_id.' MODULO SELECCIONADO';
-          }//SI EL MODULO ES DIFERENTE DEL PRIMERO
-        }// SI EXISTE EL PRIMER MODULO GNRL
+              }// SI EXIETE EL MODULO SELECCIONADO
+              //else
+                //return $result->modulo_id.' MODULO SELECCIONADO';
+            }//SI EL MODULO ES DIFERENTE DEL PRIMERO
+          }// SI EXISTE EL PRIMER MODULO GNRL
+        }
 
         Session::put('idmoduloconv', $id);
         $propietario = 'empresa';

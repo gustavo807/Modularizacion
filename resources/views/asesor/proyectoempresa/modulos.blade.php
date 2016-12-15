@@ -20,24 +20,26 @@
 						<div class="panel-body">
               @include('alerts.warning')
 							@include('alerts.success')
-							<table class="table table-hover">
-					        <thead>
-					            <th>Modulo</th>
-					            <th width="150px">Estatus</th>
-					        </thead>
-	                @foreach($modulos as $modulo)
-	                  <tbody>
-	                   <td>
-	                     {!! link_to('clavesmodulo/'.$modulo->id.'/proyecto/'.$proyecto->id, $title = $modulo->modulo) !!}
-	                   </td>
-	                    <td>
-												@if ($modulo->completo)
-													<strong>Completo</strong>
-												@endif
-	                    </td>
-	                 </tbody>
-							    @endforeach
-						    </table>
+							<div class="table-responsive">
+								<table class="table table-hover">
+						        <thead>
+						            <th>Modulo</th>
+						            <th width="150px">Estatus</th>
+						        </thead>
+		                @foreach($modulos as $modulo)
+		                  <tbody>
+		                   <td>
+		                     {!! link_to('clavesmodulo/'.$modulo->id.'/proyecto/'.$proyecto->id, $title = $modulo->modulo) !!}
+		                   </td>
+		                    <td>
+													@if ($modulo->completo)
+														<strong>Completo</strong>
+													@endif
+		                    </td>
+		                 </tbody>
+								    @endforeach
+							    </table>
+								</div>
 								{{ $modulos->links() }}
 						</div>
 

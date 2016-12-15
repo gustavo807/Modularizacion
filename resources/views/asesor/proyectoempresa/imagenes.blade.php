@@ -23,24 +23,26 @@
   						@include('alerts.errors')
 
   						@include('alerts.imagen')
-  						<table class="table table-bordered">
-  				        <thead>
-  				            <th>Imagen</th>
-  				            <th width="150px">Selecciona</th>
-  				        </thead>
-                  <div class="form-group">
-                  {!!Form::open(['action'=>'AProyectoEmpresaController@storeimagenproyecto', 'method'=>'POST', 'class'=>'formimagen'])!!}
-                      @foreach($imagenes as $imagen)
-                      	<tbody>
-                         <td>
-  												 <img class="img" src="/documentos/{{ $imagen->imagen}}" alt="" class="img-responsive" style="width:200px;" descripcion="{{ $imagen->descripcion}}"	referencia="{{ $imagen->referencia}}" title="Click para ampliar"/>
-                         </td>
-                          <td>
-  													{!! Form::radio('imagen',$imagen->id, (isset($proyectoimagen->imagen_id) ) ?	(($proyectoimagen->imagen_id == $imagen->id) ? 'true' : ''): '') !!}
-                          </td>
-                        </tbody>
-      						    @endforeach
-  					    </table>
+							<div class="table-responsive">
+	  						<table class="table table-bordered">
+	  				        <thead>
+	  				            <th>Imagen</th>
+	  				            <th width="150px">Selecciona</th>
+	  				        </thead>
+	                  <div class="form-group">
+	                  {!!Form::open(['action'=>'AProyectoEmpresaController@storeimagenproyecto', 'method'=>'POST', 'class'=>'formimagen'])!!}
+	                      @foreach($imagenes as $imagen)
+	                      	<tbody>
+	                         <td>
+	  												 <img class="img" src="/documentos/{{ $imagen->imagen}}" alt="" class="img-responsive" style="width:200px;" descripcion="{{ $imagen->descripcion}}"	referencia="{{ $imagen->referencia}}" title="Click para ampliar"/>
+	                         </td>
+	                          <td>
+	  													{!! Form::radio('imagen',$imagen->id, (isset($proyectoimagen->imagen_id) ) ?	(($proyectoimagen->imagen_id == $imagen->id) ? 'true' : ''): '') !!}
+	                          </td>
+	                        </tbody>
+	      						    @endforeach
+	  					    </table>
+								</div>
                       {!!Form::text('proyecto',$proyecto->id,['class'=>'form-control','style'=>'display:none'])!!}
                       {!!Form::text('modulo',$modulo->id,['class'=>'form-control','style'=>'display:none'])!!}
   										{!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}

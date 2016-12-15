@@ -14,7 +14,8 @@
 								@include('alerts.validar')
 								@include('alerts.errors')
 
-									@include('alerts.imagen')
+								@include('alerts.imagen')
+								<div class="table-responsive">
 									<table class="table table-bordered">
 								        <thead>
 								            <th>Imagen</th>
@@ -33,6 +34,7 @@
 						                  </tbody>
 												    @endforeach
 								    </table>
+									</div>
 													{!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
 													{!!Form::close()!!}
 											</div>
