@@ -47,7 +47,7 @@
 								</div>
 												<br>
 												{!!Form::label('nombre','Comentario: ')!!}
-												{!!Form::textarea('observacion',(isset($proyectoparrafo->observacion)) ? $proyectoparrafo->observacion : null ,['class'=>'form-control txtobservacion','rows'=>'5','placeholder'=>'Comentario acerca de los parrafos'])!!}
+												{!!Form::textarea('observacion',(isset($proyectoparrafo->observacion)) ? $proyectoparrafo->observacion : null ,['class'=>'form-control txtobservacion','rows'=>'5','placeholder'=>'Escriba aquí algún comentario o corrección que desee hacer del párrafo seleccionado'])!!}
 												{!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
 
 										{!!Form::close()!!}

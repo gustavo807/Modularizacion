@@ -54,6 +54,7 @@
 												@endforeach
 							    </table>
 								</div>
+								{{ $empresas->links() }}
 						</div>
 
 				</div>

@@ -21,7 +21,7 @@ class AEmpresaController extends Controller
      */
     public function index()
     {
-      $empresas = User::all()->where('rol_id','=', '1');
+      $empresas = User::where('rol_id','=', '1')->paginate(10);
       return view('asesor.empresa.index',['empresas'=>$empresas]);
     }
 
