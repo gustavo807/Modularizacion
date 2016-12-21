@@ -147,6 +147,9 @@ Route::group(['middleware' => 'auth'], function () {
 
 	});
 
+    // RUTA PARA EL PERFIL, ESTE APLICA PARA TODOS LOS ROLES
+    Route::resource('perfil','PerfilController');
+
 	// RUTA PARA OBTENER LAS CIUDADES
 	Route::get('ciudades/{id}','CiudadController@getTowns');
 
