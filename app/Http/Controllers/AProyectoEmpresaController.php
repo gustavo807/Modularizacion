@@ -11,6 +11,7 @@ use App\Proyecto_Clave;
 use App\Proyecto_Parrafo;
 use App\Proyecto_Imagen;
 use App\Proyecto_Modulo;
+use App\User_Clave;
 use App\Parrafo;
 use App\Imagen;
 
@@ -85,8 +86,9 @@ class AProyectoEmpresaController extends Controller
     $parrafos = Parrafo::parrafosmodulos($id);
     $proyectoparrafo = Proyecto_Parrafo::proyectoparrafo($idproyecto,$propietario,$id);
     $claves = Proyecto_Clave::claves($idproyecto,$propietario);
-    //return $claves;
-    return view('asesor.proyectoempresa.parrafos',['proyecto'=>$proyecto,'modulo'=>$modulo, 'parrafos'=>$parrafos,'claves'=>$claves,'proyectoparrafo'=>$proyectoparrafo]);
+    $clavesg = User_Clave::getclaves($proyecto->user->id, $propietario);
+    //return $proyecto->user->id;
+    return view('asesor.proyectoempresa.parrafos',['proyecto'=>$proyecto,'modulo'=>$modulo, 'parrafos'=>$parrafos,'claves'=>$claves,'proyectoparrafo'=>$proyectoparrafo,'clavesg'=>$clavesg]);
       return 'hola'.$id;
   }
 

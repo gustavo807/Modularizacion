@@ -58,6 +58,23 @@ class User_Clave extends Model
               ->paginate(10);
   }
 
+  public static function getclaves($user_id, $propietario){
+    return DB::table('claves')
+              ->select('claves.nombre','claves.identificador',
+              DB::raw('(SELECT user_claves.valor
+                        FROM user_claves
+                         WHERE user_claves.clave_id=claves.id
+                         and user_claves.user_id='.$user_id.'
+                         and user_claves.propietario="'.$propietario.'") as valor')
+                      )
+              ->whereIn('claves.modulo_id', function($query){
+                    $query->select('modulos.id')
+                    ->from('modulos')
+                    ->where('modulos.clasificacion_id','=','1');
+                })
+              ->get();
+  }
+
 
 }
 /*

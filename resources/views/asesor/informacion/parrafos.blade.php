@@ -14,7 +14,6 @@
               <li class="active"><a href="#">Párrafos e imágenes</a></li>
             </ul>
 					</div>
-
 						<div class="panel-body">
               @include('alerts.imagenresumen')
               @php
@@ -23,6 +22,13 @@
                 foreach ($claves as $clave) {
                   $arr1[] = $clave->identificador;
                   $arr2[] = $clave->valor;
+                }
+                //Si existe claves generales
+                if (isset($clavesg)) {
+                  foreach ($clavesg as $clave) {
+                    $arr1[] = $clave->identificador;
+                    $arr2[] = $clave->valor;
+                  }
                 }
               @endphp
 							<div class="table-responsive">

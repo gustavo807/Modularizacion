@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Excel;
 use App\ProspectForm;
+use App\AExcel;
+use App\Proyecto;
+
 class ExcelController extends Controller
 {
 
@@ -25,4 +28,60 @@ class ExcelController extends Controller
         })->download($type);
 
   }
+
+
+  public function show($id)
+  {
+      $proyecto = Proyecto::findOrFail($id);
+      $iduser = Proyecto::findOrFail($id)->user->id;
+      $propietario = 'asesor';
+//return $proyecto->user->nombre;
+      // CLAVES GENERALES 
+      $clavesg = AExcel::claves($iduser,$propietario);
+      foreach ($clavesg as $key => $value) {
+        $arrayclavesg[$value->nombre] = $value->valor;
+      }
+
+      // CLAVES PROYECTO
+      $clavesp = AExcel::clavesproyecto($id,$propietario);
+      foreach ($clavesp as $key => $value) {
+        $arrayclavesp[$value->nombre] = $value->valor;
+      }
+
+      // MODULOS GENERALES
+      $modulosg = AExcel::parrafosusuario($iduser, $propietario,'1');
+      foreach ($clavesg as $clave) {
+        $identificador[] = $clave->identificador;
+        $valor[] = $clave->valor;
+      }
+      foreach ($modulosg as $key => $value) {
+        $arraymodulosg[$value->modulo] = str_replace($identificador,$valor,$value->parrafo).
+                                         "  #COMENTARIO: ".$value->comentario."  #IMAGEN: ".$value->imagen;
+      }
+
+      // MODULOS PROYECTO
+      $modulosp = AExcel::parrafosproyecto($id, $propietario,'2');      
+      foreach ($clavesp as $clave) {
+        $identificador[] = $clave->identificador;
+        $valor[] = $clave->valor;
+      }
+      foreach ($modulosp as $key => $value) {
+        $arraymodulosp[$value->modulo] = str_replace($identificador,$valor,$value->parrafo).
+                                         "  #COMENTARIO: ".$value->comentario."  #IMAGEN: ".$value->imagen;
+      }
+
+      // UNIR ARREGLOS
+      $array = array_merge($arrayclavesg,$arrayclavesp,$arraymodulosg,$arraymodulosp);
+
+
+      //EXPORTAR DATOS
+      Excel::create($proyecto->nombre, function($excel) use ($array) {
+          $excel->sheet('hoja 1', function($sheet) use ($array) {                
+              $sheet->fromArray(array($array));
+          });
+      })->export('xls');
+      
+  }
+
+
 }

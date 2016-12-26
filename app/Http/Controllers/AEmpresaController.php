@@ -154,8 +154,9 @@ class AEmpresaController extends Controller
 
         $parrafos = Proyecto_Parrafo::parrafosproyecto($id, $user, '2');
         $claves = Proyecto_Clave::claves($id, $user);
+        $clavesg = User_Clave::getclaves($proyecto->user_id, $user);
 
-        return view('asesor.informacion.parrafos',['parrafos'=>$parrafos,'claves'=>$claves, 'empresa'=>$empresa, 'user'=>$user,'ruta'=>'proyectoclaves','id'=>$id]);
+        return view('asesor.informacion.parrafos',['parrafos'=>$parrafos,'claves'=>$claves, 'empresa'=>$empresa, 'user'=>$user,'ruta'=>'proyectoclaves','id'=>$id,'clavesg'=>$clavesg]);
         //return 'hola'.$id.$user;
     }
 

@@ -41,9 +41,8 @@ class EmpresaDocumentoController extends Controller
      */
     public function store(Request $request)
     {
-        //return $request->all();
         $this->validate($request, [
-            'documento' => 'max:1000',
+            'documento' => 'max:5120',
         ]);
 
         $id = $request->user()->id;
@@ -55,6 +54,7 @@ class EmpresaDocumentoController extends Controller
           }
         else {
           Doc_Usuario::borradocumento($id, $request->documento_id);
+          \Storage::delete($doc->documento);
           Doc_Usuario::create($request->all());
           $variable = 'Actualizado';
         }
@@ -103,9 +103,11 @@ class EmpresaDocumentoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
+    {       
         $userid = Auth::user()->id;
+        $documento = Doc_Usuario::existedocumento($userid, $id);
         Doc_Usuario::borradocumento($userid, $id);
+        \Storage::delete($documento->documento);
         return redirect('/empresadocumentos')->with('success','Documento borrado correctamente');
     }
 }

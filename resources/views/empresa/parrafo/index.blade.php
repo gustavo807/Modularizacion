@@ -22,6 +22,10 @@
 									$arr1[] = $clave->identificador;
 									$arr2[] = $clave->valor;
 								}
+								foreach ($clavesg as $clave) {
+									$arr1[] = $clave->identificador;
+									$arr2[] = $clave->valor;
+								}
 							@endphp
 							<div class="table-responsive">
 								<table class="table table-bordered">

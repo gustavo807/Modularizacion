@@ -10,6 +10,7 @@ use App\Proyecto_Modulo;
 use App\Parrafo;
 use App\Proyecto;
 use App\Imagen;
+use App\User_Clave;
 use Session;
 
 class EParrafoController extends Controller
@@ -37,8 +38,9 @@ class EParrafoController extends Controller
       $parrafos = Parrafo::parrafosmodulos($idmodulo);
       $proyectoparrafo = Proyecto_Parrafo::proyectoparrafo($idproyecto,$propietario,$idmodulo);
       $claves = Proyecto_Clave::claves($idproyecto,$propietario);
+      $clavesg = User_Clave::getclaves($iduser, $propietario);
       //return $claves;
-      return view('empresa.parrafo.index',['parrafos'=>$parrafos,'claves'=>$claves,'proyectoparrafo'=>$proyectoparrafo]);
+      return view('empresa.parrafo.index',['parrafos'=>$parrafos,'claves'=>$claves,'proyectoparrafo'=>$proyectoparrafo,'clavesg'=>$clavesg]);
 
     }
 

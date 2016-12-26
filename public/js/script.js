@@ -198,6 +198,32 @@ $(function () {
 
 
 
+      // ALERT EXCEL
+      $('.exceld').on('click', function (e) {
+          href = $(this).attr("href");
+          e.preventDefault();
+          bootbox.confirm({
+              title: "Confirmar",
+              message: "Estas seguro de descargar la informacion? <br> Esto podría tardar unos segundos. <br><br> ",
+              buttons: {
+                  cancel: {
+                      label: '<i class="fa fa-times"></i> Cancelar'
+                  },
+                  confirm: {
+                      label: '<i class="fa fa-check"></i> Confirmar'
+                  }
+              },
+              callback: function (result) {
+                  if(result)
+                  {
+                    window.location = href;
+                  }
+              }
+          });
+        });
+
+
+
 });
 
 /*

@@ -30,32 +30,40 @@
 						              <th>Descripción</th>
 													<th>Empresa</th>
 													<th>Asesor</th>
-							            <th width="150px">Acción</th>
+							            <th >Acción</th>
+							            <th >Excel</th>
 											</thead>
 						          @foreach($proyectos as $proyecto)
-													<tbody>
-														<td>{!! link_to('modulosproyecto/'.$proyecto->id, $title = $proyecto->nombre, $attributes = ['class'=>'']) !!}</td>
-														<td>{{$proyecto->convocatoria}}</td>
-														<td>{{$proyecto->descripcion}}</td>
-														<td>
-															{!! link_to('proyectoclaves/'.$proyecto->id.'/user/empresa', $title = '',$attributes = 'class="ion-ios-paper icon-big" title="Resumen del proyecto"') !!}
-														</td>
-														<td>
-															{!! link_to('proyectoclaves/'.$proyecto->id.'/user/asesor', $title = '',$attributes = 'class="ion-ios-paper icon-big" title="Resumen del proyecto"') !!}
-														</td>
-						                <td>
-															<div class="col-md-2">
-																{!! link_to_route('asesorproyecto.edit', $title = '', $parameters = $proyecto->id, $attributes = ['class'=>'ion-edit icon-big']) !!}
-															</div>
+									<tbody>
+										<td>{!! link_to('modulosproyecto/'.$proyecto->id, $title = $proyecto->nombre, $attributes = ['class'=>'']) !!}</td>
+										<td>{{$proyecto->convocatoria}}</td>
+										<td>{{$proyecto->descripcion}}</td>
+										<td>
+											{!! link_to('proyectoclaves/'.$proyecto->id.'/user/empresa', $title = '',$attributes = 'class="ion-ios-paper icon-big" title="Resumen del proyecto"') !!}
+										</td>
+										<td>
+											{!! link_to('proyectoclaves/'.$proyecto->id.'/user/asesor', $title = '',$attributes = 'class="ion-ios-paper icon-big" title="Resumen del proyecto"') !!}
+										</td>
+		                                <td>
+											<div class="col-md-2">
+												{!! link_to_route('asesorproyecto.edit', $title = '', $parameters = $proyecto->id, $attributes = ['class'=>'ion-edit icon-big']) !!}
+											</div>
 
-												<!--			<div class="col-md-2">
-																{!! Form::open(['method' => 'DELETE',	'route' => ['asesorproyecto.destroy', $proyecto->id],	'id' => 'form-delete-proyectos-' . $proyecto->id]) !!}
-																    <a href="" class="data-delete ion-trash-b icon-big"	data-form="proyectos-{{ $proyecto->id }}">	</a>
-																{!! Form::close() !!}
-															</div> -->
-						                </td>
-												</tbody>
-											@endforeach
+								<!--			<div class="col-md-2">
+												{!! Form::open(['method' => 'DELETE',	'route' => ['asesorproyecto.destroy', $proyecto->id],	'id' => 'form-delete-proyectos-' . $proyecto->id]) !!}
+												    <a href="" class="data-delete ion-trash-b icon-big"	data-form="proyectos-{{ $proyecto->id }}">	</a>
+												{!! Form::close() !!}
+											</div> -->
+										</td>
+										<td>
+											<div class="col-md-2">
+												{!! link_to_route('excel.show', $title = '', $parameters = $proyecto->id, $attributes = ['class'=>'ion-archive icon-big exceld', 'title' => 'Descargar']) !!}
+											</div>
+										</td>
+											
+		                              
+								</tbody>
+								@endforeach
 							  </table>
 							</div>
 						</div>

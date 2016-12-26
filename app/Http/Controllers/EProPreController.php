@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Proyecto_Clave;
 use App\Proyecto_Parrafo;
 use App\Proyecto;
+use App\User_Clave;
 use Session;
 
 class EProPreController extends Controller
@@ -77,8 +78,9 @@ class EProPreController extends Controller
 
       $parrafos = Proyecto_Parrafo::parrafosproyecto($id, 'empresa', '2');
       $claves = Proyecto_Clave::claves($id, 'empresa');
-      //return $claves;
-      return view('empresa.infoproyecto.parrafos',['parrafos'=>$parrafos,'claves'=>$claves,'idproyecto'=>$id]);
+      $clavesg = User_Clave::getclaves($iduser, 'empresa');
+      //return $clavesg;
+      return view('empresa.infoproyecto.parrafos',['parrafos'=>$parrafos,'claves'=>$claves,'idproyecto'=>$id,'clavesg'=>$clavesg]);
     }
 
     /**
