@@ -63,6 +63,10 @@ Route::resource('logueo','AutenticacionController@logueo');
 //Route::get('/home', 'HomeController@index');
 
 
+// WEB SERVICE
+Route::group(['middleware' => 'phone'], function () {
+    Route::resource('cors','CorsController');
+});
 
 Route::group(['middleware' => 'auth'], function () {
 

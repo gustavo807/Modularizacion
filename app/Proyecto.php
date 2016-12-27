@@ -45,6 +45,31 @@ class Proyecto extends Model
                 ->paginate(10);
     }
 
+    public static function webservice(){
+      return DB::table('proyectos')
+                ->select('proyectos.id','proyectos.nombre','proyectos.descripcion','proyectos.created_at as fecha', DB::raw('(SELECT count(*) FROM modulos WHERE modulos.clasificacion_id=2) as total'),
+                DB::raw('(SELECT users.nombre FROM users WHERE proyectos.user_id=users.id) as empresa'),
+                DB::raw('(SELECT convocatorias.convocatoria FROM convocatorias WHERE proyectos.convocatoria_id=convocatorias.id ) as convocatoria'),
+                DB::raw('(SELECT count(*) FROM proyecto_modulo WHERE proyecto_modulo.proyecto_id=proyectos.id
+                                                               AND proyecto_modulo.propietario="empresa") as modulo')
+                        )
+                ->orderBy('empresa', 'asc')
+                ->orderBy('proyectos.nombre', 'asc')
+                ->get();
+    }
+
+    public static function showwebservice($id){
+      return DB::table('proyectos')
+                ->select('proyectos.id','proyectos.nombre','proyectos.descripcion','proyectos.created_at as fecha', DB::raw('(SELECT count(*) FROM modulos WHERE modulos.clasificacion_id=2) as total'),
+                DB::raw('(SELECT users.nombre FROM users WHERE proyectos.user_id=users.id) as empresa'),
+                DB::raw('(SELECT convocatorias.convocatoria FROM convocatorias WHERE proyectos.convocatoria_id=convocatorias.id ) as convocatoria'),
+                DB::raw('(SELECT count(*) FROM proyecto_modulo WHERE proyecto_modulo.proyecto_id=proyectos.id
+                                                               AND proyecto_modulo.propietario="empresa") as modulo')
+                        )
+                ->where('proyectos.id','=',$id)
+                ->get();
+    }
+
     public static function proyectodescripcion($idproyecto){
       return DB::table('proyectos')
                 ->join('convocatorias','proyectos.convocatoria_id','=','convocatorias.id')

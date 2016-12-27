@@ -55,5 +55,7 @@ class Kernel extends HttpKernel
         'asesor' => \App\Http\Middleware\Asesor::class,
         'empresa' => \App\Http\Middleware\Empresa::class,
         'vinculado' => \App\Http\Middleware\Vinculado::class,
+
+        'phone' => \App\Http\Middleware\Phone::class,
     ];
 }
