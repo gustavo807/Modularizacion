@@ -85,7 +85,7 @@ class AProyectoEmpresaController extends Controller
     $propietario = 'asesor';
     $parrafos = Parrafo::parrafosmodulos($id);
     $proyectoparrafo = Proyecto_Parrafo::proyectoparrafo($idproyecto,$propietario,$id);
-    $claves = Proyecto_Clave::claves($idproyecto,$propietario);
+    $claves = Proyecto_Clave::getclavesuser($idproyecto,$propietario);
     $clavesg = User_Clave::getclaves($proyecto->user->id, $propietario);
     //return $proyecto->user->id;
     return view('asesor.proyectoempresa.parrafos',['proyecto'=>$proyecto,'modulo'=>$modulo, 'parrafos'=>$parrafos,'claves'=>$claves,'proyectoparrafo'=>$proyectoparrafo,'clavesg'=>$clavesg]);

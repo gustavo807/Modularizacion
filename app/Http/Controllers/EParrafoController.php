@@ -37,7 +37,7 @@ class EParrafoController extends Controller
 
       $parrafos = Parrafo::parrafosmodulos($idmodulo);
       $proyectoparrafo = Proyecto_Parrafo::proyectoparrafo($idproyecto,$propietario,$idmodulo);
-      $claves = Proyecto_Clave::claves($idproyecto,$propietario);
+      $claves = Proyecto_Clave::getclavesuser($idproyecto,$propietario);
       $clavesg = User_Clave::getclaves($iduser, $propietario);
       //return $claves;
       return view('empresa.parrafo.index',['parrafos'=>$parrafos,'claves'=>$claves,'proyectoparrafo'=>$proyectoparrafo,'clavesg'=>$clavesg]);

@@ -105,7 +105,7 @@ class AModuloGnrlController extends Controller
     {
         $empresa = User::findOrFail($iduser);
         $modulo = Modulo::findOrFail($id);
-        $claves = User_Clave::clavesusuario($iduser,'asesor');
+        $claves = User_Clave::getclavesusuario($iduser,'asesor');
         $parrafos = Parrafo::parrafosmodulos($id);
         $userparrafo = User_Parrafo::userparrafo($iduser,'asesor',$id);
 

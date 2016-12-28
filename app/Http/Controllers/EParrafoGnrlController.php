@@ -31,7 +31,7 @@ class EParrafoGnrlController extends Controller
         $idmodulo = Session::get('idmodulognrl');
         $parrafos = Parrafo::parrafosmodulos($idmodulo);
         $userparrafo = User_Parrafo::userparrafo($iduser,$propietario,$idmodulo);
-        $claves = User_Clave::clavesusuario($iduser,$propietario);
+        $claves = User_Clave::getclavesusuario($iduser,$propietario);
 
         return view('empresa/parrafognrl.index',['parrafos'=>$parrafos,'claves'=>$claves,'userparrafo'=>$userparrafo]);
     }

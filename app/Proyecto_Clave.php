@@ -76,5 +76,22 @@ class Proyecto_Clave extends Model
                 ->paginate(10);
     }
 
+    public static function getclavesuser($idproyecto, $propietario){
+      return DB::table('claves')
+                ->select('claves.nombre','claves.identificador',
+                DB::raw('(SELECT proyectos_claves.valor
+                          FROM proyectos_claves
+                           WHERE proyectos_claves.clave_id=claves.id
+                           and proyectos_claves.proyecto_id='.$idproyecto.'
+                           and proyectos_claves.propietario="'.$propietario.'") as valor')
+                        )
+                ->whereIn('claves.modulo_id', function($query){
+                      $query->select('modulos.id')
+                      ->from('modulos')
+                      ->where('modulos.clasificacion_id','=','2');
+                  })
+                ->get();
+    }
+
 
 }
