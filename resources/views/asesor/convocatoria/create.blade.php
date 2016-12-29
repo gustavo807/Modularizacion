@@ -17,8 +17,8 @@
 										<div class="form-group">
 											{!!Form::label('nombre','Nombre:')!!}
 											{!!Form::text('convocatoria',null,['class'=>'form-control','placeholder'=>'Ingresa el Nombre'])!!}
-											{!!Form::label('descripcion','Descripcion:')!!}
-											{!!Form::text('descripcion',null,['class'=>'form-control','placeholder'=>'Ingresa la descripcion'])!!}
+											{!!Form::label('descripcion','Descripción:')!!}
+											{!!Form::textarea('descripcion',null,['class'=>'form-control','placeholder'=>'Ingresa la descripcion','rows'=>'4'])!!}
 											{!!Form::label('nombre','Institucion:')!!}
 											{!!Form::select('institucion_id',$instituciones,null,['class'=>'form-control'])!!}
 										</div>

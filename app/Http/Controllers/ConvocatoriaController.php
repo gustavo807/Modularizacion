@@ -50,7 +50,7 @@ class ConvocatoriaController extends Controller
     {
         $this->validate($request, [
             'convocatoria' => 'required|max:255',
-            'descripcion' => 'required|max:255',
+            'descripcion' => 'required|max:500',
             'institucion_id' => 'required|max:255',
         ]);
         Convocatoria::create($request->all());
@@ -94,7 +94,7 @@ class ConvocatoriaController extends Controller
     {
         $this->validate($request, [
             'convocatoria' => 'required|max:255',
-            'descripcion' => 'required|max:255',
+            'descripcion' => 'required|max:500',
             'institucion_id' => 'required|max:255',
         ]);
 

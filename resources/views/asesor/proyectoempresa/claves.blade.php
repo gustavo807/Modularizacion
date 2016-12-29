@@ -21,11 +21,8 @@
               @include('alerts.errors')
               @include('alerts.validar')
 							@if (isset($modulo->descripcion))
-								<div class="alert alert-info">
-									<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-									<ul>
-											<li>{{$modulo->descripcion}}</li>
-									</ul>
+								<div class="bs-callout bs-callout-primary"> <h4>Instrucciones</h4> 
+									<p>{{$modulo->descripcion}}</p> 
 								</div>
 							@endif
               {!!Form::open(['route'=>'proyectomodulos.store', 'method'=>'POST', 'class'=>'formulario'])!!}

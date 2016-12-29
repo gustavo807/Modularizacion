@@ -44,7 +44,7 @@ class AModuloController extends Controller
     {
       $this->validate($request, [
           'modulo' => 'required|max:255',
-          'descripcion' => 'max:500',
+          'descripcion' => 'max:1000',
           'clasificacion_id' => 'required|max:255',
       ]);
       Modulo::create($request->all());
@@ -89,7 +89,7 @@ class AModuloController extends Controller
     {
       $this->validate($request, [
           'modulo' => 'required|max:255',
-          'descripcion' => 'max:500',
+          'descripcion' => 'max:1000',
           'clasificacion_id' => 'required|max:255',
       ]);
       Modulo::find($id)->update($request->all());

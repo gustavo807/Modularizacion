@@ -32,6 +32,8 @@
                         <td>
                           @if ($modulo->completo)
                             <strong>Completo</strong>
+                          @else
+                            Por llenar
                           @endif
                         </td>
                      </tbody>
