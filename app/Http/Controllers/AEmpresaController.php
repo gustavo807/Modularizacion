@@ -128,7 +128,7 @@ class AEmpresaController extends Controller
         if($user != 'empresa' && $user != 'asesor') return redirect('/erros/404');
 
         $parrafos = User_Parrafo::parrafosusuario($id, $user,'1');
-        $claves = User_Clave::claves($id, $user);
+        $claves = User_Clave::getclaves($id, $user);
         return view('asesor.informacion.parrafos',['parrafos'=>$parrafos,'claves'=>$claves, 'empresa'=>$empresa, 'user'=>$user,'ruta'=>'informaciognrl','id'=>$id]);
         //return 'hola'.$id.$user;
     }
@@ -153,7 +153,7 @@ class AEmpresaController extends Controller
         if($user != 'empresa' && $user != 'asesor') return redirect('/erros/404');
 
         $parrafos = Proyecto_Parrafo::parrafosproyecto($id, $user, '2');
-        $claves = Proyecto_Clave::claves($id, $user);
+        $claves = Proyecto_Clave::getclavesuser($id, $user);
         $clavesg = User_Clave::getclaves($proyecto->user_id, $user);
 
         return view('asesor.informacion.parrafos',['parrafos'=>$parrafos,'claves'=>$claves, 'empresa'=>$empresa, 'user'=>$user,'ruta'=>'proyectoclaves','id'=>$id,'clavesg'=>$clavesg]);
