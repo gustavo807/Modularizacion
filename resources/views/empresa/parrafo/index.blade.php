@@ -28,15 +28,19 @@
 								}
 							@endphp
 							<div class="table-responsive">
-								<table class="table table-bordered">
+								<table class="table table-bordered table-striped table-hover">
 											<thead>
+												<tr>
 													<th>Párrafo</th>
 													<th width="150px">Selecciona</th>
+												</tr>
+													
 											</thead>
 											<div class="form-group">
 											{!!Form::open(['route'=>'empresaparrafo.store', 'method'=>'POST', 'class'=>'formparrafo'])!!}
+											<tbody>
 													@foreach($parrafos as $parrafo)
-														<tbody>
+														<tr>
 														 <td class="no-copy">
 															 @php
 																	echo str_replace($arr1,$arr2,$parrafo->parrafo);
@@ -45,8 +49,9 @@
 															<td>
 																{!! Form::radio('parrafo', $parrafo->id,(isset($proyectoparrafo->parrafo_id) ) ?	(($proyectoparrafo->parrafo_id == $parrafo->id) ? 'true' : ''): '' ) !!}
 															</td>
-															</tbody>
+															</tr>
 													@endforeach
+													</tbody>
 									</table>
 								</div>
 												<br>

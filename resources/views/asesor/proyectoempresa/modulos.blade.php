@@ -11,7 +11,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<ul class="nav nav-tabs nav-justified">
-              <li class="active"><a href="#">Proyectos</a></li>
+              <li class="active"><a href="#"><strong>Proyectos</strong></a></li>
               <li><a href="/amodulognrl/{{ $proyecto->user->id}}">Módulos Generales</a></li>
 							<li><a href="/documentosempresa/{{$proyecto->user->id}}">Documentos</a></li>
             </ul>
@@ -22,16 +22,19 @@
 							@include('alerts.success')
 
 							<div class="table-responsive">
-								<table class="table table-hover">
+								<table class="table table-bordered table-striped table-hover">
 						        <thead>
-						            <th>Modulo</th>
-						            <th width="150px">Estatus</th>
+						            <tr>
+						            	<th>Modulo</th>
+						            	<th width="150px">Estatus</th>
+						            </tr>
 						        </thead>
+						        <tbody>
 		                @foreach($modulos as $modulo)
-		                  <tbody>
-		                   <td>
+		                  <tr>
+		                   <th>
 		                     {!! link_to('clavesmodulo/'.$modulo->id.'/proyecto/'.$proyecto->id, $title = $modulo->modulo) !!}
-		                   </td>
+		                   </th>
 		                    <td>
 													@if ($modulo->completo)
 														<strong>Completo</strong>
@@ -39,8 +42,9 @@
 															Por llenar
 													@endif
 		                    </td>
-		                 </tbody>
+		                 </tr>
 								    @endforeach
+								    </tbody>
 							    </table>
 								</div>
 

@@ -11,7 +11,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<ul class="nav nav-tabs nav-justified">
-              <li class="active"><a href="#">Proyectos</a></li>
+              <li class="active"><a href="#"><strong>Proyectos</strong></a></li>
               <li><a href="/amodulognrl/{{ $proyecto->user->id}}">Módulos Generales</a></li>
 							<li><a href="/documentosempresa/{{$proyecto->user->id}}">Documentos</a></li>
             </ul>

@@ -14,25 +14,31 @@
 								@include('alerts.warning')
 								@include('alerts.success')
 								<div class="table-responsive">
-									<table class="table table-hover">
+									<table class="table table-bordered table-striped table-hover">
 								        <thead>
-								            <th>Modulo</th>
-								            <th width="150px">Estatus</th>
+								        	<tr>
+									            <th>Módulo</th>
+									            <th width="150px">Estatus</th>
+								        	</tr>
 								        </thead>
+								        <tbody>
 				                @foreach($modulos as $modulo)
-				                  <tbody>
-				                   <td>
+				                  
+				                   <tr>
+				                   		<th>
 															 {!! link_to_route('empresamodulognrl.edit', $title = $modulo->modulo, $parameters = $modulo->id ) !!}
-				                   </td>
-				                    <td>
+				                   		</th>				                   
+				                    	<td>
 															@if ($modulo->completo)
 																<strong>Completo</strong>
 															@else
 																Por llenar
 															@endif
-				                    </td>
-				                 </tbody>
+				                    	</td>
+				                    </tr>
+				                 
 										    @endforeach
+										    </tbody>
 								    </table>
 									</div>
 									{{ $modulos->links() }}

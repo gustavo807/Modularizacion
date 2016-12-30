@@ -12,7 +12,7 @@
 
 						<div class="panel-body">
 							<div class="table-responsive">
-	              <table class="table table-bordered">
+	              <table class="table table-bordered table-striped table-hover">
 	                <tbody>
 	                  <tr>
 	                    <td><strong>Nombre:</strong></td> <td>{{ $proyecto->nombre }}</td>

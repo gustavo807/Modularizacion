@@ -8,22 +8,24 @@
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
 				<div class="panel panel-default">
-					<div class="panel-heading">Categorias</div>
+					<div class="panel-heading">Categorías</div>
 
 						<div class="panel-body">
 									@include('alerts.success')
 									<a href="/asesorcategoria/create" class="float">	<i class="fa fa-plus my-float"></i>	</a>
 
 									<div class="table-responsive">
-											<table class="table table-hover">
+											<table class="table table-bordered table-striped table-hover">
 										        <thead>
-										            <th>Categoria</th>
+										            <tr>
+										            	<th>Categoría</th>
 										            <th width="150px">Acción</th>
+										            </tr>
 										        </thead>
-
+										<tbody>
 						                @foreach($categorias as $categoria)
-						      							<tbody>
-						      								<td>{{$categoria->categoria}}</td>
+						      							<tr>
+						      								<th>{{$categoria->categoria}}</th>
 						      								<td>
 						      									<div class="col-md-2">
 						      										{!! link_to_route('asesorcategoria.edit', $title = '', $parameters = $categoria->id, $attributes = ['class'=>'ion-edit icon-big']) !!}
@@ -34,8 +36,9 @@
 						      										{!! Form::close() !!}
 						      									</div>		-->
 						      								</td>
-						      							</tbody>
+						      							</tr>
 						      						@endforeach
+						      						</tbody>
 										    </table>
 								</div>
 						</div>

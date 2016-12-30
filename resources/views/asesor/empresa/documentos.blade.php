@@ -13,7 +13,7 @@
             <ul class="nav nav-tabs nav-justified">
               <li><a href="/asesorempresa/{{$empresa->id}}">Proyectos</a></li>
               <li><a href="/amodulognrl/{{$empresa->id}}">Módulos Generales</a></li>
-							<li class="active"><a href="#">Documentos</a></li>
+							<li class="active"><a href="#"><strong>Documentos</strong></a></li>
             </ul>
 					</div>
 
@@ -21,21 +21,25 @@
 								@include('alerts.errors')
 								@include('alerts.success')
 								<div class="table-responsive">
-									<table class="table table-hover">
+									<table class="table table-bordered table-striped table-hover">
 							        <thead>
-													<th>Categoria</th>
+										<tr>
+														<th>Categoria</th>
 							            <th>Nombre</th>
 							            <th>Documento</th>
+										</tr>
 							        </thead>
+							        <tbody>
 	                    @foreach ($documentos as $documento)
-	                      <tbody>
-	                        <td>{{$documento->categoria}}</td>
+	                      <tr>
+	                        <th>{{$documento->categoria}}</th>
 	                        <td>{{$documento->nombre}}</td>
 	                        <td>
 	                          <a target="_blank" href="/documentos/{{$documento->documento}}">{{$documento->documento}}</a>
 	                        </td>
-	                      </tbody>
+	                      </tr>
 	                    @endforeach
+	                    </tbody>
 									</table>
 								</div>
                 {{$documentos->links()}}

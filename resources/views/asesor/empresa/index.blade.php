@@ -14,20 +14,22 @@
 								@include('alerts.success')
 
 								<div class="table-responsive">
-							    <table class="table table-hover">
+							    <table class="table table-bordered table-striped table-hover">
 							        <thead>
-							            <th>Nombre</th>
+							            <tr>
+							            	<th>Nombre</th>
 							            <th>Email</th>
 													<th>Registro</th>
 													<th>Empresa</th>
 													<th>Asesor</th>
 													<th>Estado</th>
 													<th>Copiar</th>
+							            </tr>
 							        </thead>
-
+									<tbody>
 							        @foreach($empresas as $empresa)
-													<tbody>
-														<td>{!! link_to_route('asesorempresa.show', $title = $empresa->nombre, $parameters = $empresa->id, $attributes = '') !!}</td>
+													<tr>
+														<th>{!! link_to_route('asesorempresa.show', $title = $empresa->nombre, $parameters = $empresa->id, $attributes = '') !!}</th>
 														<td>{{$empresa->email}}</td>
 														<td>{{$empresa->created_at}}</td>
 														<td>
@@ -50,8 +52,9 @@
 														<td>{!! link_to('copyempresa/'.$empresa->id, $title = '',
 																	$attributes = 'class="ion-ios-browsers icon-big copyempresa" title="Copiar módulos de esta empresa"') !!}
 														</td>
-													</tbody>
+													</tr>
 												@endforeach
+												</tbody>
 							    </table>
 								</div>
 								{{ $empresas->links() }}

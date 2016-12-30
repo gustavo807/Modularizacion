@@ -12,7 +12,7 @@
 					<div class="panel-heading">
 						<ul class="nav nav-tabs nav-justified">
               <li><a href="/asesorempresa/{{$empresa->id}}">Proyectos</a></li>
-              <li class="active"><a href="#">Módulos Generales</a></li>
+              <li class="active"><a href="#"><strong>Módulos Generales</strong></a></li>
 							<li><a href="/documentosempresa/{{$empresa->id}}">Documentos</a></li>
             </ul>
 					</div>

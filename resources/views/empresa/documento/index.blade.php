@@ -14,19 +14,22 @@
 								@include('alerts.errors')
 								@include('alerts.success')
 								<div class="table-responsive">
-								<table class="table table-hover">
+								<table class="table table-bordered table-striped table-hover">
 						        <thead>
-												<th>Categoria</th>
+						        	<tr>
+						        		<th>Categoria</th>
 						            <th>Nombre</th>
 						            <th>Documento</th>
 												@if (Auth::user()->activo == 1)
 			                    <th>Selecciona</th>
 							            <th width="150px">Acción</th>
 												@endif
+						        	</tr>												
 						        </thead>
+						        <tbody>
 				            @foreach($documentos as $documento)
-											<tbody>
-												<td>{{$documento->categoria}}</td>
+										<tr>	
+												<th>{{$documento->categoria}}</th>
 				                <td>{{$documento->nombre}}</td>
 				                <td>	<a target="_blank" href="/documentos/{{$documento->documento}}">{{$documento->documento}}</a>	</td>
 
@@ -46,8 +49,9 @@
 															@endif
 														</td>
 													@endif
-											</tbody>
+											</tr>
 										@endforeach
+										</tbody>
 								  </table>
 								</div>
 								{{ $documentos->links() }}

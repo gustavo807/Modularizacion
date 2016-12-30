@@ -15,16 +15,19 @@
 							<a href="/asesorinstitucion/create" class="float">	<i class="fa fa-plus my-float"></i>	</a>
 
 							<div class="table-responsive">
-									<table class="table table-hover">
+									<table class="table table-bordered table-striped table-hover">
 							        <thead>
-							            <th>Nombre</th>
-							            <th>Programa</th>
-							            <th width="150px">Acción</th>
+							        	<tr>
+							        		<th>Institución</th>
+								            <th>Programa</th>
+								            <th width="150px">Acción</th>
+							        	</tr>
+							            
 							        </thead>
-
+										<tbody>
 								      @foreach($instituciones as $institucion)
-											<tbody>
-												<td>{{$institucion->institucion}}</td>
+											<tr>
+												<th>{{$institucion->institucion}}</th>
 												<td>{{$institucion->programa}}</td>
 												<td>
 													<div class="col-md-2">
@@ -36,8 +39,9 @@
 														{!! Form::close() !!}
 													</div>	-->
 												</td>
-											</tbody>
+											</tr>
 										@endforeach
+										</tbody>
 								    </table>
 								</div>
 						</div>

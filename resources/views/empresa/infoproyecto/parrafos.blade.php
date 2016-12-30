@@ -11,7 +11,7 @@
 					<div class="panel-heading">
             <ul class="nav nav-tabs nav-justified">
               <li ><a href="/eproyecto/{{$idproyecto}}">Claves</a></li>
-              <li class="active"><a href="#">Párrafos e imágenes</a></li>
+              <li class="active"><a href="#"><strong>Párrafos e imágenes</strong></a></li>
             </ul>
 					</div>
 
@@ -30,15 +30,19 @@
 							}
 						@endphp
 						<div class="table-responsive">
-							<table class="table table-hover">
+							<table class="table table-bordered table-striped table-hover">
 								<thead>
+									<tr>
 										<th width="100">Módulo</th>
 										<th>Párrafo</th>
 										<th width="150">Imagen</th>
+									</tr>
+										
 								</thead>
+								<tbody>
 								@foreach($parrafos as $parrafo)
-									<tbody>
-										<td>{{$parrafo->modulo}}</td>
+									<tr>
+										<th>{{$parrafo->modulo}}</th>
 										<td class="no-copy">
 											@php
 												if (isset($arr1)) {
@@ -51,8 +55,9 @@
 												<img class="img" src="/documentos/{{ $parrafo->imagen}}" alt="" class="img-responsive" style="width:200px;"	title="Click para ampliar"/>
 											@endif
 										</td>
-									</tbody>
+									</tr>
 									@endforeach
+									</tbody>
 								</table>
 							</div>
 								{{ $parrafos->links() }}

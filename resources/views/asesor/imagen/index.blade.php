@@ -15,18 +15,20 @@
 									<a href="/asesorimagen/create" class="float">	<i class="fa fa-plus my-float"></i>	</a>
 
 									<div class="table-responsive">
-											<table class="table table-hover">
+											<table class="table table-bordered table-striped table-hover">
 										        <thead>
-																<th>Módulo</th>
+													<tr>
+																	<th>Módulo</th>
 										            <th>Imagen</th>
 						                    <th>Descripcion</th>
 						                    <th>Referencia</th>
 										            <th width="150px">Acción</th>
+													</tr>
 										        </thead>
-
+											<tbody>
 						                @foreach($imagenes as $imagen)
-																<tbody>
-																	<td width="200px">{{$imagen->modulo}}</td>
+														<tr>		
+																	<th width="200px">{{$imagen->modulo}}</th>
 																	<td>
 									                  <a target="_blank" href="/documentos/{{$imagen->imagen}}">{{$imagen->imagen}}</a>
 									                </td>
@@ -42,8 +44,9 @@
 																			{!! Form::close() !!}
 																		</div>	-->
 																	</td>
-																</tbody>
+																</tr>
 														@endforeach
+														</tbody>
 										    </table>
 										</div>
 							 	{{ $imagenes->links() }}

@@ -15,15 +15,18 @@
 									<a href="/asesorparrafo/create" class="float">	<i class="fa fa-plus my-float"></i>	</a>
 
 									<div class="table-responsive">
-										<table class="table table-hover" >
+										<table class="table table-bordered table-striped table-hover" >
 							        <thead>
-							            <th width="200px">Módulo</th>
+							            <tr>
+							            	<th width="200px">Módulo</th>
 					                <th>Párrafo</th>
 							            <th width="150px">Acción</th>
+							            </tr>
 							        </thead>
+							        <tbody>
 					            @foreach($parrafos as $parrafo)
-				  							<tbody>
-				  								<td>{{$parrafo->modulo}}</td>
+				  							<tr>
+				  								<th>{{$parrafo->modulo}}</th>
 				                  <td>{{$parrafo->parrafo}}</td>
 				  								<td>
 				  									<div class="col-md-2">
@@ -35,8 +38,9 @@
 				  										{!! Form::close() !!}
 				  									</div>		-->
 				  								</td>
-				  							</tbody>
+				  							</tr>
 					  					@endforeach
+					  					</tbody>
 									  </table>
 									</div>
 									{{ $parrafos->links() }}

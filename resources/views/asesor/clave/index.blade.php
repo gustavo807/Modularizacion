@@ -16,16 +16,19 @@
 									<a href="/asesorclave/create" class="float">	<i class="fa fa-plus my-float"></i> </a>
 
 									<div class="table-responsive">
-											<table class="table table-hover">
+											<table class="table table-bordered table-striped table-hover">
 									        <thead>
-															<th width="200px">Módulo</th>
+												<tr>
+																<th width="200px">Módulo</th>
 									            <th>Clave</th>
 						                  <th>Identificador</th>
 									            <th width="150px">Acción</th>
+												</tr>
 									        </thead>
+									        <tbody>
 						              @foreach($claves as $clave)
-															<tbody>
-																<td>{{$clave->modulo}}</td>
+														<tr>	
+																<th>{{$clave->modulo}}</th>
 																<td>{{$clave->nombre}}</td>
 								                <td>{{$clave->identificador}}</td>
 																<td>
@@ -38,8 +41,9 @@
 																		{!! Form::close() !!}
 																	</div>		-->
 																</td>
-															</tbody>
+															</tr>
 														@endforeach
+														</tbody>
 										    </table>
 									</div>
 									{{ $claves->links() }}

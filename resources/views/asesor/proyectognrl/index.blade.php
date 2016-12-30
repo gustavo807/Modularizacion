@@ -12,23 +12,27 @@
 
             <div class="panel-body">
 							<div class="table-responsive">
-                <table class="table table-hover">
+                <table class="table table-bordered table-striped table-hover">
                     <thead>
-                        <th>Empresa</th>
+                        <tr>
+                            <th>Empresa</th>
                         <th>Proyecto</th>
                         <th>Convocatoria</th>
                         <th>Avance</th>
-												<th>Fecha Asignado</th>
+                                                <th>Fecha Asignado</th>
+                        </tr>
                     </thead>
+                    <tbody>
                     @foreach($proyectos as $proyecto)
-        							<tbody>
-        								<td>{{$proyecto->empresa}}</td>
+        						<tr>	
+        								<th>{{$proyecto->empresa}}</th>
                         <td>{{$proyecto->nombre}}</td>
         								<td>{{$proyecto->convocatoria}}</td>
                         <td>{{$proyecto->modulo}} / {{ $modulos }} Módulos </td>
 												<td>{{$proyecto->created_at}}</td>
-        							</tbody>
+        							</tr>
           					@endforeach
+                            </tbody>
                   </table>
 								</div>
                 {{ $proyectos->links() }}

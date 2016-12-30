@@ -17,23 +17,28 @@
 
 						@include('alerts.imagen')
 						<div class="table-responsive">
-							<table class="table table-bordered">
+							<table class="table table-bordered table-striped table-hover">
 					        <thead>
-					            <th>Imagen</th>
-					            <th width="150px">Selecciona</th>
+					        	<tr>
+					        		<th>Imagen</th>
+					            	<th width="150px">Selecciona</th>
+					        	</tr>
+					            
 					        </thead>
 	                <div class="form-group">
 	                {!!Form::open(['route'=>'empresaimagen.store', 'method'=>'POST', 'class'=>'formimagen'])!!}
+	                <tbody>
 	                    @foreach($imagenes as $imagen)
-	                    	<tbody>
+	                    	<tr>
 	                       <td>
 													 <img class="img" src="documentos/{{ $imagen->imagen}}" alt="" class="img-responsive" style="width:200px;" descripcion="{{ $imagen->descripcion}}"	referencia="{{ $imagen->referencia}}" title="Click para ampliar"/>
 	                       </td>
 	                        <td>
 														{!! Form::radio('imagen',$imagen->id, (isset($proyectoimagen->imagen_id) ) ?	(($proyectoimagen->imagen_id == $imagen->id) ? 'true' : ''): '') !!}
 	                        </td>
-	                      </tbody>
+	                      	</tr>
 	    						    @endforeach
+	    						    </tbody>
 						    </table>
 							</div>
 										{!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}

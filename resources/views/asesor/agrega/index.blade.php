@@ -15,16 +15,18 @@
 						<a href="/asesoradd/create" class="float">	<i class="fa fa-plus my-float"></i> </a>
 
 						<div class="table-responsive">
-		          <table class="table table-hover">
+		          <table class="table table-bordered table-striped table-hover">
 						        <thead>
-						            <th>Nombre</th>
+						            <tr>
+						            	<th>Nombre</th>
 		                    <th>Email</th>
 						            <th width="150px">Acción</th>
+						            </tr>
 						        </thead>
-
+						<tbody>
 		                @foreach($asesores as $asesor)
-		      							<tbody>
-		      								<td>{{$asesor->nombre}}</td>
+		      						<tr>	
+		      								<th>{{$asesor->nombre}}</th>
 		      								<td>{{$asesor->email}}</td>
 		                      <td>
 		                        <div class="col-md-2">
@@ -36,8 +38,9 @@
 		      										{!! Form::close() !!}
 		      									</div>	-->
 		                      </td>
-		      							</tbody>
+		      							</tr>
 		      					@endforeach
+		      					</tbody>
 						    </table>
 						</div>
 					</div>

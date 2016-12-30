@@ -11,7 +11,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<ul class="nav nav-tabs nav-justified">
-              <li class="active"><a href="#">Proyectos</a></li>
+              <li class="active"><a href="#"><strong>Proyectos</strong></a></li>
               <li><a href="/amodulognrl/{{ $proyecto->user->id}}">Módulos Generales</a></li>
 							<li><a href="/documentosempresa/{{$proyecto->user->id}}">Documentos</a></li>
             </ul>
@@ -35,15 +35,18 @@
 								}
 							@endphp
 							<div class="table-responsive">
-								<table class="table table-bordered">
+								<table class="table table-bordered table-striped table-hover">
 											<thead>
+												<tr>
 													<th>Párrafo</th>
 													<th width="150px">Selecciona</th>
+												</tr>
 											</thead>
 											<div class="form-group">
 											{!!Form::open(['action'=>'AProyectoEmpresaController@storeparrafoproyecto', 'method'=>'POST', 'class'=>'formparrafo'])!!}
+											<tbody>
 													@foreach($parrafos as $parrafo)
-														<tbody>
+														<tr>
 														 <td class="no-copy">
 															 @php
 																	echo str_replace($arr1,$arr2,$parrafo->parrafo);
@@ -52,8 +55,9 @@
 															<td>
 																{!! Form::radio('parrafo', $parrafo->id,(isset($proyectoparrafo->parrafo_id) ) ?	(($proyectoparrafo->parrafo_id == $parrafo->id) ? 'true' : ''): '' ) !!}
 															</td>
-															</tbody>
+															</tr>
 													@endforeach
+												</tbody>
 									</table>
 								</div>
 												<br>

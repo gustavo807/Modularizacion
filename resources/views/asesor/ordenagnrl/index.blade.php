@@ -13,21 +13,25 @@
             <div class="panel-body">
 							@include('alerts.success')
 							<div class="table-responsive">
-                <table class="table table-hover ">
+                <table class="table table-bordered table-striped table-hover">
                       <thead>
-                          <th width="150px">Orden</th>
+                          <tr>
+                          	<th width="150px">Orden</th>
                           <th>Módulo</th>
 													<th width="100px">Acción</th>
+                          </tr>
                       </thead>
+                      					<tbody>
 											@foreach($modulos as $modulo)
-          							<tbody>
-          								<td>{{$modulo->orden}}</td>
+          							<tr>
+          								<th>{{$modulo->orden}}</th>
                           <td>{{$modulo->modulo}}</td>
 													<td>
 															{!! link_to_route('aordenagnrl.edit', $title = '', $parameters = $modulo->id, $attributes = ['class'=>'ion-edit icon-big']) !!}
 													</td>
-          							</tbody>
+          							</tr>
           						@endforeach
+          						</tbody>
                   </table>
 								</div>
 								{{ $modulos->links() }}

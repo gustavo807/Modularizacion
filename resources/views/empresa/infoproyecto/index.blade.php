@@ -10,7 +10,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
             <ul class="nav nav-tabs nav-justified">
-              <li class="active"><a href="#">Claves</a></li>
+              <li class="active"><a href="#"><strong>Claves</strong></a></li>
               <li><a href="/eproyecto/{{$idproyecto}}/edit">Parrafos e imagenes</a></li>
             </ul>
 					</div>
@@ -18,17 +18,22 @@
 						<div class="panel-body">
               <div class="claves">
 								<div class="table-responsive">
-	                <table class="table table-hover">
+	                <table class="table table-bordered table-striped table-hover">
 	                    <thead>
-	                        <th>Nombre</th>
-	                        <th>Valor</th>
+	                    	<tr>
+	                    		<th>Nombre</th>
+	                        	<th>Valor</th>
+	                    	</tr>
+	                        
 	                    </thead>
+	                    <tbody>
 	                    @foreach($claves as $clave)
-	                      <tbody>
-	                        <td>{{$clave->nombre}}</td>
+	                      <tr>
+	                        <th>{{$clave->nombre}}</th>
 	                        <td>{{$clave->valor}}</td>
-	                      </tbody>
+	                      </tr>
 	                    @endforeach
+	                    </tbody>
 	                </table>
 							  </div>
                 {{ $claves->links() }}

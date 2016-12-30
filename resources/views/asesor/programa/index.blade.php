@@ -15,15 +15,18 @@
 							<a href="/asesorprograma/create" class="float">  <i class="fa fa-plus my-float"></i>	</a>
 
 							<div class="table-responsive">
-								<table class="table table-hover">
+								<table class="table table-bordered table-striped table-hover">
 						        <thead>
-						            <th>Nombre</th>
-						            <th width="150px">Acción</th>
+						        	<tr>
+						        		<th>Programa</th>
+						            	<th width="150px">Acción</th>
+						        	</tr>
+						            
 						        </thead>
-
+									<tbody>
 							      @foreach($programas as $programa)
-										<tbody>
-											<td>{{$programa->programa}}</td>
+										<tr>
+											<th>{{$programa->programa}}</th>
 											<td>
 												<div class="col-md-2">
 													{!! link_to_route('asesorprograma.edit', $title = '', $parameters = $programa, $attributes = ['class'=>'ion-edit icon-big']) !!}
@@ -34,8 +37,9 @@
 													{!! Form::close() !!}
 												</div> -->
 											</td>
-										</tbody>
+										</tr>
 									@endforeach
+									</tbody>
 							    </table>
 							</div>
 					</div>

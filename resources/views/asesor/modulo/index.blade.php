@@ -16,16 +16,19 @@
 								<a href="/asesormodulo/create" class="float"> <i class="fa fa-plus my-float"></i> </a>
 
 								<div class="table-responsive">
-										<table class="table table-hover">
+										<table class="table table-bordered table-striped table-hover">
 									        <thead>
-									            <th width="150px">Clasificacion</th>
+									            <tr>
+									            	<th width="150px">Clasificacion</th>
 					                    <th>Módulo</th>
 															<th>Descripción</th>
 									            <th width="150px">Acción</th>
+									            </tr>
 									        </thead>
+									        <tbody>
 					                @foreach($modulos as $modulo)
-					                  <tbody>
-					                    <td>{{$modulo->clasificacion}}</td>
+					                  <tr>
+					                    <th>{{$modulo->clasificacion}}</th>
 					                    <td>{{$modulo->modulo}}</td>
 															<td>{{$modulo->descripcion}}</td>
 					                    <td>
@@ -38,8 +41,9 @@
 					                        {!! Form::close() !!}
 					                      </div>		-->
 					                    </td>
-					                 </tbody>
+					                 		</tr>
 											    @endforeach
+											    </tbody>
 									    </table>
 									</div>
 									{{ $modulos->links() }}

@@ -15,16 +15,19 @@
 							<a href="/asesorconvocatoria/create" class="float">	<i class="fa fa-plus my-float"></i>	</a>
 
 							<div class="table-responsive">
-									<table class="table table-hover">
+									<table class="table table-bordered table-striped table-hover">
 							        <thead>
-							            <th>Convocatoria</th>
+							            <tr>
+							            	<th>Convocatoria</th>
 							            <th>Descripción</th>
 							            <th>Institución</th>
 							            <th width="150px">Acción</th>
+							            </tr>
 							        </thead>
+							        <tbody>
 								      @foreach($convocatorias as $convocatoria)
-											<tbody>
-												<td>{{$convocatoria->convocatoria}}</td>
+											<tr>
+												<th>{{$convocatoria->convocatoria}}</th>
 												<td>{{$convocatoria->descripcion}}</td>
 												<td>{{$convocatoria->institucion}}</td>
 												<td>
@@ -37,8 +40,9 @@
 														{!! Form::close() !!}
 													</div>	-->
 												</td>
-											</tbody>
+											</tr>
 										@endforeach
+										</tbody>
 									</table>
 							</div>
 					</div>

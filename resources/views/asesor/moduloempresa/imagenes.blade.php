@@ -12,7 +12,7 @@
 					<div class="panel-heading">
 						<ul class="nav nav-tabs nav-justified">
               <li><a href="/asesorempresa/{{$empresa->id}}">Proyectos</a></li>
-              <li class="active"><a href="#">Módulos Generales</a></li>
+              <li class="active"><a href="#"><strong>Módulos Generales</strong></a></li>
 							<li><a href="/documentosempresa/{{$empresa->id}}">Documentos</a></li>
             </ul>
 					</div>
@@ -23,24 +23,30 @@
               @include('alerts.success')
 
               @include('alerts.imagen')
-              <table class="table table-bordered">
+              <div class="table-responsive">
+              <table class="table table-bordered table-striped table-hover">
                     <thead>
-                        <th>Imagen</th>
-                        <th width="150px">Selecciona</th>
+                        <tr>
+                          <th>Imagen</th>
+                          <th width="150px">Selecciona</th>
+                        </tr>
                     </thead>
                     <div class="form-group">
                     {!!Form::open(['action'=>'AModuloGnrlController@storeimagen', 'method'=>'POST', 'class'=>'formimagen'])!!}
+                    <tbody>
                         @foreach($imagenes as $imagen)
-                          <tbody>
+                          <tr>
                            <td>
                              <img class="img" src="/documentos/{{ $imagen->imagen}}" alt="" class="img-responsive" style="width:200px;"	descripcion="{{ $imagen->descripcion}}"	referencia="{{ $imagen->referencia}}" title="Click para ampliar"/>
                            </td>
                             <td>
                               {!! Form::radio('imagen',$imagen->id, (isset($userimagen->imagen_id) ) ?	(($userimagen->imagen_id == $imagen->id) ? 'true' : ''): '') !!}
                             </td>
-                          </tbody>
+                          </tr>
                         @endforeach
+                        </tbody>
                 </table>
+                </div>
                       {!!Form::text('empresa',$empresa->id,['class'=>'form-control','style'=>'display:none'])!!}
                       {!!Form::text('modulo',$modulo->id,['class'=>'form-control','style'=>'display:none'])!!}
                       {!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}

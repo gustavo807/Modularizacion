@@ -15,16 +15,20 @@
 							@include('alerts.success')
 
 							<div class="table-responsive">
-								<table class="table table-hover">
+								<table class="table table-bordered table-striped table-hover">
 						        <thead>
-						            <th>Modulo</th>
+						        <tr>
+						        	<th>Modulo</th>
 						            <th width="150px">Estatus</th>
+						        </tr>
+						            
 						        </thead>
+						        <tbody>
 		                @foreach($modulos as $modulo)
-		                  <tbody>
-		                   <td>
+		                  <tr>
+		                   <th>
 		                     {!! link_to_route('empresaproyecto.edit', $title = $modulo->modulo, $parameters = $modulo->id ) !!}
-		                   </td>
+		                   </th>
 		                    <td>
 													@if ($modulo->completo)
 														<strong>Completo</strong>
@@ -32,8 +36,9 @@
 														Por llenar
 													@endif
 		                    </td>
-		                 </tbody>
+		                 </tr>
 								    @endforeach
+								    </tbody>
 							    </table>
 								</div>
 

@@ -15,17 +15,19 @@
 									<a href="/asesordocumentos/create" class="float">	<i class="fa fa-plus my-float"></i> </a>
 
 									<div class="table-responsive">
-											<table class="table table-hover">
+											<table class="table table-bordered table-striped table-hover">
 									        <thead>
-															<th>Categoria</th>
+												<tr>
+																<th>Categoria</th>
 					                    <th>Nombre</th>
 									            <th>Asignado</th>
 									            <th width="150px">Acción</th>
+												</tr>
 									        </thead>
-
+											<tbody>
 					                @foreach($documentos as $documento)
-														<tbody>
-															<td>{{$documento->categoria}}</td>
+												<tr>		
+															<th>{{$documento->categoria}}</th>
 							                <td>{{$documento->nombre}}</td>
 															<td>{{$documento->rol}}</td>
 															<td>
@@ -38,8 +40,9 @@
 																	{!! Form::close() !!}
 																</div>		-->
 															</td>
-														</tbody>
+														</tr>
 													@endforeach
+													</tbody>
 										  </table>
 										</div>
 									{{ $documentos->links() }}

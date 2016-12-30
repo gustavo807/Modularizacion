@@ -12,7 +12,7 @@
 					<div class="panel-heading">
 						<ul class="nav nav-tabs nav-justified">
               <li><a href="/asesorempresa/{{$empresa->id}}">Proyectos</a></li>
-              <li class="active"><a href="#">Módulos Generales</a></li>
+              <li class="active"><a href="#"><strong>Módulos Generales</strong></a></li>
 							<li><a href="/documentosempresa/{{$empresa->id}}">Documentos</a></li>
             </ul>
 					</div>
@@ -31,15 +31,18 @@
                 }
               @endphp
 							<div class="table-responsive">
-              <table class="table table-bordered">
+              <table class="table table-bordered table-striped table-hover">
                   <thead>
-                      <th>Párrafo</th>
-                      <th width="150px">Selecciona</th>
+                      <tr>
+                        <th>Párrafo</th>
+                        <th width="150px">Selecciona</th>
+                      </tr>
                   </thead>
                   <div class="form-group">
                   {!!Form::open(['action'=>'AModuloGnrlController@storeparrafo', 'method'=>'POST', 'class'=>'formparrafo'])!!}
+                  <tbody>
                       @foreach($parrafos as $parrafo)
-                        <tbody>
+                        <tr>
                          <td class="no-copy">
                            @php
                               echo str_replace($arr1,$arr2,$parrafo->parrafo);
@@ -48,8 +51,9 @@
                           <td>
                             {!! Form::radio('parrafo', $parrafo->id,(isset($userparrafo->parrafo_id) ) ?	(($userparrafo->parrafo_id == $parrafo->id) ? 'true' : ''): '' ) !!}
                           </td>
-                          </tbody>
+                          </tr>
                       @endforeach
+                      </tbody>
                 </table>
 							</div>
                         <br>

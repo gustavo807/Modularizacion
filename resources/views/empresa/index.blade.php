@@ -13,21 +13,26 @@
 
 					<div class="panel-body">
 						<div class="table-responsive">
-						<table class="table table-hover">
+						<table class="table table-bordered table-striped table-hover">
 					        <thead>
-					            <th>Proyecto</th>
+					        	<tr>
+					        		<th>Proyecto</th>
 											<th>Convocatoria</th>
 					            <th>Descripción</th>
 											<th>Fecha Asignado</th>
+					        	</tr>
+					            
 					        </thead>
+					        <tbody>
 	                @foreach($proyectos as $proyecto)
-	                  <tbody>
-	                   <td>{!! link_to_route('empresaproyecto.show', $title = $proyecto->nombre, $parameters = $proyecto->id ) !!}</td>
-										 <td>{!! link_to_route('empresa.show', $title = $proyecto->convocatoria, $parameters = $proyecto->id ) !!}</td>
+	                  <tr>
+	                   <th>{!! link_to_route('empresaproyecto.show', $title = $proyecto->nombre, $parameters = $proyecto->id ) !!}</th>
+										 <th>{!! link_to_route('empresa.show', $title = $proyecto->convocatoria, $parameters = $proyecto->id ) !!}</th>
 	                    <td>{{$proyecto->descripcion}}</td>
 											<td>{{$proyecto->created_at}}</td>
-	                 </tbody>
+	                 </tr>
 							    @endforeach
+							    </tbody>
 					    </table>
 						</div>
 					</div>

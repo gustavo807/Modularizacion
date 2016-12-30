@@ -11,7 +11,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<ul class="nav nav-tabs nav-justified">
-              <li class="active"><a href="#">Proyectos</a></li>
+              <li class="active"><a href="#"><strong>Proyectos</strong></a></li>
               <li><a href="/amodulognrl/{{$empresa->id}}">Módulos Generales</a></li>
 							<li><a href="/documentosempresa/{{$empresa->id}}">Documentos</a></li>
             </ul>
@@ -23,19 +23,22 @@
 								<a href="/asesorproyecto/create" class="float" title="Agrega un proyecto">	<i class="fa fa-plus my-float"></i> </a>
 
 								<div class="table-responsive">
-								<table class="table table-hover">
+								<table class="table table-bordered table-striped table-hover">
 							        <thead>
-							            <th>Nombre</th>
+							            <tr>
+							            	<th>Nombre</th>
 													<th>Convocatoria</th>
 						              <th>Descripción</th>
 													<th>Empresa</th>
 													<th>Asesor</th>
 							            <th >Acción</th>
 							            <th >Excel</th>
+							            </tr>
 											</thead>
+											<tbody>
 						          @foreach($proyectos as $proyecto)
-									<tbody>
-										<td>{!! link_to('modulosproyecto/'.$proyecto->id, $title = $proyecto->nombre, $attributes = ['class'=>'']) !!}</td>
+									<tr>
+										<th>{!! link_to('modulosproyecto/'.$proyecto->id, $title = $proyecto->nombre, $attributes = ['class'=>'']) !!}</th>
 										<td>{{$proyecto->convocatoria}}</td>
 										<td>{{$proyecto->descripcion}}</td>
 										<td>
@@ -62,8 +65,9 @@
 										</td>
 											
 		                              
-								</tbody>
+								</tr>
 								@endforeach
+								</tbody>
 							  </table>
 							</div>
 						</div>
