@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Convocatoria;
-use App\Institucion;
+use App\Fondo;
 
 class ConvocatoriaController extends Controller
 {
@@ -20,8 +20,8 @@ class ConvocatoriaController extends Controller
         if (Auth::user()->rol_id != 3) return redirect('/asesor');
 
         $convocatorias = DB::table('convocatorias')
-                        ->join('instituciones', 'convocatorias.institucion_id', '=', 'instituciones.id')
-                        ->select('convocatorias.*', 'instituciones.institucion')
+                        ->join('fondos', 'convocatorias.fondos_id', '=', 'fondos.id')
+                        ->select('convocatorias.*', 'fondos.fondo')
                         ->whereNull('convocatorias.deleted_at')
                         ->get();
         return view('asesor/convocatoria.index',['convocatorias'=>$convocatorias]);
@@ -36,8 +36,8 @@ class ConvocatoriaController extends Controller
     {
         if (Auth::user()->rol_id != 3) return redirect('/asesor');
 
-        $instituciones = Institucion::pluck('institucion','id');
-        return view('asesor/convocatoria.create',compact('instituciones'));
+        $fondos = Fondo::pluck('fondo','id');
+        return view('asesor/convocatoria.create',compact('fondos'));
     }
 
     /**
@@ -51,8 +51,9 @@ class ConvocatoriaController extends Controller
         $this->validate($request, [
             'convocatoria' => 'required|max:255',
             'descripcion' => 'required|max:500',
-            'institucion_id' => 'required|max:255',
+            'fondos_id' => 'required|max:255',
         ]);
+//        return $request->all();
         Convocatoria::create($request->all());
         return redirect('/asesorconvocatoria')->with('success','Convocatoria registrada correctamente');
     }
@@ -77,10 +78,10 @@ class ConvocatoriaController extends Controller
     public function edit($id)
     {
         if (Auth::user()->rol_id != 3) return redirect('/asesor');
-        
+
         $convocatoria = Convocatoria::findOrFail($id);
-        $instituciones = Institucion::pluck('institucion','id');
-        return view('asesor/convocatoria.edit',['convocatoria'=>$convocatoria,'instituciones'=>$instituciones]);
+        $fondos = Fondo::pluck('fondo','id');
+        return view('asesor/convocatoria.edit',['convocatoria'=>$convocatoria,'fondos'=>$fondos]);
     }
 
     /**
@@ -95,7 +96,7 @@ class ConvocatoriaController extends Controller
         $this->validate($request, [
             'convocatoria' => 'required|max:255',
             'descripcion' => 'required|max:500',
-            'institucion_id' => 'required|max:255',
+            'fondos_id' => 'required|max:255',
         ]);
 
         Convocatoria::find($id)->update($request->all());

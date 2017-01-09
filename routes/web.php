@@ -77,6 +77,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('asesor','AsesorController');
 		    Route::resource('asesorprograma','ProgramaController');
 		    Route::resource('asesorinstitucion','InstitucionController');
+        Route::resource('asesorfondo', 'FondosController');
+        Route::resource('asesorinstitucionfondo', 'InstitucionFondoController');
 		    Route::resource('asesorconvocatoria','ConvocatoriaController');
         Route::resource('asesordocumentos','DocumentoController');
         //Route::resource('asesorclasificacion','AClasificacionController');

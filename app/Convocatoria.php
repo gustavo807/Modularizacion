@@ -10,7 +10,7 @@ class Convocatoria extends Model
 	//use SoftDeletes;
 
     protected $table = 'convocatorias';
-    public $fillable = ['convocatoria','descripcion','institucion_id'];
+    public $fillable = ['convocatoria','descripcion','institucion_id', 'fondos_id'];
 
     //protected $dates = ['deleted_at'];
 }

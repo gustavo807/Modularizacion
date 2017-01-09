@@ -20,7 +20,7 @@
 							            <tr>
 							            	<th>Convocatoria</th>
 							            <th>Descripción</th>
-							            <th>Institución</th>
+							            <th>Fondo</th>
 							            <th width="150px">Acción</th>
 							            </tr>
 							        </thead>
@@ -29,7 +29,7 @@
 											<tr>
 												<th>{{$convocatoria->convocatoria}}</th>
 												<td>{{$convocatoria->descripcion}}</td>
-												<td>{{$convocatoria->institucion}}</td>
+												<td>{{$convocatoria->fondo}}</td>
 												<td>
 													<div class="col-md-2">
 														{!! link_to_route('asesorconvocatoria.edit', $title = '', $parameters = $convocatoria->id, $attributes = ['class'=>'ion-edit icon-big']) !!}
