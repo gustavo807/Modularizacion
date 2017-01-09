@@ -20,6 +20,7 @@
 						        	<tr>
 						        		<th>Fondo</th>
 						        		<th>Descripción</th>
+												<th width="150px">Instituciones Participantes</th>
 						            <th width="150px">Acción</th>
 						        	</tr>
 
@@ -29,6 +30,11 @@
 										<tr>
 											<th>{{$fondo->fondo}}</th>
 											<td>{{$fondo->descripcion}}</td>
+											<td>
+											<div class="col-md-1">
+												{!! link_to_route('asesorinstitucionfondo.show', $title = '', $parameters = $fondo->id, $attributes = ['class'=>'fa fa-university icon-big']) !!}
+											</div>
+											</td>
 											<td>
 										    <div class="col-md-2">
 													{!! link_to_route('asesorfondo.edit', $title = '', $parameters = $fondo->id, $attributes = ['class'=>'ion-edit icon-big']) !!}

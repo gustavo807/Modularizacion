@@ -12,32 +12,25 @@
 
 					<div class="panel-body">
 							@include('alerts.success')
-							<a href="/asesorinstitucion/create" class="float">	<i class="fa fa-plus my-float"></i>	</a>
+							<a href="/asesorinstitucionfondo/create" class="float">	<i class="fa fa-plus my-float"></i>	</a>
 
 							<div class="table-responsive">
 									<table class="table table-bordered table-striped table-hover">
 							        <thead>
 							        	<tr>
-							        		<th>Institución</th>
-								            <th>Programa</th>
-								            <th width="150px">Acción</th>
+							        		<th>Instituciónes que participan en este fondo</th>
+								          <th width="150px">Acción</th>
 							        	</tr>
 
 							        </thead>
 										<tbody>
 								      @foreach($instituciones as $institucion)
 											<tr>
-												<th>{{$institucion->institucion}}</th>
-												<td>{{$institucion->programa}}</td>
+												<td>{{$institucion->institucion}}</td>
 												<td>
 													<div class="col-md-2">
-														{!! link_to_route('asesorinstitucion.edit', $title = '', $parameters = $institucion->id, $attributes = ['class'=>'ion-edit icon-big']) !!}
+														{!! link_to_route('asesorinstitucionfondo.edit', $title = '', $parameters = $institucion->id, $attributes = ['class'=>'ion-edit icon-big']) !!}
 													</div>
-										<!--			<div class="col-md-2">
-														{!! Form::open(['method' => 'DELETE',	'route' => ['asesorinstitucion.destroy', $institucion->id],	'id' => 'form-delete-instituciones-' . $institucion->id]) !!}
-														    <a href="" class="data-delete ion-trash-b icon-big"	data-form="instituciones-{{ $institucion->id }}">	</a>
-														{!! Form::close() !!}
-													</div>	-->
 												</td>
 											</tr>
 										@endforeach
@@ -51,3 +44,6 @@
 		</div>
 	</div>
 @endsection
+{{--<div class="col-md-2">
+	{!! link_to_route('asesorinstitucionfondo.edit', $title = '', $parameters = $institucion->id, $attributes = ['class'=>'ion-edit icon-big']) !!}
+</div>--}}

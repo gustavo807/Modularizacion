@@ -19,8 +19,8 @@
 											{!!Form::text('convocatoria',null,['class'=>'form-control','placeholder'=>'Ingresa el Nombre'])!!}
 											{!!Form::label('descripcion','Descripción:')!!}
 											{!!Form::textarea('descripcion',null,['class'=>'form-control','placeholder'=>'Ingresa la descripcion','rows'=>'4'])!!}
-											{!!Form::label('nombre','Institucion:')!!}
-											{!!Form::select('institucion_id',$instituciones,null,['class'=>'form-control'])!!}
+											{!!Form::label('fondos_id','Institucion:')!!}
+											{!!Form::select('fondos_id',$fondos,null,['class'=>'form-control'])!!}
 										</div>
 										{!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
 									{!!Form::close()!!}

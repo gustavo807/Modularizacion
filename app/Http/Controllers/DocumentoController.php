@@ -19,7 +19,7 @@ class DocumentoController extends Controller
     public function index()
     {
       if (Auth::user()->rol_id != 3) return redirect('/asesor');
-
+      
       $documentos = DB::table('documentos')
                       ->join('roles', 'documentos.rol_id', '=', 'roles.id')
                       ->join('categorias','documentos.categoria_id','=','categorias.id')
@@ -81,7 +81,7 @@ class DocumentoController extends Controller
     public function edit($id)
     {
       if (Auth::user()->rol_id != 3) return redirect('/asesor');
-      
+
       $documento = Documento::findOrFail($id);
       $roles = Rol::pluck('rol','id');
       $categorias = Categoria::pluck('categoria','id');

@@ -24,11 +24,11 @@
 			                    <th>Selecciona</th>
 							            <th width="150px">Acción</th>
 												@endif
-						        	</tr>												
+						        	</tr>
 						        </thead>
 						        <tbody>
 				            @foreach($documentos as $documento)
-										<tr>	
+										<tr>
 												<th>{{$documento->categoria}}</th>
 				                <td>{{$documento->nombre}}</td>
 				                <td>	<a target="_blank" href="/documentos/{{$documento->documento}}">{{$documento->documento}}</a>	</td>
