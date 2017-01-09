@@ -10,17 +10,15 @@ use App\Clave;
 use App\User_Clave;
 use App\User_Modulo;
 use App\Ordena_Modulo;
+use App\Evaluacion;
+use App\Euser;
 use App\Http\Requests\EMGnrlRequest;
 use Validator;
 
 class EModuloGnrlController extends Controller
 {
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index(Request $request)
     {
         if($request->user()->activo == 2)
@@ -35,22 +33,74 @@ class EModuloGnrlController extends Controller
         return view('empresa/modulognrl.index',['modulos'=>$modulos]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    
+    public function create(Request $request)
     {
-        //
+        $datos = Evaluacion::getdatos($request->user()->id,'competitividad');
+        return view('empresa.modulognrl.evaluacion',['datos'=>$datos]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    public function show(Request $request, $id)
+    {
+        $pregunta = Evaluacion::findOrFail($id);
+        if($pregunta->tipo != 'competitividad') abort(404);
+        $valor = Euser::where('evaluacion_id',$id)->where('user_id',$request->user()->id)->first();
+        return view('empresa.modulognrl.formevaluacion',['pregunta'=>$pregunta,'valor'=>$valor]);
+    }
+
+    public function storeecompetitividad(Request $request)
+    {
+        $this->validate($request, ['valor' => 'required', ]);
+        $pregunta = Evaluacion::findOrFail($request->pregunta_id);
+        if($pregunta->tipo != 'competitividad') abort(404);
+        $array = ['0','1'];
+        if(!in_array($request->valor, $array)) abort(404);
+
+        Euser::updateOrCreate(
+            ['evaluacion_id' => $pregunta->id, 'user_id' => $request->user()->id],
+            ['valor' => $request->valor, 'tipo' => 'competitividad']
+        );
+        return redirect('/empresamodulognrl/create')->with('success','Respuesta registrada correctamente');
+    }
+
+    public function resultados(Request $request)
+    {
+      $id_user = $request->user()->id;
+      $tipo = 'competitividad';
+      $variable1=['Mercado y Ventas','Insumos, Productos  y Servicios', 'Procesos y Sistema de Gestión de la Calidad', 'Recursos humanos y Desarrollo Empresarial', 'Desarrollo en Innovación'];
+      $data1;
+      foreach ($variable1 as $key => $value) {
+        $data1[] = Euser::resultados($id_user,$tipo,$value);
+      }
+      $variable2=['SOCIOS','TRABAJADORES','CLIENTES','COMUNIDAD','AMBIENTAL'];
+      $data2;
+      foreach ($variable2 as $key => $value) {
+        $data2[] = Euser::resultados($id_user,$tipo,$value);
+      }
+      
+      //Obtener las tablas 
+      $nivel1;
+      foreach ($data1 as $key => $value) {
+        $nivel1[] = Euser::calcula($value);
+      }
+      $nivel2;
+      foreach ($data2 as $key => $value) {
+        $nivel2[] = Euser::calcula($value);
+      }
+
+      $array1;
+      foreach ($variable1 as $key => $value) {
+        $array1[$key] = array('variable'=>$value,'promedio'=>$data1[$key],'nivel'=>$nivel1[$key]);
+        $array2[$key] = array('variable'=>$variable2[$key],'promedio'=>$data2[$key],'nivel'=>$nivel2[$key]);
+      }
+
+      $promedio1 = Euser::calcula(array_sum($data1)/count($data1));
+      $promedio2 = Euser::calcula(array_sum($data2)/count($data2));
+      //return $array2;
+      return view('empresa.modulognrl.resultados',['variable1'=>$variable1,'data1'=>$data1,'variable2'=>$variable2,'data2'=>$data2,'array1'=>$array1,'array2'=>$array2, 'promedio1'=>$promedio1,'promedio2'=>$promedio2]);
+    }    
+
+
     public function store(Request $request)
     {
       if (isset($request['valor'])) {
@@ -97,23 +147,7 @@ class EModuloGnrlController extends Controller
       //return view('borrame',['request'=>$request]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit(Request $request, $id)
     {
       if( Auth::user()->activo == 2)
@@ -155,18 +189,6 @@ class EModuloGnrlController extends Controller
       return view('empresa/modulognrl.edit',['claves'=>$claves,'modulo'=>$modulo]);
 
 
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**

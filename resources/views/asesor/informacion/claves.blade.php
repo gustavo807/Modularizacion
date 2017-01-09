@@ -21,7 +21,7 @@
                 <table class="table table-bordered table-striped table-hover">
                       <thead>
                           <tr>
-                            <th>Nombre</th>
+                            <th width="300px">Nombre</th>
                             <th>Valor</th>
                           </tr>
                       </thead>

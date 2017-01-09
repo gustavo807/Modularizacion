@@ -52,7 +52,7 @@ class EmpresaController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $proyecto = Proyecto::proyectodescripcion($id);
+        $proyecto = Proyecto::findOrFail($id);
         //return $proyecto->user_id;
         if($request->user()->id != $proyecto->user_id )
           return redirect('/empresa');

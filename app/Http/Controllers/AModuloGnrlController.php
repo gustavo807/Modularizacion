@@ -13,15 +13,84 @@ use App\Modulo;
 use App\Imagen;
 use App\Clave;
 use Validator;
+use App\Evaluacion;
+use App\Euser;
 
 class AModuloGnrlController extends Controller
 {
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
+    // Evaluacion de competitividad
+    public function empresa($id)
+    {
+      $empresa = User::findOrFail($id);
+      $datos = Evaluacion::getdatos($id,'competitividad');
+      return view('asesor.moduloempresa.evaluacion',['datos'=>$datos,'empresa'=>$empresa]);    
+    }
+
+    public function pregunta($id,$idpregunta)
+    {
+      $empresa = User::findOrFail($id);
+      $pregunta = Evaluacion::findOrFail($idpregunta);
+      if($pregunta->tipo != 'competitividad') abort(404);
+
+      $valor = Euser::where('evaluacion_id',$idpregunta)->where('user_id',$id)->first();
+      return view('asesor.moduloempresa.formevaluacion',['pregunta'=>$pregunta,'valor'=>$valor,'empresa'=>$empresa]);
+    }
+
+    public function putpregunta(Request $request,$id,$idpregunta)
+    {
+      $empresa = User::findOrFail($id);
+      $pregunta = Evaluacion::findOrFail($idpregunta);
+      if($pregunta->tipo != 'competitividad') abort(404);
+      
+      $array = ['0','1'];
+      if(!in_array($request->valor, $array)) abort(404);
+
+      Euser::updateOrCreate(
+            ['evaluacion_id' => $pregunta->id, 'user_id' => $id],
+            ['valor' => $request->valor, 'tipo' => 'competitividad']
+        );
+      return redirect('/amodulognrl/empresa/'.$id)->with('success','Respuesta registrada correctamente');
+    }
+
+    public function resultados($id)
+    {
+      $empresa = User::findOrFail($id);
+
+      $tipo = 'competitividad';
+      $variable1=['Mercado y Ventas','Insumos, Productos  y Servicios', 'Procesos y Sistema de Gestión de la Calidad', 'Recursos humanos y Desarrollo Empresarial', 'Desarrollo en Innovación'];
+      $data1;
+      foreach ($variable1 as $key => $value) {
+        $data1[] = Euser::resultados($id,$tipo,$value);
+      }
+      $variable2=['SOCIOS','TRABAJADORES','CLIENTES','COMUNIDAD','AMBIENTAL'];
+      $data2;
+      foreach ($variable2 as $key => $value) {
+        $data2[] = Euser::resultados($id,$tipo,$value);
+      }
+      
+      //Obtener las tablas 
+      $nivel1;
+      foreach ($data1 as $key => $value) {
+        $nivel1[] = Euser::calcula($value);
+      }
+      $nivel2;
+      foreach ($data2 as $key => $value) {
+        $nivel2[] = Euser::calcula($value);
+      }
+
+      $array1;
+      foreach ($variable1 as $key => $value) {
+        $array1[$key] = array('variable'=>$value,'promedio'=>$data1[$key],'nivel'=>$nivel1[$key]);
+        $array2[$key] = array('variable'=>$variable2[$key],'promedio'=>$data2[$key],'nivel'=>$nivel2[$key]);
+      }
+
+      $promedio1 = Euser::calcula(array_sum($data1)/count($data1));
+      $promedio2 = Euser::calcula(array_sum($data2)/count($data2));
+      return view('asesor.moduloempresa.resultados',['variable1'=>$variable1,'data1'=>$data1,'variable2'=>$variable2,'data2'=>$data2,'array1'=>$array1,'array2'=>$array2, 'promedio1'=>$promedio1,'promedio2'=>$promedio2,'empresa'=>$empresa]);
+      return $id;
+    }
+    
     public function store(Request $request)
     {
         if (isset($request['valor'])) {
@@ -66,12 +135,10 @@ class AModuloGnrlController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
+    
+
+
     public function show($id)
     {
         $empresa = User::findOrFail($id);
@@ -79,12 +146,7 @@ class AModuloGnrlController extends Controller
         return view('asesor.moduloempresa.index',['empresa'=>$empresa,'modulos'=>$modulos]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit($id)
     {
         //$empresa = User::findOrFail($id);

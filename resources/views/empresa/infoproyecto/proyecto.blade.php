@@ -24,7 +24,7 @@
 	                    <td><strong>Convocatoria: </strong></td> <td> {{ $proyecto->convocatoria }} </td>
 	                  </tr>
 	                  <tr>
-	                    <td><strong>Institución:</strong></td> <td> {{ $proyecto->institucion }} </td>
+	                    <td><strong>Fondo:</strong></td> <td>  </td>
 	                  </tr>
 	                  <tr>
 	                    <td><strong>Programa:</strong></td> <td> {{ $proyecto->programa }} </td>

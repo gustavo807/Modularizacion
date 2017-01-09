@@ -70,7 +70,7 @@ class Proyecto extends Model
                 ->get();
     }
 
-    public static function proyectodescripcion($idproyecto){
+   /* public static function proyectodescripcion($idproyecto){
       return DB::table('proyectos')
                 ->join('convocatorias','proyectos.convocatoria_id','=','convocatorias.id')
                 ->join('instituciones','convocatorias.institucion_id','=','instituciones.id')
@@ -79,7 +79,7 @@ class Proyecto extends Model
                 ->where('proyectos.id', '=',$idproyecto)
                 ->first();
     }
-
+*/
 
 }
 

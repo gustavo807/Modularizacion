@@ -12,9 +12,87 @@ use App\Modulo;
 use App\Clave;
 use Session;
 use Validator;
+use App\Evaluacion;
+use App\Euser;
+use App\Evariables;
+use App\Evproyecto;
 
 class EProyectoController extends Controller
 {
+    public function preguntas(Request $request,$id)
+    {
+      $proyecto = Proyecto::findOrFail($id);
+      if($proyecto->user_id != $request->user()->id) abort(404);
+
+      $datos = Evaluacion::getrespuestas($id,'tecnico');     
+      return view('empresa.proyecto.evaluacion',['datos'=>$datos,'proyecto'=>$proyecto]);
+    }
+
+    public function evaluacion(Request $request,$idproyecto, $id)
+    {
+        //Valida el proyecto
+        $proyecto = Proyecto::findOrFail($idproyecto);
+        if($proyecto->user_id != $request->user()->id) abort(404);
+        //valida la pregunta
+        $pregunta = Evaluacion::findOrFail($id);
+        if($pregunta->tipo != 'tecnico') abort(404);
+        
+        //$valor = Euser::where('evaluacion_id',$id)->where('user_id',$request->user()->id)->first();
+        $valor = Evproyecto::where('proyecto_id',$idproyecto)->where('evaluacion_id',$id)->first();
+        //Opciones para la pregunta
+        $opcion = Evariables::getdatos($pregunta->pregunta,$pregunta->variable)->pluck('opcion','id');    
+
+        //return $opcion;    
+        return view('empresa.proyecto.formevaluacion',['proyecto'=>$proyecto,'pregunta'=>$pregunta,'valor'=>$valor,'opcion'=>$opcion]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        //Valida el proyecto
+        $proyecto = Proyecto::findOrFail($id);
+        if($proyecto->user_id != $request->user()->id) abort(404);
+        //valida la pregunta
+        $pregunta = Evaluacion::findOrFail($request->pregunta_id);
+        if($pregunta->tipo != 'tecnico') abort(404);
+
+        //Opciones para la pregunta
+        $opcion = Evariables::getdatos($pregunta->pregunta,$pregunta->variable)->pluck('id')->toArray();
+
+        //Valida si el id de la opcion envia conincide con la respuesta
+        if(! in_array($request->evariable_id, $opcion)) abort(404);
+
+        Evproyecto::updateOrCreate(
+            ['evaluacion_id' => $pregunta->id, 'proyecto_id' => $id],
+            ['evariable_id' => $request->evariable_id]
+        );
+        return redirect('/empresaproyecto/preguntas/'.$id)->with('success','Respuesta registrada correctamente');
+    }
+
+    public function resultados(Request $request,$id)
+    {
+      //Valida el proyecto
+      $proyecto = Proyecto::findOrFail($id);
+      if($proyecto->user_id != $request->user()->id) abort(404);
+
+      $variable=['RIESGO TÉCNICO','RIESGO DE PRODUCCIÓN','RIESGO COMERCIAL','RIESGO ESTRATÉGICO','RIESGO DE MERCADO','RIESGO FINANCIERO'];
+
+      $data;
+      foreach ($variable as $key => $value) 
+        $data[] = Evproyecto::getresultados($id,$value);
+      
+      $nivel;
+      foreach ($data as $key => $value) 
+        $nivel[] = Evproyecto::calcula($value);
+      
+      $array;
+      foreach ($variable as $key => $value) 
+        $array[$key] = array('variable'=>$value,'promedio'=>$data[$key],'nivel'=>$nivel[$key]);
+      
+      array_push($array, array('variable'=>'TOTAL','promedio'=>(array_sum($data)/count($data)),'nivel'=>Evproyecto::calcula(array_sum($data)/count($data)) ));
+
+      return view('empresa.proyecto.resultados',['proyecto'=>$proyecto,'variable'=>$variable,'data'=>$data,'array'=>$array]);
+      
+    }
 
     public function store(Request $request)
     {

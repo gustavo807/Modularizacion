@@ -92,9 +92,19 @@ Route::group(['middleware' => 'auth'], function () {
 
     //      VISTAS DEL ASESOR
     Route::resource('asesorempresa','AEmpresaController');
+    Route::get('asesorempresa/perfil/{id}','AEmpresaController@perfil');
+    Route::get('asesorempresa/perfil/{tipo}/{id}','AEmpresaController@editperfil');
+    Route::put('asesorempresa/updateperfil/{id}', 'AEmpresaController@updateperfil');
+
     Route::get('copyempresa/{id}', 'AEmpresaController@copy' );
     Route::get('documentosempresa/{id}', 'AEmpresaController@documentos' );
     Route::resource('amodulognrl','AModuloGnrlController');
+    // Evaluacion de competitividad
+    Route::get('amodulognrl/empresa/{id}','AModuloGnrlController@empresa');
+    Route::get('amodulognrl/empresa/{id}/pregunta/{idpregunta}','AModuloGnrlController@pregunta');
+    Route::put('amodulognrl/empresa/{id}/editpregunta/{idpregunta}','AModuloGnrlController@putpregunta');
+    Route::get('amodulognrl/resultados/{id}','AModuloGnrlController@resultados');
+
     Route::get('amodulognrl/{id}/empresa/{iduser}','AModuloGnrlController@modulognrl');
     Route::get('parrafognl/{id}/empresa/{iduser}','AModuloGnrlController@parrafognl');
     Route::post('storeparrafo','AModuloGnrlController@storeparrafo');
@@ -104,6 +114,10 @@ Route::group(['middleware' => 'auth'], function () {
     //  MODIFICAR MODULOS DEL ASESOR
     Route::resource('proyectomodulos','AProyectoEmpresaController');
     Route::get('modulosproyecto/{id}','AProyectoEmpresaController@modulos');
+    Route::get('modulosproyecto/proyecto/{idproyecto}','AProyectoEmpresaController@empresa');
+    Route::get('modulosproyecto/proyecto/{idproyecto}/pregunta/{idpregunta}','AProyectoEmpresaController@pregunta');
+    Route::get('modulosproyecto/resultados/{id}','AProyectoEmpresaController@resultados');
+
     Route::get('clavesmodulo/{id}/proyecto/{idproyecto}','AProyectoEmpresaController@clavesmodulo');
     Route::get('parrafoproyecto/{id}/proyecto/{idproyecto}','AProyectoEmpresaController@parrafoproyecto');
     Route::post('storeparrafoproyecto','AProyectoEmpresaController@storeparrafoproyecto');
@@ -132,6 +146,10 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::resource('empresa','EmpresaController');
     Route::resource('empresadocumentos','EmpresaDocumentoController');
     Route::resource('empresamodulognrl','EModuloGnrlController');
+    Route::get('empresamodulognrl/evaluacion/', 'EModuloGnrlController@ecompetitividad');
+    Route::post('empresamodulognrl/storeevaluacion/','EModuloGnrlController@storeecompetitividad');
+    Route::get('empresaresultados', 'EModuloGnrlController@resultados');
+
     Route::resource('empresaparrafognrl','EParrafoGnrlController');
     Route::resource('empresaimagengnrl','EImagenGnrlController');
 
@@ -139,6 +157,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('eproyecto','EProPreController');
     // MODLUOS POR CONVOCATORIA
     Route::resource('empresaproyecto','EProyectoController');
+    Route::get('empresaproyecto/preguntas/{id}','EProyectoController@preguntas');
+    Route::get('empresaproyecto/{idproyecto}/evaluacion/{id}','EProyectoController@evaluacion');
+    Route::get('empresaproyecto/resultados/{id}','EProyectoController@resultados');
+    //Route::put('empresaproyecto/storeevaluacion/{id}','EProyectoController@storeevaluacion');
+
     Route::resource('empresaparrafo','EParrafoController');
     Route::resource('empresaimagen','EImagenController');
 	});

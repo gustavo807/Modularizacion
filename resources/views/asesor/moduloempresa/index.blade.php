@@ -28,6 +28,12 @@
                         </tr>
                     </thead>
                     <tbody>
+                      <tr>
+                        <th>
+                        {!! link_to('/amodulognrl/empresa/'.$empresa->id, $title = 'Cuestionario de evaluación de competitividad') !!}
+                        </th>
+                        <td>Por llenar</td>
+                      </tr>
                     @foreach($modulos as $modulo)
                       <tr>
                        <th>

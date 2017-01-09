@@ -44,7 +44,7 @@
                     @foreach($parrafos as $parrafo)
                       <tr>
                         <th>{{$parrafo->modulo}}</th>
-                        <td class="no-copy">
+                        <td>
 													@php
 														if (isset($arr1)) {
 															echo str_replace($arr1,$arr2,$parrafo->parrafo);

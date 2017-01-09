@@ -14,44 +14,53 @@ use App\Proyecto_Parrafo;
 
 class AEmpresaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
       $empresas = User::where('rol_id','=', '1')->paginate(10);
       return view('asesor.empresa.index',['empresas'=>$empresas]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    // Perfil de la empresa
+    public function perfil($id)
     {
-        //
+        $empresa = User::findOrFail($id);
+        return view('asesor.empresa.perfil',['empresa'=>$empresa]);
+        //return $empresa;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    
+    public function editperfil($tipo,$id)
     {
-
+        $empresa = User::findOrFail($id);
+        $array = ['nombre','email','password','foto'];
+        if(!in_array($tipo, $array))
+            abort(404);
+        else
+            return view('asesor.empresa.editperfil',['empresa'=>$empresa,'tipo'=>$tipo]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    public function updateperfil(Request $request,$id)
+    {   
+        $array = ['nombre','email','password','foto'];
+        if(!in_array($request->tipo, $array))
+            abort(404);
+
+        //Si es password
+        if($request->tipo == 'password')
+            User::findOrFail($id)->update([ 'password'=>bcrypt($request->password), ]);
+        else{
+            //Si es foto
+            if($request->tipo == 'foto')
+                \Storage::delete(User::findOrFail($id)->foto);
+
+            User::findOrFail($id)->update($request->all());            
+        }
+
+        return redirect('/asesorempresa/perfil/'.$id)->with('success','La accion se llevo correctamente ');
+    }
+
+    
     public function show($id)
     {
         Session::put('idempresa',$id);
@@ -60,12 +69,7 @@ class AEmpresaController extends Controller
         return view('asesor.empresa.verempresa',['empresa'=>$empresa,'proyectos'=>$proyectos]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function edit($id)
     {
       $propietario='empresa';
@@ -74,13 +78,6 @@ class AEmpresaController extends Controller
       return view('asesor.empresa.info',['empresa'=>$empresa,'claves'=>$claves]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
@@ -160,13 +157,6 @@ class AEmpresaController extends Controller
         //return 'hola'.$id.$user;
     }
 
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

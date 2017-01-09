@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -16,8 +17,16 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'nombre', 'email', 'password','rol_id','activo'
+        'nombre', 'email', 'password','rol_id','activo','foto'
     ];
+
+    public function setFotoAttribute($foto){
+        if(! empty($foto)){
+        $name = Carbon::now()->second.$foto->getClientOriginalName();
+        $this->attributes['foto'] = $name;
+        \Storage::disk('local')->put($name, \File::get($foto));
+        }
+    }
 
     /**
      * The attributes that should be hidden for arrays.

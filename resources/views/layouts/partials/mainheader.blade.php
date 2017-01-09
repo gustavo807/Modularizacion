@@ -34,14 +34,23 @@
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <!-- The user image in the navbar-->
-                            <img src="/alivetech/res/img/Logotipo-Alive-Tech-BN-83x70px.png" class="user-image" alt="User Image"/>
+                            @if(Auth::user()->foto != '' ) 
+                                <img src="/documentos/{{ Auth::user()->foto }}" class="user-image" alt="User Image"/>
+                            @else
+                                <img src="/alivetech/res/img/Logotipo-Alive-Tech-BN-83x70px.png" class="user-image" alt="User Image"/>
+                            @endif
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
                             <span class="hidden-xs">{{ Auth::user()->nombre }}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
                             <li class="user-header">
-                                <img src="/alivetech/res/img/AliveTech-Logo.png" class="img-circle" alt="User Image" />
+
+                                @if(Auth::user()->foto != '' )
+                                    <img src="/documentos/{{ Auth::user()->foto }}" class="user-image" alt="User Image"/>
+                                @else                                
+                                    <img src="/alivetech/res/img/AliveTech-Logo.png" class="img-circle" alt="User Image" />
+                                @endif
                                 <p>
                                     {{ Auth::user()->nombre }}
                                     <small>{{ Auth::user()->email }}</small>

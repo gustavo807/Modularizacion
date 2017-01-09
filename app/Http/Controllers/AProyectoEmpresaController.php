@@ -14,9 +14,81 @@ use App\Proyecto_Modulo;
 use App\User_Clave;
 use App\Parrafo;
 use App\Imagen;
+use App\Evaluacion;
+use App\Evproyecto;
+use App\Evariables;
 
 class AProyectoEmpresaController extends Controller
 {
+  public function empresa($id)
+  {
+    $proyecto = Proyecto::findOrFail($id);
+    $datos = Evaluacion::getrespuestas($id,'tecnico');  
+    return view('asesor.proyectoempresa.evaluacion',['datos'=>$datos,'proyecto'=>$proyecto]);
+    return $id;
+  }
+
+  public function pregunta($proyecto_id,$pregunta_id)
+  {
+    //Valida el proyecto
+    $proyecto = Proyecto::findOrFail($proyecto_id);
+    
+    //valida la pregunta
+    $pregunta = Evaluacion::findOrFail($pregunta_id);
+    if($pregunta->tipo != 'tecnico') abort(404);
+
+    $valor = Evproyecto::where('proyecto_id',$proyecto_id)->where('evaluacion_id',$pregunta_id)->first();
+    //Opciones para la pregunta
+    $opcion = Evariables::getdatos($pregunta->pregunta,$pregunta->variable)->pluck('opcion','id');
+
+    return view('asesor.proyectoempresa.formevaluacion',['proyecto'=>$proyecto,'pregunta'=>$pregunta,'valor'=>$valor,'opcion'=>$opcion]);
+  }
+
+  public function update(Request $request, $id)
+  {
+    //Valida el proyecto
+    $proyecto = Proyecto::findOrFail($id);
+    //valida la pregunta
+    $pregunta = Evaluacion::findOrFail($request->pregunta_id);
+    if($pregunta->tipo != 'tecnico') abort(404);
+
+    //Opciones para la pregunta
+    $opcion = Evariables::getdatos($pregunta->pregunta,$pregunta->variable)->pluck('id')->toArray();
+
+    //Valida si el id de la opcion envia conincide con la respuesta
+    if(! in_array($request->evariable_id, $opcion)) abort(404);
+
+    Evproyecto::updateOrCreate(
+      ['evaluacion_id' => $pregunta->id, 'proyecto_id' => $id],
+      ['evariable_id' => $request->evariable_id]
+      );
+    return redirect('/modulosproyecto/proyecto/'.$id)->with('success','Respuesta registrada correctamente');
+  }
+
+  public function resultados($id)
+  {
+    //Valida el proyecto
+      $proyecto = Proyecto::findOrFail($id);
+
+      $variable=['RIESGO TÉCNICO','RIESGO DE PRODUCCIÓN','RIESGO COMERCIAL','RIESGO ESTRATÉGICO','RIESGO DE MERCADO','RIESGO FINANCIERO'];
+
+      $data;
+      foreach ($variable as $key => $value) 
+        $data[] = Evproyecto::getresultados($id,$value);
+      
+      $nivel;
+      foreach ($data as $key => $value) 
+        $nivel[] = Evproyecto::calcula($value);
+      
+      $array;
+      foreach ($variable as $key => $value) 
+        $array[$key] = array('variable'=>$value,'promedio'=>$data[$key],'nivel'=>$nivel[$key]);
+      
+      array_push($array, array('variable'=>'TOTAL','promedio'=>(array_sum($data)/count($data)),'nivel'=>Evproyecto::calcula(array_sum($data)/count($data)) ));
+
+      return view('asesor.proyectoempresa.resultados',['proyecto'=>$proyecto,'variable'=>$variable,'data'=>$data,'array'=>$array]);
+  }
+
   public function modulos($id)
   {
       $proyecto = Proyecto::findOrFail($id);
