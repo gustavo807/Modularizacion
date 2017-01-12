@@ -223,6 +223,93 @@ $(function () {
         });
 
 
+$('.svalor').change(function(evt) {
+    vform = $(this).data('form');
+    var route = "/empresamodulognrl/"+vform;
+    var token = $('meta[name="csrf-token"]').attr('content');
+    var valor = $( this ).val();  
+    
+    if (valor.trim().length < 1)    
+      alert('campo requerido');
+    else    
+      $.ajax({
+        url: route,
+        headers: {'X-CSRF-TOKEN': token},
+        method: 'GET',
+        dataType: 'json',
+        data:{valor: valor}
+      });
+
+});
+
+
+$('.sopcion').change(function(evt) {
+    vform = $(this).data('form');
+    var route = "/empresaproyecto/"+vform+"";
+    var token = $('meta[name="csrf-token"]').attr('content');
+    var valor = $( this ).val();  
+    var pregunta = $(this).data('pregunta');
+    
+    //alert(route);
+
+    if (valor.trim().length < 1)    
+      alert('campo requerido');
+    else    
+      $.ajax({
+        url: route,
+        headers: {'X-CSRF-TOKEN': token},
+        method: 'PUT',
+        dataType: 'json',
+        data:{evariable_id: valor, pregunta_id:pregunta }
+      });
+
+});
+
+
+
+$('.sevalor').change(function(evt) {
+    vform = $(this).data('form');
+    var empresa = $('meta[name="empresa"]').attr('content');
+    var route = "/amodulognrl/empresa/"+empresa+"/editpregunta/"+vform;
+    var token = $('meta[name="csrf-token"]').attr('content');
+    var valor = $( this ).val();  
+    //alert(route);
+    if (valor.trim().length < 1)    
+      alert('campo requerido');
+    else    
+      $.ajax({
+        url: route,
+        headers: {'X-CSRF-TOKEN': token},
+        method: 'PUT',
+        dataType: 'json',
+        data:{valor: valor}
+      });
+
+});
+
+
+$('.seopcion').change(function(evt) {
+    vform = $(this).data('form');
+    var route = "/proyectomodulos/"+vform+"";
+    var token = $('meta[name="csrf-token"]').attr('content');
+    var valor = $( this ).val();  
+    var pregunta = $(this).data('pregunta');
+    
+    //alert(route);
+
+    if (valor.trim().length < 1)    
+      alert('campo requerido');
+    else    
+      $.ajax({
+        url: route,
+        headers: {'X-CSRF-TOKEN': token},
+        method: 'PUT',
+        dataType: 'json',
+        data:{evariable_id: valor, pregunta_id:pregunta }
+      });
+
+});
+
 
 });
 

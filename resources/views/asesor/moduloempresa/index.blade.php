@@ -32,7 +32,7 @@
                         <th>
                         {!! link_to('/amodulognrl/empresa/'.$empresa->id, $title = 'Cuestionario de evaluación de competitividad') !!}
                         </th>
-                        <td>Por llenar</td>
+                        <td></td>
                       </tr>
                     @foreach($modulos as $modulo)
                       <tr>

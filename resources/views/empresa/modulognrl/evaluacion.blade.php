@@ -14,15 +14,14 @@
 		              <li><a href="/empresaresultados">Resultados</a></li>
 		            </ul>
 				</div>
-
+				<meta name="csrf-token" content="{{ csrf_token() }}">
 				<div class="panel-body">
 					@include('alerts.success')
 					<table class="table table-bordered table-striped table-hover">
 						<thead>
 							<th>Pregunta</th>
 							<th>Tipo</th>
-							<th>Valor</th>
-							<th>Editar</th>
+							<th>Selecciona</th>
 						</thead>
 						<tbody>
 							@foreach($datos as $dato)
@@ -30,19 +29,14 @@
 								<th>{{ $dato->pregunta }}</th>
 								<th>{{ $dato->variable }}</th>
 								<td>
-									@php
-										if (count($dato->valor) > 0) {
-											if($dato->valor == '1')
-												echo 'Si';
-											else
-												echo 'No';									
-										}
-										else
-											echo 'Por llenar';
-									@endphp
-								</td>
-								<td>
-									{!! link_to_route('empresamodulognrl.show', $title = '', $parameters = $dato->id, $attributes = 'class="ion-edit icon-big" title="Editar"' ) !!}
+
+									{!! Form::model($dato, ['route' => ['empresamodulognrl.show',$dato->id], 'method' => 'PUT','id'=>'form-valor-'.$dato->id]) !!}					
+										<div class="form-group">																	
+											{!! Form::select('valor', ['1' => 'Si', '0' => 'No'], $dato->valor, ['class'=>'form-control svalor','placeholder' => 'Por llenar...','data-form'=>$dato->id]) !!}
+										</div>
+									{!!Form::close()!!}
+
+									
 								</td>
 							</tr>
 							@endforeach

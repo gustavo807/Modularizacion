@@ -16,29 +16,25 @@
 				</div>
 
 				<div class="panel-body">
+					<meta name="csrf-token" content="{{ csrf_token() }}">
 					@include('alerts.success')
 					<table class="table table-bordered table-striped table-hover">
 						<thead>
 							<th>Pregunta</th>
 							<th>Tipo</th>
 							<th>Nivel de riesgo</th>
-							<th>Editar</th>
 						</thead>
 						<tbody>
-							@foreach($datos as $dato)
+							@foreach($array as $dato)
 							<tr>
 								<th>{{ $dato->pregunta }}</th>
 								<th>{{ $dato->variable }}</th>
 								<td>
-									@php
-										if (count($dato->valor) > 0)
-											echo $dato->valor;	
-										else
-											echo 'Por llenar';
-									@endphp
-								</td>
-								<td>
-									{!! link_to('/modulosproyecto/proyecto/'.$proyecto->id.'/pregunta/'.$dato->id, $title = '', $attributes = 'class="ion-edit icon-big" title="Editar"' ) !!}
+									{!! Form::model($dato, ['route' => ['empresaproyecto.update',$proyecto->id], 'method' => 'PUT','id'=>'form-opcion-'.$proyecto->id]) !!}					
+										<div class="form-group">																	
+											{!! Form::select('valor', $dato->opcion, $dato->valor, ['class'=>'form-control seopcion','placeholder' => 'Selecciona ...','data-form'=>$proyecto->id,'data-pregunta'=>$dato->id]) !!}
+										</div>
+									{!!Form::close()!!}
 								</td>
 							</tr>
 							@endforeach

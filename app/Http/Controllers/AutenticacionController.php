@@ -24,7 +24,7 @@ class AutenticacionController extends Controller
             // Authentication passed
 
               if (Auth::user()->rol_id == 1)
-                return redirect('/empresa');
+                return redirect('/empresamodulognrl');
               else if (Auth::user()->rol_id == 2)
                 return redirect('/vinculado');
               else

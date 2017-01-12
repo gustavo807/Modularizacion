@@ -26,7 +26,7 @@
 									<th>
 										{!! link_to_route('empresamodulognrl.create', $title = 'Cuestionario de evaluación de competitividad') !!}
 									</th>
-									<td>Por llenar</td>
+									<td> </td>
 								</tr>
 								@foreach($modulos as $modulo)								
 								<tr>

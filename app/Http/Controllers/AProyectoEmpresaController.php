@@ -24,8 +24,15 @@ class AProyectoEmpresaController extends Controller
   {
     $proyecto = Proyecto::findOrFail($id);
     $datos = Evaluacion::getrespuestas($id,'tecnico');  
-    return view('asesor.proyectoempresa.evaluacion',['datos'=>$datos,'proyecto'=>$proyecto]);
-    return $id;
+
+    $array;
+    foreach ($datos as $value) {
+      $value->opcion = Evariables::getdatos($value->pregunta,$value->variable)->pluck('opcion','id');
+      $array[]=$value;
+    }
+
+    return view('asesor.proyectoempresa.evaluacion',['array'=>$array,'proyecto'=>$proyecto]);
+    //return $id;
   }
 
   public function pregunta($proyecto_id,$pregunta_id)
@@ -46,6 +53,7 @@ class AProyectoEmpresaController extends Controller
 
   public function update(Request $request, $id)
   {
+    //return $request->all();
     //Valida el proyecto
     $proyecto = Proyecto::findOrFail($id);
     //valida la pregunta
@@ -62,6 +70,8 @@ class AProyectoEmpresaController extends Controller
       ['evaluacion_id' => $pregunta->id, 'proyecto_id' => $id],
       ['evariable_id' => $request->evariable_id]
       );
+
+    return "hecho";
     return redirect('/modulosproyecto/proyecto/'.$id)->with('success','Respuesta registrada correctamente');
   }
 

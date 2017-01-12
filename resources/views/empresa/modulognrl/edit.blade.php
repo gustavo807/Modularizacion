@@ -22,7 +22,7 @@
 							        <div class="form-group">
 							          @foreach ($claves as $clave )
 							            {!!Form::label('nombre',$clave->nombre)!!}
-							            {!!Form::text('valor[]',$clave->valor,['class'=>'form-control txtvalor','placeholder'=>$clave->ejemplo])!!}
+							            {!!Form::textarea('valor[]',$clave->valor,['class'=>'form-control txtvalor', 'rows'=>'1', 'placeholder'=>$clave->ejemplo])!!}
 							            {!!Form::text('clave_id[]',$clave->id,['class'=>'form-control','style'=>'display:none'])!!}
 							          @endforeach
 							        </div>

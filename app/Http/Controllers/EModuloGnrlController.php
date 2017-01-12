@@ -42,10 +42,24 @@ class EModuloGnrlController extends Controller
 
     public function show(Request $request, $id)
     {
+      $this->validate($request, ['valor' => 'required', ]);
+      $pregunta = Evaluacion::findOrFail($id);
+      if($pregunta->tipo != 'competitividad') abort(404);
+        $array = ['0','1'];
+      if(!in_array($request->valor, $array)) abort(404);
+
+      Euser::updateOrCreate(
+            ['evaluacion_id' => $pregunta->id, 'user_id' => $request->user()->id],
+            ['valor' => $request->valor, 'tipo' => 'competitividad']
+        );
+
+      return 'Respuesta registrada correctamente';
+      /*
         $pregunta = Evaluacion::findOrFail($id);
         if($pregunta->tipo != 'competitividad') abort(404);
         $valor = Euser::where('evaluacion_id',$id)->where('user_id',$request->user()->id)->first();
         return view('empresa.modulognrl.formevaluacion',['pregunta'=>$pregunta,'valor'=>$valor]);
+        */
     }
 
     public function storeecompetitividad(Request $request)

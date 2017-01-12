@@ -34,7 +34,7 @@
 									<th>
 										{!! link_to('/modulosproyecto/proyecto/'.$proyecto->id, $title = 'Cuestionario de evaluación de riesgo') !!}
 									</th>
-									<td>Por llenar</td>
+									<td></td>
 								</tr>
 								@foreach($modulos as $modulo)
 								<tr>

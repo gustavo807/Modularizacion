@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "492603531236",
+    "firebase_url": "https://alivetech-c65b2.firebaseio.com",
+    "project_id": "alivetech-c65b2",
+    "storage_bucket": "alivetech-c65b2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:492603531236:android:ff3d6975aa0f4b12",
+        "android_client_info": {
+          "package_name": "AliveTech.AliveTech"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "492603531236-141gm0rh2f0jiaqilebk0431odc6lrae.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeZgXSkL82vVajIoBn0OcP5nU3qGEft7U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

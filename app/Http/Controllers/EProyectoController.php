@@ -24,8 +24,17 @@ class EProyectoController extends Controller
       $proyecto = Proyecto::findOrFail($id);
       if($proyecto->user_id != $request->user()->id) abort(404);
 
-      $datos = Evaluacion::getrespuestas($id,'tecnico');     
-      return view('empresa.proyecto.evaluacion',['datos'=>$datos,'proyecto'=>$proyecto]);
+      $datos = Evaluacion::getrespuestas($id,'tecnico');   
+      //return $datos; 
+
+      $array;
+      foreach ($datos as $value) {
+        $value->opcion = Evariables::getdatos($value->pregunta,$value->variable)->pluck('opcion','id');
+        $array[]=$value;
+      }
+      //return $array;
+
+      return view('empresa.proyecto.evaluacion',['array'=>$array,'proyecto'=>$proyecto]);
     }
 
     public function evaluacion(Request $request,$idproyecto, $id)
@@ -48,9 +57,12 @@ class EProyectoController extends Controller
 
     public function update(Request $request, $id)
     {
+        
         //Valida el proyecto
         $proyecto = Proyecto::findOrFail($id);
         if($proyecto->user_id != $request->user()->id) abort(404);
+
+
         //valida la pregunta
         $pregunta = Evaluacion::findOrFail($request->pregunta_id);
         if($pregunta->tipo != 'tecnico') abort(404);
@@ -65,7 +77,9 @@ class EProyectoController extends Controller
             ['evaluacion_id' => $pregunta->id, 'proyecto_id' => $id],
             ['evariable_id' => $request->evariable_id]
         );
-        return redirect('/empresaproyecto/preguntas/'.$id)->with('success','Respuesta registrada correctamente');
+
+        return 'hecho';
+        //return redirect('/empresaproyecto/preguntas/'.$id)->with('success','Respuesta registrada correctamente');
     }
 
     public function resultados(Request $request,$id)

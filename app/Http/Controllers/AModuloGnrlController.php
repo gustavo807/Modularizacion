@@ -39,6 +39,7 @@ class AModuloGnrlController extends Controller
 
     public function putpregunta(Request $request,$id,$idpregunta)
     {
+      //return $request->valor;
       $empresa = User::findOrFail($id);
       $pregunta = Evaluacion::findOrFail($idpregunta);
       if($pregunta->tipo != 'competitividad') abort(404);
@@ -50,6 +51,7 @@ class AModuloGnrlController extends Controller
             ['evaluacion_id' => $pregunta->id, 'user_id' => $id],
             ['valor' => $request->valor, 'tipo' => 'competitividad']
         );
+      return "hecho";
       return redirect('/amodulognrl/empresa/'.$id)->with('success','Respuesta registrada correctamente');
     }
 

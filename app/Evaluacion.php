@@ -13,6 +13,7 @@ class Evaluacion extends Model
     public static function getdatos($id_user,$tipo){
     return DB::table('evaluacion')
                     ->select('evaluacion.*',
+
                     DB::raw('(SELECT euser.valor
                                 FROM euser
                                 WHERE euser.tipo="'.$tipo.'"
@@ -27,7 +28,8 @@ class Evaluacion extends Model
   public static function getrespuestas($id_proyecto,$tipo){
     return DB::table('evaluacion')
                     ->select('evaluacion.*',
-                    DB::raw('(SELECT evariables.opcion 
+                    DB::raw('"opcion" as opcion'), 
+                    DB::raw('(SELECT evariables.id 
                                 FROM evproyectos
                                 JOIN evariables ON (evproyectos.evariable_id=evariables.id)
                                 WHERE evproyectos.proyecto_id="'.$id_proyecto.'"
