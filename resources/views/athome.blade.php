@@ -1,19 +1,19 @@
 @extends('atmaster')
 @section('title', 'Alive Tech')
 @section('header')
-    <header id="main-header" class="header">
+    <header id="main-header" class="header js--section-home">
 
          @include('atshared.atnavbar')
          @include('atshared.atsidenav')
 
     <div class="hero-text-box">
-
         <h1>Alive Technology</h1>
         <h4>El Aliado Tecnológico de su Empresa</h4>
         <a href="#" class="btn btn-ghost js--scroll-to-about">Conócenos</a>
-
     </div>
+
    </header>
+
 @endsection
 
 @section('content')
@@ -21,6 +21,31 @@
        <div class="row">
 
            <h2>¿Quiénes Somos?</h2>
+
+           <div class="row">
+             <div class="vid col span-1-of-7">
+
+              </div>
+             <div class="vid col span-1-of-7">
+
+              </div>
+             <div class="vid col span-1-of-7">
+              <a class="popup-youtube" href="https://www.youtube.com/watch?v=rnYIP9ZuzdM"><img class="video-thumbnail js--scroll-to-top" src="alivetech/res/img/spot1.png" alt="Spot Promocional 1"></a>
+              </div>
+             <div class="vid col span-1-of-7">
+
+              </div>
+             <div class="vid col span-1-of-7">
+               <a class="popup-youtube" href="https://www.youtube.com/watch?v=GU2m0__E5-4"><img class="video-thumbnail js--scroll-to-top" src="alivetech/res/img/spot2.png" alt="Spot Promocional 2"></a>
+              </div>
+             <div class="vid col span-1-of-7">
+
+              </div>
+             <div class="vid col span-1-of-7">
+
+              </div>
+           </div>
+
            <p class="long-copy">Somos un equipo de profesionales dedicados a ayudarlo a dar vida a sus proyectos tecnológicos. A través de nuestros programas brindamos soluciones para que su empresa logre transformar su conocimiento en riqueza.</p>
 
            <div class="row span-1-of-2">
