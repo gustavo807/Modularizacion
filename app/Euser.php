@@ -34,6 +34,22 @@ class Euser extends Model
           return 'ALTO';
     }
 
+    public static function status_evaluacion($user_id)
+    {
+        $preguntas = DB::table('evaluacion')
+                      ->where('evaluacion.tipo', "competitividad")
+                      ->count();
+
+        $repuestas = DB::table('euser')
+                      ->where('euser.user_id', $user_id)
+                      ->count();
+
+        if($preguntas == $repuestas)
+          return "true";
+        else
+          return "false";
+    }
+
 }
 
 

@@ -11,15 +11,11 @@ use App\Parrafo;
 use App\Proyecto;
 use App\Imagen;
 use App\User_Clave;
+use App\Notificacion;
 use Session;
 
 class EParrafoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
       $iduser = $request->user()->id;
@@ -44,22 +40,7 @@ class EParrafoController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
       $iduser = $request->user()->id;
@@ -95,6 +76,10 @@ class EParrafoController extends Controller
       // NO EXISTEN IMAGENEES
       if($imagenes == 0)
       {
+        // Enviar notificacion
+        $proyecto = Proyecto::findOrFail($idproyecto);
+        Notificacion::sendnotification_convocatoria($idmodulo, $idproyecto,$request->user()->nombre,$proyecto->nombre);
+        //
         $proyectomodulo = Proyecto_Modulo::proyectomodulo($idproyecto,$propietario,$idmodulo);
         if(!isset($proyectomodulo)){
           Proyecto_Modulo::create([
@@ -114,48 +99,5 @@ class EParrafoController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+    
 }

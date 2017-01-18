@@ -103,7 +103,8 @@ class AProyectoEmpresaController extends Controller
   {
       $proyecto = Proyecto::findOrFail($id);
       $modulos = Modulo::proyectosmodulo($id,'asesor');
-      return view('asesor.proyectoempresa.modulos',['proyecto'=>$proyecto,'modulos'=>$modulos]);
+      $status = Evproyecto::status_evaluacion($id);
+      return view('asesor.proyectoempresa.modulos',['proyecto'=>$proyecto,'modulos'=>$modulos,'status'=>$status]);
       //return 'hola'.$id;
   }
 

@@ -30,6 +30,22 @@ class Evproyecto extends Model
           return 'MUY ALTO';
     }
 
+  public static function status_evaluacion($proyecto_id)
+    {
+        $preguntas = DB::table('evaluacion')
+                      ->where('evaluacion.tipo', "tecnico")
+                      ->count();
+
+        $repuestas = DB::table('evproyectos')
+                      ->where('evproyectos.proyecto_id', $proyecto_id)
+                      ->count();
+
+        if($preguntas == $repuestas)
+          return "true";
+        else
+          return "false";
+    }
+
 }
 
 

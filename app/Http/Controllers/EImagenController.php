@@ -8,6 +8,7 @@ use App\Imagen;
 use App\Proyecto_Imagen;
 use App\Proyecto_Modulo;
 use App\Proyecto;
+use App\Notificacion;
 use Session;
 
 class EImagenController extends Controller
@@ -38,22 +39,7 @@ class EImagenController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
       $idproyecto = Session::get('idproyecto');
@@ -86,51 +72,13 @@ class EImagenController extends Controller
         ]);
       }
 
+      // Enviar notificacion
+        $proyecto = Proyecto::findOrFail($idproyecto);
+        Notificacion::sendnotification_convocatoria($idmodulo, $idproyecto,$request->user()->nombre,$proyecto->nombre);
+        //
+
       return redirect('/empresaproyecto/'.$idproyecto)->with('success','Modulo completado correctamente ');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+    
 }

@@ -20,6 +20,8 @@ class User_Modulo extends Model
                     ->first();
   }
 
+  
+
 
 }
 

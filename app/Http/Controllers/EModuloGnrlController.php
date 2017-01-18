@@ -28,9 +28,11 @@ class EModuloGnrlController extends Controller
         $propietario = 'empresa';
 
         $modulos = Modulo::modulosgnrl($iduser,$propietario);
-        $primer = Ordena_Modulo::primermodulo();
+        //$primer = Ordena_Modulo::primermodulo();
 //return $modulos.$primer;
-        return view('empresa/modulognrl.index',['modulos'=>$modulos]);
+
+        $status = Euser::status_evaluacion($iduser);
+        return view('empresa/modulognrl.index',['modulos'=>$modulos,'status'=>$status]);
     }
 
     

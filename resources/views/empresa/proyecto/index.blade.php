@@ -24,12 +24,20 @@
 
 							</thead>
 							<tbody>
+								@if($modulos->firstItem() == $modulos->currentPage())
 								<tr>
 									<th>
 										{!! link_to('/empresaproyecto/preguntas/'.$proyecto->id, $title = 'Cuestionario de evaluación de riesgo') !!}
 									</th>
-									<td></td>
+									<td>
+										@if ($status == "true")
+												<strong>Completo</strong>
+											@else
+												Por llenar
+											@endif
+									</td>
 								</tr>
+								@endif
 								@foreach($modulos as $modulo)
 								<tr>
 									<th>

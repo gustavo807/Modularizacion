@@ -73,6 +73,22 @@ class Ordena_Modulo extends Model
                     ->get();
   }
 
+
+  public static function ultimomodulo($tipo='1'){
+    return DB::table('ordena_modulos')
+                    ->select('ordena_modulos.modulo_id')
+                    ->whereIn('ordena_modulos.modulo_id', function($query) use($tipo) {
+                          $query->select('modulos.id')
+                          ->from('modulos')
+                          ->where('modulos.clasificacion_id','=',$tipo);
+                      })
+                    //->where('ordena_modulos.orden', '<', $orden)
+                    ->orderBy('ordena_modulos.orden', 'desc')
+                    ->limit(1)
+                    ->get();
+  }
+
+
 }
 
 

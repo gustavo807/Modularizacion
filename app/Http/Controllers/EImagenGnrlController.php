@@ -7,14 +7,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Imagen;
 use App\User_Imagen;
 use App\User_Modulo;
+use App\Notificacion;
 use Session;
 class EImagenGnrlController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
       if( Auth::user()->activo == 2)
@@ -30,22 +26,7 @@ class EImagenGnrlController extends Controller
         return view('empresa/imagengnrl.index',['imagenes'=>$imagenes,'userimagen'=>$userimagen]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
       $iduser = $request->user()->id;
@@ -78,6 +59,10 @@ class EImagenGnrlController extends Controller
           'propietario' => $propietario,
         ]);
       }
+
+      // Enviar notificacion
+      Notificacion::sendnotification_general($idmodulo, $request->user()->nombre, $request->user()->id);
+       //
 
       return redirect('/empresamodulognrl')->with('success','Modulo completado correctamente ');
 

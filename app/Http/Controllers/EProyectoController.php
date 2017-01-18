@@ -183,8 +183,8 @@ class EProyectoController extends Controller
         $propietario = 'empresa';
         Session::put('idproyecto', $id);
         $modulos = Modulo::proyectosmodulo($id,$propietario);
-
-        return view('empresa.proyecto.index',['proyecto'=>$proyecto,'modulos'=>$modulos]);
+        $status = Evproyecto::status_evaluacion($id);
+        return view('empresa.proyecto.index',['proyecto'=>$proyecto,'modulos'=>$modulos,'status'=>$status]);
     }
 
     /**
