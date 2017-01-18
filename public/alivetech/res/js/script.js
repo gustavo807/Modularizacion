@@ -146,8 +146,8 @@ $(document).ready(function(){
 
     /* Scroll Buttons */
 
-    $('.js--scroll-to-about').click(function() {
-       $('html, body').animate({scrollTop: $('.js--section-about-us').offset().top}, 1000);
+    $('.js--scroll-to-success').click(function() {
+       $('html, body').animate({scrollTop: $('.js--section-success-stories').offset().top}, 1000);
     });
 
     $('.js--scroll-to-top').click(function() {

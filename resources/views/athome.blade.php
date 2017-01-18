@@ -9,7 +9,7 @@
     <div class="hero-text-box">
         <h1>Alive Technology</h1>
         <h4>El Aliado Tecnológico de su Empresa</h4>
-        <a href="#" class="btn btn-ghost js--scroll-to-about">Conócenos</a>
+        <a href="#" class="btn btn-ghost js--scroll-to-success">Conócenos</a>
     </div>
 
    </header>
@@ -17,34 +17,59 @@
 @endsection
 
 @section('content')
-       <section class="section-about-us js--section-about-us">
+
+    <section class="section-success-stories js--section-success-stories">
+       <div class="row">
+
+           <h2>Casos de Éxito</h2>
+
+           <div class="col span-1-of-2 video-box">
+
+             <div class="vid-img-container">
+               <img class="vid-img" src="alivetech/res/img/videos/maquinados_abs.jpg" alt="Maquinados ABS">
+             </div>
+
+             <div class="video-info">
+               <a class="popup-youtube" href="https://www.youtube.com/watch?v=gAJ50QqC9RQ&feature=youtu.be"><i class="ion-social-youtube-outline vid-icon js--scroll-to-top video-btn"></i></a>
+               <h3 class="img-background-title">Maquinados ABS</h3>
+             </div>
+
+            </div>
+
+            <div class="col span-1-of-2 video-box">
+
+              <div class="vid-img-container">
+                <img class="vid-img" src="alivetech/res/img/videos/upg.jpg" alt="Universidad Politécnica de Guanajuato">
+              </div>
+
+              <div class="video-info">
+                <a class="popup-youtube" href="https://www.youtube.com/watch?v=g6BJT3YMQwQ&feature=youtu.be"><i class="ion-social-youtube-outline vid-icon js--scroll-to-top video-btn"></i></a>
+                <h3 class="img-background-title">UPG</h3>
+              </div>
+
+             </div>
+
+             <!--<div class="col span-1-of-3 video-box">
+
+               <div class="vid-img">
+                 <img src="" alt="">
+               </div>
+
+               <div class="video-info">
+                 <i class="ion-social-youtube-outline icon-big"></i>
+                 <h3 class="img-background-title">Maquinados ABS</h3>
+               </div>
+
+             </div>-->
+
+      </div>
+    </section>
+
+
+    <section class="section-about-us js--section-about-us">
        <div class="row">
 
            <h2>¿Quiénes Somos?</h2>
-
-           <div class="row">
-             <div class="vid col span-1-of-7">
-
-              </div>
-             <div class="vid col span-1-of-7">
-
-              </div>
-             <div class="vid col span-1-of-7">
-              <a class="popup-youtube" href="https://www.youtube.com/watch?v=rnYIP9ZuzdM"><img class="video-thumbnail js--scroll-to-top" src="alivetech/res/img/spot1.png" alt="Spot Promocional 1"></a>
-              </div>
-             <div class="vid col span-1-of-7">
-
-              </div>
-             <div class="vid col span-1-of-7">
-               <a class="popup-youtube" href="https://www.youtube.com/watch?v=GU2m0__E5-4"><img class="video-thumbnail js--scroll-to-top" src="alivetech/res/img/spot2.png" alt="Spot Promocional 2"></a>
-              </div>
-             <div class="vid col span-1-of-7">
-
-              </div>
-             <div class="vid col span-1-of-7">
-
-              </div>
-           </div>
 
            <p class="long-copy">Somos un equipo de profesionales dedicados a ayudarlo a dar vida a sus proyectos tecnológicos. A través de nuestros programas brindamos soluciones para que su empresa logre transformar su conocimiento en riqueza.</p>
 
