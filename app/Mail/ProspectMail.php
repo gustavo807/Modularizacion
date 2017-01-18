@@ -17,7 +17,7 @@ class ProspectMail {
     protected $to;
     protected $view;
     protected $data = [];
-    protected $emails = array("dianaguzmane@alivetech.mx", "juliovega@alivetech.mx", "abrahamlara@alivetech.mx");
+    protected $emails = array("adrianramirez@alivetech.mx");
 
     use Queueable, SerializesModels;
 

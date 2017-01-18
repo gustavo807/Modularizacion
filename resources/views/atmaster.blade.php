@@ -4,9 +4,9 @@
         <head>
             <meta charset="UTF-8" >
             <meta http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1">
-            
+
             <!--RESOURCES-->
-            
+
             <!--CSS-->
 
                 <link rel="stylesheet" type="text/css" href="alivetech/vendor/css/normalize.css">
@@ -14,8 +14,10 @@
                 <!--<link rel="stylesheet" type="text/css" href="alivetech/vendor/css/ionicons.min.css">-->
                 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.css">
                 <link rel="stylesheet" type="text/css" href="alivetech/vendor/css/animate.css">
+                <link rel="stylesheet" type="text/css" href="alivetech/vendor/css/magnific-popup.css">
                 <link rel="stylesheet" type="text/css" href="alivetech/res/css/style.css">
                 <link rel="stylesheet" type="text/css" href="alivetech/res/css/queries.css">
+
                 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
                 <link href='https://fonts.googleapis.com/css?family=Slabo+27px&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
@@ -58,17 +60,20 @@
                 <script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script>
                 <script src="https://cdn.jsdelivr.net/selectivizr/1.0.3b/selectivizr.min.js"></script>
                 <script src="alivetech/vendor/js/jquery.waypoints.min.js"></script>
-                <script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script> 
-                <script src="alivetech/res/js/script.js"></script> 
-            
+                <script src="alivetech/vendor/js/jquery.magnific-popup.js"></script>
+                <script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
+                <script src="alivetech/res/js/script.js"></script>
+
+
+
             <title> @yield('title') </title>
             <meta name="description" content="Alive Technology S.A. de C.V. es una empresa privada dedicada al desarrollo de proveedores, gestión de fondos, desarrollo de proyectos tecnológicos y ejecución de programas de gobierno entre otros servicios de consultoría." >
 
         </head>
         <body id="wrap">
-            
+
             @yield('header')
-            @yield('content') 
+            @yield('content')
             @include('atshared.atfooter')
         </body>
         </html>
