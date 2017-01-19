@@ -8,52 +8,42 @@ use App\WSNotificacion;
 
 class Notificacion extends Model
 {
-	public static function sendnotification_convocatoria($idmodulo, $proyecto_id,$empresa,$proyecto)
+	public static function sendnotification_convocatoria($idmodulo, $empresa,$proyecto)
 	{
 		$total = DB::table('modulos')
 			->where('modulos.clasificacion_id', 2)
 			->count();
 
-		$contestados = DB::table('proyecto_modulo')
-			->where('proyecto_modulo.proyecto_id', $proyecto_id)
-			->where('proyecto_modulo.propietario', "empresa")
-			->count();
-
-		if($contestados  == 10)
+		if($idmodulo  == 10)
 			WSNotificacion::sendnotification($empresa,"10/".$total." Módulos. ".$proyecto);
 
-		elseif($contestados  == 20)
+		elseif($idmodulo  == 20)
 			WSNotificacion::sendnotification($empresa,"20/".$total." Módulos. ".$proyecto);
 
-		elseif($contestados  == 30)
+		elseif($idmodulo  == 30)
 			WSNotificacion::sendnotification($empresa,"30/".$total." Módulos. ".$proyecto);
 		
-		elseif($contestados == 40)
+		elseif($idmodulo == 40)
 			WSNotificacion::sendnotification($empresa,"40/".$total." Módulos. ".$proyecto);
 
-		elseif($contestados == $total)
+		elseif($idmodulo == $total)
 			WSNotificacion::sendnotification($empresa,$idmodulo."/".$total." Módulos. ".$proyecto);		
 	}
 
-	public static function sendnotification_general($idmodulo, $empresa, $empresa_id)
+	public static function sendnotification_general($idmodulo, $empresa)
 	{
 		$total = DB::table('modulos')
 			->where('modulos.clasificacion_id', 1)
 			->count();
 
-		$contestados = DB::table('user_modulo')
-			->where('user_modulo.user_id', $empresa_id)
-			->where('user_modulo.propietario', "empresa")
-			->count();
-
-		if ($contestados == 10)
+		if ($idmodulo == 10)
 			WSNotificacion::sendnotification($empresa,"10/".$total." Módulos Generales");
 		
-		elseif ($contestados == 20)
+		elseif ($idmodulo == 20)
 			WSNotificacion::sendnotification($empresa,"20/".$total." Módulos Generales");
 		
-		elseif ($total == $contestados)
-			WSNotificacion::sendnotification($empresa,$contestados."/".$total." Módulos Generales");
+		elseif ($total == $idmodulo)
+			WSNotificacion::sendnotification($empresa,$idmodulo."/".$total." Módulos Generales");
 		
 	}
 

@@ -64,8 +64,6 @@ class EParrafoGnrlController extends Controller
         ]);
       }
 
-      
-      //
 
       // VALIDAMOS SI EXISTEN IMAGENES EN ESE MODULO
       // DE LO CONTRARIO SE MARCA COMO COMPLETO ESE MODULO
@@ -75,7 +73,10 @@ class EParrafoGnrlController extends Controller
       if($imagenes == 0)
       {
         // Enviar notificacion
-        Notificacion::sendnotification_general($idmodulo, $request->user()->nombre, $request->user()->id);
+        $orden = Ordena_Modulo::orden(1)->pluck("id");
+        $position = Ordena_Modulo::getposition($orden,$idmodulo);
+
+        Notificacion::sendnotification_general($position, $request->user()->nombre);
         //
         $usermodulo = User_Modulo::usermodulo($iduser,$propietario,$idmodulo);
         if(!isset($usermodulo)){

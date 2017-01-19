@@ -8,6 +8,7 @@ use App\Imagen;
 use App\User_Imagen;
 use App\User_Modulo;
 use App\Notificacion;
+use App\Ordena_Modulo;
 use Session;
 class EImagenGnrlController extends Controller
 {
@@ -61,8 +62,10 @@ class EImagenGnrlController extends Controller
       }
 
       // Enviar notificacion
-      Notificacion::sendnotification_general($idmodulo, $request->user()->nombre, $request->user()->id);
-       //
+      $orden = Ordena_Modulo::orden(1)->pluck("id");
+      $position = Ordena_Modulo::getposition($orden,$idmodulo);
+      Notificacion::sendnotification_general($position, $request->user()->nombre);
+      
 
       return redirect('/empresamodulognrl')->with('success','Modulo completado correctamente ');
 

@@ -9,6 +9,7 @@ use App\Proyecto_Imagen;
 use App\Proyecto_Modulo;
 use App\Proyecto;
 use App\Notificacion;
+use App\Ordena_Modulo;
 use Session;
 
 class EImagenController extends Controller
@@ -74,7 +75,9 @@ class EImagenController extends Controller
 
       // Enviar notificacion
         $proyecto = Proyecto::findOrFail($idproyecto);
-        Notificacion::sendnotification_convocatoria($idmodulo, $idproyecto,$request->user()->nombre,$proyecto->nombre);
+        $orden = Ordena_Modulo::orden(2)->pluck("id");
+        $position = Ordena_Modulo::getposition($orden,$idmodulo);
+        Notificacion::sendnotification_convocatoria($position,$request->user()->nombre,$proyecto->nombre);
         //
 
       return redirect('/empresaproyecto/'.$idproyecto)->with('success','Modulo completado correctamente ');

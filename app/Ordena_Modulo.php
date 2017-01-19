@@ -89,6 +89,31 @@ class Ordena_Modulo extends Model
   }
 
 
+  public static function orden($clasificacion_id){
+    return DB::table('modulos')
+                    ->select('modulos.*',
+                    DB::raw('(SELECT ordena_modulos.orden
+                                FROM ordena_modulos
+                                WHERE ordena_modulos.modulo_id=modulos.id) as orden')
+                            )
+                    ->where('modulos.clasificacion_id', '=', $clasificacion_id)
+                    ->orderBy('orden', 'asc')
+                    ->get();
+  }
+
+  public static function getposition($array,$id)
+  {
+    $position = "";
+    for ($i=1; $i <= count($array) ; $i++) 
+    { 
+      if($array[$i-1] == $id)
+        $position = $i;  
+    }
+
+    return $position;
+  }
+
+
 }
 
 

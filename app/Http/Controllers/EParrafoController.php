@@ -12,6 +12,7 @@ use App\Proyecto;
 use App\Imagen;
 use App\User_Clave;
 use App\Notificacion;
+use App\Ordena_Modulo;
 use Session;
 
 class EParrafoController extends Controller
@@ -78,7 +79,9 @@ class EParrafoController extends Controller
       {
         // Enviar notificacion
         $proyecto = Proyecto::findOrFail($idproyecto);
-        Notificacion::sendnotification_convocatoria($idmodulo, $idproyecto,$request->user()->nombre,$proyecto->nombre);
+        $orden = Ordena_Modulo::orden(2)->pluck("id");
+        $position = Ordena_Modulo::getposition($orden,$idmodulo);
+        Notificacion::sendnotification_convocatoria($position,$request->user()->nombre,$proyecto->nombre);
         //
         $proyectomodulo = Proyecto_Modulo::proyectomodulo($idproyecto,$propietario,$idmodulo);
         if(!isset($proyectomodulo)){
