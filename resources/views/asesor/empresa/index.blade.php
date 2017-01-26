@@ -3,6 +3,10 @@
 @section('contentheader_title') Empresas @endsection
 @section('contentheader_description')  @endsection
 
+@push('stylesheet')
+	<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+@endpush
+
 @section('main-content')
 <div class="container spark-screen">
 	<div class="row">
@@ -19,6 +23,7 @@
 								<tr>
 									<th>Nombre</th>
 									<th>Email</th>
+									<th>Avance</th>
 									<th>Editar</th>
 									<th>Empresa</th>
 									<th>Asesor</th>
@@ -31,6 +36,7 @@
 								<tr>
 									<th>{!! link_to_route('asesorempresa.show', $title = $empresa->nombre, $parameters = $empresa->id, $attributes = '') !!}</th>
 									<td>{{$empresa->email}}</td>
+									<td>{{ $empresa->modulo }}/{{ $modulos }}</td>
 									<td>
 										
 									{!! link_to('asesorempresa/perfil/'.$empresa->id, $title = '',  $attributes = ['class'=>'ion-edit icon-big']) !!}
@@ -69,3 +75,9 @@
 	</div>
 </div>
 @endsection
+
+
+@push('scripts')
+	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+@endpush
+

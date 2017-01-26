@@ -60,6 +60,19 @@ class User extends Authenticatable
       $this->save();
     }
 
+    public static function modulos($rol_id,$propietario)
+    {
+      return DB::table('users')
+                      ->select('users.*',
+                        DB::raw('(SELECT COUNT(user_modulo.modulo_id)
+                                    FROM user_modulo
+                                    WHERE users.id = user_modulo.user_id
+                                    AND user_modulo.propietario="'.$propietario.'") as modulo')
+                                )
+                      ->where('users.rol_id', $rol_id)
+                      ->orderBy('users.nombre', 'asc')
+                      ->paginate(10);
+    }
 
     public static function copyempresa_crea($user_id){
       DB::insert('insert into user_modulo (user_id, modulo_id,propietario)

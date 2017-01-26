@@ -11,14 +11,17 @@ use Session;
 use App\Proyecto;
 use App\Proyecto_Clave;
 use App\Proyecto_Parrafo;
+use App\Modulo;
 
 class AEmpresaController extends Controller
 {
     
     public function index()
     {
-      $empresas = User::where('rol_id','=', '1')->paginate(10);
-      return view('asesor.empresa.index',['empresas'=>$empresas]);
+      //$empresas = User::where('rol_id','=', '1')->paginate(10);
+      $empresas = User::modulos('1','empresa');
+      $modulos = Modulo::where('modulos.clasificacion_id','1')->count();
+      return view('asesor.empresa.index',['empresas'=>$empresas,'modulos'=>$modulos]);
     }
 
     // Perfil de la empresa
