@@ -94,6 +94,20 @@ Route::group(['middleware' => 'auth'], function () {
 
     //      VISTAS DEL ASESOR
     Route::resource('asesorempresa','AEmpresaController');
+    // DataTable for company
+    Route::get('api/empresas', function () {
+        return Datatables::queryBuilder(
+            DB::table('users')
+                      ->select('users.id','users.nombre','users.email','users.activo',
+                        DB::raw('(SELECT COUNT(user_modulo.modulo_id)
+                                    FROM user_modulo
+                                    WHERE users.id = user_modulo.user_id
+                                    AND user_modulo.propietario="empresa") as modulo')
+                                )
+                      ->where('users.rol_id', '1')
+            )->make(true);
+    });
+
     Route::get('asesorempresa/perfil/{id}','AEmpresaController@perfil');
     Route::get('asesorempresa/perfil/{tipo}/{id}','AEmpresaController@editperfil');
     Route::put('asesorempresa/updateperfil/{id}', 'AEmpresaController@updateperfil');

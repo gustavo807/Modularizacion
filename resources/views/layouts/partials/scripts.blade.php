@@ -6,6 +6,9 @@
 <script src="{{ asset('/js/bootstrap.min.js') }}" type="text/javascript"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('/js/app.min.js') }}" type="text/javascript"></script>
+
+
+
 <!-- AliveTech -->
 <script src="{{ asset('/js/script.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/js/validaciones.js') }}" type="text/javascript"></script>

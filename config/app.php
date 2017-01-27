@@ -191,6 +191,8 @@ return [
 
         // Other Service Providers
         App\Providers\EmpresaServiceProvider::class,
+
+        Yajra\Datatables\DatatablesServiceProvider::class 
     ],
 
     /*
@@ -247,6 +249,8 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Recaptcha' => Greggilbert\Recaptcha\Facades\Recaptcha::class,
+
+        'Datatables' => Yajra\Datatables\Facades\Datatables::class,
 
     ],
 
