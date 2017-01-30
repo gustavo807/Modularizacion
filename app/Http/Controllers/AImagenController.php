@@ -18,8 +18,8 @@ class AImagenController extends Controller
     {
         if (Auth::user()->rol_id != 3) return redirect('/asesor');
 
-        $imagenes = Imagen::modulos();
-        return view('asesor/imagen.index',['imagenes'=>$imagenes]);
+       // $imagenes = Imagen::modulos();
+        return view('asesor/imagen.index');
     }
 
     /**

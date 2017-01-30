@@ -8,24 +8,14 @@ use App\Modulo;
 use App\Clasificacion;
 class AModuloController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         if (Auth::user()->rol_id != 3) return redirect('/asesor');
 
-        $modulos = Modulo::clasificaciones();
-        return view('asesor/modulo.index',['modulos'=>$modulos]);
+        //$modulos = Modulo::clasificaciones();
+        return view('asesor/modulo.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
       if (Auth::user()->rol_id != 3) return redirect('/asesor');
@@ -34,12 +24,6 @@ class AModuloController extends Controller
       return view('asesor/modulo.create',['clasificaciones'=>$clasificaciones]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
       $this->validate($request, [
@@ -52,23 +36,11 @@ class AModuloController extends Controller
       return redirect('/asesormodulo')->with('success','Modulo registrado correctamente');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
       if (Auth::user()->rol_id != 3) return redirect('/asesor');
@@ -78,13 +50,6 @@ class AModuloController extends Controller
       return view('asesor/modulo.edit',['modulo'=>$modulo, 'clasificaciones'=>$clasificaciones]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
       $this->validate($request, [
@@ -96,12 +61,6 @@ class AModuloController extends Controller
       return redirect('/asesormodulo')->with('success','Modulo actualizado correctamente');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
       Modulo::find($id)->delete();

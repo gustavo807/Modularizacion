@@ -3,57 +3,83 @@
 @section('contentheader_title') Imágenes @endsection
 @section('contentheader_description')  @endsection
 
+@push('stylesheet')
+	<link href="{{ asset('/css/bootstrap-toggle.min.css') }}" rel="stylesheet" type="text/css" />
+	<link href="{{ asset('/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">	
+@endpush
+
 @section('main-content')
-	<div class="container spark-screen">
-		<div class="row">
-			<div class="col-md-10 col-md-offset-1">
-				<div class="panel panel-default">
-					<div class="panel-heading">Imágenes</div>
+<div class="container spark-screen">
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			<div class="panel panel-default">
+				<div class="panel-heading">Imágenes</div>
 
-						<div class="panel-body">
-									@include('alerts.success')
-									<a href="/asesorimagen/create" class="float">	<i class="fa fa-plus my-float"></i>	</a>
+				<div class="panel-body">
+					@include('alerts.success')
+					<a href="/asesorimagen/create" class="float">	<i class="fa fa-plus my-float"></i>	</a>
 
-									<div class="table-responsive">
-											<table class="table table-bordered table-striped table-hover">
-										        <thead>
-													<tr>
-																	<th>Módulo</th>
-										            <th>Imagen</th>
-						                    <th>Descripcion</th>
-						                    <th>Referencia</th>
-										            <th width="150px">Acción</th>
-													</tr>
-										        </thead>
-											<tbody>
-						                @foreach($imagenes as $imagen)
-														<tr>		
-																	<th width="200px">{{$imagen->modulo}}</th>
-																	<td>
-									                  <a target="_blank" href="/documentos/{{$imagen->imagen}}">{{$imagen->imagen}}</a>
-									                </td>
-									                <td>{{$imagen->descripcion}}</td>
-									                <td>{{$imagen->referencia}}</td>
-																	<td>
-																		<div class="col-md-2">
-																			{!! link_to_route('asesorimagen.edit', $title = '', $parameters = $imagen->id, $attributes = ['class'=>'ion-edit icon-big']) !!}
-																		</div>
-															<!--			<div class="col-md-2">
-																			{!! Form::open(['method' => 'DELETE','route' => ['asesorimagen.destroy', $imagen->id], 'id' => 'form-delete-imagen-' . $imagen->id]) !!}
-																			    <a href="" class="data-delete ion-trash-b icon-big"	data-form="imagen-{{ $imagen->id }}"></a>
-																			{!! Form::close() !!}
-																		</div>	-->
-																	</td>
-																</tr>
-														@endforeach
-														</tbody>
-										    </table>
-										</div>
-							 	{{ $imagenes->links() }}
-						</div>
-
+					<div class="table-responsive">
+						<table id="imagenTable" class="table table-bordered table-striped table-hover">
+							<thead>
+								<tr>
+									<th>Módulo</th>
+									<th>Imagen</th>
+									<th>Descripcion</th>
+									<th>Referencia</th>
+									<th>Acción</th>
+								</tr>
+							</thead>
+						</table>
+						
+					</div>
 				</div>
+
 			</div>
 		</div>
 	</div>
+</div>
 @endsection
+
+
+@push('scripts')
+	<script src="{{ asset('/js/bootstrap-toggle.min.js') }}"></script>
+	<script src="{{ asset('/js/jquery.dataTables.min.js') }}"></script>
+ 	<script src="{{ asset('/js/dataTables.bootstrap.min.js') }}"></script>
+
+ 	<script>
+ 		$(document).ready(function(){
+ 			$('#imagenTable').DataTable( {
+ 				"processing": true,
+ 				"serverSide": true,
+ 				"ajax": "/api/asesorimagen",
+ 				"columns":[
+ 				{data: "modulo", searchable:false,
+ 					render:  function(data, type, row, meta)
+			        				{
+			        					return '<strong>'+data+'</strong>';
+			        				}
+ 				},
+ 				{data: "imagen",
+ 					render:  function(data, type, row, meta)
+			        				{
+			        					return '<a target="_blank" href="/documentos/'+data+'">'+data+'</a>';
+			        				}
+ 				},
+ 				{data: "descripcion"},
+ 				{data: "referencia"},
+ 				{data: "id", searchable:false,sortable:false,
+ 					render:  function ( data, type, row, meta )
+			        				{
+			        					return '<a href="/asesorimagen/'+data+'/edit" class="ion-edit icon-big" title="Editar"></a>';
+			        				}
+ 				}
+ 				]
+
+ 			} );
+ 		});
+
+
+ 	</script>
+
+@endpush

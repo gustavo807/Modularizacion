@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 //use Illuminate\Database\Eloquent\SoftDeletes;
+use Datatables;
 
 class Clave extends Model
 {
@@ -48,5 +49,19 @@ class Clave extends Model
 											->where('claves.modulo_id', '=', $id)
 											->get();
 		}
+
+
+    public static function apiclaves()
+    {
+      return Datatables::queryBuilder(
+            DB::table('claves')
+                      ->select('claves.*', 
+                          DB::raw('(SELECT modulos.modulo
+                                 FROM modulos
+                                  WHERE modulos.id=claves.modulo_id) as modulo')
+                        )
+            )->make(true);
+    }
+
 
 }

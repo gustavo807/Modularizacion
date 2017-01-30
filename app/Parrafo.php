@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 //use Illuminate\Database\Eloquent\SoftDeletes;
+use Datatables;
 
 class Parrafo extends Model
 {
@@ -30,5 +31,17 @@ class Parrafo extends Model
 											->where('parrafos.modulo_id','=', $idmodulo)
 											->get();
 		}
+
+	public static function apiparrafos()
+    {
+      return Datatables::queryBuilder(
+            DB::table('parrafos')
+                      ->select('parrafos.*', 
+                          DB::raw('(SELECT modulos.modulo
+                                 FROM modulos
+                                  WHERE modulos.id=parrafos.modulo_id) as modulo')
+                        )
+            )->make(true);
+    }
 
 }

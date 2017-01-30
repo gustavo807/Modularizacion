@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 //use Illuminate\Database\Eloquent\SoftDeletes;
+use Datatables;
 
 class Imagen extends Model
 {
@@ -37,5 +38,17 @@ class Imagen extends Model
 											->where('imagenes.modulo_id','=', $idmodulo)
 											->get();
 		}
+
+	public static function apiimagenes()
+    {
+      return Datatables::queryBuilder(
+            DB::table('imagenes')
+                      ->select('imagenes.*', 
+                          DB::raw('(SELECT modulos.modulo
+                                 FROM modulos
+                                  WHERE modulos.id=imagenes.modulo_id) as modulo')
+                        )
+            )->make(true);
+    }
 
 }

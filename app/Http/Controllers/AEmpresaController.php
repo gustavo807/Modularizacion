@@ -117,10 +117,14 @@ class AEmpresaController extends Controller
         $empresa = User::findOrFail($id);
         if($user != 'empresa' && $user != 'asesor') return redirect('/erros/404');
 
-        $claves = User_Clave::claves($id, $user);
-        return view('asesor.informacion.claves',['claves'=>$claves, 'empresa'=>$empresa, 'user'=>$user,'ruta'=>'gnrlparrafo','id'=>$id]);
+        //return $id.$user;
+
+        //$claves = User_Clave::claves($id, $user);
+        return view('asesor.informacion.claves',['empresa'=>$empresa, 'user'=>$user,'ruta'=>'gnrlparrafo','id'=>$id]);
         //return 'hola'.$id.$user;
     }
+
+
 
     public function gnrlparrafo($id,$user)
     {
@@ -129,7 +133,7 @@ class AEmpresaController extends Controller
 
         $parrafos = User_Parrafo::parrafosusuario($id, $user,'1');
         $claves = User_Clave::getclaves($id, $user);
-        return view('asesor.informacion.parrafos',['parrafos'=>$parrafos,'claves'=>$claves, 'empresa'=>$empresa, 'user'=>$user,'ruta'=>'informaciognrl','id'=>$id]);
+        return view('asesor.informacion.parrafos',['parrafos'=>$parrafos,'claves'=>$claves, 'empresa'=>$empresa, 'user'=>$user,'ruta'=>'asesorempresa/claves','id'=>$id]);
         //return 'hola'.$id.$user;
     }
 
@@ -140,9 +144,9 @@ class AEmpresaController extends Controller
         $empresa = User::findOrFail($proyecto->user_id);
         if($user != 'empresa' && $user != 'asesor') return redirect('/erros/404');
 
-        $claves = Proyecto_Clave::claves($id, $user);
+        //$claves = Proyecto_Clave::claves($id, $user);
 
-        return view('asesor.informacion.claves',['claves'=>$claves, 'empresa'=>$empresa, 'user'=>$user,'ruta'=>'proyectoparrafos','id'=>$id]);
+        return view('asesor.informacion.claves',['empresa'=>$empresa, 'user'=>$user,'ruta'=>'proyectoparrafos','id'=>$id]);
         //return 'hola'.$id.$user;
     }
 
@@ -156,7 +160,7 @@ class AEmpresaController extends Controller
         $claves = Proyecto_Clave::getclavesuser($id, $user);
         $clavesg = User_Clave::getclaves($proyecto->user_id, $user);
 
-        return view('asesor.informacion.parrafos',['parrafos'=>$parrafos,'claves'=>$claves, 'empresa'=>$empresa, 'user'=>$user,'ruta'=>'proyectoclaves','id'=>$id,'clavesg'=>$clavesg]);
+        return view('asesor.informacion.parrafos',['parrafos'=>$parrafos,'claves'=>$claves, 'empresa'=>$empresa, 'user'=>$user,'ruta'=>'asesorempresa/proyecto/claves','id'=>$id,'clavesg'=>$clavesg]);
         //return 'hola'.$id.$user;
     }
 

@@ -17,8 +17,8 @@ class AParrafoController extends Controller
     {
         if (Auth::user()->rol_id != 3) return redirect('/asesor');
 
-        $parrafos = Parrafo::modulos();
-        return view('asesor/parrafo.index',['parrafos'=>$parrafos]);
+        //$parrafos = Parrafo::modulos();
+        return view('asesor/parrafo.index');
     }
 
     /**

@@ -94,14 +94,14 @@
 			        	{
 			        		data:  function ( row, type, val, meta )
 			        				{
-			        					return '<a href="/informaciognrl/'+row.id+'/user/empresa" class="ion-ios-paper icon-big" title="Información General" title="Información General"></a>';
+			        					return '<a href="/asesorempresa/claves/'+row.id+'/user/empresa" class="ion-ios-paper icon-big" title="Información General" title="Información General"></a>';
 			        				}
 			        		,searchable:false,sortable:false
 			        	},
 			        	{
 			        		data:  function ( row, type, val, meta )
 			        				{
-			        					return '<a href="/informaciognrl/'+row.id+'/user/asesor" class="ion-ios-paper icon-big" title="Información General" title="Información General"></a>';
+			        					return '<a href="/asesorempresa/claves/'+row.id+'/user/asesor" class="ion-ios-paper icon-big" title="Información General" title="Información General"></a>';
 			        				}
 			        		,searchable:false,sortable:false
 			        	},

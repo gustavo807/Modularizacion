@@ -1,7 +1,12 @@
 @extends('asesor.cuerpo')
-@section('htmlheader_title') Home @endsection
+@section('htmlheader_title')  @endsection
 @section('contentheader_title') {{$empresa->nombre}} @endsection
 @section('contentheader_description') Claves {{$user}} @endsection
+
+@push('stylesheet')
+  <link href="{{ asset('/css/bootstrap-toggle.min.css') }}" rel="stylesheet" type="text/css" />
+  <link href="{{ asset('/css/dataTables.bootstrap.min.css') }}" rel="stylesheet"> 
+@endpush
 
 @section('main-content')
 	<div class="container spark-screen">
@@ -16,25 +21,15 @@
 					</div>
 
 						<div class="panel-body">
-
               <div class="table-responsive">
-                <table class="table table-bordered table-striped table-hover">
+                <table id="clavesTable" class="table table-bordered table-striped table-hover">
                       <thead>
                           <tr>
                             <th width="300px">Nombre</th>
                             <th>Valor</th>
                           </tr>
                       </thead>
-                      <tbody>
-                      @foreach($claves as $clave)
-                          <tr>
-                            <th>{{$clave->nombre}}</th>
-                            <td>{{$clave->valor}}</td>
-                          </tr>
-                        @endforeach
-                        </tbody>
-                  </table>
-                  {{ $claves->links() }}
+                </table>                
               </div>
 
 						</div>
@@ -43,3 +38,30 @@
 		</div>
 	</div>
 @endsection
+
+
+@push('scripts')
+  <script src="{{ asset('/js/bootstrap-toggle.min.js') }}"></script>
+  <script src="{{ asset('/js/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ asset('/js/dataTables.bootstrap.min.js') }}"></script>
+
+  <script>
+    $(document).ready(function(){
+      $('#clavesTable').DataTable({
+          "processing": true,
+          "serverSide": true,
+          "ajax": "/api/asesorempresa/claves/{{ $id }}/user/{{ $user }}",
+          "columns":[
+            {data: 'nombre',
+                render:  function(data, type, row, meta)
+                      {
+                        return '<strong>'+data+'</strong>';
+                      }
+            },
+            {data: 'valor', searchable:false}
+          ]
+      });
+    });
+  </script>
+
+@endpush

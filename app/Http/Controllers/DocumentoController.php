@@ -20,15 +20,7 @@ class DocumentoController extends Controller
     {
       if (Auth::user()->rol_id != 3) return redirect('/asesor');
       
-      $documentos = DB::table('documentos')
-                      ->join('roles', 'documentos.rol_id', '=', 'roles.id')
-                      ->join('categorias','documentos.categoria_id','=','categorias.id')
-                      ->select('documentos.*', 'roles.rol','categorias.categoria')
-                      ->whereNull('documentos.deleted_at')
-                      ->orderBy('categorias.categoria', 'asc')
-                      ->orderBy('documentos.nombre', 'asc')
-                      ->paginate(10);
-        return view('asesor/documento.index',['documentos' => $documentos]);
+        return view('asesor/documento.index');
     }
 
     /**

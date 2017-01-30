@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 //use Illuminate\Database\Eloquent\SoftDeletes;
+use Datatables;
 
 class Modulo extends Model
 {
@@ -70,6 +71,20 @@ class Modulo extends Model
                       ->orderBy('orden', 'asc')
 											->paginate(10);
 		}
+
+    public static function apimodulos()
+    {
+      //return "hola";
+      return Datatables::queryBuilder(
+            DB::table('modulos')
+                      //->join('clasificaciones', 'modulos.clasificacion_id', '=', 'clasificaciones.id')
+                      ->select('modulos.*', 
+                          DB::raw('(SELECT clasificaciones.clasificacion
+                                 FROM clasificaciones
+                                  WHERE clasificaciones.id=modulos.clasificacion_id) as clasificacion')
+                        )
+            )->make(true);
+    }
 
 
 }

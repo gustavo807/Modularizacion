@@ -13,8 +13,8 @@ class AClaveController extends Controller
     {
         if (Auth::user()->rol_id != 3) return redirect('/asesor');
 
-        $claves = Clave::modulos();
-        return view('asesor/clave.index',['claves'=>$claves]);
+        //$claves = Clave::modulos();
+        return view('asesor/clave.index');
     }
 
     public function create()

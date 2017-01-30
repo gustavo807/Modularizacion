@@ -42,10 +42,10 @@
 										<td>{{$proyecto->convocatoria}}</td>
 										<td>{{$proyecto->descripcion}}</td>
 										<td>
-											{!! link_to('proyectoclaves/'.$proyecto->id.'/user/empresa', $title = '',$attributes = 'class="ion-ios-paper icon-big" title="Resumen del proyecto"') !!}
+											{!! link_to('asesorempresa/proyecto/claves/'.$proyecto->id.'/user/empresa', $title = '',$attributes = 'class="ion-ios-paper icon-big" title="Resumen del proyecto"') !!}
 										</td>
 										<td>
-											{!! link_to('proyectoclaves/'.$proyecto->id.'/user/asesor', $title = '',$attributes = 'class="ion-ios-paper icon-big" title="Resumen del proyecto"') !!}
+											{!! link_to('asesorempresa/proyecto/claves/'.$proyecto->id.'/user/asesor', $title = '',$attributes = 'class="ion-ios-paper icon-big" title="Resumen del proyecto"') !!}
 										</td>
 		                                <td>
 											<div class="col-md-2">

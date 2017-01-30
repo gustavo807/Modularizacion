@@ -3,6 +3,11 @@
 @section('contentheader_title') Categorías @endsection
 @section('contentheader_description') Documentos @endsection
 
+@push('stylesheet')
+	<link href="{{ asset('/css/bootstrap-toggle.min.css') }}" rel="stylesheet" type="text/css" />
+	<link href="{{ asset('/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">	
+@endpush
+
 @section('main-content')
 	<div class="container spark-screen">
 		<div class="row">
@@ -15,31 +20,14 @@
 									<a href="/asesorcategoria/create" class="float">	<i class="fa fa-plus my-float"></i>	</a>
 
 									<div class="table-responsive">
-											<table class="table table-bordered table-striped table-hover">
+										<table id="categoriaTable" class="table table-bordered table-striped table-hover">
 										        <thead>
 										            <tr>
 										            	<th>Categoría</th>
-										            <th width="150px">Acción</th>
+										            	<th>Acción</th>
 										            </tr>
 										        </thead>
-										<tbody>
-						                @foreach($categorias as $categoria)
-						      							<tr>
-						      								<th>{{$categoria->categoria}}</th>
-						      								<td>
-						      									<div class="col-md-2">
-						      										{!! link_to_route('asesorcategoria.edit', $title = '', $parameters = $categoria->id, $attributes = ['class'=>'ion-edit icon-big']) !!}
-						      									</div>
-						      						<!--			<div class="col-md-2">
-						      										{!! Form::open(['method' => 'DELETE','route' => ['asesorcategoria.destroy', $categoria->id],'id' => 'form-delete-categorias-' . $categoria->id]) !!}
-						      										    <a href="" class="data-delete ion-trash-b icon-big"	data-form="categorias-{{ $categoria->id }}"></a>
-						      										{!! Form::close() !!}
-						      									</div>		-->
-						      								</td>
-						      							</tr>
-						      						@endforeach
-						      						</tbody>
-										    </table>
+										</table>											
 								</div>
 						</div>
 
@@ -48,3 +36,38 @@
 		</div>
 	</div>
 @endsection
+
+
+@push('scripts')
+	<script src="{{ asset('/js/bootstrap-toggle.min.js') }}"></script>
+	<script src="{{ asset('/js/jquery.dataTables.min.js') }}"></script>
+ 	<script src="{{ asset('/js/dataTables.bootstrap.min.js') }}"></script>
+
+ 	<script>
+ 		$(document).ready(function(){
+ 			$('#categoriaTable').DataTable( {
+ 				"processing": true,
+ 				"serverSide": true,
+ 				"ajax": "/api/asesorcategoria",
+ 				"columns":[
+ 				{data: "categoria",
+ 					render:  function(data, type, row, meta)
+			        				{
+			        					return '<strong>'+data+'</strong>';
+			        				}
+ 				},
+ 				{data: "id", searchable:false,sortable:false,
+ 					render:  function ( data, type, row, meta )
+			        				{
+			        					return '<a href="/asesorcategria/'+data+'/edit" class="ion-edit icon-big" title="Editar"></a>';
+			        				}
+ 				}
+ 				]
+
+ 			} );
+ 		});
+
+
+ 	</script>
+
+@endpush

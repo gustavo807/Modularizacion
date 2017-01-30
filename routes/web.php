@@ -75,18 +75,26 @@ Route::group(['middleware' => 'auth'], function () {
 
     //      VISTAS PARA EL ADMINISTRADOR
         Route::resource('asesor','AsesorController');
-		    Route::resource('asesorprograma','ProgramaController');
-		    Route::resource('asesorinstitucion','InstitucionController');
+	    Route::resource('asesorprograma','ProgramaController');
+	    Route::resource('asesorinstitucion','InstitucionController');
         Route::resource('asesorfondo', 'FondosController');
         Route::resource('asesorinstitucionfondo', 'InstitucionFondoController');
-		    Route::resource('asesorconvocatoria','ConvocatoriaController');
+		Route::resource('asesorconvocatoria','ConvocatoriaController');
         Route::resource('asesordocumentos','DocumentoController');
+        Route::get('api/asesordocumentos', function () { return App\Documento::apidocumentos(); } );
         //Route::resource('asesorclasificacion','AClasificacionController');
         Route::resource('asesormodulo','AModuloController');
+        Route::get('api/asesormodulo', function () {
+            return App\Modulo::apimodulos();
+        } );
         Route::resource('asesorclave','AClaveController');
+        Route::get('api/asesorclave', function () { return App\Clave::apiclaves(); } );
         Route::resource('asesorparrafo','AParrafoController');
+        Route::get('api/asesorparrafo', function () { return App\Parrafo::apiparrafos(); } );
         Route::resource('asesorimagen','AImagenController');
+        Route::get('api/asesorimagen', function () { return App\Imagen::apiimagenes(); } );
         Route::resource('asesorcategoria','ACategoriaController');
+        Route::get('api/asesorcategoria', function () { return App\Categoria::apicategorias(); } );
         Route::resource('asesoradd','AddAsesorController');
 
     Route::resource('aordenagnrl','AOrdenaGnrlController');
@@ -141,9 +149,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('storeimagenproyecto','AProyectoEmpresaController@storeimagenproyecto');
 
       //VISTA DE DE CLAVES DE EMPRESA PROYECTO
-    Route::get('informaciognrl/{id}/user/{user}', 'AEmpresaController@informaciongnrl' );
+    //Route::get('informaciognrl/{id}/user/{user}', 'AEmpresaController@informaciongnrl' );
+    Route::get('asesorempresa/claves/{id}/user/{user}', 'AEmpresaController@informaciongnrl' );
+    // Api para el data table
+    Route::get('api/asesorempresa/claves/{id}/user/{user}', function ($id,$user) {
+        return App\User_Clave::apiclaves($id,$user);
+    } );
+    
     Route::get('gnrlparrafo/{id}/user/{user}', 'AEmpresaController@gnrlparrafo' );
-    Route::get('proyectoclaves/{id}/user/{user}', 'AEmpresaController@proyectoclaves' );
+    //Route::get('proyectoclaves/{id}/user/{user}', 'AEmpresaController@proyectoclaves' );
+    Route::get('asesorempresa/proyecto/claves/{id}/user/{user}', 'AEmpresaController@proyectoclaves' );
+    
     Route::get('proyectoparrafos/{id}/user/{user}', 'AEmpresaController@proyectoparrafos' );
 
     Route::resource('asesorproyecto','AProyectoController');

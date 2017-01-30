@@ -17,8 +17,8 @@ class ACategoriaController extends Controller
     {
         if (Auth::user()->rol_id != 3) return redirect('/asesor');
 
-        $categorias = Categoria::all();
-        return view('asesor/categoria.index',['categorias'=>$categorias]);
+       // $categorias = Categoria::paginate(10);
+        return view('asesor/categoria.index');
     }
 
     /**

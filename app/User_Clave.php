@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Datatables;
 
 class User_Clave extends Model
 {
@@ -86,6 +87,26 @@ class User_Clave extends Model
                     ->where('modulos.clasificacion_id','=','1');
                 })
               ->get();
+  }
+
+
+  public static function apiclaves($id, $user)
+  {
+    return Datatables::queryBuilder(
+            DB::table('claves')
+              ->select('claves.nombre','claves.identificador',
+              DB::raw('(SELECT user_claves.valor
+                        FROM user_claves
+                         WHERE user_claves.clave_id=claves.id
+                         and user_claves.user_id='.$id.'
+                         and user_claves.propietario="'.$user.'") as valor')
+                      )
+              ->whereIn('claves.modulo_id', function($query){
+                    $query->select('modulos.id')
+                    ->from('modulos')
+                    ->where('modulos.clasificacion_id','=','1');
+                })
+            )->make(true);
   }
 
 
