@@ -4,7 +4,6 @@
 @section('contentheader_description') Claves {{$user}} @endsection
 
 @push('stylesheet')
-  <link href="{{ asset('/css/bootstrap-toggle.min.css') }}" rel="stylesheet" type="text/css" />
   <link href="{{ asset('/css/dataTables.bootstrap.min.css') }}" rel="stylesheet"> 
 @endpush
 
@@ -25,8 +24,9 @@
                 <table id="clavesTable" class="table table-bordered table-striped table-hover">
                       <thead>
                           <tr>
-                            <th width="300px">Nombre</th>
-                            <th>Valor</th>
+                            <th>Nombre</th>
+                            <th width="50%">Valor</th>
+                            <th>Created_at</th>
                           </tr>
                       </thead>
                 </table>                
@@ -41,16 +41,15 @@
 
 
 @push('scripts')
-  <script src="{{ asset('/js/bootstrap-toggle.min.js') }}"></script>
   <script src="{{ asset('/js/jquery.dataTables.min.js') }}"></script>
   <script src="{{ asset('/js/dataTables.bootstrap.min.js') }}"></script>
 
   <script>
     $(document).ready(function(){
-      $('#clavesTable').DataTable({
+      $('#clavesTable').DataTable({ 
           "processing": true,
           "serverSide": true,
-          "ajax": "/api/asesorempresa/claves/{{ $id }}/user/{{ $user }}",
+          "ajax": "/api/asesorempresa/claves/{{ $id }}/user/{{ $user }}/tipo/{{ $tipo }}",
           "columns":[
             {data: 'nombre',
                 render:  function(data, type, row, meta)
@@ -58,8 +57,10 @@
                         return '<strong>'+data+'</strong>';
                       }
             },
-            {data: 'valor', searchable:false}
-          ]
+            {data: 'valor', searchable:false},
+            {data: 'created_at', searchable:false, visible:false}
+          ],
+          "order": [[ 2, "asc" ]]
       });
     });
   </script>

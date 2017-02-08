@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 //use Illuminate\Database\Eloquent\SoftDeletes;
+use Datatables;
 
 class Proyecto extends Model
 {
@@ -68,6 +69,21 @@ class Proyecto extends Model
                         )
                 ->where('proyectos.id','=',$id)
                 ->get();
+    }
+
+    public static function apiproyectos()
+    {
+        //return "hola";
+      return Datatables::queryBuilder(
+       DB::table('proyectos')
+       ->select('proyectos.*',
+        DB::raw('(SELECT users.nombre FROM users WHERE proyectos.user_id=users.id) as empresa'),
+        DB::raw('(SELECT convocatorias.convocatoria FROM convocatorias WHERE proyectos.convocatoria_id=convocatorias.id ) as convocatoria'),
+        DB::raw('(SELECT count(*) FROM proyecto_modulo WHERE proyecto_modulo.proyecto_id=proyectos.id
+         AND proyecto_modulo.propietario="empresa") as modulo')
+        )         
+       )->make(true);
+      
     }
 
    /* public static function proyectodescripcion($idproyecto){

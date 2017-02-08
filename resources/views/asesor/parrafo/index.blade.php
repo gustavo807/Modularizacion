@@ -4,7 +4,6 @@
 @section('contentheader_description')  @endsection
 
 @push('stylesheet')
-	<link href="{{ asset('/css/bootstrap-toggle.min.css') }}" rel="stylesheet" type="text/css" />
 	<link href="{{ asset('/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">	
 @endpush
 
@@ -40,7 +39,6 @@
 
 
 @push('scripts')
-	<script src="{{ asset('/js/bootstrap-toggle.min.js') }}"></script>
 	<script src="{{ asset('/js/jquery.dataTables.min.js') }}"></script>
  	<script src="{{ asset('/js/dataTables.bootstrap.min.js') }}"></script>
 

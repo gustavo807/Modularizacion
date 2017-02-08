@@ -120,7 +120,7 @@ class AEmpresaController extends Controller
         //return $id.$user;
 
         //$claves = User_Clave::claves($id, $user);
-        return view('asesor.informacion.claves',['empresa'=>$empresa, 'user'=>$user,'ruta'=>'gnrlparrafo','id'=>$id]);
+        return view('asesor.informacion.claves',['empresa'=>$empresa, 'user'=>$user,'ruta'=>'gnrlparrafo','id'=>$id,'tipo'=>'1']);
         //return 'hola'.$id.$user;
     }
 
@@ -146,7 +146,7 @@ class AEmpresaController extends Controller
 
         //$claves = Proyecto_Clave::claves($id, $user);
 
-        return view('asesor.informacion.claves',['empresa'=>$empresa, 'user'=>$user,'ruta'=>'proyectoparrafos','id'=>$id]);
+        return view('asesor.informacion.claves',['empresa'=>$empresa, 'user'=>$user,'ruta'=>'proyectoparrafos','id'=>$id,'tipo'=>'2']);
         //return 'hola'.$id.$user;
     }
 

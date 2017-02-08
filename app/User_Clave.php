@@ -90,23 +90,40 @@ class User_Clave extends Model
   }
 
 
-  public static function apiclaves($id, $user)
+  public static function apiclaves($id, $user,$tipo)
   {
-    return Datatables::queryBuilder(
-            DB::table('claves')
-              ->select('claves.nombre','claves.identificador',
-              DB::raw('(SELECT user_claves.valor
-                        FROM user_claves
-                         WHERE user_claves.clave_id=claves.id
-                         and user_claves.user_id='.$id.'
-                         and user_claves.propietario="'.$user.'") as valor')
-                      )
-              ->whereIn('claves.modulo_id', function($query){
-                    $query->select('modulos.id')
-                    ->from('modulos')
-                    ->where('modulos.clasificacion_id','=','1');
-                })
-            )->make(true);
+    if($tipo == "1")
+      return Datatables::queryBuilder(
+              DB::table('claves')
+                ->select('claves.nombre','claves.identificador','claves.created_at',
+                DB::raw('(SELECT user_claves.valor
+                          FROM user_claves
+                           WHERE user_claves.clave_id=claves.id
+                           and user_claves.user_id='.$id.'
+                           and user_claves.propietario="'.$user.'") as valor')
+                        )
+                ->whereIn('claves.modulo_id', function($query) {
+                      $query->select('modulos.id')
+                      ->from('modulos')
+                      ->where('modulos.clasificacion_id',"1");
+                  })
+              )->make(true);
+    elseif($tipo == "2")
+      return Datatables::queryBuilder(
+              DB::table('claves')
+                ->select('claves.nombre','claves.identificador','claves.created_at',
+                DB::raw('(SELECT proyectos_claves.valor
+                          FROM proyectos_claves
+                           WHERE proyectos_claves.clave_id=claves.id
+                           and proyectos_claves.proyecto_id='.$id.'
+                           and proyectos_claves.propietario="'.$user.'") as valor')
+                        )  
+                ->whereIn('claves.modulo_id', function($query) {
+                      $query->select('modulos.id')
+                      ->from('modulos') 
+                      ->where('modulos.clasificacion_id',"2");
+                  })              
+              )->make(true);
   }
 
 

@@ -152,8 +152,8 @@ Route::group(['middleware' => 'auth'], function () {
     //Route::get('informaciognrl/{id}/user/{user}', 'AEmpresaController@informaciongnrl' );
     Route::get('asesorempresa/claves/{id}/user/{user}', 'AEmpresaController@informaciongnrl' );
     // Api para el data table
-    Route::get('api/asesorempresa/claves/{id}/user/{user}', function ($id,$user) {
-        return App\User_Clave::apiclaves($id,$user);
+    Route::get('api/asesorempresa/claves/{id}/user/{user}/tipo/{tipo}', function ($id,$user,$tipo) {
+        return App\User_Clave::apiclaves($id,$user,$tipo);
     } );
     
     Route::get('gnrlparrafo/{id}/user/{user}', 'AEmpresaController@gnrlparrafo' );
@@ -167,6 +167,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('cuestionarios/{type}', 'ExcelController@exportarCuestionarios'); //Aregar campo ID para seleccionar uno solo
     Route::resource('excel','ExcelController');
     Route::resource('aproyectosgnrl','AProyectoGnrlController');
+    Route::get('api/aproyectosgnrl', function () { return App\Proyecto::apiproyectos(); } );
+
     Route::resource('aproyectoempresa','AProyectoEmpresaController');
 
 
