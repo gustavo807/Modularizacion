@@ -162,8 +162,11 @@ class AModuloGnrlController extends Controller
         $modulo = Modulo::findOrFail($id);
 
         $claves = Clave::clavesmodulo($id,$iduser,'asesor');
-        return view('asesor.moduloempresa.claves',['empresa'=>$empresa,'modulo'=>$modulo, 'claves'=>$claves]);
-        //return 'hola'.$id;
+
+        if(count($claves) > 0)
+          return view('asesor.moduloempresa.claves',['empresa'=>$empresa,'modulo'=>$modulo, 'claves'=>$claves]);
+        else
+          return redirect('parrafognl/'.$id.'/empresa/'.$empresa->id)->with('success','Selecciona un párrafo');
     }
 
     public function parrafognl($id,$iduser)

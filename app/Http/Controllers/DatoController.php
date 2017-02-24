@@ -118,9 +118,6 @@ class DatoController extends Controller
         }
     }
 
-    public function borrame(){
-        
-    }
 
     /**
      * Update the specified resource in storage.

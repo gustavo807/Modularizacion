@@ -16,11 +16,7 @@ use App\Notificacion;
 
 class EParrafoGnrlController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index(Request $request)
     {
       if( Auth::user()->activo == 2)

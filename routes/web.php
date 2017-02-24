@@ -84,9 +84,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('api/asesordocumentos', function () { return App\Documento::apidocumentos(); } );
         //Route::resource('asesorclasificacion','AClasificacionController');
         Route::resource('asesormodulo','AModuloController');
-        Route::get('api/asesormodulo', function () {
-            return App\Modulo::apimodulos();
-        } );
+        Route::get('api/asesormodulo', function () { return App\Modulo::apimodulos(); });
         Route::resource('asesorclave','AClaveController');
         Route::get('api/asesorclave', function () { return App\Clave::apiclaves(); } );
         Route::resource('asesorparrafo','AParrafoController');
@@ -171,6 +169,11 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('aproyectoempresa','AProyectoEmpresaController');
 
+    Route::resource('dirigidoa','DirigidoController');
+    Route::resource('asesorconvocatoria/a/dirigido','CDirigidoController');
+    Route::get('asesorconvocatoria/a/dirigido/crear/{id}','CDirigidoController@crear');
+    Route::get('asesorconvocatoria/a/dirigido/editar/{idc}/{idr}','CDirigidoController@editar');
+
 
 	});
 
@@ -182,6 +185,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('empresamodulognrl','EModuloGnrlController');
     Route::get('empresamodulognrl/evaluacion/', 'EModuloGnrlController@ecompetitividad');
     Route::post('empresamodulognrl/storeevaluacion/','EModuloGnrlController@storeecompetitividad');
+
     Route::get('empresaresultados', 'EModuloGnrlController@resultados');
 
     Route::resource('empresaparrafognrl','EParrafoGnrlController');
@@ -202,11 +206,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 	// MIDDLEWARE PARA VINCULADO
 	Route::group(['middleware' => 'vinculado'], function () {
-
 		Route::resource('vinculado','VinculadoController');
 		Route::resource('datosvinculado','DatoController');
-		Route::resource('borrame','DatoController@borrame');
-
 	});
 
     // RUTA PARA EL PERFIL, ESTE APLICA PARA TODOS LOS ROLES

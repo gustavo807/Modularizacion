@@ -19,4 +19,12 @@ class Proyecto_Modulo extends Model
                     //->select('user_imagenes.*','imagenes.modulo_id')
                     ->first();
   }
+
+  public static function proyectomodulov2($idproyecto,$propietario,$idmodulo){
+    return Proyecto_Modulo::where('proyecto_modulo.proyecto_id', $idproyecto)
+                            ->where('proyecto_modulo.propietario', $propietario)
+                            ->where('proyecto_modulo.modulo_id', $idmodulo)
+                            ->first();
+  }
+
 }

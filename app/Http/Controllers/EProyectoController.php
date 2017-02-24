@@ -122,7 +122,7 @@ class EProyectoController extends Controller
         if (isset($request['valor'])) {
               $rules = [];
               foreach ($request->get('valor') as $key => $val)
-                $rules['valor.'.$key] = 'required|max:2000';
+                $rules['valor.'.$key] = 'required|max:6000';
 
               $validator = Validator::make($request->all(), $rules);
 
@@ -133,7 +133,7 @@ class EProyectoController extends Controller
         }
         else {
               $this->validate($request, [
-                'valor' => 'required|max:2000',
+                'valor' => 'required|max:6000',
                 'clave_id' => 'required|max:255',
             ]);
         }
@@ -161,12 +161,7 @@ class EProyectoController extends Controller
       return redirect('/empresaparrafo')->with('success','Claves registradas correctamente  Ahora selecciona un parrafo ');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show(Request $request, $id)
     {
         $iduser = $request->user()->id;
@@ -184,15 +179,10 @@ class EProyectoController extends Controller
         Session::put('idproyecto', $id);
         $modulos = Modulo::proyectosmodulo($id,$propietario);
         $status = Evproyecto::status_evaluacion($id);
-        return view('empresa.proyecto.index',['proyecto'=>$proyecto,'modulos'=>$modulos,'status'=>$status]);
+        return view('empresa.proyecto.index',['proyecto'=>$proyecto,'modulos'=>$modulos, 'status'=>$status]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit(Request $request, $id)
     {   
         $idproyecto = Session::get('idproyecto');
@@ -234,7 +224,12 @@ class EProyectoController extends Controller
         $propietario = 'empresa';
         $claves = Clave::clavesmoduloproyecto($id,$idproyecto,$propietario);
         $modulo = Modulo::findOrFail($id);
-        return view('empresa/proyecto.edit',['claves'=>$claves,'modulo'=>$modulo]);
+
+        //return count($claves);
+        if(count($claves) > 0)
+          return view('empresa/proyecto.edit',['claves'=>$claves,'modulo'=>$modulo]);
+        else
+          return redirect('/empresaparrafo')->with('success','Selecciona un párrafo');
 
     }
 

@@ -13,4 +13,10 @@ class Convocatoria extends Model
     public $fillable = ['convocatoria','descripcion','institucion_id', 'fondos_id'];
 
     //protected $dates = ['deleted_at'];
+
+    public function dirigidos()
+    {
+    	return $this->belongsToMany('App\Dirigido');
+    }
+
 }

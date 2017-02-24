@@ -30,6 +30,20 @@
 							</td>
 						</tr>
 						<tr>
+							<th>Estado:</th>
+							<td>{{ $empresa->estado }}</td>
+							<td>
+								{!! link_to('asesorempresa/perfil/estado/'.$empresa->id, $title = '',  $attributes = ['class'=>'ion-edit icon-big']) !!}
+							</td>
+						</tr>
+						<tr>
+							<th>Ciudad:</th>
+							<td>{{ $empresa->ciudad }}</td>
+							<td>
+								{!! link_to('asesorempresa/perfil/ciudad/'.$empresa->id, $title = '',  $attributes = ['class'=>'ion-edit icon-big']) !!}
+							</td>
+						</tr>
+						<tr>
 							<th>Password:</th>
 							<td>{{ $empresa->password }}</td>
 							<td>

@@ -11,8 +11,7 @@ class AProyectoGnrlController extends Controller
     
     public function index()
     {
-        //$proyectos = Proyecto::empresasproyectos();
-        $modulos = Modulo::all()->where('clasificacion_id','=','2')->count();
+        $modulos = Modulo::all()->where('clasificacion_id','2')->count();
         return view('asesor.proyectognrl.index',['modulos'=>$modulos]);
     }
 

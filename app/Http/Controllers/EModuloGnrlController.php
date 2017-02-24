@@ -29,10 +29,10 @@ class EModuloGnrlController extends Controller
 
         $modulos = Modulo::modulosgnrl($iduser,$propietario);
         //$primer = Ordena_Modulo::primermodulo();
-//return $modulos.$primer;
+        //return $modulos;
 
         $status = Euser::status_evaluacion($iduser);
-        return view('empresa/modulognrl.index',['modulos'=>$modulos,'status'=>$status]);
+        return view('empresa/modulognrl.index',compact('modulos','status'));
     }
 
     
@@ -202,7 +202,12 @@ class EModuloGnrlController extends Controller
       Session::put('idmodulognrl', $id);
       $modulo = Modulo::findOrFail($id);
       $claves = Clave::clavesmodulo($id,$iduser,$propietario);
-      return view('empresa/modulognrl.edit',['claves'=>$claves,'modulo'=>$modulo]);
+
+      // Si el módulo no tiene claves
+      if(count($claves) > 0)
+          return view('empresa/modulognrl.edit',['claves'=>$claves,'modulo'=>$modulo]);
+      else
+        return redirect('/empresaparrafognrl')->with('success','Selecciona un párrafo');
 
 
     }

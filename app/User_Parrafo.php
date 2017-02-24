@@ -55,6 +55,7 @@ class User_Parrafo extends Model
                   ->paginate(10);
       }
 
+
 }
 
 /*

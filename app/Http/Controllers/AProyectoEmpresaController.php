@@ -104,7 +104,7 @@ class AProyectoEmpresaController extends Controller
       $proyecto = Proyecto::findOrFail($id);
       $modulos = Modulo::proyectosmodulo($id,'asesor');
       $status = Evproyecto::status_evaluacion($id);
-      return view('asesor.proyectoempresa.modulos',['proyecto'=>$proyecto,'modulos'=>$modulos,'status'=>$status]);
+      return view('asesor.proyectoempresa.modulos',['proyecto'=>$proyecto,'modulos'=>$modulos, 'status'=>$status]);
       //return 'hola'.$id;
   }
 
@@ -113,7 +113,11 @@ class AProyectoEmpresaController extends Controller
     $proyecto = Proyecto::findOrFail($idproyecto);
     $modulo = Modulo::findOrFail($id);
     $claves = Clave::clavesmoduloproyecto($id,$idproyecto,'asesor');
-    return view('asesor.proyectoempresa.claves',['claves'=>$claves,'proyecto'=>$proyecto,'modulo'=>$modulo]);
+
+    if(count($claves) > 0)
+      return view('asesor.proyectoempresa.claves',['claves'=>$claves,'proyecto'=>$proyecto,'modulo'=>$modulo]);
+    else
+      return redirect('/parrafoproyecto/'.$id.'/proyecto/'.$proyecto->id)->with('success','Selecciona un párrafo');
   }
 
   public function store(Request $request)
@@ -122,7 +126,7 @@ class AProyectoEmpresaController extends Controller
       if (isset($request['valor'])) {
             $rules = [];
             foreach ($request->get('valor') as $key => $val)
-              $rules['valor.'.$key] = 'required|max:2000';
+              $rules['valor.'.$key] = 'required|max:6000';
 
             $validator = Validator::make($request->all(), $rules);
 
@@ -133,7 +137,7 @@ class AProyectoEmpresaController extends Controller
       }
       else {
             $this->validate($request, [
-              'valor' => 'required|max:2000',
+              'valor' => 'required|max:6000',
               'clave_id' => 'required|max:255',
           ]);
       }

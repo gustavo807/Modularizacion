@@ -47,6 +47,7 @@
                       <li><a href="/asesorprograma"><i class="fa fa-circle-o"></i>Programa</a></li>
                       <li><a href="/asesorinstitucion"><i class="fa fa-circle-o"></i>Institucion</a></li>
                       <li><a href="/asesorfondo"><i class="fa fa-circle-o"></i>Fondo</a></li>
+                      <li><a href="/dirigidoa"><i class="fa fa-circle-o"></i> Dirigido A </a></li>
                       <li><a href="/asesorconvocatoria"><i class="fa fa-circle-o"></i>Convocatoria</a></li>
                   </ul>
               </li>

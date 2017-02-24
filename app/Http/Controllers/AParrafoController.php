@@ -43,7 +43,7 @@ class AParrafoController extends Controller
     public function store(Request $request)
     {
       $this->validate($request, [
-          'parrafo' => 'required|max:2000',
+          'parrafo' => 'required|max:10000',
           'modulo_id' => 'required|max:255',
       ]);
       Parrafo::create($request->all());
@@ -87,7 +87,7 @@ class AParrafoController extends Controller
     public function update(Request $request, $id)
     {
       $this->validate($request, [
-          'parrafo' => 'required|max:2000',
+          'parrafo' => 'required|max:10000',
           'modulo_id' => 'required|max:255',
       ]);
       Parrafo::find($id)->update($request->all());

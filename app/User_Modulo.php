@@ -12,12 +12,17 @@ class User_Modulo extends Model
 
   public static function usermodulo($userid,$propietario,$idmodulo){
     return DB::table('user_modulo')
-                    //->join('modulos', 'user_modulo.modulo_id', '=', 'modulos.id')
-                    ->where('user_modulo.user_id','=', $userid)
-                    ->where('user_modulo.propietario','=', $propietario)
-                    ->where('user_modulo.modulo_id', '=', $idmodulo)
-                    //->select('user_imagenes.*','imagenes.modulo_id')
+                    ->where('user_modulo.user_id', $userid)
+                    ->where('user_modulo.propietario', $propietario)
+                    ->where('user_modulo.modulo_id', $idmodulo)
                     ->first();
+  }
+
+  public static function usermodulov2($userid,$propietario,$idmodulo){
+    return User_Modulo::where('user_modulo.user_id', $userid)
+                      ->where('user_modulo.propietario', $propietario)
+                      ->where('user_modulo.modulo_id', $idmodulo)
+                      ->first();
   }
 
   

@@ -1,7 +1,7 @@
 @extends('vinculado.cuerpo')
 
 @section('htmlheader_title')
-	Home
+	Vinculado
 @endsection
 
 

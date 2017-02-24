@@ -10,11 +10,7 @@ use App\Fondo;
 
 class ConvocatoriaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         if (Auth::user()->rol_id != 3) return redirect('/asesor');
@@ -27,11 +23,7 @@ class ConvocatoriaController extends Controller
         return view('asesor/convocatoria.index',['convocatorias'=>$convocatorias]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         if (Auth::user()->rol_id != 3) return redirect('/asesor');
@@ -40,12 +32,7 @@ class ConvocatoriaController extends Controller
         return view('asesor/convocatoria.create',compact('fondos'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -58,23 +45,7 @@ class ConvocatoriaController extends Controller
         return redirect('/asesorconvocatoria')->with('success','Convocatoria registrada correctamente');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         if (Auth::user()->rol_id != 3) return redirect('/asesor');
@@ -84,13 +55,6 @@ class ConvocatoriaController extends Controller
         return view('asesor/convocatoria.edit',['convocatoria'=>$convocatoria,'fondos'=>$fondos]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $this->validate($request, [
@@ -105,12 +69,6 @@ class ConvocatoriaController extends Controller
                            ->with('success','Convocatoria actualizada correctamente');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         Convocatoria::find($id)->delete();

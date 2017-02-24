@@ -18,17 +18,15 @@ class AEmpresaController extends Controller
     
     public function index()
     {
-      //$empresas = User::where('rol_id','=', '1')->paginate(10);
-      //$empresas = User::modulos('1','empresa');
       $modulos = Modulo::where('modulos.clasificacion_id','1')->count();
-      return view('asesor.empresa.index',['modulos'=>$modulos]);
+      return view('asesor.empresa.index',compact('modulos'));
     }
 
     // Perfil de la empresa
     public function perfil($id)
     {
         $empresa = User::findOrFail($id);
-        return view('asesor.empresa.perfil',['empresa'=>$empresa]);
+        return view('asesor.empresa.perfil',compact('empresa'));
         //return $empresa;
     }
 
@@ -36,16 +34,16 @@ class AEmpresaController extends Controller
     public function editperfil($tipo,$id)
     {
         $empresa = User::findOrFail($id);
-        $array = ['nombre','email','password','foto'];
+        $array = ['nombre','email','password','foto','estado','ciudad'];
         if(!in_array($tipo, $array))
             abort(404);
         else
-            return view('asesor.empresa.editperfil',['empresa'=>$empresa,'tipo'=>$tipo]);
+            return view('asesor.empresa.editperfil',compact('empresa','tipo'));
     }
 
     public function updateperfil(Request $request,$id)
     {   
-        $array = ['nombre','email','password','foto'];
+        $array = ['nombre','email','password','foto','estado','ciudad'];
         if(!in_array($request->tipo, $array))
             abort(404);
 
@@ -133,7 +131,7 @@ class AEmpresaController extends Controller
 
         $parrafos = User_Parrafo::parrafosusuario($id, $user,'1');
         $claves = User_Clave::getclaves($id, $user);
-        return view('asesor.informacion.parrafos',['parrafos'=>$parrafos,'claves'=>$claves, 'empresa'=>$empresa, 'user'=>$user,'ruta'=>'asesorempresa/claves','id'=>$id]);
+        return view('asesor.informacion.parrafos',['parrafos'=>$parrafos, 'claves'=>$claves, 'empresa'=>$empresa, 'user'=>$user,'ruta'=>'asesorempresa/claves','id'=>$id]);
         //return 'hola'.$id.$user;
     }
 
@@ -160,7 +158,7 @@ class AEmpresaController extends Controller
         $claves = Proyecto_Clave::getclavesuser($id, $user);
         $clavesg = User_Clave::getclaves($proyecto->user_id, $user);
 
-        return view('asesor.informacion.parrafos',['parrafos'=>$parrafos,'claves'=>$claves, 'empresa'=>$empresa, 'user'=>$user,'ruta'=>'asesorempresa/proyecto/claves','id'=>$id,'clavesg'=>$clavesg]);
+        return view('asesor.informacion.parrafos',['parrafos'=>$parrafos, 'claves'=>$claves, 'empresa'=>$empresa, 'user'=>$user,'ruta'=>'asesorempresa/proyecto/claves','id'=>$id,'clavesg'=>$clavesg]);
         //return 'hola'.$id.$user;
     }
 

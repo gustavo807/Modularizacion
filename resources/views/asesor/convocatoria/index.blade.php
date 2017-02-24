@@ -21,6 +21,7 @@
 							            	<th>Convocatoria</th>
 							            <th>Descripción</th>
 							            <th>Fondo</th>
+							            <th>Dirigido A</th>
 							            <th width="150px">Acción</th>
 							            </tr>
 							        </thead>
@@ -30,6 +31,8 @@
 												<th>{{$convocatoria->convocatoria}}</th>
 												<td>{{$convocatoria->descripcion}}</td>
 												<td>{{$convocatoria->fondo}}</td>
+												<td>
+												{!! link_to_route('dirigido.show', $title = '', $parameter = $convocatoria->id, $attributes = ['class'=>'ion-person-stalker icon-big']) !!}	</td>
 												<td>
 													<div class="col-md-2">
 														{!! link_to_route('asesorconvocatoria.edit', $title = '', $parameters = $convocatoria->id, $attributes = ['class'=>'ion-edit icon-big']) !!}
