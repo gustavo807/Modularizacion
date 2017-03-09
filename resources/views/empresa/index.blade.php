@@ -20,6 +20,7 @@
 									<th>Convocatoria</th>
 									<th>Descripción</th>
 									<th>Fecha Asignado</th>
+									<th>Vinculaciones</th>
 								</tr>
 								
 							</thead>
@@ -30,6 +31,11 @@
 									<th>{!! link_to_route('empresa.show', $title = $proyecto->convocatoria, $parameters = $proyecto->id ) !!}</th>
 									<td>{{$proyecto->descripcion}}</td>
 									<td>{{$proyecto->created_at}}</td>
+									<td>
+										<a href="/vinculaciones/{{ $proyecto->id }}" 
+											class="ion-ios-briefcase icon-big"
+											title="Click para ver más"></a>
+									</td>
 								</tr>
 								@endforeach
 							</tbody>

@@ -12,6 +12,7 @@ use App\Proyecto;
 use App\Proyecto_Clave;
 use App\Proyecto_Parrafo;
 use App\Modulo;
+use App\Estado;
 
 class AEmpresaController extends Controller
 {
@@ -35,10 +36,11 @@ class AEmpresaController extends Controller
     {
         $empresa = User::findOrFail($id);
         $array = ['nombre','email','password','foto','estado','ciudad'];
+        $estados = Estado::estados();
         if(!in_array($tipo, $array))
             abort(404);
         else
-            return view('asesor.empresa.editperfil',compact('empresa','tipo'));
+            return view('asesor.empresa.editperfil',compact('empresa','tipo','estados'));
     }
 
     public function updateperfil(Request $request,$id)
@@ -46,7 +48,7 @@ class AEmpresaController extends Controller
         $array = ['nombre','email','password','foto','estado','ciudad'];
         if(!in_array($request->tipo, $array))
             abort(404);
-
+//return $request->all();
         //Si es password
         if($request->tipo == 'password')
             User::findOrFail($id)->update([ 'password'=>bcrypt($request->password), ]);
@@ -54,6 +56,9 @@ class AEmpresaController extends Controller
             //Si es foto
             if($request->tipo == 'foto')
                 \Storage::delete(User::findOrFail($id)->foto);
+
+            //Si es un estado
+            if($request->tipo == 'estado') Estado::findestado($request->estado);
 
             User::findOrFail($id)->update($request->all());            
         }
@@ -94,7 +99,7 @@ class AEmpresaController extends Controller
     //COPIA LA INFORMACION DE ESTA EMPRESA
     public function copy($id)
     {
-        $proyecto = User::findOrFail($id);
+        $user = User::findOrFail($id);
         User::copyempresa_borra($id);
         User::copyempresa_crea($id);
         return redirect('/asesorempresa')->with('success', 'Información copiada correctamente');

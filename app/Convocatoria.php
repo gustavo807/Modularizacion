@@ -19,4 +19,9 @@ class Convocatoria extends Model
     	return $this->belongsToMany('App\Dirigido');
     }
 
+    public function proyecto()
+    {
+    	return $this->hasMany('App\Proyecto');
+    }
+
 }

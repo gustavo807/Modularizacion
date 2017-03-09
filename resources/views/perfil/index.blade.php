@@ -2,6 +2,10 @@
 	@php
     	$var='empresa';
 	@endphp
+@elseif(Auth::user()->rol_id == 2)
+	@php
+    	$var='vinculado';
+	@endphp
 @else
 	@php
     	$var='asesor';

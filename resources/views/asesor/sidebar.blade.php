@@ -62,6 +62,15 @@
                   </ul>
               </li>
               <li class="treeview">
+                  <a href="#"><i class='fa fa-bank'></i> <span>Vinculados</span> <i class="fa fa-angle-left pull-right"></i></a>
+                  <ul class="treeview-menu">
+                      <li><a href="/instituciones"><i class="fa fa-circle-o"></i>Instituciones</a></li>
+                      <li><a href="/sedes"><i class="fa fa-circle-o"></i>Sedes</a></li>
+                      <li><a href="/investigadores"><i class="fa fa-circle-o"></i>Investigadores</a></li>
+                      <li><a href="/partidas"><i class="fa fa-circle-o"></i>Partidas</a></li>
+                  </ul>
+              </li>
+              <li class="treeview">
                   <a href="#"><i class='fa fa-sort-alpha-asc'></i> <span>Ordenar Módulos</span> <i class="fa fa-angle-left pull-right"></i></a>
                   <ul class="treeview-menu">
                       <li><a href="/aordenagnrl"><i class="fa fa-circle-o"></i>Módulos Generales</a></li>

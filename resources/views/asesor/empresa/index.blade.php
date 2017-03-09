@@ -26,6 +26,8 @@
 						<table id="myTable" class="table table-striped table-bordered table-hover">
 							<thead>
 								<tr>
+									<th>Estado</th>
+                            		<th>Ciudad</th>
 									<th>Nombre</th>
 									<th>Email</th>
 									<th>Avance</th>
@@ -66,6 +68,8 @@
 			        "serverSide": true,
 			        "ajax": "/api/empresas",
 			        "columns":[
+			        	{data: 'estado'},
+            			{data: 'ciudad'},
 			        	{data: 'nombre',
 			        		render:  function(data, type, row, meta)
 			        				{
@@ -88,7 +92,6 @@
 						                    .wrap('<div></div>')
 						                    .parent()
 						                    .html();
-			        					//return '<a href="/asesorempresa/perfil/'+data+'" class="ion-edit icon-big"></a>';
 			        				}
 			        	},
 			        	{

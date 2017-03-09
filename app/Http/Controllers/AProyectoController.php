@@ -9,33 +9,18 @@ use Session;
 
 class AProyectoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        abort(404);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $convocatorias = Convocatoria::pluck('convocatoria','id');
         return view('asesor.proyecto.create',['convocatorias'=>$convocatorias]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
       $this->validate($request, [
@@ -44,7 +29,7 @@ class AProyectoController extends Controller
           'convocatoria_id' => 'required|max:255',
       ]);
       $idempresa = Session::get('idempresa');
-
+//return 'hola';
       if (isset($idempresa)) {
         Proyecto::create([
           'convocatoria_id' => $request['convocatoria_id'],
@@ -58,23 +43,11 @@ class AProyectoController extends Controller
       //return Session::get('idempresa');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
       $convocatorias = Convocatoria::pluck('convocatoria','id');
@@ -82,13 +55,6 @@ class AProyectoController extends Controller
       return view('asesor.proyecto.edit',['convocatorias'=>$convocatorias,'proyecto'=>$proyecto]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
       $this->validate($request, [
@@ -110,12 +76,6 @@ class AProyectoController extends Controller
       }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $idempresa = Session::get('idempresa');

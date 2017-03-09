@@ -15,15 +15,21 @@
            <div class="panel-heading">Proyectos Empresas</div>
 
            <div class="panel-body">
+            @include('alerts.success')
              <div class="table-responsive">
                 <table id="proyectoTable" class="table table-bordered table-striped table-hover">
                     <thead>
                         <tr>
+                            <th>Estado</th>
+                            <th>Ciudad</th>
                             <th>Empresa</th>
                             <th>Proyecto</th>
                             <th>Convocatoria</th>
                             <th>Avance</th>
                             <th>Fecha Asignado</th>
+                            <th>Sedes</th>
+                            <th>Copiar</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                 </table>
@@ -47,6 +53,8 @@
           "serverSide": true,
           "ajax": "/api/aproyectosgnrl",
           "columns":[
+            {data: 'estado'},
+            {data: 'ciudad'},
             {data: 'empresa', searchable:false,
                 render:  function(data, type, row, meta)
                       {
@@ -61,8 +69,61 @@
                         return data+'/{{ $modulos }} Módulos';
                       }
             },
-            {data: 'created_at'}
+            {data: 'created_at'},
+            {data: 'id', searchable:false, sortable:false,
+                  render:  function(data, type, row, meta)
+                      {
+                        return '<a href="/aproyectosgnrl/sedes/'+data+'" class="fa fa-bank icon-big" title="Editar"></a>';
+                      }
+            },
+            {data: 'id', searchable:false,sortable:false,
+                  render:  function ( data, type, row, meta )
+                      {
+                        return $('<a>')
+                                .attr('href', "/copyproyecto/"+data)
+                                .attr('class', "ion-ios-browsers icon-big copyproyecto")
+                                .attr('title', "Copiar módulos de esta empresa")
+                                .wrap('<div></div>')
+                                .parent()
+                                .html();
+                      }
+            },
+            {data: 'id', searchable:false, sortable:false,
+                  render:  function(data, type, row, meta)
+                      {
+                        return '<a href="/aproyectosgnrl/'+data+'" class="ion-edit icon-big" title="Editar"></a>';
+                      }
+            }
           ],
+          "fnDrawCallback": function() {
+              $('.copyproyecto').on('click', function (e) {
+                  href = $(this).attr('href');
+                  e.preventDefault();
+                  bootbox.confirm({
+                      title: "Confirmar!",
+                      message: "Estas seguro de copiar? <br> Toda la información almacenada previamente por los asesores se borrara. <br><br> ",
+                      buttons: {
+                          cancel: {
+                              label: '<i class="fa fa-times"></i> Cancelar'
+                          },
+                          confirm: {
+                              label: '<i class="fa fa-check"></i> Confirmar'
+                          }
+                      },
+                      callback: function (result) {
+                          if(result)
+                          {
+                            window.location = href;
+
+                            bootbox.dialog({
+                                message: '<p class="text-center"><i class="fa fa-spin ion-load-a "></i> Please wait while we do something...</p>',
+                                closeButton: false
+                            });
+                          }
+                      }
+                  }); 
+                });
+          },
           "language":{
               "sProcessing":     "Procesando...",
               "sLengthMenu":     "Mostrar _MENU_ registros",

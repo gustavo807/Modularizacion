@@ -42,6 +42,11 @@ class User extends Authenticatable
         return $this->hasMany(Proyecto::class);
     }
 
+    public function sede()
+    {
+        return $this->hasOne(Sede::class);
+    }
+
     public static function boot()
     {
       parent::boot();
@@ -92,6 +97,7 @@ class User extends Authenticatable
                         from user_imagenes where propietario=? and user_id=? ', ['empresa',$user_id]);
 
 
+      /*
       DB::insert('insert into proyecto_modulo (proyecto_id, modulo_id,propietario)
                         select proyecto_id, modulo_id, "asesor" as propietario
                         from proyecto_modulo
@@ -115,6 +121,9 @@ class User extends Authenticatable
                         from proyectos_imagenes
                         where propietario=?
                         and proyecto_id in (select id from proyectos where user_id=? )', ['empresa',$user_id]);
+      */
+
+
 
       //return DB::table('user_modulo')->select('user_id','modulo_id', DB::raw("'asesor' AS propietario"))
       //        ->where('user_id', '=', $user_id)->where('propietario', '=', 'empresa')->get();
@@ -127,7 +136,8 @@ class User extends Authenticatable
         DB::table('user_parrafos')->where('user_id', '=', $user_id)->where('propietario', '=', 'asesor')->delete();
         DB::table('user_imagenes')->where('user_id', '=', $user_id)->where('propietario', '=', 'asesor')->delete();
 
-        DB::table('proyecto_modulo')
+        /*
+          DB::table('proyecto_modulo')
                                     ->whereIn('proyecto_modulo.proyecto_id', function($query) use($user_id) {
                                           $query->select('proyectos.id')
                                           ->from('proyectos')
@@ -162,6 +172,7 @@ class User extends Authenticatable
                                       })
                                     ->where('proyectos_imagenes.propietario', '=', 'asesor')
                                     ->delete();
+        */
     }
 
 

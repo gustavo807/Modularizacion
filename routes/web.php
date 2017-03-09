@@ -104,7 +104,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('api/empresas', function () {
         return Datatables::queryBuilder(
             DB::table('users')
-                      ->select('users.id','users.nombre','users.email','users.activo',
+                      ->select('users.id','users.estado','users.ciudad','users.nombre','users.email','users.activo',
                         DB::raw('(SELECT COUNT(user_modulo.modulo_id)
                                     FROM user_modulo
                                     WHERE users.id = user_modulo.user_id
@@ -165,7 +165,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('cuestionarios/{type}', 'ExcelController@exportarCuestionarios'); //Aregar campo ID para seleccionar uno solo
     Route::resource('excel','ExcelController');
     Route::resource('aproyectosgnrl','AProyectoGnrlController');
+    Route::get('copyproyecto/{id}','AProyectoGnrlController@copyproyecto');
+    Route::get('aproyectosgnrl/sedes/{id}','AProyectoGnrlController@sedes');
+    Route::get('aproyectosgnrl/sedes/{id}/create','AProyectoGnrlController@createsede');
+    Route::post('aproyectosgnrl/sedes/{id}/store','AProyectoGnrlController@storesede');
     Route::get('api/aproyectosgnrl', function () { return App\Proyecto::apiproyectos(); } );
+
+    Route::get('aproyectosgnrl/investigadores/{id}','AProyectoGnrlController@investigadores');
+    Route::get('aproyectosgnrl/partidas/{proyecto_id}','AProyectoGnrlController@partidas');
 
     Route::resource('aproyectoempresa','AProyectoEmpresaController');
 
@@ -174,6 +181,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('asesorconvocatoria/a/dirigido/crear/{id}','CDirigidoController@crear');
     Route::get('asesorconvocatoria/a/dirigido/editar/{idc}/{idr}','CDirigidoController@editar');
 
+    // Vinculados
+    Route::resource('instituciones','InstitutionController');
+    Route::get('api/instituciones', function () { return App\Institution::api(); } );
+    Route::resource('sedes','SedeController');
+    Route::get('api/sedes', function () { return App\Sede::api(); } );
+    Route::resource('investigadores','ResearcherController');
+    Route::get('api/investigadores', function () { return App\Researcher::api(); } );
+    Route::resource('partidas','PartidaController');
+    Route::get('api/partidas', function () { return App\Partida::api(); } );
 
 	});
 
@@ -181,33 +197,44 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::group(['middleware' => 'empresa'], function () {
 
 		Route::resource('empresa','EmpresaController');
-    Route::resource('empresadocumentos','EmpresaDocumentoController');
-    Route::resource('empresamodulognrl','EModuloGnrlController');
-    Route::get('empresamodulognrl/evaluacion/', 'EModuloGnrlController@ecompetitividad');
-    Route::post('empresamodulognrl/storeevaluacion/','EModuloGnrlController@storeecompetitividad');
+        Route::resource('empresadocumentos','EmpresaDocumentoController');
+        Route::resource('empresamodulognrl','EModuloGnrlController');
+        Route::get('empresamodulognrl/evaluacion/', 'EModuloGnrlController@ecompetitividad');
+        Route::post('empresamodulognrl/storeevaluacion/','EModuloGnrlController@storeecompetitividad');
 
-    Route::get('empresaresultados', 'EModuloGnrlController@resultados');
+        Route::get('empresaresultados', 'EModuloGnrlController@resultados');
 
-    Route::resource('empresaparrafognrl','EParrafoGnrlController');
-    Route::resource('empresaimagengnrl','EImagenGnrlController');
+        Route::resource('empresaparrafognrl','EParrafoGnrlController');
+        Route::resource('empresaimagengnrl','EImagenGnrlController');
 
-    Route::resource('einfognrl','EInfoGnrlController');
-    Route::resource('eproyecto','EProPreController');
-    // MODLUOS POR CONVOCATORIA
-    Route::resource('empresaproyecto','EProyectoController');
-    Route::get('empresaproyecto/preguntas/{id}','EProyectoController@preguntas');
-    Route::get('empresaproyecto/{idproyecto}/evaluacion/{id}','EProyectoController@evaluacion');
-    Route::get('empresaproyecto/resultados/{id}','EProyectoController@resultados');
-    //Route::put('empresaproyecto/storeevaluacion/{id}','EProyectoController@storeevaluacion');
+        Route::resource('einfognrl','EInfoGnrlController');
+        Route::resource('eproyecto','EProPreController');
+        // MODLUOS POR CONVOCATORIA
+        Route::resource('empresaproyecto','EProyectoController');
+        Route::get('empresaproyecto/preguntas/{id}','EProyectoController@preguntas');
+        Route::get('empresaproyecto/{idproyecto}/evaluacion/{id}','EProyectoController@evaluacion');
+        Route::get('empresaproyecto/resultados/{id}','EProyectoController@resultados');
+        //Route::put('empresaproyecto/storeevaluacion/{id}','EProyectoController@storeevaluacion');
 
-    Route::resource('empresaparrafo','EParrafoController');
-    Route::resource('empresaimagen','EImagenController');
+        Route::resource('empresaparrafo','EParrafoController');
+        Route::resource('empresaimagen','EImagenController');
+
+        // Vinculaciones
+        Route::resource('vinculaciones','VinculacionesController');
+        Route::get('vinculaciones/{proyecto_id}/sede/{sede_id}','VinculacionesController@sede');
+        Route::post('vinculaciones/{proyecto_id}/partida/{partida_id}','VinculacionesController@partida');
+
+
 	});
 
 	// MIDDLEWARE PARA VINCULADO
 	Route::group(['middleware' => 'vinculado'], function () {
-		Route::resource('vinculado','VinculadoController');
-		Route::resource('datosvinculado','DatoController');
+		Route::resource('proyectos','VinculadoController');
+		Route::resource('personal','PersonalController');
+        Route::resource('cotizaciones','CotizacionController');
+        Route::get('proyectos/{id}/clavesg/{proyecto_id}','VinculadoController@clavesg');
+        Route::get('proyectos/{id}/clavesc','VinculadoController@clavesc');
+        Route::get('proyectos/{id}/parrafos','VinculadoController@parrafos');
 	});
 
     // RUTA PARA EL PERFIL, ESTE APLICA PARA TODOS LOS ROLES

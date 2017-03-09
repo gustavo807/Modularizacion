@@ -57,7 +57,7 @@
  				{data: "id", searchable:false,sortable:false,
  					render:  function ( data, type, row, meta )
 			        				{
-			        					return '<a href="/asesorcategria/'+data+'/edit" class="ion-edit icon-big" title="Editar"></a>';
+			        					return '<a href="/asesorcategoria/'+data+'/edit" class="ion-edit icon-big" title="Editar"></a>';
 			        				}
  				}
  				]
