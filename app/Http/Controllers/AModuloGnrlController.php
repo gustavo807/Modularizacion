@@ -137,16 +137,15 @@ class AModuloGnrlController extends Controller
 
     }
 
-    
-    
-
-
     public function show($id)
     {
         $empresa = User::findOrFail($id);
         $modulos = Modulo::modulosgnrl($id,'asesor');
         $status = Euser::status_evaluacion($id);
-        return view('asesor.moduloempresa.index',['empresa'=>$empresa,'modulos'=>$modulos,'status'=>$status]);
+
+        $editados = User_Modulo::modulos_editados($empresa->id);
+
+        return view('asesor.moduloempresa.index',compact('empresa','modulos','status','editados'));
     }
 
     

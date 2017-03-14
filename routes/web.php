@@ -108,7 +108,11 @@ Route::group(['middleware' => 'auth'], function () {
                         DB::raw('(SELECT COUNT(user_modulo.modulo_id)
                                     FROM user_modulo
                                     WHERE users.id = user_modulo.user_id
-                                    AND user_modulo.propietario="empresa") as modulo')
+                                    AND user_modulo.propietario="empresa") as modulo'),
+                        DB::raw('(select registros.nombre 
+                                 from registros 
+                                 where registros.registroable_id=users.id 
+                                 AND registros.registroable_type = "App\\\User") as editado')
                                 )
                       ->where('users.rol_id', '1')
             )->make(true);
@@ -121,6 +125,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('copyempresa/{id}', 'AEmpresaController@copy' );
     Route::get('documentosempresa/{id}', 'AEmpresaController@documentos' );
     Route::resource('amodulognrl','AModuloGnrlController');
+
+    Route::post('amodulognrl/{empresa_id}/revisado/{modulo_id}', 'AEmpresaController@revisado');
     // Evaluacion de competitividad
     Route::get('amodulognrl/empresa/{id}','AModuloGnrlController@empresa');
     Route::get('amodulognrl/empresa/{id}/pregunta/{idpregunta}','AModuloGnrlController@pregunta');
@@ -136,6 +142,7 @@ Route::group(['middleware' => 'auth'], function () {
     //  MODIFICAR MODULOS DEL ASESOR
     Route::resource('proyectomodulos','AProyectoEmpresaController');
     Route::get('modulosproyecto/{id}','AProyectoEmpresaController@modulos');
+    Route::post('modulosproyecto/{proyecto_id}/revisado/{modulo_id}','AProyectoEmpresaController@revisado');
     Route::get('modulosproyecto/proyecto/{idproyecto}','AProyectoEmpresaController@empresa');
     Route::get('modulosproyecto/proyecto/{idproyecto}/pregunta/{idpregunta}','AProyectoEmpresaController@pregunta');
     Route::get('modulosproyecto/resultados/{id}','AProyectoEmpresaController@resultados');

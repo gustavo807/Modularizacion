@@ -25,6 +25,13 @@ class User_Modulo extends Model
                       ->first();
   }
 
+  public static function modulos_editados($id)
+  {
+    return User_Modulo::where('user_id',$id)
+                            ->where('propietario','generales')
+                            ->pluck('modulo_id');
+  }
+
   
 
 

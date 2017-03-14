@@ -9,6 +9,7 @@ use App\Sede;
 use App\Estado;
 use App\Researcher;
 use App\Partida;
+use Carbon\Carbon;
 
 class AProyectoGnrlController extends Controller
 {
@@ -77,9 +78,21 @@ class AProyectoGnrlController extends Controller
     	return redirect('aproyectosgnrl')->with('success','Estado y ciudad registrados correctamente');
     }
 
-    public function copyproyecto($id)
+    public function copyproyecto(Request $request, $id)
     {
-        Proyecto::findOrFail($id);
+        setlocale(LC_TIME, 'es');
+        $user_request = $request->user();
+        $date = Carbon::now();
+        $custom_date = $date->formatLocalized('%A %d de %B %Y, ').$date->format('h:i A');
+        $m =  $user_request->nombre.' el '.$custom_date;
+
+        $proyecto = Proyecto::findOrFail($id);
+
+        if($proyecto->registros->isEmpty())
+            $proyecto->registros()->create(['nombre'=>$m]);
+        else
+            $proyecto->registros()->update(['nombre'=>$m]);
+
         Proyecto::copyproyecto_borra($id);
         Proyecto::copyproyecto_crea($id);
         return redirect('/aproyectosgnrl')->with('success', 'Información copiada correctamente');

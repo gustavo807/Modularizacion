@@ -18,6 +18,7 @@
 					</div>
 
 						<div class="panel-body">
+              <meta name="csrf-token" content="{{ csrf_token() }}">
               @include('alerts.success')
               <div class="table-responsive">
               <table class="table table-bordered table-striped table-hover">
@@ -25,6 +26,7 @@
                         <tr>
                           <th>Módulo</th>
                           <th width="150px">Estado</th>
+                          <th width="150px">Módulos revisados por el asesor</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,6 +42,7 @@
                             Por llenar
                           @endif
                         </td>
+                        <td></td>
                       </tr>
                       @endif
                     @foreach($modulos as $modulo)
@@ -53,6 +56,19 @@
                           @else
                             Por llenar
                           @endif
+                        </td>
+                        <td>
+                          @php
+                            $boolean=false;
+                            $value='0';
+                            if($editados->contains($modulo->id))
+                            {
+                              $boolean=true;
+                              $value='1';
+                            }
+                          @endphp
+
+                          {{ Form::checkbox('editado', $value,$boolean,['class'=>'editado','data-modulo_id'=>$modulo->id]) }}
                         </td>
                      </tr>
                     @endforeach
@@ -69,3 +85,23 @@
 		</div>
 	</div>
 @endsection
+
+@push('scripts')
+  <script>
+    $('.editado').change(function(evt) {
+      var empresa_id = {{ $empresa->id }};
+      var modulo_id = $(this).data('modulo_id');
+      var route = "/amodulognrl/"+empresa_id+"/revisado/"+modulo_id;
+      var token = $('meta[name="csrf-token"]').attr('content');
+      var value = $( this ).val();  
+      
+      $.ajax({
+            url: route,
+            headers: {'X-CSRF-TOKEN': token},
+            method: 'POST',
+            dataType: 'json',
+            data:{value: value}
+        });
+    });
+  </script>
+@endpush

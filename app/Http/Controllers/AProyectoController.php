@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Convocatoria;
 use App\Proyecto;
+use App\User;
 use Session;
 
 class AProyectoController extends Controller
@@ -29,13 +30,16 @@ class AProyectoController extends Controller
           'convocatoria_id' => 'required|max:255',
       ]);
       $idempresa = Session::get('idempresa');
-//return 'hola';
+      $user = User::findOrFail($idempresa);
+
       if (isset($idempresa)) {
         Proyecto::create([
           'convocatoria_id' => $request['convocatoria_id'],
           'user_id' => $idempresa,
           'nombre' => $request['nombre'],
           'descripcion' => $request['descripcion'],
+          'estado' => $user->estado,
+          'ciudad' => $user->ciudad
         ]);
         return redirect('/asesorempresa/'.$idempresa)->with('success','Proyecto registrado correctamente');
       }

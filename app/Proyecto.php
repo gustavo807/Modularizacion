@@ -41,6 +41,11 @@ class Proyecto extends Model
         return $this->belongsToMany('App\Partida');
     }
 
+    public function registros()
+    {
+      return $this->morphMany('App\Registro','registroable');
+    }
+
     public static function proyectoconvocatoria($user_id){
       return DB::table('proyectos')
                 ->select('proyectos.*',
@@ -100,7 +105,11 @@ class Proyecto extends Model
         DB::raw('(SELECT users.nombre FROM users WHERE proyectos.user_id=users.id) as empresa'),
         DB::raw('(SELECT convocatorias.convocatoria FROM convocatorias WHERE proyectos.convocatoria_id=convocatorias.id ) as convocatoria'),
         DB::raw('(SELECT count(*) FROM proyecto_modulo WHERE proyecto_modulo.proyecto_id=proyectos.id
-         AND proyecto_modulo.propietario="empresa") as modulo')
+         AND proyecto_modulo.propietario="empresa") as modulo'),
+        DB::raw('(select registros.nombre 
+                     from registros 
+                     where registros.registroable_id=proyectos.id 
+                     AND registros.registroable_type = "App\\\Proyecto") as editado')
         )         
        )->make(true);
       

@@ -13,6 +13,9 @@ use App\Proyecto_Clave;
 use App\Proyecto_Parrafo;
 use App\Modulo;
 use App\Estado;
+use App\Registro;
+use App\User_Modulo;
+use Carbon\Carbon;
 
 class AEmpresaController extends Controller
 {
@@ -97,9 +100,21 @@ class AEmpresaController extends Controller
     }
 
     //COPIA LA INFORMACION DE ESTA EMPRESA
-    public function copy($id)
+    public function copy(Request $request, $id)
     {
+        setlocale(LC_TIME, 'es');
+        $user_request = $request->user();
+        $date = Carbon::now();
+        $custom_date = $date->formatLocalized('%A %d de %B %Y, ').$date->format('h:i A');
+        $m =  $user_request->nombre.' el '.$custom_date;
+
         $user = User::findOrFail($id);
+        
+        if($user->registros->isEmpty())
+            $user->registros()->create(['nombre'=>$m]);
+        else
+            $user->registros()->update(['nombre'=>$m]);
+    
         User::copyempresa_borra($id);
         User::copyempresa_crea($id);
         return redirect('/asesorempresa')->with('success', 'Información copiada correctamente');
@@ -170,5 +185,34 @@ class AEmpresaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function revisado(Request $request, $empresa_id, $modulo_id)
+    {
+        $empresa = User::findOrFail($empresa_id);
+        $modulo = Modulo::findOrFail($modulo_id);
+
+        //Si el modulo no es general
+        if($modulo->clasificacion_id != 1) abort(404);
+
+        //Si no tiene  el rol de empresa
+        if($empresa->rol_id == 1)
+        {
+            if($request->value == '0')
+                User_Modulo::firstOrCreate([
+                    'user_id' => $empresa->id,
+                    'modulo_id' => $modulo->id,
+                    'propietario' => 'generales'
+                ]);
+            elseif ($request->value == '1') 
+                User_Modulo::where('user_id',$empresa->id)
+                            ->where('modulo_id',$modulo->id)
+                            ->where('propietario','generales')
+                            ->delete();
+            else
+                abort(404);
+        }
+        else
+            abort(404);        
     }
 }

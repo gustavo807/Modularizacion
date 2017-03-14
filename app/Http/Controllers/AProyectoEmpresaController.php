@@ -104,8 +104,10 @@ class AProyectoEmpresaController extends Controller
       $proyecto = Proyecto::findOrFail($id);
       $modulos = Modulo::proyectosmodulo($id,'asesor');
       $status = Evproyecto::status_evaluacion($id);
-      return view('asesor.proyectoempresa.modulos',['proyecto'=>$proyecto,'modulos'=>$modulos, 'status'=>$status]);
-      //return 'hola'.$id;
+
+      $editados = Proyecto_Modulo::modulos_editados($proyecto->id);
+
+      return view('asesor.proyectoempresa.modulos',compact('proyecto','modulos','status','editados'));
   }
 
   public function clavesmodulo($id,$idproyecto)
@@ -270,6 +272,27 @@ class AProyectoEmpresaController extends Controller
     }
 
     return redirect('/modulosproyecto/'.$proyecto->id)->with('success','Modulo completado correctamente ');
+  }
+
+  public function revisado(Request $request, $proyecto_id, $modulo_id)
+  {
+      $proyecto = Proyecto::findOrFail($proyecto_id);
+      $modulo = Modulo::findOrFail($modulo_id);
+
+      if($request->value == '0')
+          Proyecto_Modulo::firstOrCreate([
+              'proyecto_id' => $proyecto->id,
+              'modulo_id' => $modulo->id,
+              'propietario' => 'revisado'
+          ]);
+      elseif ($request->value == '1') 
+          Proyecto_Modulo::where('proyecto_id',$empresa->id)
+                      ->where('modulo_id',$modulo->id)
+                      ->where('propietario','revisado')
+                      ->delete();
+      else
+          abort(404);
+      
   }
 
 

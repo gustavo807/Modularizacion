@@ -73,7 +73,7 @@
 			        	{data: 'nombre',
 			        		render:  function(data, type, row, meta)
 			        				{
-			        					return '<a href="/asesorempresa/'+row.id+'"><strong>'+row.nombre+'</strong></a>';
+			        					return '<a href="/asesorempresa/'+row.id+'" title="Click para ver mas"><strong>'+row.nombre+'</strong></a>';
 			        				}			        		
 			        	},
 			        	{data: 'email'},
@@ -89,6 +89,7 @@
 			        					return $('<a>')
 						                    .attr('href', "/asesorempresa/perfil/"+data)
 						                    .attr('class', "ion-edit icon-big")
+						                    .attr('title', "Editar")
 						                    .wrap('<div></div>')
 						                    .parent()
 						                    .html();
@@ -121,10 +122,13 @@
 			        	{data: 'id', searchable:false,sortable:false,
 			        		render:  function ( data, type, row, meta )
 			        				{
+			        					var cadena = 'Copiado por '+row.editado;
+			        					if(row.editado == null)
+			        						cadena = 'Sin copiar';
 			        					return $('<a>')
 						                    .attr('href', "/copyempresa/"+data)
 						                    .attr('class', "ion-ios-browsers icon-big copyempresa")
-						                    .attr('title', "Copiar módulos de esta empresa")
+						                    .attr('title', cadena)
 						                    .wrap('<div></div>')
 						                    .parent()
 						                    .html();
@@ -164,7 +168,7 @@
 					      });
 
 
-
+			            $('[title]').tooltip({placement: "left"});
 
 			            $('.data-confirm').on('click', function (e) {
 						      form = $(this).data('form');

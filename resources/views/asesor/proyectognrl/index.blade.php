@@ -73,16 +73,20 @@
             {data: 'id', searchable:false, sortable:false,
                   render:  function(data, type, row, meta)
                       {
-                        return '<a href="/aproyectosgnrl/sedes/'+data+'" class="fa fa-bank icon-big" title="Editar"></a>';
+                        return '<a href="/aproyectosgnrl/sedes/'+data+'" class="fa fa-bank icon-big" title="Agregar sedes"></a>';
                       }
             },
             {data: 'id', searchable:false,sortable:false,
                   render:  function ( data, type, row, meta )
                       {
+                        var cadena = 'Copiado por '+row.editado;
+                        if(row.editado == null)
+                          cadena = 'Sin copiar';
+
                         return $('<a>')
                                 .attr('href', "/copyproyecto/"+data)
                                 .attr('class', "ion-ios-browsers icon-big copyproyecto")
-                                .attr('title', "Copiar módulos de esta empresa")
+                                .attr('title', cadena)
                                 .wrap('<div></div>')
                                 .parent()
                                 .html();
@@ -123,6 +127,9 @@
                       }
                   }); 
                 });
+
+              $('[title]').tooltip({placement: "left"});
+
           },
           "language":{
               "sProcessing":     "Procesando...",

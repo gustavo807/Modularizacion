@@ -47,6 +47,11 @@ class User extends Authenticatable
         return $this->hasOne(Sede::class);
     }
 
+    public function registros()
+    {
+      return $this->morphMany('App\Registro','registroable');
+    }
+
     public static function boot()
     {
       parent::boot();

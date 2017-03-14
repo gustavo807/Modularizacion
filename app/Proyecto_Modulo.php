@@ -27,4 +27,11 @@ class Proyecto_Modulo extends Model
                             ->first();
   }
 
+  public static function modulos_editados($id)
+  {
+    return Proyecto_Modulo::where('proyecto_id',$id)
+                            ->where('propietario','revisado')
+                            ->pluck('modulo_id');
+  }
+
 }
