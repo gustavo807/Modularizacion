@@ -4,18 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-//use Illuminate\Database\Eloquent\SoftDeletes;
 use Datatables;
 
 class Clave extends Model
 {
-	//use SoftDeletes;
     protected $table = 'claves';
     public $fillable = ['nombre','identificador','modulo_id','ejemplo'];
 
-    //protected $dates = ['deleted_at'];
-
-		public static function modulos(){
+    // Obtiene los claves y el modulo propietario
+		public static function modulos()
+    {
 			return DB::table('claves')
 											->join('modulos', 'modulos.id', '=', 'claves.modulo_id')
 											->select('claves.*', 'modulos.modulo')
@@ -24,7 +22,9 @@ class Clave extends Model
 											->paginate(10);
 		}
 
-		public static function clavesmodulo($id,$iduser,$propietario){
+    // Obtiene las claves de un usuario y propietario en especifico
+		public static function clavesmodulo($id,$iduser,$propietario)
+    {
 			return DB::table('claves')
                       ->select('claves.*',
                       DB::raw('(SELECT user_claves.valor
@@ -37,7 +37,9 @@ class Clave extends Model
 											->get();
 		}
 
-    public static function clavesmoduloproyecto($id,$idproyecto,$propietario){
+    // Obtiene las claves de un proyecto y propieratio en especifico
+    public static function clavesmoduloproyecto($id,$idproyecto,$propietario)
+    {
 			return DB::table('claves')
                       ->select('claves.*',
                       DB::raw('(SELECT proyectos_claves.valor
@@ -50,7 +52,7 @@ class Clave extends Model
 											->get();
 		}
 
-
+    // Obtiene las claves para mostralas con la libreria DataTable
     public static function apiclaves()
     {
       return Datatables::queryBuilder(

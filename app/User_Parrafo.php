@@ -10,7 +10,9 @@ class User_Parrafo extends Model
       protected $table = 'user_parrafos';
       public $fillable = ['user_id','parrafo_id','observacion','propietario'];
 
-      public static function userparrafo($userid,$propietario,$idmodulo){
+      // Obtiene la información de un registro user_parrafo
+      public static function userparrafo($userid,$propietario,$idmodulo)
+      {
   			return DB::table('user_parrafos')
                         ->join('parrafos', 'user_parrafos.parrafo_id', '=', 'parrafos.id')
   											->where('user_parrafos.user_id','=', $userid)
@@ -20,7 +22,9 @@ class User_Parrafo extends Model
   											->first();
   		}
 
-      public static function actualizaparrafo($userid,$propietario,$idmodulo,$observacion,$parrafo_id){
+      // Actualiza la información de user_parrafo
+      public static function actualizaparrafo($userid,$propietario,$idmodulo,$observacion,$parrafo_id)
+      {
   			return DB::table('user_parrafos')
                         ->join('parrafos', 'user_parrafos.parrafo_id', '=', 'parrafos.id')
   											->where('user_parrafos.user_id','=', $userid)
@@ -30,7 +34,9 @@ class User_Parrafo extends Model
   											->update(['user_parrafos.observacion'=>$observacion,'parrafo_id'=>$parrafo_id]);
   		}
 
-      public static function parrafosusuario($user_id, $propietario,$clasificacion_id){
+      // Obtiene la información en paginación de modulos
+      public static function parrafosusuario($user_id, $propietario,$clasificacion_id)
+      {
         return DB::table('modulos')
                   ->select('modulos.modulo',
                   DB::raw(' (SELECT parrafos.parrafo

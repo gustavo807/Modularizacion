@@ -19,7 +19,7 @@ use Carbon\Carbon;
 
 class AEmpresaController extends Controller
 {
-    
+    // Muestra la página principal
     public function index()
     {
       $modulos = Modulo::where('modulos.clasificacion_id','1')->count();
@@ -31,27 +31,28 @@ class AEmpresaController extends Controller
     {
         $empresa = User::findOrFail($id);
         return view('asesor.empresa.perfil',compact('empresa'));
-        //return $empresa;
     }
 
-    
+    // Editar el perfil del usuario    
     public function editperfil($tipo,$id)
     {
         $empresa = User::findOrFail($id);
         $array = ['nombre','email','password','foto','estado','ciudad'];
         $estados = Estado::estados();
+
         if(!in_array($tipo, $array))
             abort(404);
         else
             return view('asesor.empresa.editperfil',compact('empresa','tipo','estados'));
     }
 
+    // Actualiza los datos del formulario
     public function updateperfil(Request $request,$id)
     {   
         $array = ['nombre','email','password','foto','estado','ciudad'];
         if(!in_array($request->tipo, $array))
             abort(404);
-//return $request->all();
+
         //Si es password
         if($request->tipo == 'password')
             User::findOrFail($id)->update([ 'password'=>bcrypt($request->password), ]);
@@ -69,7 +70,7 @@ class AEmpresaController extends Controller
         return redirect('/asesorempresa/perfil/'.$id)->with('success','La accion se llevo correctamente ');
     }
 
-    
+    // Muestra los modulos por convocatoria
     public function show($id)
     {
         Session::put('idempresa',$id);
@@ -78,7 +79,7 @@ class AEmpresaController extends Controller
         return view('asesor.empresa.verempresa',['empresa'=>$empresa,'proyectos'=>$proyectos]);
     }
 
-   
+    // Muestra las claves del $id del modulo que pasa como parametro   
     public function edit($id)
     {
       $propietario='empresa';
@@ -87,6 +88,7 @@ class AEmpresaController extends Controller
       return view('asesor.empresa.info',['empresa'=>$empresa,'claves'=>$claves]);
     }
 
+    // Actualiza los datos del formulario
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
@@ -128,46 +130,42 @@ class AEmpresaController extends Controller
         return view('asesor.empresa.documentos',['documentos'=>$documentos, 'empresa'=>$empresa]);
     }
 
-
-
+    // Resumen general de las claves
     public function informaciongnrl($id,$user)
     {
         $empresa = User::findOrFail($id);
-        if($user != 'empresa' && $user != 'asesor') return redirect('/erros/404');
+        if($user != 'empresa' && $user != 'asesor') 
+            return redirect('/erros/404');
 
-        //return $id.$user;
-
-        //$claves = User_Clave::claves($id, $user);
         return view('asesor.informacion.claves',['empresa'=>$empresa, 'user'=>$user,'ruta'=>'gnrlparrafo','id'=>$id,'tipo'=>'1']);
-        //return 'hola'.$id.$user;
     }
 
-
-
+    // Resumen general de los parrafos seleccionados
     public function gnrlparrafo($id,$user)
     {
         $empresa = User::findOrFail($id);
-        if($user != 'empresa' && $user != 'asesor') return redirect('/erros/404');
+        if($user != 'empresa' && $user != 'asesor') 
+            return redirect('/erros/404');
 
         $parrafos = User_Parrafo::parrafosusuario($id, $user,'1');
         $claves = User_Clave::getclaves($id, $user);
+
         return view('asesor.informacion.parrafos',['parrafos'=>$parrafos, 'claves'=>$claves, 'empresa'=>$empresa, 'user'=>$user,'ruta'=>'asesorempresa/claves','id'=>$id]);
-        //return 'hola'.$id.$user;
     }
 
-
+    // Muestra las claves por usuario
     public function proyectoclaves($id,$user)
     {
         $proyecto = Proyecto::findOrFail($id);
         $empresa = User::findOrFail($proyecto->user_id);
-        if($user != 'empresa' && $user != 'asesor') return redirect('/erros/404');
-
-        //$claves = Proyecto_Clave::claves($id, $user);
+        
+        if($user != 'empresa' && $user != 'asesor') 
+            return redirect('/erros/404');
 
         return view('asesor.informacion.claves',['empresa'=>$empresa, 'user'=>$user,'ruta'=>'proyectoparrafos','id'=>$id,'tipo'=>'2']);
-        //return 'hola'.$id.$user;
     }
 
+    // Muestra los parrafos por usuario
     public function proyectoparrafos($id,$user)
     {
         $proyecto = Proyecto::findOrFail($id);
@@ -184,9 +182,10 @@ class AEmpresaController extends Controller
 
     public function destroy($id)
     {
-        //
+        abort(404);
     }
 
+    // Funcion guardar los modulos que fueron revisados por el asesor
     public function revisado(Request $request, $empresa_id, $modulo_id)
     {
         $empresa = User::findOrFail($empresa_id);

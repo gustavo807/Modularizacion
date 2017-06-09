@@ -9,40 +9,32 @@ use App\Modulo;
 
 class AOrdenaGnrlController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+    // Display a listing of the resource.
     public function index()
     {
-        if (Auth::user()->rol_id != 3) return redirect('/asesor');
+        if (Auth::user()->rol_id != 3) 
+          return redirect('/asesor');
 
         $clasificacion_id = '1';
         $modulos = Ordena_Modulo::ordenmodulos($clasificacion_id);
         return view('asesor.ordenagnrl.index',['modulos'=>$modulos]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+    // Show the form for creating a new resource.
     public function create()
     {
-      if (Auth::user()->rol_id != 3) return redirect('/asesor');
+      if (Auth::user()->rol_id != 3) 
+        return redirect('/asesor');
 
       $clasificacion_id = '2';
       $modulos = Ordena_Modulo::ordenmodulos($clasificacion_id);
       return view('asesor.ordenagnrl.index',['modulos'=>$modulos]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
+    // Store a newly created resource in storage.
     public function store(Request $request)
     {
       $this->validate($request, [
@@ -54,30 +46,20 @@ class AOrdenaGnrlController extends Controller
       ]);
 
       $clasificacion = Ordena_Modulo::gnrlconv($request['modulo_id']);
+
       if($clasificacion->clasificacion_id == 1)
         return redirect('/aordenagnrl')->with('success','Orden registrado correctamente');
       else
         return redirect('/aordenagnrl/create')->with('success','Orden registrado correctamente');
-
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    // Display the specified resource.
     public function show($id)
     {
-        //
+        abort(404);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    // Show the form for editing the specified resource.
     public function edit($id)
     {
         if (Auth::user()->rol_id != 3) return redirect('/asesor');
@@ -90,13 +72,7 @@ class AOrdenaGnrlController extends Controller
           return view('asesor.ordenagnrl.edit',['modulo'=>$modulo,'orden'=>$orden]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    // Update the specified resource in storage.
     public function update(Request $request, $id)
     {
       $this->validate($request, [
@@ -105,6 +81,7 @@ class AOrdenaGnrlController extends Controller
       Ordena_Modulo::actualiza($id,$request['orden']);
 
       $clasificacion = Ordena_Modulo::gnrlconv($id);
+      
       if($clasificacion->clasificacion_id == 1)
         return redirect('/aordenagnrl')->with('success','Orden actualizada correctamente');
       else
@@ -112,14 +89,9 @@ class AOrdenaGnrlController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    // Remove the specified resource from storage.
     public function destroy($id)
     {
-        //
+        abort(404);
     }
 }

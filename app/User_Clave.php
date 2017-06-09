@@ -11,7 +11,9 @@ class User_Clave extends Model
   protected $table = 'user_claves';
   public $fillable = ['user_id','clave_id','valor','propietario'];
 
-  public static function registro($user_id, $clave_id, $propietario){
+  // Obtiene la información de un registro de user_clave 
+  public static function registro($user_id, $clave_id, $propietario)
+  {
     return DB::table('user_claves')
               //->select('doc_usuarios.*')
               ->where('user_id','=', $user_id)
@@ -20,7 +22,9 @@ class User_Clave extends Model
               ->first();
   }
 
-  public static function actualiza($user_id, $clave_id, $propietario,$valor){
+  // Actualiza la información de un registro user_clave
+  public static function actualiza($user_id, $clave_id, $propietario,$valor)
+  {
     return DB::table('user_claves')
               //->select('doc_usuarios.*')
               ->where('user_id','=', $user_id)
@@ -29,7 +33,9 @@ class User_Clave extends Model
               ->update(['valor'=>$valor]);
   }
 
-  public static function clavesusuario($user_id, $propietario){
+  // Obtiene la información en paginación de claves
+  public static function clavesusuario($user_id, $propietario)
+  {
     return DB::table('claves')
               ->select('claves.nombre','claves.identificador',
               DB::raw('(SELECT user_claves.valor
@@ -42,7 +48,9 @@ class User_Clave extends Model
               ->paginate(10);
   }
 
-  public static function getclavesusuario($user_id, $propietario){
+  // Obtiene la información de las claves
+  public static function getclavesusuario($user_id, $propietario)
+  {
     return DB::table('claves')
               ->select('claves.nombre','claves.identificador',
               DB::raw('(SELECT user_claves.valor
@@ -55,7 +63,9 @@ class User_Clave extends Model
               ->get();
   }
 
-  public static function claves($user_id, $propietario){
+  // Obtiene la información en paginación de claves
+  public static function claves($user_id, $propietario)
+  {
     return DB::table('claves')
               ->select('claves.nombre','claves.identificador',
               DB::raw('(SELECT user_claves.valor
@@ -72,7 +82,9 @@ class User_Clave extends Model
               ->paginate(10);
   }
 
-  public static function getclaves($user_id, $propietario){
+  // Obtiene la información de las claves por usuario
+  public static function getclaves($user_id, $propietario)
+  {
     return DB::table('claves')
               ->select('claves.nombre','claves.identificador',
               DB::raw('(SELECT user_claves.valor
@@ -89,7 +101,7 @@ class User_Clave extends Model
               ->get();
   }
 
-
+  //Obtiene la información de las claves para mostrarla con la libreria DataTable
   public static function apiclaves($id, $user,$tipo)
   {
     if($tipo == "1")

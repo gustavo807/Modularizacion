@@ -14,3 +14,6 @@ class Proyecto_Investigador extends Model
 
     protected $dates = ['deleted_at'];
 }
+
+
+// Este modelo no se utiliza pero se puede utilizar en un futuro

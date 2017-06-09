@@ -4,18 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-//use Illuminate\Database\Eloquent\SoftDeletes;
 use Datatables;
 
 class Documento extends Model
 {
-	//use SoftDeletes;
-
     protected $table = 'documentos';
     public $fillable = ['nombre','rol_id','categoria_id'];
 
-    //protected $dates = ['deleted_at'];
-
+    // Obtiene los documentos para mostralos con la libreria DataTable
     public static function apidocumentos()
     {
       return Datatables::queryBuilder(
@@ -30,5 +26,4 @@ class Documento extends Model
                         )
             )->make(true);
     }
-
 }

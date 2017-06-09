@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class WSNotificacion extends Model
 {
+	// Función para enviar notificación Firebase
     public static function sendnotification($title,$body)
     {
     	$url = 'https://fcm.googleapis.com/fcm/send';

@@ -14,3 +14,6 @@ class Rol extends Model
 
     protected $dates = ['deleted_at'];
 }
+
+
+// Este modelo no se utiliza pero en un futuro se puede utilizar

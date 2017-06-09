@@ -27,25 +27,32 @@ class AModuloGnrlController extends Controller
       return view('asesor.moduloempresa.evaluacion',['datos'=>$datos,'empresa'=>$empresa]);    
     }
 
+    // Muestra las preguntas por usuario
     public function pregunta($id,$idpregunta)
     {
       $empresa = User::findOrFail($id);
       $pregunta = Evaluacion::findOrFail($idpregunta);
-      if($pregunta->tipo != 'competitividad') abort(404);
+      
+      if($pregunta->tipo != 'competitividad') 
+        abort(404);
 
       $valor = Euser::where('evaluacion_id',$idpregunta)->where('user_id',$id)->first();
+      
       return view('asesor.moduloempresa.formevaluacion',['pregunta'=>$pregunta,'valor'=>$valor,'empresa'=>$empresa]);
     }
 
+    // Actualiza o crea un registro de acuerdo a la pregunta seleccionada
     public function putpregunta(Request $request,$id,$idpregunta)
     {
       //return $request->valor;
       $empresa = User::findOrFail($id);
       $pregunta = Evaluacion::findOrFail($idpregunta);
-      if($pregunta->tipo != 'competitividad') abort(404);
+      if($pregunta->tipo != 'competitividad') 
+        abort(404);
       
       $array = ['0','1'];
-      if(!in_array($request->valor, $array)) abort(404);
+      if(!in_array($request->valor, $array)) 
+        abort(404);
 
       Euser::updateOrCreate(
             ['evaluacion_id' => $pregunta->id, 'user_id' => $id],
@@ -55,6 +62,7 @@ class AModuloGnrlController extends Controller
       return redirect('/amodulognrl/empresa/'.$id)->with('success','Respuesta registrada correctamente');
     }
 
+    // Muestra los resultados en graficas
     public function resultados($id)
     {
       $empresa = User::findOrFail($id);
@@ -93,6 +101,7 @@ class AModuloGnrlController extends Controller
       return $id;
     }
     
+    // Actualia o Guarda del formulario de claves por modulo
     public function store(Request $request)
     {
         if (isset($request['valor'])) {
@@ -137,6 +146,7 @@ class AModuloGnrlController extends Controller
 
     }
 
+    // Muestra la lista de modulos
     public function show($id)
     {
         $empresa = User::findOrFail($id);
@@ -148,13 +158,14 @@ class AModuloGnrlController extends Controller
         return view('asesor.moduloempresa.index',compact('empresa','modulos','status','editados'));
     }
 
-    
+    // Muestra un recurso especifíco
     public function edit($id)
     {
         //$empresa = User::findOrFail($id);
         return 'hola'.$id;
     }
 
+    // Funcion para los modulos generales
     public function modulognrl($id,$iduser)
     {
         $empresa = User::findOrFail($iduser);
@@ -168,6 +179,7 @@ class AModuloGnrlController extends Controller
           return redirect('parrafognl/'.$id.'/empresa/'.$empresa->id)->with('success','Selecciona un párrafo');
     }
 
+    // Muestra los parrafos por modulo
     public function parrafognl($id,$iduser)
     {
         $empresa = User::findOrFail($iduser);
@@ -179,6 +191,7 @@ class AModuloGnrlController extends Controller
         return view('asesor.moduloempresa.parrafos',['empresa'=>$empresa,'modulo'=>$modulo,'claves'=>$claves,'parrafos'=>$parrafos,'userparrafo'=>$userparrafo]);
     }
 
+    // Guarda el parrafo seleccionado del formulario
     public function storeparrafo(Request $request)
     {
         $empresa = $request->empresa;
@@ -223,12 +236,11 @@ class AModuloGnrlController extends Controller
         // SI EXISTEN IMAGENES
         else
         {
-          return redirect('/imagengnl/'.$request->modulo.'/empresa/'.$request->empresa)->with('success','Parrafo registrado correctamente,  Ahora selecciona un imagen  ');
-          //return redirect('/empresaimagengnrl')->with('success','Parrafo registrado correctamente,  Ahora selecciona un imagen ');
-          //return view('asesor.moduloempresa.imagenes',['empresa'=>$empresa,'modulo'=>$modulo])->with('success','Parrafo registrado correctamente,  Ahora selecciona un imagen ');
+          return redirect('/imagengnl/'.$request->modulo.'/empresa/'.$request->empresa)->with('success','Parrafo registrado correctamente,  Ahora selecciona un imagen  ');          
         }
     }
 
+    // Muestra las imagenes por modulo
     public function imagengnl($id,$iduser)
     {
         $empresa = User::findOrFail($iduser);
@@ -241,6 +253,7 @@ class AModuloGnrlController extends Controller
         //return 'hola';
     }
 
+    //Guarda la imagen seleccionada del formulario
     public function storeimagen(Request $request)
     {
       $empresa = $request->empresa;
@@ -273,8 +286,6 @@ class AModuloGnrlController extends Controller
       }
 
       return redirect('/amodulognrl/'.$request->empresa)->with('success','Modulo completado correctamente');
-
     }
-
 
 }

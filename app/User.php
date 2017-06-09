@@ -20,7 +20,8 @@ class User extends Authenticatable
         'nombre', 'email', 'password','rol_id','activo','foto','estado','ciudad'
     ];
 
-    public function setFotoAttribute($foto){
+    public function setFotoAttribute($foto)
+    {
         if(! empty($foto)){
         $name = Carbon::now()->second.$foto->getClientOriginalName();
         $this->attributes['foto'] = $name;
@@ -62,6 +63,7 @@ class User extends Authenticatable
 
     }
 
+    // Confirmar email
     public function confirmEmail()
     {
       $this->activo = true;
@@ -70,6 +72,7 @@ class User extends Authenticatable
       $this->save();
     }
 
+    // Obtiene la información de los modulos por rol y propietario
     public static function modulos($rol_id,$propietario)
     {
       return DB::table('users')
@@ -84,6 +87,7 @@ class User extends Authenticatable
                       ->paginate(10);
     }
 
+    // Copia la información de una empresa
     public static function copyempresa_crea($user_id){
       DB::insert('insert into user_modulo (user_id, modulo_id,propietario)
                         select user_id, modulo_id, "asesor" as propietario
@@ -134,8 +138,9 @@ class User extends Authenticatable
       //        ->where('user_id', '=', $user_id)->where('propietario', '=', 'empresa')->get();
     }
 
-
-    public static function copyempresa_borra($user_id){
+    // Borra la informacion de una empresa
+    public static function copyempresa_borra($user_id)
+    {
         DB::table('user_modulo')->where('user_id', '=', $user_id)->where('propietario', '=', 'asesor')->delete();
         DB::table('user_claves')->where('user_id', '=', $user_id)->where('propietario', '=', 'asesor')->delete();
         DB::table('user_parrafos')->where('user_id', '=', $user_id)->where('propietario', '=', 'asesor')->delete();

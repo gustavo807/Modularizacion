@@ -10,7 +10,9 @@ class Evaluacion extends Model
     protected $table = 'evaluacion';
     public $fillable = ['pregunta','variable','tipo'];
 
-    public static function getdatos($id_user,$tipo){
+    // Obtiene los datos de la evaluacion de un usario en especifico
+    public static function getdatos($id_user,$tipo)
+    {
     return DB::table('evaluacion')
                     ->select('evaluacion.*',
 
@@ -25,7 +27,9 @@ class Evaluacion extends Model
                     ->get();
   }
 
-  public static function getrespuestas($id_proyecto,$tipo){
+  // Obtiene las repuestas de la evaluacion por proyecto
+  public static function getrespuestas($id_proyecto,$tipo)
+  {
     return DB::table('evaluacion')
                     ->select('evaluacion.*',
                     DB::raw('"opcion" as opcion'), 

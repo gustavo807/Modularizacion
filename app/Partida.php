@@ -10,16 +10,19 @@ class Partida extends Model
 {
     public $fillable = ['descripcion','precio','cambio','sede_id'];
 
+    // Eloquent relación de uno a uno
     public function sede()
     {
       return $this->belongsTo('App\Sede');
     }
 
+    // Eloquent realición a muchos
     public function proyectos()
     {
         return $this->belongsToMany('App\Proyecto');
     }
 
+    // Obtiene las partidas con plugin del DataTable
     public static function api()
     {
       return Datatables::queryBuilder(
@@ -30,18 +33,21 @@ class Partida extends Model
        )->make(true);
     }
 
+    // Compara un valor y devuelve true o false
     public static function findcambio($valor)
     {
         $array = ['pesos','dólares'];
         if(! in_array($valor, $array)) abort(403);
     }
 
+    // Busca una sede una partida
     public static function valida($cambio,$sede_id)
     {
         Partida::findcambio($cambio);
         Sede::findsede($sede_id);
     }
 
+    // Obtiene las partidas de un proyecto en especifico
     public static function proyecto_partidas($proyecto_id,$tipo='paginate')
     {
         $valor = '10';

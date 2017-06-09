@@ -14,11 +14,14 @@ class Ciudad extends Model
 
     protected $dates = ['deleted_at'];
 
-    public static function towns($id){
+    // Funcion para obtener las ciudades
+    public static function towns($id)
+    {
     	return Ciudad::where('estado_id','=',$id)
     	->get();
     }
 
+    // Eloquent "Una ciudad tiene muchos vinculados"
     public function vinculados()
     {
         return $this->hasMany('App\Vinculado');

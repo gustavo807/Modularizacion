@@ -4,18 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-//use Illuminate\Database\Eloquent\SoftDeletes;
 use Datatables;
 
 class Proyecto extends Model
 {
-	//use SoftDeletes;
-
     protected $table = 'proyectos';
     public $fillable = ['nombre','descripcion','convocatoria_id','estado','ciudad','user_id'];
 
-    //protected $dates = ['deleted_at'];
-
+    // Eloquent de relaciones con este modelo
     public function user()
     {
     	return $this->belongsTo(User::class);
@@ -46,7 +42,9 @@ class Proyecto extends Model
       return $this->morphMany('App\Registro','registroable');
     }
 
-    public static function proyectoconvocatoria($user_id){
+    // Obtine las convocatorias de un proyecto en especifico
+    public static function proyectoconvocatoria($user_id)
+    {
       return DB::table('proyectos')
                 ->select('proyectos.*',
                 DB::raw('(SELECT convocatorias.convocatoria
@@ -57,8 +55,9 @@ class Proyecto extends Model
                 ->get();
     }
 
-
-    public static function empresasproyectos(){
+    // Obtiene los proyectos con su propietario, convocatoria y modulos contestados
+    public static function empresasproyectos()
+    {
       return DB::table('proyectos')
                 ->select('proyectos.*',
                 DB::raw('(SELECT users.nombre FROM users WHERE proyectos.user_id=users.id) as empresa'),
@@ -71,6 +70,7 @@ class Proyecto extends Model
                 ->paginate(10);
     }
 
+    // Esta función es para mostrar los datos en la aplicación en android
     public static function webservice(){
       return DB::table('proyectos')
                 ->select('proyectos.id','proyectos.nombre','proyectos.descripcion','proyectos.created_at as fecha', DB::raw('(SELECT count(*) FROM modulos WHERE modulos.clasificacion_id=2) as total'),
@@ -84,6 +84,7 @@ class Proyecto extends Model
                 ->get();
     }
 
+    // Esta función muestra la información de un proyecto en especifico
     public static function showwebservice($id){
       return DB::table('proyectos')
                 ->select('proyectos.id','proyectos.nombre','proyectos.descripcion','proyectos.created_at as fecha', DB::raw('(SELECT count(*) FROM modulos WHERE modulos.clasificacion_id=2) as total'),
@@ -96,6 +97,7 @@ class Proyecto extends Model
                 ->get();
     }
 
+    // Obtiene los proyectos para mostralos con la libreria de DataTable
     public static function apiproyectos()
     {
         //return "hola";
@@ -115,7 +117,7 @@ class Proyecto extends Model
       
     }
 
-
+    // Borra la informacion de un proyecto del propietario "Asesor" 
     public static function copyproyecto_borra($proyecto_id)
     {
         DB::table('proyecto_modulo')->where('proyecto_id', $proyecto_id)->where('propietario', 'asesor')->delete();
@@ -127,6 +129,7 @@ class Proyecto extends Model
         DB::table('proyectos_imagenes')->where('proyecto_id', $proyecto_id)->where('propietario', 'asesor')->delete();
     }
 
+    // Copia la información de un proyecto
     public static function copyproyecto_crea($proyecto_id)
     {
         DB::insert('insert into proyecto_modulo (proyecto_id, modulo_id,propietario)
@@ -156,6 +159,7 @@ class Proyecto extends Model
 
     }
 
+    // Obtiene los proyectos y sedes
     public static function sede_proyectos($sede_id,$tipo='paginate')
     {
         $valor = '10';

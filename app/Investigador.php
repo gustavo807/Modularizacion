@@ -15,3 +15,6 @@ class Investigador extends Model
 
 	protected $dates = ['deleted_at'];    					
 }
+
+
+// Este modelo no se utiliza pero puede servir en un futuro

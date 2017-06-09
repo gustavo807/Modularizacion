@@ -10,6 +10,7 @@ class Sede extends Model
 {
     public $fillable = ['paginaweb','direccion','linkgooglemaps','descripcion','contacto','telefono','correo','user_id','institution_id'];
 
+    // Relaciones Eloquent
     public function user()
     {
     	return $this->belongsTo(User::class);
@@ -35,6 +36,7 @@ class Sede extends Model
         return $this->belongsTo('App\Institution');
     }
 
+    // Obtiene la información de DataTable
     public static function api()
     {
       return Datatables::eloquent(
@@ -42,6 +44,7 @@ class Sede extends Model
       		)->make(true);
     }
 
+    // Obtiene la información de sedes
     public static function sedes()
     {
       return Sede::join('users', 'users.id', '=', 'sedes.user_id')
@@ -50,6 +53,7 @@ class Sede extends Model
        
     }
 
+    // Busca en valor, sino está abort
     public static function findsede($valor)
     {
         $s = Sede::pluck('id');

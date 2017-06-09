@@ -13,6 +13,7 @@ class Phone
      * @param  \Closure  $next
      * @return mixed
      */
+    // Middleware para consumir datos desde la aplicación de android
     public function handle($request, Closure $next)
     {
         return $next($request)

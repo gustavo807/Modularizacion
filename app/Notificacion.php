@@ -8,6 +8,7 @@ use App\WSNotificacion;
 
 class Notificacion extends Model
 {
+	// Modelo para enviar notificaciones de los modulos de convocatoria
 	public static function sendnotification_convocatoria($idmodulo, $empresa,$proyecto)
 	{
 		$total = DB::table('modulos')
@@ -30,6 +31,7 @@ class Notificacion extends Model
 			WSNotificacion::sendnotification($empresa,$idmodulo."/".$total." Módulos. ".$proyecto);		
 	}
 
+	// Modelo para enviar notificaciones de los modulos generales
 	public static function sendnotification_general($idmodulo, $empresa)
 	{
 		$total = DB::table('modulos')

@@ -14,3 +14,6 @@ class Doc_Vinculado extends Model
 
     protected $dates = ['deleted_at'];
 }
+
+
+// Este modelo no se utiliza en este momento, pero puede servir en un futuro

@@ -4,18 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-//use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Proyecto_Clave extends Model
 {
-	//use SoftDeletes;
-
     protected $table = 'proyectos_claves';
     public $fillable = ['valor','proyecto_id','clave_id','propietario'];
 
-    //protected $dates = ['deleted_at'];
-
-		public static function registro($idproyecto, $clave_id, $propietario){
+    // Obtiene un registro en especifico
+		public static function registro($idproyecto, $clave_id, $propietario)
+    {
 	    return DB::table('proyectos_claves')
 	              //->select('doc_usuarios.*')
 	              ->where('proyecto_id','=', $idproyecto)
@@ -24,7 +21,9 @@ class Proyecto_Clave extends Model
 	              ->first();
 	  }
 
-		public static function actualiza($idproyecto, $clave_id, $propietario,$valor){
+    // Actualiza al informacion  proyectos_claves
+		public static function actualiza($idproyecto, $clave_id, $propietario,$valor)
+    {
 	    return DB::table('proyectos_claves')
 	              //->select('doc_usuarios.*')
 	              ->where('proyecto_id','=', $idproyecto)
@@ -33,7 +32,9 @@ class Proyecto_Clave extends Model
 	              ->update(['valor'=>$valor]);
 	  }
 
-    public static function clavesproyecto($idproyecto, $propietario){
+    // Obtiene las claves de proyecto
+    public static function clavesproyecto($idproyecto, $propietario)
+    {
       return DB::table('claves')
                 ->select('claves.nombre','claves.identificador',
                 DB::raw('(SELECT proyectos_claves.valor
@@ -46,7 +47,9 @@ class Proyecto_Clave extends Model
                 ->paginate(10);
     }
 
-    public static function clavepro($idproyecto, $propietario){
+    // Obtiene las claves de un proyecto en especifico
+    public static function clavepro($idproyecto, $propietario)
+    {
       return DB::table('claves')
                 ->select('claves.nombre','claves.identificador',
                 DB::raw('(SELECT proyectos_claves.valor
@@ -59,7 +62,9 @@ class Proyecto_Clave extends Model
                 ->get();
     }
 
-    public static function claves($idproyecto, $propietario){
+    // Obtiene el nombre de la clave y su valor y propietario
+    public static function claves($idproyecto, $propietario)
+    {
       return DB::table('claves')
                 ->select('claves.nombre','claves.identificador',
                 DB::raw('(SELECT proyectos_claves.valor
@@ -76,7 +81,9 @@ class Proyecto_Clave extends Model
                 ->paginate(10);
     }
 
-    public static function getclavesuser($idproyecto, $propietario){
+    // Obtiene las claves de un proyecto en especifico
+    public static function getclavesuser($idproyecto, $propietario)
+    {
       return DB::table('claves')
                 ->select('claves.nombre','claves.identificador',
                 DB::raw('(SELECT proyectos_claves.valor
@@ -92,6 +99,4 @@ class Proyecto_Clave extends Model
                   })
                 ->get();
     }
-
-
 }

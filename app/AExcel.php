@@ -7,7 +7,9 @@ use Illuminate\Support\Facades\DB;
 
 class AExcel extends Model
 {
-	    public static function claves($user_id, $propietario){
+    // Obtiene la claves generales de un usuario y propietario en especifico 
+	  public static function claves($user_id, $propietario)
+    {
 		    return DB::table('claves')
 		              ->select('claves.nombre','claves.identificador',
 		              DB::raw('(SELECT user_claves.valor
@@ -24,7 +26,9 @@ class AExcel extends Model
 		              ->get();
 	  }
 
-	  public static function clavesproyecto($idproyecto, $propietario){
+    // Obtiene las claves por proyecto en especifico
+	  public static function clavesproyecto($idproyecto, $propietario)
+    {
       return DB::table('claves')
                 ->select('claves.nombre','claves.identificador',
                 DB::raw('(SELECT proyectos_claves.valor
@@ -41,7 +45,9 @@ class AExcel extends Model
                 ->get();
     }
 
-    public static function parrafosusuario($user_id, $propietario,$clasificacion_id){
+    // Obtiene las los parrafos modularizados de un usuario en especifico
+    public static function parrafosusuario($user_id, $propietario,$clasificacion_id)
+    {
         return DB::table('modulos')
                   ->select('modulos.modulo',
                   DB::raw(' (SELECT parrafos.parrafo
@@ -73,7 +79,8 @@ class AExcel extends Model
                   ->get();
       }
 
-      public static function parrafosproyecto($idproyecto, $propietario,$clasificacion_id){
+      public static function parrafosproyecto($idproyecto, $propietario,$clasificacion_id)
+      {
       return DB::table('modulos')
                 ->select('modulos.modulo',
                 DB::raw(' (SELECT parrafos.parrafo

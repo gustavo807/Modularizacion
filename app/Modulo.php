@@ -4,19 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-//use Illuminate\Database\Eloquent\SoftDeletes;
 use Datatables;
 
 class Modulo extends Model
 {
-	//use SoftDeletes;
 
     protected $table = 'modulos';
     public $fillable = ['modulo','descripcion','clasificacion_id'];
 
-    //protected $dates = ['deleted_at'];
-
-		public static function clasificaciones(){
+    // Obtiene las clasificaciones
+		public static function clasificaciones()
+    {
 			return DB::table('modulos')
 											->join('clasificaciones', 'modulos.clasificacion_id', '=', 'clasificaciones.id')
 											->select('modulos.*', 'clasificaciones.clasificacion')
@@ -25,7 +23,9 @@ class Modulo extends Model
 											->paginate(10);
 		}
 
-		public static function modulosgnrl($iduser,$propietario){
+    //Obtiene los modulos por ususario y propietario
+		public static function modulosgnrl($iduser,$propietario)
+    {
 			return DB::table('modulos')
                       ->select('modulos.*',
                       DB::raw('(SELECT user_modulo.modulo_id
@@ -42,7 +42,9 @@ class Modulo extends Model
 											->paginate(10);
 		}
 
-    public static function modulosconvocatoria($iduser,$propietario){
+    // Obtiene los modulos por convocatoria
+    public static function modulosconvocatoria($iduser,$propietario)
+    {
 			return DB::table('modulos')
                       ->select('modulos.*',
                       DB::raw('(SELECT user_modulo.modulo_id
@@ -55,7 +57,9 @@ class Modulo extends Model
 											->get();
 		}
 
-    public static function proyectosmodulo($idproyecto,$propietario){
+    // Obtiene los modulos por proyecto
+    public static function proyectosmodulo($idproyecto,$propietario)
+    {
 			return DB::table('modulos')
                       ->select('modulos.*',
                       DB::raw('(SELECT proyecto_modulo.modulo_id
@@ -72,9 +76,9 @@ class Modulo extends Model
 											->paginate(10);
 		}
 
+    // Obtiene los modulos para mostralos con la libreria DataTable
     public static function apimodulos()
     {
-      //return "hola";
       return Datatables::queryBuilder(
             DB::table('modulos')
                       //->join('clasificaciones', 'modulos.clasificacion_id', '=', 'clasificaciones.id')
@@ -85,8 +89,4 @@ class Modulo extends Model
                         )
             )->make(true);
     }
-
-
-
-
 }

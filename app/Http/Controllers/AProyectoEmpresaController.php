@@ -20,6 +20,7 @@ use App\Evariables;
 
 class AProyectoEmpresaController extends Controller
 {
+  // Muestra la vista para la evaluacion riesgo tecnico del proyecto
   public function empresa($id)
   {
     $proyecto = Proyecto::findOrFail($id);
@@ -32,9 +33,9 @@ class AProyectoEmpresaController extends Controller
     }
 
     return view('asesor.proyectoempresa.evaluacion',['array'=>$array,'proyecto'=>$proyecto]);
-    //return $id;
   }
 
+  // Muestra la vista para la pregunta en especifico
   public function pregunta($proyecto_id,$pregunta_id)
   {
     //Valida el proyecto
@@ -51,6 +52,7 @@ class AProyectoEmpresaController extends Controller
     return view('asesor.proyectoempresa.formevaluacion',['proyecto'=>$proyecto,'pregunta'=>$pregunta,'valor'=>$valor,'opcion'=>$opcion]);
   }
 
+  // Actualiza los datos del formulario
   public function update(Request $request, $id)
   {
     //return $request->all();
@@ -75,6 +77,7 @@ class AProyectoEmpresaController extends Controller
     return redirect('/modulosproyecto/proyecto/'.$id)->with('success','Respuesta registrada correctamente');
   }
 
+  // Muestra la vista de los resultados
   public function resultados($id)
   {
     //Valida el proyecto
@@ -99,6 +102,7 @@ class AProyectoEmpresaController extends Controller
       return view('asesor.proyectoempresa.resultados',['proyecto'=>$proyecto,'variable'=>$variable,'data'=>$data,'array'=>$array]);
   }
 
+  // Muestra la vista de todos los modulos
   public function modulos($id)
   {
       $proyecto = Proyecto::findOrFail($id);
@@ -110,6 +114,7 @@ class AProyectoEmpresaController extends Controller
       return view('asesor.proyectoempresa.modulos',compact('proyecto','modulos','status','editados'));
   }
 
+  // Muestra la vista con resumen de las claves
   public function clavesmodulo($id,$idproyecto)
   {
     $proyecto = Proyecto::findOrFail($idproyecto);
@@ -122,6 +127,7 @@ class AProyectoEmpresaController extends Controller
       return redirect('/parrafoproyecto/'.$id.'/proyecto/'.$proyecto->id)->with('success','Selecciona un párrafo');
   }
 
+  // Guarda los datos del formulario
   public function store(Request $request)
   {
       $proyecto = Proyecto::findOrFail($request->proyecto);
@@ -167,6 +173,7 @@ class AProyectoEmpresaController extends Controller
       //return 'hola';
   }
 
+  // Muestra la vista para los parrafos
   public function parrafoproyecto($id,$idproyecto)
   {
     $proyecto = Proyecto::findOrFail($idproyecto);
@@ -181,6 +188,7 @@ class AProyectoEmpresaController extends Controller
       return 'hola'.$id;
   }
 
+  // Guarda los datos del formulario
   public function storeparrafoproyecto(Request $request)
   {
     $proyecto = Proyecto::findOrFail($request->proyecto);
@@ -230,6 +238,7 @@ class AProyectoEmpresaController extends Controller
 
   }
 
+  // Muestra la vista para seleccionar una imagen
   public function imagenproyecto($id,$idproyecto)
   {
     $proyecto = Proyecto::findOrFail($idproyecto);
@@ -241,6 +250,7 @@ class AProyectoEmpresaController extends Controller
     return view('asesor.proyectoempresa.imagenes',['proyecto'=>$proyecto,'modulo'=>$modulo,'imagenes'=>$imagenes,'proyectoimagen'=>$proyectoimagen]);
   }
 
+  // Guarda los datos del formulario
   public function storeimagenproyecto(Request $request)
   {
     $proyecto = Proyecto::findOrFail($request->proyecto);
@@ -274,6 +284,7 @@ class AProyectoEmpresaController extends Controller
     return redirect('/modulosproyecto/'.$proyecto->id)->with('success','Modulo completado correctamente ');
   }
 
+  // Guarda los datos del formulario
   public function revisado(Request $request, $proyecto_id, $modulo_id)
   {
       $proyecto = Proyecto::findOrFail($proyecto_id);

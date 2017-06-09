@@ -10,7 +10,9 @@ class Ordena_Modulo extends Model
   protected $table = 'ordena_modulos';
   public $fillable = ['modulo_id','orden'];
 
-  public static function ordenmodulos($clasificacion_id){
+  // Obtiene los modulos segun su clasificacion
+  public static function ordenmodulos($clasificacion_id)
+  {
     return DB::table('modulos')
                     ->select('modulos.*',
                     DB::raw('(SELECT ordena_modulos.orden
@@ -22,20 +24,26 @@ class Ordena_Modulo extends Model
                     ->paginate(10);
   }
 
-  public static function actualiza($modulo_id,$orden){
+  // Actualiza el orden de un modulo en especifico
+  public static function actualiza($modulo_id,$orden)
+  {
     return DB::table('ordena_modulos')
                     ->where('ordena_modulos.modulo_id', '=', $modulo_id)
                     ->update(['orden'=>$orden]);
   }
 
-  public static function gnrlconv($modulo_id){
+  // Obtiene la informacion de un modulo en especifico
+  public static function gnrlconv($modulo_id)
+  {
     return DB::table('modulos')
                     ->select('modulos.clasificacion_id')
                     ->where('modulos.id', '=', $modulo_id)
                     ->first();
   }
 
-  public static function validamodulo($orden, $tipo='1'){
+  // Obtiene un modulo segun el orden
+  public static function validamodulo($orden, $tipo='1')
+  {
     return DB::table('ordena_modulos')
                     ->whereIn('ordena_modulos.modulo_id', function($query) use($tipo) {
                           $query->select('modulos.id')
@@ -48,7 +56,9 @@ class Ordena_Modulo extends Model
                     ->get();
   }
 
-  public static function primermodulo($tipo='1'){
+  // Obtiene la lista de modulos ordenados Asc
+  public static function primermodulo($tipo='1')
+  {
     return DB::table('ordena_modulos')
                     ->whereIn('ordena_modulos.modulo_id', function($query) use($tipo){
                           $query->select('modulos.id')
@@ -60,7 +70,9 @@ class Ordena_Modulo extends Model
                     ->get();
   }
 
-  public static function siguientemodulo($orden){
+  // Obtiene el siguiente modulo 
+  public static function siguientemodulo($orden)
+  {
     return DB::table('ordena_modulos')
                     ->whereIn('ordena_modulos.modulo_id', function($query){
                           $query->select('modulos.id')
@@ -73,8 +85,9 @@ class Ordena_Modulo extends Model
                     ->get();
   }
 
-
-  public static function ultimomodulo($tipo='1'){
+  // Obtiene el ultimo modulo de acuerdo con el orden Desc
+  public static function ultimomodulo($tipo='1')
+  {
     return DB::table('ordena_modulos')
                     ->select('ordena_modulos.modulo_id')
                     ->whereIn('ordena_modulos.modulo_id', function($query) use($tipo) {
@@ -88,8 +101,9 @@ class Ordena_Modulo extends Model
                     ->get();
   }
 
-
-  public static function orden($clasificacion_id){
+  // Obtiene los modulos con su orden segun la clasificion
+  public static function orden($clasificacion_id)
+  {
     return DB::table('modulos')
                     ->select('modulos.*',
                     DB::raw('(SELECT ordena_modulos.orden
@@ -101,6 +115,7 @@ class Ordena_Modulo extends Model
                     ->get();
   }
 
+  // Obtiene la posicion en un array
   public static function getposition($array,$id)
   {
     $position = "";

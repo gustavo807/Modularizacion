@@ -4,18 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-//use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Proyecto_Parrafo extends Model
 {
-	//use SoftDeletes;
-
     protected $table = 'proyectos_parrafos';
     public $fillable = ['proyecto_id','parrafo_id','observacion','propietario'];
 
-    //protected $dates = ['deleted_at'];
-
-		public static function proyectoparrafo($idproyecto,$propietario,$idmodulo){
+    // Obtiene la informaciónd e proyectos_parrafos
+		public static function proyectoparrafo($idproyecto,$propietario,$idmodulo)
+    {
 			return DB::table('proyectos_parrafos')
 											->join('parrafos', 'proyectos_parrafos.parrafo_id', '=', 'parrafos.id')
 											->where('proyectos_parrafos.proyecto_id','=', $idproyecto)
@@ -25,7 +22,9 @@ class Proyecto_Parrafo extends Model
 											->first();
 		}
 
-		public static function actualizaparrafo($idproyecto,$propietario,$idmodulo,$observacion,$parrafo_id){
+    // Actualiza la información de un proyecto_parrafo
+		public static function actualizaparrafo($idproyecto,$propietario,$idmodulo,$observacion,$parrafo_id)
+    {
 			return DB::table('proyectos_parrafos')
 											->join('parrafos', 'proyectos_parrafos.parrafo_id', '=', 'parrafos.id')
 											->where('proyectos_parrafos.proyecto_id','=', $idproyecto)
@@ -35,8 +34,9 @@ class Proyecto_Parrafo extends Model
 											->update(['proyectos_parrafos.observacion'=>$observacion,'proyectos_parrafos.parrafo_id'=>$parrafo_id]);
 		}
 
-
-    public static function parrafosproyecto($idproyecto, $propietario,$clasificacion_id){
+    // Obtiene la información de modulos por proyecto, propietario y clasificacion
+    public static function parrafosproyecto($idproyecto, $propietario,$clasificacion_id)
+    {
       return DB::table('modulos')
                 ->select('modulos.modulo',
                 DB::raw(' (SELECT parrafos.parrafo

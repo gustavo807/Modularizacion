@@ -10,7 +10,9 @@ class Evproyecto extends Model
     protected $table = 'evproyectos';
     public $fillable = ['proyecto_id','evaluacion_id','evariable_id'];
 
-    public static function getresultados($id_proyecto,$variable){
+    // Obtiene los resultados por proyecto de la evaluacion de riesgo del proyecto
+    public static function getresultados($id_proyecto,$variable)
+    {
     return DB::table('evproyectos')                    
                     ->where('evproyectos.proyecto_id', $id_proyecto)
                     ->avg(DB::raw('(SELECT evariables.porcentaje 
@@ -19,7 +21,9 @@ class Evproyecto extends Model
                                 AND evproyectos.evariable_id=evariables.id)'));
   }
 
-  public static function calcula($dato){
+  // Calcula el rango de acuerdo al parametro
+  public static function calcula($dato)
+  {
         if($dato < 25)
           return 'BAJO';
         elseif($dato < 50)
@@ -30,6 +34,7 @@ class Evproyecto extends Model
           return 'MUY ALTO';
     }
 
+    // Obtiene el estado de la evaluacion completo o incompleto
   public static function status_evaluacion($proyecto_id)
     {
         $preguntas = DB::table('evaluacion')

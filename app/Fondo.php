@@ -11,7 +11,9 @@ class Fondo extends Model
 
   public $fillable = ['fondo', 'descripcion'];
 
-  public function instituciones(){
+  // Eloquent "uno a muchos"
+  public function instituciones()
+  {
     return $this->belongsToMany(Institucion::class)->withTimestamps();
   }
 }

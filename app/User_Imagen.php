@@ -10,7 +10,9 @@ class User_Imagen extends Model
   protected $table = 'user_imagenes';
   public $fillable = ['user_id','imagen_id','propietario'];
 
-  public static function userimagen($userid,$propietario,$idmodulo){
+  // Obtiene la información de un registro de user_imagen
+  public static function userimagen($userid,$propietario,$idmodulo)
+  {
     return DB::table('user_imagenes')
                     ->join('imagenes', 'user_imagenes.imagen_id', '=', 'imagenes.id')
                     ->where('user_imagenes.user_id','=', $userid)
@@ -20,7 +22,9 @@ class User_Imagen extends Model
                     ->first();
   }
 
-  public static function actualizaimagen($userid,$propietario,$idmodulo,$imagen_id){
+  // Actualiza la información de user_imagen
+  public static function actualizaimagen($userid,$propietario,$idmodulo,$imagen_id)
+  {
     return DB::table('user_imagenes')
                     ->join('imagenes', 'user_imagenes.imagen_id', '=', 'imagenes.id')
                     ->where('user_imagenes.user_id','=', $userid)

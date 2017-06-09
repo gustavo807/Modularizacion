@@ -10,8 +10,10 @@ class Euser extends Model
     protected $table = 'euser';
     public $fillable = ['tipo','valor','user_id','evaluacion_id'];
 
-    public static function resultados($id_user,$tipo,$variable){
-    return DB::table('euser')
+    // Obtiene los resuldos de la evaluacion de competitividad o variable
+    public static function resultados($id_user,$tipo,$variable)
+    {
+      return DB::table('euser')
                     ->select('euser.valor')
                     ->where('euser.tipo', $tipo)
                     ->where('euser.user_id', $id_user)
@@ -21,9 +23,11 @@ class Euser extends Model
 	                      ->where('evaluacion.variable', $variable);
 	                  })
                     ->sum('euser.valor');
-  }
+    }
 
-  public static function calcula($dato){
+    // Calcula el estado segun el parametro
+  public static function calcula($dato)
+  {
         if($dato < 2.9)
           return 'MUY BAJO';
         elseif($dato < 4.9)
@@ -34,6 +38,7 @@ class Euser extends Model
           return 'ALTO';
     }
 
+    // Determina si constetaron todas las preguntas
     public static function status_evaluacion($user_id)
     {
         $preguntas = DB::table('evaluacion')

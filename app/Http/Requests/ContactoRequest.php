@@ -31,6 +31,7 @@ class ContactoRequest extends FormRequest
         ];
     }
 
+    // Mensages para cada campo
     public function messages()
     {
       return [

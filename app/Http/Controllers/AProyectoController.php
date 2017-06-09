@@ -10,25 +10,29 @@ use Session;
 
 class AProyectoController extends Controller
 {
-
+    // Esta funcion no se utiliza, por eso el abort
     public function index()
     {
         abort(404);
     }
 
+    // Muestra el recurso para crear un convocatoria
     public function create()
     {
         $convocatorias = Convocatoria::pluck('convocatoria','id');
         return view('asesor.proyecto.create',['convocatorias'=>$convocatorias]);
     }
 
+    // Guarda los datos del formulario
     public function store(Request $request)
     {
+      // Validacion de los datos del formulario
       $this->validate($request, [
           'nombre' => 'required|max:255',
           'descripcion' => 'required|max:255',
           'convocatoria_id' => 'required|max:255',
       ]);
+
       $idempresa = Session::get('idempresa');
       $user = User::findOrFail($idempresa);
 
@@ -47,11 +51,13 @@ class AProyectoController extends Controller
       //return Session::get('idempresa');
     }
 
+    // Esta funcion no se utiliza
     public function show($id)
     {
-        //
+        abort(404);
     }
 
+    // Muestra la vista para editar un recurso en especifico
     public function edit($id)
     {
       $convocatorias = Convocatoria::pluck('convocatoria','id');
@@ -59,6 +65,7 @@ class AProyectoController extends Controller
       return view('asesor.proyecto.edit',['convocatorias'=>$convocatorias,'proyecto'=>$proyecto]);
     }
 
+    // Actualiza los datos del formulario
     public function update(Request $request, $id)
     {
       $this->validate($request, [
@@ -80,6 +87,7 @@ class AProyectoController extends Controller
       }
     }
 
+    // Elimina un recurso en especifico
     public function destroy($id)
     {
         $idempresa = Session::get('idempresa');

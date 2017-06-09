@@ -9,6 +9,7 @@ class Estado extends Model
 
     public $fillable = ['estado'];
 
+    // Obtiene los estados y su abreviación
     public static function estados()
     {
     	return [
@@ -47,6 +48,7 @@ class Estado extends Model
     	];
     }
 
+    // busca un estado
     public static function findestado($valor)
     {
     	$estados = array_keys(Estado::estados());

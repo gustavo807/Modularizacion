@@ -15,16 +15,12 @@ class Vinculado
      * @param  \Closure  $next
      * @return mixed
      */
+    // Middleware para filtrar a los usuarios
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::user()->rol_id != 2) {
             return redirect('/erros/404');
         }
-
-
-
          return $next($request);
-
-
     }
 }
